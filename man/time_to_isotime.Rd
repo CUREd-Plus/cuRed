@@ -17,3 +17,9 @@ Vector of standardised times as string formatted as HH:MM:SS
 \description{
 Convert times to standardised strings.
 }
+\examples{
+times <- c("91643", "200159", NA)
+time_to_isotime(times, format_type = "HHMMSS")
+times <- c("2018-11-14 09:16:43", "2017-10-28 20:01:59", NA)
+time_to_isotime(times, format_type = "yyyy-mm-dd HH:MM:SS")
+}

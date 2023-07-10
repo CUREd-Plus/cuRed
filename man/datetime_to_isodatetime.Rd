@@ -17,3 +17,7 @@ Vector of dates in ISO-8601 format.
 \description{
 Converts datetime to iso datetime.
 }
+\examples{
+date_time <- c("2018-11-14 09:16:43", "2017-10-28 20:01:59", NA)
+datetime_to_isodatetime(date_time, format_type = "YYYY-MM-DD HH:MM:SS")
+}

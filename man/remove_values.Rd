@@ -4,10 +4,10 @@
 \alias{remove_values}
 \title{Removes some values}
 \usage{
-remove_values(field, values_to_remove, case_sensitive = FALSE)
+remove_values(x, values_to_remove, case_sensitive = FALSE)
 }
 \arguments{
-\item{field}{Variable to be cleaned.}
+\item{x}{Variable to be cleaned.}
 
 \item{values_to_remove}{values to remove, can be a single value or a list of values.}
 
@@ -18,4 +18,11 @@ Vector with values_to_remove converted to NA.
 }
 \description{
 Removes some values
+}
+\examples{
+x <- c("ab", "Cd", "eF", "gh", "IJ")
+remove_case_insensitive <- c("ef", "ij")
+remove_values(x, remove_case_insensitive, case_sensitive = FALSE)
+remove_case_sensitive <- c("ef", "IJ")
+remove_values(x, remove_case_sensitive, case_sensitive = FALSE)
 }

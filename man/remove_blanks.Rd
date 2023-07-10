@@ -15,3 +15,7 @@ String vector with white spaces trimmed and blanks converted to NA
 \description{
 Trim white-space from variable.
 }
+\examples{
+whitespace <- c(" abc", "def ", " ghi ", "jkl\n")
+remove_blanks(whitespace)
+}

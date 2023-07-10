@@ -13,7 +13,7 @@ date_to_isodate(in_date, format_type)
 "dd/mm/yyyy"}
 }
 \value{
-String vector of dates fromatted as yyyy-mm-dd
+String vector of dates formatted as yyyy-mm-dd
 }
 \description{
 Format date to ISO8601

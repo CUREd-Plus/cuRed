@@ -4,14 +4,26 @@
 \alias{validate_ae_treatments}
 \title{Validate A&E Treatments}
 \usage{
-validate_ae_treatments(treats)
+validate_ae_treatments(treats, width = 2, side = "left", pad = "0")
 }
 \arguments{
 \item{treats}{Treatment code to tidy and validate}
+
+\item{width}{Width (total number of characters) to pad string. Default is 2}
+
+\item{side}{Side to pad string, default is "left".}
+
+\item{pad}{String to pad with.}
 }
 \value{
 Vector of treatment codes padded with zeros and missing/invalid codes converted to NA.
 }
 \description{
 Tidies treatment codes to be strings, left padded with zeros, if not possible returns NA
+}
+\details{
+Values not conforming are replaced with NA.
+}
+\examples{
+messy_treatment_codes <- c("")
 }

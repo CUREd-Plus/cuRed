@@ -17,3 +17,7 @@ Vector of GP practice codes converted to upper case, missing values are invalid_
 \description{
 Converts GP Practice codes to upper case and replaces those that do not conform or are missing with an invalid code.
 }
+\examples{
+gp_prac <- c("a1234", "hj567", "NP890", NA)
+validate_gp_prac(gp_prac, invalid_code = "A9999")
+}

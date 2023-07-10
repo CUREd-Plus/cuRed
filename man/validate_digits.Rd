@@ -4,17 +4,22 @@
 \alias{validate_digits}
 \title{Tidies numerical values to be strings padded with 0}
 \usage{
-validate_digits(x, len, valid_codes, invalid_code)
+validate_digits(x, width, valid_codes, invalid_code, side = "left", pad = "0")
 }
 \arguments{
 \item{x}{Vector of numerical values.}
 
-\item{len}{Integer indicating the width (number of digits) and number is meant to had any value with a shorter length
+\item{width}{Integer indicating the width (number of digits) and number is meant to had any value with a shorter
+length
 is left-padded with '0'.}
 
 \item{valid_codes}{Vector of codes that are valid, observed values that do not match are replaced with invalid_code.}
 
 \item{invalid_code}{Value to use for invalid codes.}
+
+\item{side}{The side of the string to pad. Default is "left".}
+
+\item{pad}{The string to pad with. Default is "0".}
 }
 \value{
 Vector of tidied numerical values as strings left-padded with zeros.

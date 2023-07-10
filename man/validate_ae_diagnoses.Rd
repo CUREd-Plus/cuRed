@@ -15,3 +15,7 @@ Vector of diagnoses with values converted to upper case, missing and invalud val
 \description{
 Tidies A&E Diagnoses
 }
+\examples{
+diagnoses <- c("0a1b2", "c3d4", NA)
+validate_ae_diagnoses(diagnoses)
+}

@@ -17,3 +17,11 @@ Vector of dates as elapsed dates.
 \description{
 Convert date from string to date
 }
+\examples{
+dates_YYYY_MM_DD <- c("1999-10-06", "2000-01-01", "1900-01-01")
+cuRed::convert_str_to_date(dates_YYYY_MM_DD)
+dates_DD_MM_YYYY <- c("06-10-1999", "01-01-2000", "01-01-1900")
+cuRed::convert_str_to_date(dates_DD_MM_YYYY, dt_format = "\%d-\%m-\%Y")
+dates_DD_MM_YYYY <- c("06/10/1999", "01/01/2000", "01/01/1900")
+cuRed::convert_str_to_date(dates_DD_MM_YYYY, dt_format = "\%d/\%m/\%Y")
+}

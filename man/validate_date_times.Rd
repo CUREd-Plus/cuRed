@@ -6,27 +6,48 @@
 \usage{
 validate_date_times(
   x,
-  invalid_code,
-  start_date_time,
-  finish_date_time,
-  missing_date_time
+  start_date_time = "1888-01-01 00:00:00",
+  finish_date_time = "2023-03-31 00:00:00",
+  missing_date_time = "1900-01-01 00:00:00",
+  format = "\%Y-\%m-\%d \%H:\%M:\%S",
+  tz = "Europe/London",
+  lt = FALSE,
+  invalid_code = NA
 )
 }
 \arguments{
 \item{x}{Vector of date-time as strings to convert.}
 
-\item{invalid_code}{Value to replace invalid codes with.}
+\item{start_date_time}{string. Default "1888-01-01 00:00:00". The first date from which values are valid, anything
+before this is converted to NA.}
 
-\item{start_date_time}{The first date from which values are valid, anything before this is converted to NA.}
-
-\item{finish_date_time}{The last date from which values are valid, anything after this is converted to NA.}
+\item{finish_date_time}{string. Default "2023-03-31 00:00:00 "The last date from which values are valid, anything
+after this is converted to NA.}
 
 \item{missing_date_time}{String representation of date/time that should be considered missing, such values are
 converted to NA.}
+
+\item{format}{Date format, default is \%Y-\%m-\%d}
+
+\item{tz}{Timezone, default is FALSE}
+
+\item{lt}{logical, default FALSE. Whether to return POSIXlt (TRUE) or POSIXct (FALSE).}
+
+\item{invalid_code}{Invalid code to use if date/times are invalid. Default NA}
 }
 \value{
 Vector of dates converted to YYYY-MM-DD HH:MM:SS.
 }
 \description{
 Converts date-times as strings to elapsed POSIX values. This is required so that elapsed periods can be calculated.
+}
+\examples{
+x <- c(
+  "2001-06-09 12:13:14", "1887-12-31 00:00:01", "2017-04-01 00:00:00",
+  "2016/05/03 00:00:00", "2016-05-03 00-11-22", NA
+)
+validate_dates(x)
+validate_dates(x, start_date_time = "1887-01-01 00:00:00")
+validate_dates(x, finish_date_time = "2018-03-31 00:00:00")
+validate_dates(x, format = "\%Y/\%m/\%d")
 }

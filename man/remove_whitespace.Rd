@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning.R
 \name{remove_whitespace}
 \alias{remove_whitespace}
-\title{Remove white spaces from strings}
+\title{Remove carriage returns and white spaces from strings}
 \usage{
 remove_whitespace(x)
 }
@@ -13,5 +13,9 @@ remove_whitespace(x)
 String vector with carriage returns removed, white space trimmed and missing ("") values as NA.
 }
 \description{
-Remove white spaces from strings
+Remove carriage returns and white spaces from strings
+}
+\examples{
+string_vector <- c("Multi-line\nstring", " String with flanking white space ", "")
+cuRed::remove_whitespace(string_vector)
 }

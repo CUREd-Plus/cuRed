@@ -4,16 +4,22 @@
 \alias{validate_numeric}
 \title{Validates numerical values}
 \usage{
-validate_numeric(x, len)
+validate_numeric(x, len, missing)
 }
 \arguments{
 \item{x}{Vector of numerical values.}
 
 \item{len}{Length entries are meant to be.}
+
+\item{missing}{Value to replace invalid numbers with. Default is "9" repeated len times.}
 }
 \value{
 String vector of numbers left-padded with zero. Missing values are '9' repeated the value of 'len'.
 }
 \description{
 Validates numerical values
+}
+\examples{
+numeric <- c(1, 12, 134, NA, -1)
+validate_numeric(numeric, len = 5, missing = 9)
 }

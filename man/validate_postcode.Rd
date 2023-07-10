@@ -15,3 +15,7 @@ String vector of tidied postcodes.
 \description{
 Formats postcode correctly ensuring all characters are uppercase and incorrect values as NA
 }
+\examples{
+postcodes <- c("s1 4gh", "rg10 4PQ")
+validate(postcode)
+}

@@ -21,7 +21,6 @@ Imports:
     dtplyr,
     IMD,
     lubridate,
-    nhsnumber,
     stringr
 Suggests:
     codemetar

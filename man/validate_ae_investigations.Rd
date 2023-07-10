@@ -4,10 +4,16 @@
 \alias{validate_ae_investigations}
 \title{Tidies A&E Investigation codes}
 \usage{
-validate_ae_investigations(invests)
+validate_ae_investigations(invests, width = 2, side = "left", pad = "0")
 }
 \arguments{
 \item{invests}{Vector of investigation codes.}
+
+\item{width}{Width (total number of characters) to pad string. Default is 2}
+
+\item{side}{Side to pad string, default is "left".}
+
+\item{pad}{String to pad with.}
 }
 \value{
 Vector of investigation codes padded with zeros and missing/invalid codes converted to NA.

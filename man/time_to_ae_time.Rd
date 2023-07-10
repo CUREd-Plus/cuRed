@@ -17,3 +17,13 @@ String vector of just times
 \description{
 Convert times of arrival at A&E
 }
+\examples{
+times <- c("101", "1856", NA)
+time_to_ae_time(times, format_type = "HM")
+times <- c("2014-01-31 01:01", "2013-02-28 18:56", NA)
+time_to_ae_time(times, format_type = "yyyy-mm-dd HH:MM:SS")
+times <- c("01:01", "18:56:37", NA)
+time_to_ae_time(times, format_type = "HH:MMetc")
+times <- c("0101", "185637", NA)
+time_to_ae_time(times, format_type = "HHMMetc")
+}

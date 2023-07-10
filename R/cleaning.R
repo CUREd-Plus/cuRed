@@ -6,7 +6,7 @@ library(lubridate)
 #' @param in_date Input date
 #' @param format_type Input format, should be one of "yyyy-mm-dd", "yyyymmdd" or
 #' "dd/mm/yyyy"
-#' @returns String vector of dates fromatted as yyyy-mm-dd
+#' @returns String vector of dates formatted as yyyy-mm-dd
 #' @export
 #' @examples
 #' dates <- c("01/02/1999", "03/04/2001")
@@ -43,12 +43,18 @@ date_to_isodate <- function(in_date, format_type) {
   }
   return(out_date)
 }
+
 #' Convert times to standardised strings.
 #'
 #' @param x Vector of times to convert.
 #' @param format_type Format times take
 #' @returns Vector of standardised times as string formatted as HH:MM:SS
 #' @export
+#' @examples
+#' times <- c("91643", "200159", NA)
+#' time_to_isotime(times, format_type = "HHMMSS")
+#' times <- c("2018-11-14 09:16:43", "2017-10-28 20:01:59", NA)
+#' time_to_isotime(times, format_type = "yyyy-mm-dd HH:MM:SS")
 time_to_isotime <- function(x, format_type) {
   # Converts to HH:MM:SS
   if (format_type == "HHMMSS") {
@@ -75,6 +81,9 @@ time_to_isotime <- function(x, format_type) {
 #' @param format_type Format of date-times.
 #' @returns Vector of dates in ISO-8601 format.
 #' @export
+#' @examples
+#' date_time <- c("2018-11-14 09:16:43", "2017-10-28 20:01:59", NA)
+#' datetime_to_isodatetime(date_time, format_type = "YYYY-MM-DD HH:MM:SS")
 datetime_to_isodatetime <- function(x, format_type) {
   # Converts to YYYY-MM-DD HH:MM:SS
   if (format_type == "YYYY-MM-DD HH:MM:SS") {
@@ -102,6 +111,15 @@ datetime_to_isodatetime <- function(x, format_type) {
 #' @param format_type Format of date-time/time.
 #' @returns String vector of just times
 #' @export
+#' @examples
+#' times <- c("101", "1856", NA)
+#' time_to_ae_time(times, format_type = "HM")
+#' times <- c("2014-01-31 01:01", "2013-02-28 18:56", NA)
+#' time_to_ae_time(times, format_type = "yyyy-mm-dd HH:MM:SS")
+#' times <- c("01:01", "18:56:37", NA)
+#' time_to_ae_time(times, format_type = "HH:MMetc")
+#' times <- c("0101", "185637", NA)
+#' time_to_ae_time(times, format_type = "HHMMetc")
 time_to_ae_time <- function(x, format_type) {
   # Converts to HHMM
   if (format_type == "HM") {
@@ -130,6 +148,9 @@ time_to_ae_time <- function(x, format_type) {
 #' @param x String vector to have white space trimmed.
 #' @returns String vector with white spaces trimmed and blanks converted to NA
 #' @export
+#' @examples
+#' whitespace <- c(" abc", "def ", " ghi ", "jkl\n")
+#' remove_blanks(whitespace)
 remove_blanks <- function(x) {
   x <- trimws(x)
   return(replace(x, x == "", NA))
@@ -138,20 +159,26 @@ remove_blanks <- function(x) {
 #' Removes some values
 #'
 #'
-#' @param field Variable to be cleaned.
+#' @param x Variable to be cleaned.
 #' @param values_to_remove values to remove, can be a single value or a list of values.
 #' @param case_sensitive Boolean whether to make search case-sensitive or not.
 #' @returns Vector with values_to_remove converted to NA.
 #' @export
-remove_values <- function(field, values_to_remove, case_sensitive = FALSE) {
+#' @examples
+#' x <- c("ab", "Cd", "eF", "gh", "IJ")
+#' remove_case_insensitive <- c("ef", "ij")
+#' remove_values(x, remove_case_insensitive, case_sensitive = FALSE)
+#' remove_case_sensitive <- c("ef", "IJ")
+#' remove_values(x, remove_case_sensitive, case_sensitive = FALSE)
+remove_values <- function(x, values_to_remove, case_sensitive = FALSE) {
   stopifnot(length(values_to_remove) > 0)
 
   if (case_sensitive) {
-    field <- replace(field, field %in% values_to_remove, NA)
+    x <- replace(x, x %in% values_to_remove, NA)
   } else {
-    field <- replace(field, toupper(field) %in% toupper(values_to_remove), NA)
+    x <- replace(x, toupper(x) %in% toupper(values_to_remove), NA)
   }
-  return(field)
+  return(x)
 }
 
 #' Split Forenames and Surnames
@@ -161,6 +188,9 @@ remove_values <- function(field, values_to_remove, case_sensitive = FALSE) {
 #' @param names String vector of names to be split.
 #' @returns Data Table of forename and surname.
 #' @export
+#' @examples
+#' names <- c("John Doe", "Jane Doe", "Arthur Conan Doyle")
+#' split_forenames_surnames(names)
 split_forenames_surnames <- function(names) {
   max_name_len <- max(nchar(names), na.rm = TRUE)
 
@@ -184,11 +214,17 @@ split_forenames_surnames <- function(names) {
 #'
 #' Replaces multiple white-spaces with single white space and converts characters to upper case.
 #'
-#' @param name String vector of names to be cleaned.
+#' @param x String vector of names to be cleaned.
 #' @returns String vector of names in upper case with white space trimmed.
 #' @export
-clean_names <- function(name) {
-  text_temp <- trimws(gsub("\\s+", " ", gsub("[^A-Z\\s\\-\\']+", "", toupper(name), perl = TRUE), perl = TRUE))
+#' @examples
+#' names <- c("John   Doe", "Jane Doe")
+#' clean_names(names)
+clean_names <- function(x) {
+  text_temp <- toupper(x) |>
+    gsub("[^A-Z\\s\\-\\']+", "", , perl = TRUE) |>
+    gsub("\\s+", " ", , perl = TRUE) |>
+    trimws()
 
   # Set blanks to NA
   return(replace(text_temp, text_temp == "" | text_temp == "UNKNOWN", as.character(NA)))
@@ -261,6 +297,9 @@ validate_nhs_number <- function(nhs_number) {
 #' @param postcode String vector of postcodes.
 #' @returns String vector of tidied postcodes.
 #' @export
+#' @examples
+#' postcodes <- c("s1 4gh", "rg10 4PQ")
+#' validate(postcode)
 validate_postcode <- function(postcode) {
   postcode_temp <- gsub("[^A-Z0-9]+", "", toupper(postcode))
   postcode_temp[!grepl("[A-Z][A-Z0-9]{1,3}[0-9][A-Z]{2}", postcode_temp)] <- NA
@@ -279,31 +318,53 @@ validate_postcode <- function(postcode) {
 #'
 #' Replaces missing and codes that are not valid with the invalid code value.
 #'
-#' @param field_in Variable to be validated.
+#' @param x Variable to be validated.
 #' @param valid_codes List of valid codes.
 #' @param invalid_code Invalid code to replace values not observed in valid_codes with.
-#' @returns Vector of codes wher values not in valid_codes are replaced with invalid_code.
+#' @returns Vector of codes where values not in valid_codes are replaced with invalid_code.
 #' @export
-validate_codes <- function(field_in, valid_codes, invalid_code) {
-  return(replace(field_in, (!is.na(field_in) & !(field_in %in% valid_codes)), invalid_code))
+#' @examples
+#' x <- c("A001", "B002", "C003", "A001", "D002", "A002")
+#' valid_codes <- c("A001", "A002", "B001", "B002", "C003")
+#' invalid_code <- "M999"
+#' validate_codes(x, valid_codes, invalid_code)
+validate_codes <- function(x, valid_codes, invalid_code) {
+  return(replace(x, (!is.na(x) & !(x %in% valid_codes)), invalid_code))
 }
 
 #' Tidies dates
 #'
-#' Replaces "1900-01-01" with NA and anything < "188-01-01" or > "2017-03-31" as NA.
+#' Replaces "1900-01-01" with NA and anything < "1888-01-01" or > "2023-03-31" as NA.
 #'
-#' @param field_in Date variable to tidy.
-#' @param start_date The first date from which values are valid, anything before this is converted to NA.
-#' @param finish_date The last date from which values are valid, anything after this is converted to NA.
+#' @param x Date variable to tidy.
+#' @param start_date The first date from which values are valid, anything before this is converted to NA. Default is
+#' "1888-01-01".
+#' @param finish_date The last date from which values are valid, anything after this is converted to NA. Default is
+#' "2017-03-31".
+#' @param format Date format, default is %Y-%m-%d
+#' @param tz Timezone, default is FALSE
+#' @param lt logical, default FALSE. Whether to return POSIXlt (TRUE) or POSIXct (FALSE).
 #' @returns Vector of dates tidied.
 #' @export
-validate <- dates <- function(field_in, start_date, finish_date) {
-  date_out <- replace(field_in, field_in %in% "1900-01-01", NA)
-  date_converted <- lubridate::fast_strptime(date_out, format = "%Y-%m-%d", tz = "Europe/London", lt = FALSE)
-  return(replace(date_out, !is.na(field_in) &
+#' @examples
+#' x <- c("2001-06-09", "1887-12-31", "2017-04-01", "2016/05/03", NA)
+#' validate_dates(x)
+#' validate_dates(x, start_date = "1887-01-01")
+#' validate_dates(x, finish_date = "2018-03-31")
+#' validate_dates(x, format = "%Y/%m/%d")
+validate_dates <- function(x,
+                           start_date = "1888-01-01",
+                           finish_date = "2023-03-31",
+                           missing_date = "1900-01-01",
+                           format = "%Y-%m-%d",
+                           tz = "Europe/London",
+                           lt = FALSE) {
+  date_out <- replace(x, x %in% missing_date, NA)
+  date_converted <- lubridate::fast_strptime(date_out, format, tz, lt = FALSE)
+  return(replace(date_out, !is.na(x) &
     (is.na(date_converted) |
-      date_converted < as.POSIXct(start_date, tz = "Europe/London") |
-      date_converted > as.POSIXct(finis_date, tz = "Europe/London")), NA))
+      date_converted < as.POSIXct(start_date, tz) |
+      date_converted > as.POSIXct(finish_date, tz)), NA))
 }
 
 #' Tidies Datetimes to POSIX values
@@ -311,24 +372,42 @@ validate <- dates <- function(field_in, start_date, finish_date) {
 #' Converts date-times as strings to elapsed POSIX values. This is required so that elapsed periods can be calculated.
 #'
 #' @param x Vector of date-time as strings to convert.
-#' @param start_date_time The first date from which values are valid, anything before this is converted to NA.
-#' @param finish_date_time The last date from which values are valid, anything after this is converted to NA.
+#' @param start_date_time string. Default "1888-01-01 00:00:00". The first date from which values are valid, anything
+#' before this is converted to NA.
+#' @param finish_date_time string. Default "2023-03-31 00:00:00 "The last date from which values are valid, anything
+#' after this is converted to NA.
 #' @param missing_date_time String representation of date/time that should be considered missing, such values are
 #' converted to NA.
-#' @param invalid_code Value to replace invalid codes with.
+#' @param format Date format, default is %Y-%m-%d
+#' @param tz Timezone, default is FALSE
+#' @param lt logical, default FALSE. Whether to return POSIXlt (TRUE) or POSIXct (FALSE).
+#' @param invalid_code Invalid code to use if date/times are invalid. Default NA
 #' @returns Vector of dates converted to YYYY-MM-DD HH:MM:SS.
 #' @export
-validate_date_times <- function(x, invalid_code, start_date_time, finish_date_time, missing_date_time) {
+#' @examples
+#' x <- c(
+#'   "2001-06-09 12:13:14", "1887-12-31 00:00:01", "2017-04-01 00:00:00",
+#'   "2016/05/03 00:00:00", "2016-05-03 00-11-22", NA
+#' )
+#' validate_dates(x)
+#' validate_dates(x, start_date_time = "1887-01-01 00:00:00")
+#' validate_dates(x, finish_date_time = "2018-03-31 00:00:00")
+#' validate_dates(x, format = "%Y/%m/%d")
+validate_date_times <- function(x,
+                                start_date_time = "1888-01-01 00:00:00",
+                                finish_date_time = "2023-03-31 00:00:00",
+                                missing_date_time = "1900-01-01 00:00:00",
+                                format = "%Y-%m-%d %H:%M:%S",
+                                tz = "Europe/London",
+                                lt = FALSE,
+                                invalid_code = NA) {
   datetime_out <- replace(x, x %in% "1900-01-01 00:00:00", NA)
-  datetime_converted <- lubridate::fast_strptime(datetime_out,
-    format = "%Y-%m-%d %H:%M:%S",
-    tz = "Europe/London", lt = FALSE
-  )
+  datetime_converted <- lubridate::fast_strptime(datetime_out, format, tz, lt)
   return(replace(
     datetime_out, !is.na(x) &
       (is.na(datetime_converted) |
-        datetime_converted < as.POSIXct(start_date_time, tz = "Europe/London") |
-        datetime_converted > as.POSIXct(finish_date_time, tz = "Europe/London")
+        datetime_converted < as.POSIXct(start_date_time, tz) |
+        datetime_converted > as.POSIXct(finish_date_time, tz)
       ),
     invalid_code
   ))
@@ -342,6 +421,9 @@ validate_date_times <- function(x, invalid_code, start_date_time, finish_date_ti
 #' @param invalid_code Code to use for invalid values.
 #' @returns Vector of times correctly formatted.
 #' @export
+#' @examples
+#' ae_times <- c("0113", "3106", NA, "2400")
+#' validate_ae_times(ae_times)
 validate_ae_times <- function(x, invalid_code) {
   time_out <- replace(x, x == "2400", "0000")
   return(replace(
@@ -356,14 +438,20 @@ validate_ae_times <- function(x, invalid_code) {
 #' Pads numerical values with zeros, values NOT in valid_codes are replaced with invalid_code.
 #'
 #' @param x Vector of numerical values.
-#' @param len Integer indicating the width (number of digits) and number is meant to had any value with a shorter length
+#' @param width Integer indicating the width (number of digits) and number is meant to had any value with a shorter
+#' length
 #' is left-padded with '0'.
 #' @param valid_codes Vector of codes that are valid, observed values that do not match are replaced with invalid_code.
 #' @param invalid_code Value to use for invalid codes.
+#' @param side The side of the string to pad. Default is "left".
+#' @param pad The string to pad with. Default is "0".
 #' @returns Vector of tidied numerical values as strings left-padded with zeros.
 #' @export
-validate_digits <- function(x, len, valid_codes, invalid_code) {
-  x <- stringr::str_pad(x, width = len, side = "left", "0")
+#' @exammples
+#' digits <- c("123", "45", "6", NA)
+#' validate_digits(digits)
+validate_digits <- function(x, width, valid_codes, invalid_code, side = "left", pad = "0") {
+  x <- stringr::str_pad(x, width, side, pad)
   return(replace(
     x,
     (!is.na(x) & !(x %in% valid_codes)),
@@ -375,14 +463,18 @@ validate_digits <- function(x, len, valid_codes, invalid_code) {
 #'
 #' @param x Vector of numerical values.
 #' @param len Length entries are meant to be.
+#' @param missing Value to replace invalid numbers with. Default is "9" repeated len times.
 #' @returns String vector of numbers left-padded with zero. Missing values are '9' repeated the value of 'len'.
 #' @export
-validate_numeric <- function(x, len) {
+#' @examples
+#' numeric <- c(1, 12, 134, NA, -1)
+#' validate_numeric(numeric, len = 5, missing = 9)
+validate_numeric <- function(x, len, missing) {
   x <- stringr::str_pad(trimws(x), width = len, side = "left", "0")
   return(replace(
     x,
     (!is.na(x) & !grepl(paste0("^[$[0-9]{", len, "}$"), x)),
-    paste0(rep(9, len), collapse = "")
+    paste0(rep(missing, len), collapse = "")
   ))
 }
 
@@ -437,6 +529,9 @@ validate_sitetret <- function(site_treatment_code, procodet) {
 #' @param invalid_code String code to indicate invalid or NA value.
 #' @returns Vector of GP practice codes converted to upper case, missing values are invalid_code.
 #' @export
+#' @examples
+#' gp_prac <- c("a1234", "hj567", "NP890", NA)
+#' validate_gp_prac(gp_prac, invalid_code = "A9999")
 validate_gp_prac <- function(x, invalid_code) {
   field_out <- toupper(x)
   return(replace(
@@ -446,15 +541,19 @@ validate_gp_prac <- function(x, invalid_code) {
   ))
 }
 
-#' Tidies Referer organisation code to upper-case.
+#' Tidies Referrer organisation code to upper-case.
 #'
-#' Converts Referer organisation codes to upper case and replaces those that do not conform or are missing with an
+#' Converts Referrer organisation codes to upper case and replaces those that do not conform or are missing with an
 #' invalid code.
 #'
-#' @param x Vector of referer organisation codes.
+#' @param x Vector of referrer organisation codes.
 #' @param invalid_code String code to indicate invalid or NA value.
-#' @returns Vector of referer organisation as upper case strings, missing and invalid values replaced with invalid_code.
+#' @returns Vector of referrer organisation as upper case strings, missing and invalid values replaced with
+#' invalid_code.
 #' @export
+#' @examples
+#' refer_org <- c("a123", "BC456", "DEF7890", NA)
+#' validate_refer_org(refer_org, invalid_code = "000000")
 validate_refer_org <- function(x, invalid_code) {
   field_out <- toupper(x)
   return(replace(
@@ -470,6 +569,9 @@ validate_refer_org <- function(x, invalid_code) {
 #' @param apc_data APC data
 #' @returns Data table of multiple ICD10 diagnoses.
 #' @export
+#' @examples
+#' icd10 <- c("A00.0", "I60.2", "I60.10", NA)
+#' validate_icd10(icd10, apc_data = TRUE)
 validate_icd10 <- function(diags_wide, apc_data = TRUE) {
   # TODO - Make reference data and variable arguments
   icd10_x_codes <- readRDS("data/reference/apc_reference_data.rds")[["diag_icd10_x"]][, code]
@@ -579,6 +681,8 @@ validate_icd10 <- function(diags_wide, apc_data = TRUE) {
   # Return diagnoses
   return(diags_wide)
 }
+
+
 #' Tidies OPCSOps codes
 #'
 #' @param ops_wide OPCS Data in wide format.
@@ -592,24 +696,19 @@ validate_opcs_ops <- function(ops_wide, invalid_date_code) {
     variable.name = "ordinal", value.name = c("val_opertn", "val_opdate"),
     variable.factor = FALSE
   )
-
   ops_data[, ":="(ordinal = as.numeric(ordinal),
     val_opertn = toupper(val_opertn))]
-
   ## General OPCS form
   ##   (approximates HES ACv3 Rule0550 [Part1] & Rule0560)
   ops_data[!is.na(val_opertn) & !grepl("^[A-HJ-Z][0-9]{2}\\.?[0-9\\-]?$", val_opertn), val_opertn := "&"]
-
   ## Strip dot from codes
   ops_data[, val_opertn := sub(".", "", val_opertn, fixed = TRUE)]
-
   ## Replace dash (if present)- or if only 3 char right pad- with 9
   ##   (approximates HES ACv3 Rule0450)
   ops_data[
     (substr(val_opertn, 4, 4) == "-" | nchar(val_opertn) == 3),
     val_opertn := paste0(substr(val_opertn, 1, 3), 9)
   ]
-
   ## Invalid primary operation
   ##   (approximates HES ACv3 Rule0550 [Part2])
   ops_data[
@@ -617,14 +716,12 @@ validate_opcs_ops <- function(ops_wide, invalid_date_code) {
       (substring(val_opertn, 1, 1) %in% c("Y", "Z") | substring(val_opertn, 1, 3) %in% c("O11", "O13", "O14")),
     val_opertn := "&"
   ]
-
   ## Invalid primary operation
   ##   (HES ACv3 Rule0540)
   ops_data[
     ordinal == 1 & substring(val_opertn, 1, 3) == "X99",
     val_opertn := NA
   ]
-
   ## Validate operation dates
   ##   (approximates HES ACv3 Rule0480 & Rule0485)
   ops_data[is.na(val_opertn) & !is.na(val_opdate), val_opdate := invalid_date_code]
@@ -641,11 +738,15 @@ validate_opcs_ops <- function(ops_wide, invalid_date_code) {
   return(ops_wide)
 }
 
+
 #' Tidies A&E Diagnoses
 #'
 #' @param diags Vector of diagnoses.
 #' @returns Vector of diagnoses with values converted to upper case, missing and invalud values as NA.
 #' @export
+#' @examples
+#' diagnoses <- c("0a1b2", "c3d4", NA)
+#' validate_ae_diagnoses(diagnoses)
 validate_ae_diagnoses <- function(diags) {
   diags_out <- toupper(diags)
   return(replace(diags_out, !is.na(diags_out) & !grepl("^[0-9 ]{1,5}[ LRB8]$", diags_out), NA))
@@ -655,10 +756,14 @@ validate_ae_diagnoses <- function(diags) {
 #'
 #' Ensures A&E Investigation codes are strings of two characters left-padded with two leading zeros.
 #' @param invests Vector of investigation codes.
+#' @param width Width (total number of characters) to pad string. Default is 2
+#' @param side Side to pad string, default is "left".
+#' @param pad String to pad with.
 #' @returns Vector of investigation codes padded with zeros and missing/invalid codes converted to NA.
 #' @export
-validate_ae_investigations <- function(invests) {
-  invests_out <- stringr::str_pad(substr(invests, 1, 2), 2, side = "left", pad = "0")
+#' @examples
+validate_ae_investigations <- function(invests, width = 2, side = "left", pad = "0") {
+  invests_out <- stringr::str_pad(substr(invests, 1, 2), width, side, pad)
   return(replace(invests_out, !is.na(invests_out) & !grepl("^[0-9]{2}$", invests_out), NA))
 }
 
@@ -666,41 +771,60 @@ validate_ae_investigations <- function(invests) {
 #'
 #' Tidies treatment codes to be strings, left padded with zeros, if not possible returns NA
 #'
+#' Values not conforming are replaced with NA.
+#'
 #' @param treats Treatment code to tidy and validate
+#' @param width Width (total number of characters) to pad string. Default is 2
+#' @param side Side to pad string, default is "left".
+#' @param pad String to pad with.
 #' @returns Vector of treatment codes padded with zeros and missing/invalid codes converted to NA.
 #' @export
-validate_ae_treatments <- function(treats) {
-  treats_out <- stringr::str_pad(substr(treats, 1, 3), 2, side = "left", pad = "0")
+#' @examples
+#' messy_treatment_codes <- c("")
+validate_ae_treatments <- function(treats, width = 2, side = "left", pad = "0") {
+  treats_out <- stringr::str_pad(substr(treats, 1, 3), width, side, pad)
   return(replace(treats_out, !is.na(treats_out) & !grepl("^[0-9]{2,3}$", treats_out), NA))
 }
 
-# QUESTION : Why is age returned as a padded string, its a natural numerical unit
-#' Calculate age in years
+#' Calculate difference between two dates.
 #'
-#' @param point_time Date on which age is to be calculated
-#' @param ref_time Reference time point, typically date of birth
+#' Typically used to calculate age in years, although other time units are accepted.
+#'
+#' @param point_time Vector of dates on which age is to be calculated (e.g. event dates).
+#' @param ref_time Vector of dates which serve as a reference time point from which , typically date of birth
+#' @param format Date format
+#' @param unit Unit of elapsed time, default is
+#' @param max Maximum allowed age, values exceeding this are set to this value.
+#' @param min Minimum allowed age, values less than this are set to NA.
 #' @returns String vector of ages, rounded down
 #' @export
-calc <- age <- function(point_time, ref_time) {
+#' @examples
+#' date_of_birth <- c("1991-05-06", "1971-09-15")
+#' event_date <- c("2022-07-09", "2019-04-17")
+#' calc_diff_time(date_of_birth, event_date)
+calc_diff_time <- function(point_time, ref_time, format = "%Y-%m-%d", unit = "years", max = 120, min = 0) {
   age <- floor(lubridate::time_length(
     difftime(
       as.Date(point_time,
-        format = "%Y-%m-%d"
+        format = format
       ),
-      as.Date(ref_time, format = "%Y-%m-%d")
+      as.Date(ref_time, format = format)
     ),
-    "years"
+    unit = unit
   ))
-  age <- replace(age, age > 120, 120)
-  age <- replace(age, age < 0, NA)
+  age <- replace(age, age > max, max)
+  age <- replace(age, age < min, NA)
   return(stringr::str_pad(as.character(age), width = 3, side = "left", pad = "0"))
 }
 
-#' Remove white spaces from strings
+#' Remove carriage returns and white spaces from strings
 #'
 #' @param x String vector to tidy
 #' @returns String vector with carriage returns removed, white space trimmed and missing ("") values as NA.
 #' @export
+#' @examples
+#' string_vector <- c("Multi-line\nstring", " String with flanking white space ", "")
+#' cuRed::remove_whitespace(string_vector)
 remove_whitespace <- function(x) {
   x <- gsub("\\n", " ", x, fixed = TRUE)
   x <- trimws(gsub("[\\s]{1,}", " ", x, perl = TRUE))
@@ -714,6 +838,13 @@ remove_whitespace <- function(x) {
 #' @param dt_format Format of date strings.
 #' @returns Vector of dates as elapsed dates.
 #' @export
+#' @examples
+#' dates_YYYY_MM_DD <- c("1999-10-06", "2000-01-01", "1900-01-01")
+#' cuRed::convert_str_to_date(dates_YYYY_MM_DD)
+#' dates_DD_MM_YYYY <- c("06-10-1999", "01-01-2000", "01-01-1900")
+#' cuRed::convert_str_to_date(dates_DD_MM_YYYY, dt_format = "%d-%m-%Y")
+#' dates_DD_MM_YYYY <- c("06/10/1999", "01/01/2000", "01/01/1900")
+#' cuRed::convert_str_to_date(dates_DD_MM_YYYY, dt_format = "%d/%m/%Y")
 convert_str_to_date <- function(date, dt_format = "%Y-%m-%d") {
   date_out <- as.Date(lubridate::fast_strptime(paste(date, "12:00:00"),
     format = paste(dt_format, "%H:%M:%S"),

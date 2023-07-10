@@ -17,3 +17,7 @@ Vector of times correctly formatted.
 \description{
 Tidies A&E times, converting 2400 to 0000 and replacing invalid values with the specified code.
 }
+\examples{
+ae_times <- c("0113", "3106", NA, "2400")
+validate_ae_times(ae_times)
+}

@@ -4,18 +4,24 @@
 \alias{validate_codes}
 \title{Tidies Codes}
 \usage{
-validate_codes(field_in, valid_codes, invalid_code)
+validate_codes(x, valid_codes, invalid_code)
 }
 \arguments{
-\item{field_in}{Variable to be validated.}
+\item{x}{Variable to be validated.}
 
 \item{valid_codes}{List of valid codes.}
 
 \item{invalid_code}{Invalid code to replace values not observed in valid_codes with.}
 }
 \value{
-Vector of codes wher values not in valid_codes are replaced with invalid_code.
+Vector of codes where values not in valid_codes are replaced with invalid_code.
 }
 \description{
 Replaces missing and codes that are not valid with the invalid code value.
+}
+\examples{
+x <- c("A001", "B002", "C003", "A001", "D002", "A002")
+valid_codes <- c("A001", "A002", "B001", "B002", "C003")
+invalid_code <- "M999"
+validate_codes(x, valid_codes, invalid_code)
 }
