@@ -11,7 +11,7 @@ Authors@R: c(
     person(given="Annabel", family="Crum", email="a.crum@sheffield.ac.uk", role = c("aut"),
            comment = c(ORCID = "0000-0001-9310-8536")))
 Description: Package for cleaning and linking Urgent and Emergency Care (UEC) service data, provisioned by NHS Digital and Yorkshire Ambulance Service, along with data on demographics, deaths, and medicines dispensed in primary care.
-License: MIT + file LICENSE
+License: MIT + file LICENSE.md
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

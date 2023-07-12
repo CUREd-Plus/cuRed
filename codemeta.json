@@ -6,7 +6,7 @@
   "name": "cuRed: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide",
   "codeRepository": "https://github.com/CUREd-Plus/cuRed",
   "issueTracker": "https://github.com/CUREd-Plus/cuRed/issues",
-  "license": "https://spdx.org/licenses/MIT",
+  "license": "MIT + file LICENSE.md",
   "version": "0.0.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
@@ -135,5 +135,5 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "71.614KB"
+  "fileSize": "71.608KB"
 }
