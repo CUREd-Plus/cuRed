@@ -801,7 +801,7 @@ validate_ae_treatments <- function(treats, width = 2, side = "left", pad = "0") 
 #' @examples
 #' date_of_birth <- c("1991-05-06", "1971-09-15")
 #' event_date <- c("2022-07-09", "2019-04-17")
-#' calc_diff_time(date_of_birth, event_date)
+#' calc_age(date_of_birth, event_date)
 calc_age <- function(point_time, ref_time, format = "%Y-%m-%d", unit = "years", max = 120, min = 0) {
   age <- floor(lubridate::time_length(
     difftime(

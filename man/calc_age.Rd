@@ -2,18 +2,38 @@
 % Please edit documentation in R/cleaning.R
 \name{calc_age}
 \alias{calc_age}
-\title{Calculate age in years}
+\title{Calculate difference between two dates.}
 \usage{
-calc_age(point_time, ref_time)
+calc_age(
+  point_time,
+  ref_time,
+  format = "\%Y-\%m-\%d",
+  unit = "years",
+  max = 120,
+  min = 0
+)
 }
 \arguments{
-\item{point_time}{Date on which age is to be calculated}
+\item{point_time}{Vector of dates on which age is to be calculated (e.g. event dates).}
 
-\item{ref_time}{Reference time point, typically date of birth}
+\item{ref_time}{Vector of dates which serve as a reference time point from which , typically date of birth}
+
+\item{format}{Date format}
+
+\item{unit}{Unit of elapsed time, default is}
+
+\item{max}{Maximum allowed age, values exceeding this are set to this value.}
+
+\item{min}{Minimum allowed age, values less than this are set to NA.}
 }
 \value{
 String vector of ages, rounded down
 }
 \description{
-Calculate age in years
+Typically used to calculate age in years, although other time units are accepted.
+}
+\examples{
+date_of_birth <- c("1991-05-06", "1971-09-15")
+event_date <- c("2022-07-09", "2019-04-17")
+calc_age(date_of_birth, event_date)
 }
