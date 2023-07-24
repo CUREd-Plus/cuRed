@@ -2,13 +2,16 @@ analyse
 args
 aut
 BugReports
+campbell
+cff
+cffinit
 CMD
 codebase
 codemeta
 codemetar
 codeRepository
-coemetar
 ComputerLanguage
+contIntegration
 cran
 cre
 crum
@@ -18,14 +21,12 @@ cuRed
 datetime
 Datetimes
 dir
-dispensery
 doi
 dplyr
 dtplyr
 duckdb
 familyName
 fileSize
-fromatted
 github
 givenName
 HH
@@ -41,6 +42,7 @@ linter
 linters
 lintr
 lubridate
+ly
 macos
 MERCHANTABILITY
 miniconda
@@ -64,8 +66,6 @@ prodocdet
 Prodocdet
 programmingLanguage
 rcmdcheck
-Referer
-referer
 Roxygen
 RoxygenNote
 runtimePlatform
@@ -89,5 +89,6 @@ UEC
 uk
 useR
 wher
+yaml
 yyyy
 yyyymmdd

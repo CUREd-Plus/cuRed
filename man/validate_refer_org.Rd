@@ -7,17 +7,17 @@
 validate_refer_org(x, invalid_code)
 }
 \arguments{
-\item{x}{Vector of referrer organisation codes.}
+\item{x}{Vector of Referrer organisation codes.}
 
 \item{invalid_code}{String code to indicate invalid or NA value.}
 }
 \value{
-Vector of referrer organisation as upper case strings, missing and invalid values replaced with
+Vector of Referrer organisation as upper case strings, missing and invalid values replaced with
 invalid_code.
 }
 \description{
-Converts Referrer organisation codes to upper case and replaces those that do not conform or are missing with an
-invalid code.
+Converts Referrer organisation codes to upper case and replaces those that do not conform or are missing with
+an invalid code.
 }
 \examples{
 refer_org <- c("a123", "BC456", "DEF7890", NA)

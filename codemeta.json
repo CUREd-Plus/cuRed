@@ -2,8 +2,8 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "cuRed",
-  "description": "Package for cleaning and linking data provisioned by NHS Digital, Yorkshire Ambulance Service and other Unexpected Emergency Care (UEC) services along with medicine dispensery data.",
-  "name": "cuRed: Linking NHS Digital and Unexpected Emergency Care Data in Yorkshire and Humber Region",
+  "description": "Package for cleaning and linking Urgent and Emergency Care (UEC) service data, provisioned by NHS Digital and Yorkshire Ambulance Service, along with data on demographics, deaths, and medicines dispensed in primary care.",
+  "name": "cuRed: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide",
   "codeRepository": "https://github.com/CUREd-Plus/cuRed",
   "issueTracker": "https://github.com/CUREd-Plus/cuRed/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -26,7 +26,7 @@
       "@type": "Person",
       "givenName": "Tony",
       "familyName": "Stone",
-      "email": "t.stone@sheffield.ac.uk",
+      "email": "tony.stone@sheffield.ac.uk",
       "@id": "https://orcid.org/0000-0002-0167-3800"
     },
     {
@@ -35,6 +35,13 @@
       "familyName": "Crum",
       "email": "a.crum@sheffield.ac.uk",
       "@id": "https://orcid.org/0000-0001-9310-8536"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Richard",
+      "familyName": "Campbell",
+      "email": "r.j.campbell@sheffield.ac.uk",
+      "@id": "https://orcid.org/0000-0002-0975-9270"
     }
   ],
   "maintainer": [
@@ -135,5 +142,6 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "74.518KB"
+  "fileSize": "134.652KB",
+  "contIntegration": "https://github.com/CUREd-Plus/cuRed/actions/workflows/R-CMD-check.yaml"
 }

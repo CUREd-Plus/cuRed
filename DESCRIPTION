@@ -1,16 +1,18 @@
 Package: cuRed
-Title: Linking NHS Digital and Unexpected Emergency Care Data in Yorkshire and Humber Region
+Title: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide
 Version: 0.0.0.9000
 URL: https://github.com/CUREd-Plus/cuRed
 BugReports: https://github.com/CUREd-Plus/cuRed/issues
 Authors@R: c(
     person(given="Neil", family="Shephard", email="n.shephard@sheffield.ac.uk", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8301-6857")),
-    person(given="Tony", family="Stone", email="t.stone@sheffield.ac.uk", role = c("aut"),
+    person(given="Tony", family="Stone", email="tony.stone@sheffield.ac.uk", role = c("aut"),
            comment = c(ORCID = "0000-0002-0167-3800")),
     person(given="Annabel", family="Crum", email="a.crum@sheffield.ac.uk", role = c("aut"),
-           comment = c(ORCID = "0000-0001-9310-8536")))
-Description: Package for cleaning and linking data provisioned by NHS Digital, Yorkshire Ambulance Service and other Unexpected Emergency Care (UEC) services along with medicine dispensery data.
+           comment = c(ORCID = "0000-0001-9310-8536")),
+    person(given="Richard", family="Campbell", email="r.j.campbell@sheffield.ac.uk", role = c("aut"),
+           comment = c(ORCID = "0000-0002-0975-9270")))
+Description: Package for cleaning and linking Urgent and Emergency Care (UEC) service data, provisioned by NHS Digital and Yorkshire Ambulance Service, along with data on demographics, deaths, and medicines dispensed in primary care.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

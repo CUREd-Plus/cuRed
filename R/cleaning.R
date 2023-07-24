@@ -543,12 +543,12 @@ validate_gp_prac <- function(x, invalid_code) {
 
 #' Tidies Referrer organisation code to upper-case.
 #'
-#' Converts Referrer organisation codes to upper case and replaces those that do not conform or are missing with an
-#' invalid code.
+#' Converts Referrer organisation codes to upper case and replaces those that do not conform or are missing with
+#' an invalid code.
 #'
-#' @param x Vector of referrer organisation codes.
+#' @param x Vector of Referrer organisation codes.
 #' @param invalid_code String code to indicate invalid or NA value.
-#' @returns Vector of referrer organisation as upper case strings, missing and invalid values replaced with
+#' @returns Vector of Referrer organisation as upper case strings, missing and invalid values replaced with
 #' invalid_code.
 #' @export
 #' @examples
@@ -802,7 +802,7 @@ validate_ae_treatments <- function(treats, width = 2, side = "left", pad = "0") 
 #' date_of_birth <- c("1991-05-06", "1971-09-15")
 #' event_date <- c("2022-07-09", "2019-04-17")
 #' calc_diff_time(date_of_birth, event_date)
-calc_diff_time <- function(point_time, ref_time, format = "%Y-%m-%d", unit = "years", max = 120, min = 0) {
+calc_age <- function(point_time, ref_time, format = "%Y-%m-%d", unit = "years", max = 120, min = 0) {
   age <- floor(lubridate::time_length(
     difftime(
       as.Date(point_time,
