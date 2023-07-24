@@ -15,7 +15,3 @@ Data Table of forename and surname.
 \description{
 Splits are made based on the last whitespace and so if there are middle names they are included in the Forename
 }
-\examples{
-names <- c("John Doe", "Jane Doe", "Arthur Conan Doyle")
-split_forenames_surnames(names)
-}

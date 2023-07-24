@@ -188,13 +188,10 @@ remove_values <- function(x, values_to_remove, case_sensitive = FALSE) {
 #' @param names String vector of names to be split.
 #' @returns Data Table of forename and surname.
 #' @export
-#' @examples
-#' names <- c("John Doe", "Jane Doe", "Arthur Conan Doyle")
-#' split_forenames_surnames(names)
 split_forenames_surnames <- function(names) {
   max_name_len <- max(nchar(names), na.rm = TRUE)
 
-  out_names <- data.table(names)
+  out_names <- data.table::data.table(names)
   out_names[, name_last_blank := regexpr("\\s[^\\s]+\\s*$", names, perl = TRUE)]
   out_names[name_last_blank == -1, name_last_blank := 1]
   out_names[, ":="(surname = trimws(substr(
@@ -217,9 +214,6 @@ split_forenames_surnames <- function(names) {
 #' @param x String vector of names to be cleaned.
 #' @returns String vector of names in upper case with white space trimmed.
 #' @export
-#' @examples
-#' names <- c("John   Doe", "Jane Doe")
-#' clean_names(names)
 clean_names <- function(x) {
   text_temp <- toupper(x) |>
     gsub("[^A-Z\\s\\-\\']+", "", , perl = TRUE) |>
