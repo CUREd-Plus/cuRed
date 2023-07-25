@@ -23,6 +23,8 @@ validate_dates(
 \item{finish_date}{The last date from which values are valid, anything after this is converted to NA. Default is
 "2017-03-31".}
 
+\item{missing_date}{Dates that are to be considered missing.}
+
 \item{format}{Date format, default is \%Y-\%m-\%d}
 
 \item{tz}{Timezone, default is FALSE}

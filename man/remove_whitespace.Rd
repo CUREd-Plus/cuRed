@@ -17,5 +17,5 @@ Remove carriage returns and white spaces from strings
 }
 \examples{
 string_vector <- c("Multi-line\nstring", " String with flanking white space ", "")
-cuRed::remove_whitespace(string_vector)
+remove_whitespace(string_vector)
 }

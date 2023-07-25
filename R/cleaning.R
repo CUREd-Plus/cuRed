@@ -293,7 +293,7 @@ validate_nhs_number <- function(nhs_number) {
 #' @export
 #' @examples
 #' postcodes <- c("s1 4gh", "rg10 4PQ")
-#' validate(postcode)
+#' validate_postcode(postcodes)
 validate_postcode <- function(postcode) {
   postcode_temp <- gsub("[^A-Z0-9]+", "", toupper(postcode))
   postcode_temp[!grepl("[A-Z][A-Z0-9]{1,3}[0-9][A-Z]{2}", postcode_temp)] <- NA
@@ -335,6 +335,7 @@ validate_codes <- function(x, valid_codes, invalid_code) {
 #' "1888-01-01".
 #' @param finish_date The last date from which values are valid, anything after this is converted to NA. Default is
 #' "2017-03-31".
+#' @param missing_date Dates that are to be considered missing.
 #' @param format Date format, default is %Y-%m-%d
 #' @param tz Timezone, default is FALSE
 #' @param lt logical, default FALSE. Whether to return POSIXlt (TRUE) or POSIXct (FALSE).
@@ -383,10 +384,10 @@ validate_dates <- function(x,
 #'   "2001-06-09 12:13:14", "1887-12-31 00:00:01", "2017-04-01 00:00:00",
 #'   "2016/05/03 00:00:00", "2016-05-03 00-11-22", NA
 #' )
-#' validate_dates(x)
-#' validate_dates(x, start_date_time = "1887-01-01 00:00:00")
-#' validate_dates(x, finish_date_time = "2018-03-31 00:00:00")
-#' validate_dates(x, format = "%Y/%m/%d")
+#' validate_date_times(x)
+#' validate_date_times(x, start_date_time = "1887-01-01 00:00:00")
+#' validate_date_times(x, finish_date_time = "2018-03-31 00:00:00")
+#' validate_date_times(x, format = "%Y/%m/%d")
 validate_date_times <- function(x,
                                 start_date_time = "1888-01-01 00:00:00",
                                 finish_date_time = "2023-03-31 00:00:00",
@@ -417,7 +418,7 @@ validate_date_times <- function(x,
 #' @export
 #' @examples
 #' ae_times <- c("0113", "3106", NA, "2400")
-#' validate_ae_times(ae_times)
+#' validate_ae_times(ae_times, invalid_code = "9999")
 validate_ae_times <- function(x, invalid_code) {
   time_out <- replace(x, x == "2400", "0000")
   return(replace(
@@ -442,8 +443,8 @@ validate_ae_times <- function(x, invalid_code) {
 #' @returns Vector of tidied numerical values as strings left-padded with zeros.
 #' @export
 #' @exammples
-#' digits <- c("123", "45", "6", NA)
-#' validate_digits(digits)
+#' digits <- c("123", "45", "6", NA, "A5")
+#' validate_digits(digits, width=5, valid_codes=c("123", "45", "6"), invalid_code="99999")
 validate_digits <- function(x, width, valid_codes, invalid_code, side = "left", pad = "0") {
   x <- stringr::str_pad(x, width, side, pad)
   return(replace(
@@ -563,9 +564,6 @@ validate_refer_org <- function(x, invalid_code) {
 #' @param apc_data APC data
 #' @returns Data table of multiple ICD10 diagnoses.
 #' @export
-#' @examples
-#' icd10 <- c("A00.0", "I60.2", "I60.10", NA)
-#' validate_icd10(icd10, apc_data = TRUE)
 validate_icd10 <- function(diags_wide, apc_data = TRUE) {
   # TODO - Make reference data and variable arguments
   icd10_x_codes <- readRDS("data/reference/apc_reference_data.rds")[["diag_icd10_x"]][, code]
@@ -767,16 +765,17 @@ validate_ae_investigations <- function(invests, width = 2, side = "left", pad = 
 #'
 #' Values not conforming are replaced with NA.
 #'
-#' @param treats Treatment code to tidy and validate
+#' @param x Treatment code to tidy and validate
 #' @param width Width (total number of characters) to pad string. Default is 2
 #' @param side Side to pad string, default is "left".
 #' @param pad String to pad with.
 #' @returns Vector of treatment codes padded with zeros and missing/invalid codes converted to NA.
 #' @export
 #' @examples
-#' messy_treatment_codes <- c("")
-validate_ae_treatments <- function(treats, width = 2, side = "left", pad = "0") {
-  treats_out <- stringr::str_pad(substr(treats, 1, 3), width, side, pad)
+#' treatment_codes <- c("123", "45", "6")
+#' validate_ae_treatments(treatment_codes)
+validate_ae_treatments <- function(x, width = 4, side = "left", pad = "0") {
+  treats_out <- stringr::str_pad(substr(x, 1, 3), width, side, pad)
   return(replace(treats_out, !is.na(treats_out) & !grepl("^[0-9]{2,3}$", treats_out), NA))
 }
 
@@ -818,7 +817,7 @@ calc_age <- function(point_time, ref_time, format = "%Y-%m-%d", unit = "years", 
 #' @export
 #' @examples
 #' string_vector <- c("Multi-line\nstring", " String with flanking white space ", "")
-#' cuRed::remove_whitespace(string_vector)
+#' remove_whitespace(string_vector)
 remove_whitespace <- function(x) {
   x <- gsub("\\n", " ", x, fixed = TRUE)
   x <- trimws(gsub("[\\s]{1,}", " ", x, perl = TRUE))

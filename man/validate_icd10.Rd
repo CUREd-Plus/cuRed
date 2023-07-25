@@ -17,7 +17,3 @@ Data table of multiple ICD10 diagnoses.
 \description{
 Tidies ICD10 codes
 }
-\examples{
-icd10 <- c("A00.0", "I60.2", "I60.10", NA)
-validate_icd10(icd10, apc_data = TRUE)
-}

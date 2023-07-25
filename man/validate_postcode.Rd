@@ -17,5 +17,5 @@ Formats postcode correctly ensuring all characters are uppercase and incorrect v
 }
 \examples{
 postcodes <- c("s1 4gh", "rg10 4PQ")
-validate(postcode)
+validate_postcode(postcodes)
 }

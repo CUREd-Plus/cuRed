@@ -46,8 +46,8 @@ x <- c(
   "2001-06-09 12:13:14", "1887-12-31 00:00:01", "2017-04-01 00:00:00",
   "2016/05/03 00:00:00", "2016-05-03 00-11-22", NA
 )
-validate_dates(x)
-validate_dates(x, start_date_time = "1887-01-01 00:00:00")
-validate_dates(x, finish_date_time = "2018-03-31 00:00:00")
-validate_dates(x, format = "\%Y/\%m/\%d")
+validate_date_times(x)
+validate_date_times(x, start_date_time = "1887-01-01 00:00:00")
+validate_date_times(x, finish_date_time = "2018-03-31 00:00:00")
+validate_date_times(x, format = "\%Y/\%m/\%d")
 }
