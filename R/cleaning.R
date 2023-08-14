@@ -334,7 +334,7 @@ validate_codes <- function(x, valid_codes, invalid_code) {
 #' @param start_date The first date from which values are valid, anything before this is converted to NA. Default is
 #' "1888-01-01".
 #' @param finish_date The last date from which values are valid, anything after this is converted to NA. Default is
-#' "2017-03-31".
+#' "2023-03-31".
 #' @param missing_date Dates that are to be considered missing.
 #' @param format Date format, default is %Y-%m-%d
 #' @param tz Timezone, default is FALSE
