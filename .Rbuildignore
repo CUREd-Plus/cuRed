@@ -10,4 +10,5 @@
 ^codemeta\.json$
 ^CITATION\.cff$
 ^\.lintr$
-^\.pre-commit-config.yaml$
+^\.Rproj\.user$
+^\.pre-commit-config\.yaml$
