@@ -24,7 +24,7 @@ repos:
         -    lubridate
         -    stringr
     - id: use-tidy-description
-    - id: style-files
+    # - id: style-files
     - id: no-browser-statement
     - id: no-debug-statement
     - id: parsable-R

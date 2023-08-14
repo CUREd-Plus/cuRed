@@ -44,6 +44,7 @@ lintr
 lubridate
 ly
 macos
+md
 MERCHANTABILITY
 miniconda
 NHS
@@ -66,7 +67,10 @@ prodocdet
 Prodocdet
 programmingLanguage
 rcmdcheck
+readme
+README
 Roxygen
+roxygen
 RoxygenNote
 runtimePlatform
 sameAs

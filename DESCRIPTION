@@ -23,6 +23,7 @@ Imports:
     dtplyr,
     IMD,
     lubridate,
+    roxygen2,
     stringr
 Suggests:
     codemetar
