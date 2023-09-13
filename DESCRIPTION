@@ -18,11 +18,10 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports:
-    data.table,
-    dplyr,
-    dtplyr,
-    IMD,
-    lubridate,
-    stringr
+    cli,
+    stringr,
+    jsonlite,
+    DBI,
+    duckdb
 Suggests:
     codemetar
