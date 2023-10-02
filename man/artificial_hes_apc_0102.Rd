@@ -16,4 +16,3 @@ The documentation and the artificial data files are © Crown copyright and avail
 \section{artificial_hes_apc_0102.csv}{
 
 }
-
