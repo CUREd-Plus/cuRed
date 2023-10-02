@@ -7,7 +7,7 @@ library(cli)
 #'
 #' @details
 #' TODO
-#' 
+#'
 #' @export
 #'
 #' @param data_set_id String. Data set identifier e.g. "apc" or "op"
