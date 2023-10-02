@@ -140,3 +140,7 @@ the `README.Rmd` will, on being committed, trigger the regeneration of the `READ
 ```R
 usethis::use_readme_rmd()
 ```
+
+# Development environment
+
+See the chapter on [system setup](https://r-pkgs.org/setup.html) in the online book [R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan.
