@@ -104,6 +104,7 @@ MERCHANTABILITY
 miniconda
 msg
 mustWork
+na
 nationalarchives
 NHS
 nhs
@@ -178,8 +179,10 @@ SoftwareSourceCode
 softwareSuggestions
 spdx
 sql
+ss
 stackoverflow
 standardised
+startsWith
 str
 stringr
 struct
@@ -198,11 +201,13 @@ tÄx
 ubuntu
 ucrt
 UEC
+UINTEGER
 uk
 useR
 usethis
 utf
 uШ
+VARCHAR
 venv
 vS
 wher

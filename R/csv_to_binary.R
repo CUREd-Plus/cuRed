@@ -82,16 +82,16 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
 get_data_types <- function(metadata) {
   # Initialise empty dictionary
   field_names <- list()
-  
+
   # Iterate over list items
   for (field in metadata) {
     field_name <- as.character(field[["Field"]])
     tos_format <- as.character(field[["Format"]])
-    
+
     # Build dictionary
     field_names[field_name] <- format_to_data_type(tos_format)
   }
-  
+
   return(field_names)
 }
 
@@ -121,18 +121,17 @@ convert_json_to_struct <- function(data) {
 }
 
 #' Convert TOS format to an SQL data type
-#' 
+#'
 #' See: NHS Digital "Constructing submission files" for the data formats from
 #' the NHS Data Model and Dictionary.
-#' 
+#'
 #' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
-#' 
+#'
 #' @export
-#' 
-#' @returns String. SQL data type na
-#' 
+#'
+#' @returns String. SQL data type.
+#'
 format_to_data_type <- function(format_str) {
-
   if (format_str == "Number") {
     # unsigned four-byte integer
     data_type <- "UINTEGER"
@@ -150,6 +149,6 @@ format_to_data_type <- function(format_str) {
     cli::cli_alert_danger("Unknown field format '{format_str}'")
     stop("Unknown field format '{format_str}'")
   }
-  
+
   return(data_type)
 }
