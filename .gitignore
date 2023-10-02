@@ -22,6 +22,11 @@
 *.Rproj
 .Rproj.user/
 
+# renv
+.Rprofile
+renv.lock
+renv/
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
