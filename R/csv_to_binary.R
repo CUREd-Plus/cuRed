@@ -9,6 +9,8 @@ library(cli)
 #' - [DuckDB R API](https://duckdb.org/docs/archive/0.8.1/api/r)
 #' - [DBI documentation](https://dbi.r-dbi.org/)
 #'
+#' @export
+#'
 #' @param raw_data_dir String. Path. The directory that contains the raw data files.
 #' @param output_data_dir String. Path. The directory the output data file(s) should be written to.
 #' @param metadata List. Dictionary containing the column definitions.
@@ -75,6 +77,8 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
+#' 
+#' @export
 #'
 #' @param metadata List of field objects.
 #' @returns Dictionary. Map of field names to data types.
@@ -96,6 +100,8 @@ get_data_types <- function(metadata) {
 }
 
 #' Convert JSON object to an SQL struct
+#'
+#' @export
 #'
 #' @param data String. JSON data. The data structure is assumed to be an
 #' object (dictionary).
@@ -130,7 +136,7 @@ convert_json_to_struct <- function(data) {
 #' @export
 #'
 #' @returns String. SQL data type.
-#'
+#' 
 format_to_data_type <- function(format_str) {
   if (format_str == "Number") {
     # unsigned four-byte integer
