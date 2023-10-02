@@ -77,7 +77,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
-#' 
+#'
 #' @export
 #'
 #' @param metadata List of field objects.
@@ -136,7 +136,7 @@ convert_json_to_struct <- function(data) {
 #' @export
 #'
 #' @returns String. SQL data type.
-#' 
+#'
 format_to_data_type <- function(format_str) {
   if (format_str == "Number") {
     # unsigned four-byte integer
