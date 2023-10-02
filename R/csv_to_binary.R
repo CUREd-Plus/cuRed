@@ -76,23 +76,22 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
 #' @description
 #' Get the data type for each field from the metadata document.
 #'
-#' @param metadata Nested dictionary. The keys are the field names.
+#' @param metadata List of field objects.
 #' @returns Dictionary. Map of field names to data types.
 #'
 get_data_types <- function(metadata) {
   # Initialise empty dictionary
   field_names <- list()
-
+  
   # Iterate over list items
-  for (field_name in names(metadata)) {
-    field_name <- as.character(field_name)
-    field <- metadata[[field_name]]
-    data_type <- as.character(field$data_type)
-
+  for (field in metadata) {
+    field_name <- as.character(field[["Field"]])
+    tos_format <- as.character(field[["Format"]])
+    
     # Build dictionary
-    field_names[field_name] <- data_type
+    field_names[field_name] <- format_to_data_type(tos_format)
   }
-
+  
   return(field_names)
 }
 
@@ -119,4 +118,38 @@ convert_json_to_struct <- function(data) {
   items_char <- stringr::str_flatten_comma(items)
   struct <- stringr::str_glue("{{{items_char}}}", collapse = "", sep = "")
   return(struct)
+}
+
+#' Convert TOS format to an SQL data type
+#' 
+#' See: NHS Digital "Constructing submission files" for the data formats from
+#' the NHS Data Model and Dictionary.
+#' 
+#' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
+#' 
+#' @export
+#' 
+#' @returns String. SQL data type na
+#' 
+format_to_data_type <- function(format_str) {
+
+  if (format_str == "Number") {
+    # unsigned four-byte integer
+    data_type <- "UINTEGER"
+  } else if (startsWith(format_str, "String")) {
+    # TODO set maximum string length
+    # https://duckdb.org/docs/sql/data_types/text
+    data_type <- "VARCHAR"
+  } else if (format_str == "Date(YYYY-MM-DD)") {
+    data_type <- "DATE"
+  } else if (format_str == "Time(HH24:MI:ss)") {
+    data_type <- "TIME"
+  } else if (format_str == "Decimal") {
+    data_type <- "DOUBLE"
+  } else {
+    cli::cli_alert_danger("Unknown field format '{format_str}'")
+    stop("Unknown field format '{format_str}'")
+  }
+  
+  return(data_type)
 }
