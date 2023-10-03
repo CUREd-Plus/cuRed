@@ -88,9 +88,12 @@ get_data_types <- function(metadata) {
   field_names <- list()
 
   # Iterate over list items
-  for (field in metadata) {
-    field_name <- as.character(field[["Field"]])
-    tos_format <- as.character(field[["Format"]])
+  for (i in 1:nrow(metadata)) {
+    
+    field_name <- as.character(metadata$Field[i])
+    tos_format <- as.character(metadata$Format[i])
+    
+    cli::cli_inform("{field_name} -> {tos_format}")
 
     # Build dictionary
     field_names[field_name] <- format_to_data_type(tos_format)
@@ -138,6 +141,13 @@ convert_json_to_struct <- function(data) {
 #' @returns String. SQL data type.
 #'
 format_to_data_type <- function(format_str) {
+  
+  format_str <- as.character(format_str)
+
+  if (is.na(format_str)) {
+    stop("Format string is null.")
+  }
+  
   if (format_str == "Number") {
     # unsigned four-byte integer
     data_type <- "UINTEGER"
