@@ -91,6 +91,8 @@ options for Virtual Environments the simplest solution will likely be to
 install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 then install the `pre-commit` package and install within the repository
 
+https://ns-rse.github.io/posts/pre-commit-r/#install-miniconda-environment
+
 ``` bash
 conda install conda-forge pre-commit
 cd path/to/cloned/cuRed
