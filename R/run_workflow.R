@@ -9,11 +9,11 @@ library(cli)
 #' TODO
 #'
 #' @param data_set_id String. Data set identifier e.g. "apc" or "op"
-#' @param root_directry String. The root directory that contains all the data.
-run_workflow <- function(data_set_id, root_directry) {
+#' @param root_directory String. The root directory that contains all the data.
+run_workflow <- function(data_set_id, root_directory) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
-  root_directry <- file.path(root_directry)
+  root_directory <- file.path(root_directory)
 
   # Check whether the data directory exists
   if (!file.exists(root_directory)) {

@@ -11,7 +11,7 @@ library(cli)
 #' @param root_directory String. Path. The directory that contains all the working directories.
 #'
 main <- function(root_directory) {
-  root_directry <- file.path(root_directry)
+  root_directory <- file.path(root_directory)
 
   # Check whether the data directory exists
   if (file.exists(root_directory)) {
