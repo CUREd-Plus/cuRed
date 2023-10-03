@@ -7,7 +7,7 @@
 get_data_types(metadata)
 }
 \arguments{
-\item{metadata}{Nested dictionary. The keys are the field names.}
+\item{metadata}{List of field objects.}
 }
 \value{
 Dictionary. Map of field names to data types.

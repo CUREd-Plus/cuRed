@@ -2,11 +2,12 @@
 % Please edit documentation in R/extdata.R
 \name{artificial_hes_apc_0102}
 \alias{artificial_hes_apc_0102}
-\title{HES Admitted Patient Care artificial data set}
+\title{HES Admitted Patient Care (APC) artificial data set}
 \source{
 https://digital.nhs.uk/services/artificial-data
 }
 \description{
+Hospital Episode Statistics (HES)
 \href{https://digital.nhs.uk/services/artificial-data}{NHS Artificial data pilot}
 }
 \details{
@@ -16,3 +17,4 @@ The documentation and the artificial data files are © Crown copyright and avail
 \section{artificial_hes_apc_0102.csv}{
 
 }
+
