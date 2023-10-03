@@ -92,8 +92,6 @@ get_data_types <- function(metadata) {
     
     field_name <- as.character(metadata$Field[i])
     tos_format <- as.character(metadata$Format[i])
-    
-    cli::cli_inform("{field_name} -> {tos_format}")
 
     # Build dictionary
     field_names[field_name] <- format_to_data_type(tos_format)
@@ -137,6 +135,8 @@ convert_json_to_struct <- function(data) {
 #' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
 #'
 #' @export
+#' 
+#' @param format_str String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
 #'
 #' @returns String. SQL data type.
 #'
@@ -148,6 +148,7 @@ format_to_data_type <- function(format_str) {
     stop("Format string is null.")
   }
   
+  # Integer
   if (format_str == "Number") {
     # unsigned four-byte integer
     data_type <- "UINTEGER"
@@ -161,6 +162,11 @@ format_to_data_type <- function(format_str) {
     data_type <- "TIME"
   } else if (format_str == "Decimal") {
     data_type <- "DOUBLE"
+  # The HES APC TOS field SOCIAL_AND_PERSONAL_CIRCUMSTANCE has format "?" because it's a 
+  # SNOMED CT Expression, which is of alphanumeric "an" type (a structured object).
+  # https://www.datadictionary.nhs.uk/data_elements/snomed_ct_expression.html
+  } else if (format_str == "?") {
+    data_type <- "VARCHAR"
   } else {
     cli::cli_alert_danger("Unknown field format '{format_str}'")
     stop("Unknown field format '{format_str}'")
