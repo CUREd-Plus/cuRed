@@ -8,6 +8,8 @@ library(cli)
 #' @details
 #' TODO
 #'
+#' @export
+#'
 #' @param root_directory String. Path. The directory that contains all the working directories.
 #'
 main <- function(root_directory) {
