@@ -1,0 +1,2651 @@
+[
+   {
+      "Field":"A_NUMACP",
+      "Field name":"Number of Valid Augmented Care Period Groups",
+      "Format":"Number",
+      "Availability":"1997-98 to 2007-08",
+      "Values":"n = Number of augmented care periods within the episode"
+   },
+   {
+      "Field":"ACPDISP_n",
+      "Field name":"Augmented Care Period Destination",
+      "Format":"String(2)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"01 = Ward in same hospital \r\n02 = High dependency unit (HDU) in same hospital, including special care baby units\r\n03 = Intensive care unit (ICU) in same hospital \r\n04 = ICU in other hospital \r\n05 = Other hospital (not ICU) including HDUs and Special Care Baby Units\r\n06 = Normal residence or other \r\n07 = Died\r\n08 = No change in location: the augmented care period ended because the consultant episode ended\r\n98 = Not applicable: augmented care period not finished\r\n99 = Not known"
+   },
+   {
+      "Field":"ACPDQIND_n",
+      "Field name":"Augmented Care Period Data Quality Indicator",
+      "Format":"String(1)",
+      "Availability":"2002-03 to 2007-08",
+      "Values":"Values include: V, R, P, G though definitions of these values are not known.\r\n"
+   },
+   {
+      "Field":"ACPEND_n",
+      "Field name":"Augmented Care Period End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"YYYY-MM-DD = Date augmented care period ended"
+   },
+   {
+      "Field":"ACPLCID_n",
+      "Field name":"Augmented Care Period Local Identifier",
+      "Format":"Number",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"n = ACP local identifier"
+   },
+   {
+      "Field":"ACPLOC_n",
+      "Field name":"Augmented Care Location",
+      "Format":"String(2)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"01 = General intensive care unit (ICU). Adult intensive care, including wards labelled as surgical or medical ICU, but excluding the specialised units identified by other values. General ICUs may provide a mixture of high dependency unit (HDU) and ICU level care\r\n02 = Cardiothoracic ICU, including units labelled as separate cardiac or thoracic units.\r\n03 = Liver ICU\r\n04 = Neurological ICU\r\n05 = HDU\r\n06 = Paediatric ICU: a unit generally admitting patients between 0 and 14 years old, but excluding special care baby units\r\n07 = Paediatric HDU\r\n08 = Neonatal ICU: a unit generally admitting only new born babies up to two-week's post delivery\r\n09 = Cardiac care unit or coronary care unit (CCU)\r\n10 = Combined HDU and CCU the beds and staff for the two units are in the same area\r\n11 = Combined CCU and ICU the beds and staff for the two units are in the same area\r\n12 = Combined HDU and ICU the beds and staff for the two units are in the same area\r\n13 = Post operative recovery unit, including a theatre recovery area\r\n14 = Spinal injury ICU: a unit designated for critical care rather than a spinal injury ward\r\n15 = Burns critical care unit, including all special care burns facilities other than short-term post-operative care areas\r\n16 = Renal unit, including an in-patient kidney dialysis unit, but excluding general nephrology or urology wards\r\n17 = Not otherwise specified\r\n99 = Not known"
+   },
+   {
+      "Field":"ACPN_n",
+      "Field name":"Augmented Care Period Number",
+      "Format":"Number",
+      "Availability":"1997-98 to 2007-08",
+      "Values":"2n = Order number in the range 01 to 97\r\n99 = Not known: a validation error"
+   },
+   {
+      "Field":"ACPOUT_n",
+      "Field name":"Augmented Care Period Outcome Indicator",
+      "Format":"String(2)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"01 = Survived\r\n02 = Died: no organ donation\r\n03 = Died: organs donated\r\n98 = Not applicable: Augmented care period not finished\r\n99 = Not known"
+   },
+   {
+      "Field":"ACPPLAN_n",
+      "Field name":"Augmented Care Period Planned Indicator",
+      "Format":"String(1)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"1 = Yes\r\n2 = No\r\n9 = Not known"
+   },
+   {
+      "Field":"ACPSOUR_n",
+      "Field name":"Augmented Care Period Source",
+      "Format":"String(2)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"01 = Ward in same hospital\r\n02 = High dependency unit (HDU) or other immediate care area in same hospital, including special care babies\r\n03 = Intensive care unit (ICU) in same hospital\r\n04 = Theatre or recovery unit in same hospital\r\n05 = A&E department in same hospital\r\n06 = X-ray or endoscopy department in same hospital\r\n07 = ICU in other hospital\r\n08 = Other hospital (not ICU) including HDUs and special care baby units\r\n09 = Clinic, home or other\r\n10 = No change in location: augmented care period started because consultant episode changed\r\n99 = Not known"
+   },
+   {
+      "Field":"ACPSPEF_n",
+      "Field name":"Augmented Care Period Specialty Function Code",
+      "Format":"String(3)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"100 = General surgery \r\n101 = Urology\r\n110 = Trauma and orthopaedics\r\n120 = Ear, nose and throat (ENT)\r\n130 = Ophthalmology\r\n140 = Oral surgery\r\n141 = Restorative dentistry\r\n142 = Paediatric dentistry (available from 1999-2000)\r\n143 = Orthodontics\r\n145 = Oral and maxillo facial surgery (available from 2004-05)\r\n146 = Endodontics (available from 2004-05)\r\n147 = Periodontics (available from 2004-05)\r\n148 = Prosthodontics (available from 2004-05) \r\n149 = Surgical dentistry (available from 2004-05)\r\n150 = Neurosurgery\r\n160 = Plastic surgery\r\n170 = Cardiothoracic surgery\r\n171 = Paediatric surgery\r\n180 = Accident and emergency (A&E)\r\n190 = Anaesthetics \r\n191 = Pain management (available from 1998-99 to 2003-04)\r\n192 = Critical care medicine (available from 2004-05)\r\n199 = Non-UK Provider - specialty function not known, treatment mainly surgical\r\n300 = General medicine\r\n301 = Gastroenterology\r\n302 = Endocrinology\r\n303 = Clinical haematology\r\n304 = Clinical physiology\r\n305 = Clinical pharmacology\r\n310 = Audiological medicine \r\n311 = Clinical genetics\r\n312 = Clinical cytogenics and molecular genetics (available from 1990-91)\r\n313 = Clinical immunology and allergy (available from 1991-92)\r\n314 = Rehabilitation (available from 1991-92)\r\n315 = Palliative medicine\r\n320 = Cardiology\r\n321 = Paediatric cardiology (available from 2004-05)\r\n330 = Dermatology\r\n340 = Respiratory medicine (also known as thoracic medicine)\r\n350 = Infectious diseases\r\n352 = Tropical medicine (available from 2004-05)\r\n360 = Genito-urinary medicine\r\n361 = Nephrology\r\n370 = Medical oncology\r\n371 = Nuclear medicine \r\n400 = Neurology\r\n401 = Clinical neuro-physiology\r\n410 = Rheumatology\r\n420 = Paediatrics\r\n421 = Paediatric neurology\r\n430 = Geriatric medicine\r\n450 = Dental medicine (available from 1990-91)\r\n 460 = Medical ophthalmology (available from 1993-94)\r\n499 = Non-UK Provider - specialty function not known, treatment mainly medical\r\n501 = Obstetrics (prior to 2004-05: Obstetrics for patients using a hospital bed or delivery facilities) \r\n502 = Gynaecology\r\n560 = Midwifery (available from October 1995)\r\n600 = General Medical Practice\r\n601 = General Dental Practice\r\n610 = General practice with maternity function (available to 2003-04)\r\n620 = General practice other than maternity (available to 2003-04)\r\n700 = Learning disability (previously known as mental handicap) \r\n710 = Mental illness\r\n711 = Child and adolescent psychiatry\r\n712 = Forensic psychiatry\r\n713 = Psychotherapy\r\n715 = Old age psychiatry (available from 1990-91)\r\n800 = Clinical oncology (previously Radiotherapy)\r\n810 = Radiology\r\n820 = General pathology\r\n821 = Blood transfusion \r\n822 = Chemical pathology\r\n823 = Haematology\r\n824 = Histopathology\r\n830 = Immunopathology\r\n831 = Medical microbiology\r\n832 = Neuropathology (available to 2003-04)\r\n900 = Community medicine\r\n901 = Occupational medicine\r\n902 = Community health services - dental (available from 2004-05)\r\n903 = Public health medicine (available from 2004-05)\r\n904 = Public health dental (available from 2004-05)\r\n950 = Nursing episode (available from 2002-03)\r\n960 = Allied health professional episode (available from 2006-07)\r\nNull = Other maternity event\r\n& = Not known"
+   },
+   {
+      "Field":"ACPSTAR_n",
+      "Field name":"Augmented Care Period Start Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"YYYY-MM-DD = Date period started\r\nNull = Not applicable/ not known"
+   },
+   {
+      "Field":"ACSCFLAG",
+      "Field name":"Ambulatory Care Sensitive Condition Flag",
+      "Format":"Number",
+      "Availability":"2007-08 onwards",
+      "Values":"1 = Episode contains a diagnosis that is ambulatory care sensitive\r\n0 = Episode does not contain a diagnosis that is ambulatory care sensitive"
+   },
+   {
+      "Field":"ACTIVAGE",
+      "Field name":"Age at Activity Date",
+      "Format":"Number",
+      "Availability":"2007-08 onwards",
+      "Values":"max 3n = Age at activity date \r\n999 = Not known, i.e. date of birth not known and age cannot be estimated"
+   },
+   {
+      "Field":"ADMIAGE",
+      "Field name":"Age on Admission",
+      "Format":"Number",
+      "Availability":"2007-08 onwards",
+      "Values":"max n3 = Age on admission\r\n999 = Not known, e.g. date of birth not known and age cannot be estimated"
+   },
+   {
+      "Field":"ADMIDATE",
+      "Field name":"Admission Date (Hospital Provider Spell)",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of admission\r\n1800-01-01 = Null\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"ADMIMETH",
+      "Field name":"Method of Admission",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"Elective Admission, when the decision to admit could be separated in time from the actual admission: \r\n11 = Waiting list. A Patient admitted electively from a waiting list having been given no date of admission at a time a decision was made to admit\r\n12 = Booked. A Patient admitted having been given a date at the time the decision to admit was made, determined mainly on the grounds of resource availability\r\n 13 = Planned. A Patient admitted, having been given a date or approximate date at the time that the decision to admit was made. This is usually part of a planned sequence of clinical care determined mainly on social or clinical criteria (e.g. check cystoscopy)\". A planned admission is one where the date of admission is determined by the needs of the treatment, rather than by the availability of resources.\r\n\r\nNote that this does not include a transfer from another Hospital Provider (see 81 below).\r\n\r\nEmergency Admission, when admission is unpredictable and at short notice because of clinical need: \r\n\r\n21 = Emergency Care Department or acute or emergency dental service\r\n22 = General Practitioner:  after a request for immediate admission has been made direct to a Hospital Provider, i.e. not through a Bed bureau, by a GP or deputy\r\n23 = Bed bureau \r\n24 = Consultant Clinic, of this or another Health Care Provider  \r\n25 = Admission via Mental Health Crisis Resolution Team (available from 2013/14)\r\n2A = Emergency Care Department of another provider where the patient had not been admitted(available from 2013/14)\r\n2B = Transfer of an admitted patient from another Hospital Provider in an emergency (available from 2013/14)\r\n2C = Baby born at home as intended (available from 2013/14)\r\n2D = Other emergency admission (available from 2013/14)\r\n28 = Other means, examples are:\r\n- admitted from the Accident and Emergency Department of another provider where they had not been admitted\r\n- transfer of an admitted PATIENT from another Hospital Provider in an emergency\r\n- baby born at home as intended (retired on 2022-23)\r\n\r\nMaternity Admission, of a pregnant or recently pregnant woman to a maternity ward (including delivery facilities) except when the intention is to terminate the pregnancy:\r\n\r\n31 = Admitted ante-partum \r\n32 = Admitted post-partum \r\n\r\nOther Admission not specified above:\r\n\r\n82 = The birth of a baby in this Health Care Provider  \r\n83 = Baby born outside the Health Care Provider except when born at home as intended. \r\n81 = Transfer of any admitted patient from other Hospital Provider other than in an emergency\r\n84 = Admission by Admissions Panel of a High Security Psychiatric Hospital, patient not entered on the HSPH Admissions Waiting List (available between 1999 and 2006)\r\n89 = HSPH Admissions Waiting List of a High Security Psychiatric Hospital (available between 1999 and 2006)\r\n98 = Not applicable (available from 1996/97)\r\n99 = Method of admission not known"
+   },
+   {
+      "Field":"ADMINCAT",
+      "Field name":"Administrative Category Code on Admission",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"01 = NHS patient, including overseas visitors charged under the  National Health Service (Overseas Visitors Hospital Charging Regulations)\r\n02 = Private patient, one who uses accommodation or services authorised under the National Health Service Act 2006  \r\n03 = Amenity patient, one who pays for the use of a single room or small ward in accordance with the National Health Service Act 2006  \r\n04 = Category II patient, one for whom work is undertaken by hospital medical or dental staff within category II as defined in paragraph 37 of the Terms and Conditions of Service of Hospital Medical and Dental Staff\r\n98 = Not applicable\r\n99 = Administravite category not known"
+   },
+   {
+      "Field":"ADMINCATST",
+      "Field name":"Administrative Category Code at Start of Episode",
+      "Format":"String(2)",
+      "Availability":"2007-08 to 2014-15 (phasing out from 2012-13)",
+      "Values":"01 = NHS patient\r\n02 = Private patient \r\n03 = Amenity patient \r\n04 = Category II patient \r\n98 = Not applicable\r\n99 = Administrative category not known"
+   },
+   {
+      "Field":"ADMISORC",
+      "Field name":"Source of Admission",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"19 = The usual place of residence, unless listed below, for example, a private dwelling whether owner occupied or owned by Local Authority, housing association or other landlord. This includes wardened accommodation but not residential accommodation where health care is provided. It also includes patients with no fixed abode.\r\n29 = Temporary place of residence when usually resident elsewhere, for example, hotels and residential educational establishments\r\n30 = Repatriation from high security psychiatric hospital (1999-00 to 2006-07)  \r\n37 = Court (1999-00 to 2006-07 and from 2022-23)\r\n38 = Penal establishment: police station (1999-00 to 2006-07)\r\n39 = Penal establishment, court or police station /  police custody suite (retired in 2022-23)\r\n40 = Penal establishment (available from 2022-23)\r\n41 = Court (retired in 2022-23)\r\n42 = Police Station / Police Custody Suite\r\n48 = High security psychiatric hospital, Scotland (1999-00 to 2006-07)\r\n49 = NHS other hospital provider: high security psychiatric accommodation in an NHS hospital provider (NHS trust or NHS Foundation Trust)\r\n50 = NHS other hospital provider: medium secure unit (1999-00 to 2006-07)\r\n51 = NHS other hospital provider: ward for general patients or the younger physically disabled or Emergency and Care department\r\n52 = NHS other hospital provider: ward for maternity patients or neonates\r\n53 = NHS other hospital provider: ward for patients who are mentally ill or have learning disabilities\r\n54 = NHS run care home (retired in 2022-23)\r\n55 = Care Home with Nursing\r\n56 = Care Home without Nursing\r\n65 = Local authority residential accommodation i.e. where care is provided (retired in 2022-23)\r\n66 = Local authority foster care, but not in residential accommodation i.e. where care is provided\r\n69 = Local authority home or care (1989-90 to 1995-96)\r\n79 = Babies born in or on the way to hospital\r\n85 = Non-NHS (other than local authority) run care home (retired in 2022-23)\r\n86 = Non-NHS (other than local authority) run nursing home\r\n87 = Independent Sector Healthcare Provider run hospital\r\n88 = Hospice\r\n89 = Non-NHS institution (1989-90 to 1995-96)\r\n98 = Not applicable\r\n99 = Admission Source Not known"
+   },
+   {
+      "Field":"ADMISTAT",
+      "Field name":"Psychiatric History on Admission",
+      "Format":"String(1)",
+      "Availability":"1996-97 onwards",
+      "Values":"0 = No known previous hospital provider spell with a consultant episode having a psychiatric specialty within any health care provider.\r\n1 = One or more previous hospital provider spells with a consultant episode having a psychiatric specialty within this health care provider.\r\n2 = One or more previous hospital provider spells with a consultant episode having a psychiatric specialty within another health care provider, but none with this healthcare provider. \r\n8 = Not applicable: the patient is not receiving admitted patient care under a consultant in a psychiatric specialty.\r\n9 = Not known: the patient is receiving admitted patient care under a consultant in a psychiatric specialty but the information is not available."
+   },
+   {
+      "Field":"AEKEY",
+      "Field name":"A&E Record Identifier",
+      "Format":"String(12) (2013-14 to 2020-21)\r\nString(19) (2021-22 onwards)\r\n",
+      "Availability":"2013-14 onwards",
+      "Values":"12n (2013-14 to 2020-21); 19n (2021-22 onwards) = Record identifier of the A&E attendance\r\n"
+   },
+   {
+      "Field":"ALCBRDDIAG",
+      "Field name":"Alcohol Related Diagnosis Code - Broad Definition",
+      "Format":"String(4)",
+      "Availability":"2004-05 onwards",
+      "Values":"ann or annn = Alcohol related diagnosis - broad\r\nNull = Not applicable"
+   },
+   {
+      "Field":"ALCBRDFRAC",
+      "Field name":"Alcohol Attributable Fraction - Broad Definition",
+      "Format":"String(17)",
+      "Availability":"2004-05 onwards",
+      "Values":"n.nnnnnnnnnnnnnnn = Highest alcohol attributable fraction within the episode (primary and secondary diagnoses)\r\nPrior to 2020/21 the 15th decimal place was not always matching the alcohol fractions in the reference data (due to rounding). This is fixed from 2020/21 onwards."
+   },
+   {
+      "Field":"ALCDIAG",
+      "Field name":"Principal Alcohol Related Diagnosis",
+      "Format":"String(10)",
+      "Availability":"2002-03 to 2020-21",
+      "Values":"max  6an = Principal alcohol related diagnosis"
+   },
+   {
+      "Field":"ALCDIAG_4",
+      "Field name":"Principal Alcohol Related Diagnosis - 4 Characters",
+      "Format":"String(4)",
+      "Availability":"2002-03 to 2020-21",
+      "Values":"4an = Principal alcohol related diagnosis (4 characters)\r\nNull = Not applicable"
+   },
+   {
+      "Field":"ALCFRAC",
+      "Field name":"Principal Alcohol Related Fraction",
+      "Format":"String(17)",
+      "Availability":"2002-03 to 2020-21",
+      "Values":"n.nn = Highest alcohol attributable fraction within the episode"
+   },
+   {
+      "Field":"ALCNRWDIAG",
+      "Field name":"Alcohol Related Diagnosis Code - Narrow Definition",
+      "Format":"String(4)",
+      "Availability":"2004-05 onwards",
+      "Values":"ann or annn = Alcohol related diagnosis - narrow\r\nNull = Not applicable"
+   },
+   {
+      "Field":"ALCNRWFRAC",
+      "Field name":"Alcohol Attributable Fraction - Narrow Definition",
+      "Format":"String(17)",
+      "Availability":"2004-05 onwards",
+      "Values":"n.nnnnnnnnnnnnnnn = highest alcohol attributable fraction within the episode (primary and external cause diagnoses)\r\nPrior to 2020/21 the 15th decimal place was not always matching the alcohol fractions in the reference data (due to rounding). This is fixed from 2020/21 onwards."
+   },
+   {
+      "Field":"ANAGEST",
+      "Field name":"Gestation Period in Weeks at First Antenatal Assessment",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = The gestation period in weeks\r\nNull = Not valid / not known"
+   },
+   {
+      "Field":"ANASDATE",
+      "Field name":"First Antenatal Assessment Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of first antenatal assessment  \r\n1800-01-01 = Null\r\n1801-01-01 = Invalid date submitted"
+   },
+   {
+      "Field":"ANTEDUR",
+      "Field name":"Antenatal Days of Stay",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"3n = The number of days of stay from 0 to 270  \r\nNull = Not applicable / not known"
+   },
+   {
+      "Field":"AT_GP_PRACTICE",
+      "Field name":"Area Team of GP Practice",
+      "Format":"String(3)",
+      "Availability":"2010-11 to 2020-21",
+      "Values":"ann = Area Team of patient’s GP practice\r\nY = Unknown"
+   },
+   {
+      "Field":"AT_RESIDENCE",
+      "Field name":"Area Team of Residence",
+      "Format":"String(3)",
+      "Availability":"2010-11 to 2020-21",
+      "Values":"ann = Area Team of residence\r\nS = Scotland\r\nU = England (not otherwise specified)\r\nW = Wales\r\nX = Foreign\r\nY = Not known\r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"AT_TREATMENT",
+      "Field name":"Area Team of Treatment",
+      "Format":"String(3)",
+      "Availability":"2010-11 to 2020-21",
+      "Values":"ann = Area Team of treatment\r\nY = Unknown\r\n"
+   },
+   {
+      "Field":"BEDYEAR",
+      "Field name":"Bed Days Within the Year",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"nnn = The number of days of stay from 0 to 366  \r\nNull = Not applicable (other maternity event / not known)"
+   },
+   {
+      "Field":"BIRESUS_n",
+      "Field name":"Resuscitation Method",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Positive pressure nil, drugs nil  \r\n2 = Positive pressure nil, drugs administered  \r\n3 = Positive pressure by mask, drugs nil  \r\n4 = Positive pressure by mask, drugs administered  \r\n5 = Positive pressure by endotracheal tube, drugs nil  \r\n6 = Positive pressure by endotracheal tube, drugs administered  \r\n8 = Not applicable (e.g. stillborn, where no method of resuscitation was attempted)\r\n9 = Resuscitation Method Not known"
+   },
+   {
+      "Field":"BIRORDR_n",
+      "Field name":"Birth Order",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 to 7 = The sequence in which the baby was born\r\n8 = Not applicable\r\n9 = Birth Order not known (submitted value)\r\nX = Not known (derived in HES where the field is null)"
+   },
+   {
+      "Field":"BIRSTAT_n",
+      "Field name":"Birth Status",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Live  \r\n2 = Still birth: ante-partum  \r\n3 = Still birth: intra-partum  \r\n4 = Still birth: indeterminate  \r\n9 = Not known"
+   },
+   {
+      "Field":"BIRWEIT_n",
+      "Field name":"Birth Weight",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"max 4n = Weight in grams from 0010 to 6999\r\n7000 = 7000g or more\r\n9999 = Not known"
+   },
+   {
+      "Field":"BOOKREFNO",
+      "Field name":"Unique Booking Reference Number",
+      "Format":"Number",
+      "Values":"12n = Unique booking reference number"
+   },
+   {
+      "Field":"CANNET",
+      "Field name":"Cancer Network Area of Residence",
+      "Format":"String(3)",
+      "Availability":"2008-09 to 2020-21",
+      "Values":"N01-N98 = Cancer network in England/Wales/Isle of Man \r\nZ99 = Scotland/Northern Ireland/Channel Islands (pseudo) \r\nNull = No information available"
+   },
+   {
+      "Field":"CANREG",
+      "Field name":"Cancer Registry Area of Residence",
+      "Format":"String(5)",
+      "Availability":"2008-09 onwards",
+      "Values":"Y0201-Y1701 = Cancer Registry in England/Wales\r\nZ9999 = Scotland/Northern Ireland/Channel Islands/Isle of Man (pseudo)\r\nNull = No information available"
+   },
+   {
+      "Field":"CARERSI",
+      "Field name":"Carer Support Indicator",
+      "Format":"String(2)",
+      "Availability":"1997-98 onwards",
+      "Values":"01 = Yes - Carer support is available\r\n02 = No - Carer support is not available\r\n99 = Not known"
+   },
+   {
+      "Field":"CATEGORY",
+      "Field name":"Administrative and Legal Status of Patient",
+      "Format":"String(2)",
+      "Availability":"1989-90 to 2001-02",
+      "Values":"10 = NHS patient: not formally detained  \r\n11 = NHS patient: formally detained under Part II of the Mental Health Act 1983  \r\n12 = NHS patient: formally detained under Part III of the Mental Health Act 1983 or under other Acts  \r\n13 = NHS patient: formally detained under part X, Mental Health Act 1983*  \r\n20 = Private patient: not formally detained  \r\n21 = Private patient: formally detained under Part II of the Mental Health Act 1983  \r\n22 = Private patient: formally detained under Part III of the Mental Health Act 1983 or under other Acts  \r\n23 = Private patient: formally detained under part X, Mental health Act 1983*  \r\n30 = Amenity patient: not formally detained  \r\n31 = Amenity patient: formally detained under Part II of the Mental Health Act 1983  \r\n32 = Amenity patient: formally detained under Part III of the Mental Health Act 1983 or under other Acts  \r\n33 = Amenity patient: formally detained under part X, Mental health Act 1983*  \r\nNull = Other maternity event.  \r\n* Codes 13, 23 and 33 were introduced at the start of the 1994-95 HES year (1 April 1995)"
+   },
+   {
+      "Field":"CAUSE",
+      "Field name":"Cause Code",
+      "Format":"String(10)",
+      "Availability":"1989-90 onwards",
+      "Values":"6an = Code copied from a diagnosis field: this is a standard ICD-10 code in the range V01-Y98\r\nNull = Unfinished episode, other maternity event, or no cause code found"
+   },
+   {
+      "Field":"CAUSE_3",
+      "Field name":"Cause Code - 3 Characters",
+      "Format":"String(3)",
+      "Availability":"1989-90 onwards",
+      "Values":"ann = Code copied from a diagnosis field: this is a standard ICD-10 code in the range V01-Y98\r\nNull = Unfinished episode, other maternity event, or no cause code found"
+   },
+   {
+      "Field":"CAUSE_4",
+      "Field name":"Cause Code - 4 Characters",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"annn = Code copied from a diagnosis field: this is a standard ICD-10 code in the range V01-Y98\r\nNull = Unfinished episode, other maternity event, or no cause code found"
+   },
+   {
+      "Field":"CCG_GP_PRACTICE",
+      "Field name":"Sub Integrated Care Board of GP Practice (July 2022 onwards)\r\nClinical Commissioning Group of GP Practice (until June 2022)\r\n",
+      "Format":"String(5)",
+      "Availability":"2010-11 onwards",
+      "Values":"3an or 5an = Sub ICB / CCG area of patient’s GP practice\r\n59999 = Unknown"
+   },
+   {
+      "Field":"CCG_RESIDENCE",
+      "Field name":"Sub Integrated Care Board of Residence  (July 2022 onwards)\r\nClinical Commissioning Group of Residence (until June 2022)\r\n",
+      "Format":"String(3-5)",
+      "Availability":"2010-11 onwards",
+      "Values":"3an or 5an = Sub ICB / CCG of patient’s residence\r\n59898 = Not applicable\r\n59999 = Unknown"
+   },
+   {
+      "Field":"CCG_RESPONSIBILITY",
+      "Field name":"Sub Integrated Care Board of Responsibility (July 2022 onwards)\r\nClinical Commissioning Group of Responsibility (until June 2022)",
+      "Format":"String(5)",
+      "Availability":"2010-11 onwards",
+      "Values":"3an or 5an = Sub ICB / CCG of responsibility\r\n59999 = Unknown"
+   },
+   {
+      "Field":"CCG_RESPONSIBILITY_ORIGIN",
+      "Field name":"Origin of CCG_Responsibility",
+      "Format":"String(1)",
+      "Availability":"2010-11 onwards",
+      "Values":"1 = Derived from GPPRAC\r\n2 = Derived from HOMEADD\r\n3 = Derived from postcode of SITETRET \r\n4 = Derived from postcode of provider\r\n9 = Unknown"
+   },
+   {
+      "Field":"CCG_TREATMENT",
+      "Field name":"Sub Integrated Care Board of Treatment (July 2022 onwards) \r\nClinical Commissioning Group of Treatment (until June 2022)\r\n",
+      "Format":"String(5)",
+      "Availability":"2010-11 onwards",
+      "Values":"3an or 5an = Sub ICB / CCG of treatment\r\n59999 = Unknown"
+   },
+   {
+      "Field":"CCG_TREATMENT_ORIGIN",
+      "Field name":"Origin of CCG_Treatment",
+      "Format":"String(1)",
+      "Availability":"2010-11 onwards",
+      "Values":"1 = Derived from postcode of SITETRET \r\n2 = Derived from postcode of PROCODET\r\n9 = Unknown"
+   },
+   {
+      "Field":"CDSEXTDATE",
+      "Field name":"CDS Extract Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2007-08 onwards",
+      "Values":"YYYY-MM-DD = CDS extract date"
+   },
+   {
+      "Field":"CDSUNIQUEID",
+      "Field name":"CDS Unique Identifier",
+      "Format":"String(35)",
+      "Values":"35an = CDS unique identifier"
+   },
+   {
+      "Field":"CDSVERPROTID",
+      "Field name":"CDS Protocol Identifier",
+      "Format":"String(3)",
+      "Availability":"2007-08 onwards",
+      "Values":"010 = Net change update mechanism (this is the recommended protocol)\r\n020 = Bulk replacement update mechanism"
+   },
+   {
+      "Field":"CDSVERSION",
+      "Field name":"CDS Version Number",
+      "Format":"String(8)",
+      "Availability":"2013-14 onwards",
+      "Values":"CDS006 = The 2007 CDS-XML Specification\r\nCDS062 = The 2012 CDS XML Specification"
+   },
+   {
+      "Field":"CENDUR",
+      "Field name":"Duration of Care to Psychiatric Census Date",
+      "Format":"Number",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"5n = Duration of stay in days at census date from 0 to 29,200  \r\nNull = Not applicable (EPITYPE is not 4) / not known"
+   },
+   {
+      "Field":"CENSAGE",
+      "Field name":"Age at Psychiatric Census Date",
+      "Format":"Number",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"nnn = Age on the annual psychiatric census date\r\n120 = 120 years or more\r\nNull = Not applicable (EPITYPE is not 4) or not known"
+   },
+   {
+      "Field":"CENSTAT",
+      "Field name":"Status of Patient Included In Psychiatric Census",
+      "Format":"String(1)",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"1 = Detained patient  \r\n2 = Long term patient  \r\n3 = Detained and long term patient  \r\nNull = Not applicable"
+   },
+   {
+      "Field":"CENWARD",
+      "Field name":"Ward Type at Psychiatric Census Date",
+      "Format":"String(7)",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"A is as follows: \r\n\r\n51 = for intensive care: specially designated ward for patients needing containment and more intensive management. This is not to be confused with intensive nursing where patients may require one to one nursing while on a standard ward  \r\n52 = for short stay: patients intended to stay less than a year \r\n53 = for long stay: patients intended to stay a year or more \r\n  For patients with Learning Disabilities  \r\n61 = designated or interim secure unit \r\n62 = Patients intending to stay less than a year \r\n63 = Patients intending to stay a year or more \r\nFor maternity patients:\r\n41 = only for patients looked after by consultants  \r\n43 = only for patients looked after by general medical practitioners  \r\n42 = for joint use by consultants & general medical practitioners  \r\nFor neonates:\r\n33 = maternity: associated with the maternity ward in that cots are in the maternity ward nursery or in the ward itself \r\n32 = non-maternity: not associated with the maternity ward and without designated cots for intensive care \r\n31 = not associated with the maternity ward and in which there are some designated cots for intensive care \r\nFor the younger physically disabled \r\n21 = spinal units, only those units which are nationally recognised \r\n22 = other units \r\nFor terminally ill/Palliative Care  \r\n81 = terminally ill/Palliative Care  \r\nFor general patients:\r\n11 = for intensive therapy, including high dependency care \r\n12 = for normal therapy: where resources permit the admission of patients who might need all but intensive or high dependency therapy \r\n13 = for limited therapy: where nursing care rather than continuous medical care is provided. Such wards can be used only for patients carefully selected and restricted to a narrow range in terms of the extent and nature of disease \r\nAdditional codes:\r\n71 = Home leave, non-psychiatric \r\n72 = Home leave, psychiatric \r\n\r\nB is age as follows: \r\n1 = Neonates \r\n2 = Children and adolescents \r\n3 = Elderly \r\n8 = Any age \r\n9 = Invalid \r\n\r\nC is sex as follows: \r\n1 = Male  \r\n2 = Female  \r\n8 = Not specified  \r\n9 = Invalid  \r\nD is the hospital provider as follows: \r\n1 = NHS hospital provider  \r\n2 = Non-NHS hospital provider  \r\n9 = Invalid\r\n\r\nD is Hospital Provider Type as follows:\r\n1 = NHS Hospital provider\r\n2 = Non-NHS Hospital provider\r\n9 = Home Leave\r\n\r\nE is the number of days in a week that the ward is open only during the day.\r\n\r\nF is the number of days in a week that the ward is open at night."
+   },
+   {
+      "Field":"CLASSPAT",
+      "Field name":"Patient Classification",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Ordinary admission  \r\n2 = Day case admission  \r\n3 = Regular day attender  \r\n4 = Regular night attender  \r\n5 = Mothers and babies using only delivery facilities  \r\n8 = Not applicable (other maternity event)\r\n9 = Not known"
+   },
+   {
+      "Field":"CONFIDENTIALITY_CATEGORY",
+      "Field name":"Confidentiality Category",
+      "Format":"String(1)",
+      "Availability":"Not available in HES",
+      "Values":"[blank] Not marked as confidential \r\n2/3 Legally Restricted Record. Record contains procedures or diagnoses that are restricted. PCD set to NULL. \r\n4 Withdrawal of Consent Record. Any data related to a patient has withdrawn their consent and registered that fact with NHS England"
+   },
+   {
+      "Field":"CONSULT",
+      "Field name":"Consultant Code\r\nProfessional Registration Entry Identifier",
+      "Format":"String(8) to 2022\r\nString(32) from 2023",
+      "Availability":"1997-98 onwards",
+      "Values":"8an = Consultant code:\r\nCnnnnnnn = Consultant\r\nDnnnnnnn = Dentist\r\nCDnnnnnn = Dental consultant\r\nH9999998 = Other healthcare professional\r\nM9999998 = Midwife\r\nN9999998 = Nurse\r\nC9999998 = Consultant not known\r\nD9999998 = Dentist not known\r\nCD999998 = Dental consultant not known\r\n& = Not known (null)\r\n99 = Invalid (the format of the submitted code is not valid. Note that the number is not verified, only the format of the code)"
+   },
+   {
+      "Field":"CR_GP_PRACTICE",
+      "Field name":"Commissioning Region of GP Practice",
+      "Format":"String(3)",
+      "Availability":"2013-14 onwards",
+      "Values":"ann = Commissioning Region of patient’s GP practice\r\nQ99 = Wales\r\nY = Unknown"
+   },
+   {
+      "Field":"CR_RESIDENCE",
+      "Field name":"Commissioning Region of Residence",
+      "Format":"String(3)",
+      "Availability":"2013-14 onwards",
+      "Values":"ann = Commissioning Region of residence\r\nQ99 = Wales\r\nS = Scotland\r\nU = No Fixed Abode\r\nX = Isle of Man, Channel Islands or Foreign\r\nZ = Northern Ireland\r\nY = Unknown"
+   },
+   {
+      "Field":"CR_TREATMENT",
+      "Field name":"Commissioning Region of Treatment",
+      "Format":"String(3)",
+      "Availability":"2013-14 onwards",
+      "Values":"ann = Commissioning Region of treatment\r\nQ99 = Wales\r\nY = Unknown"
+   },
+   {
+      "Field":"CSNUM",
+      "Field name":"Commissioning Serial Number\r\nNHS Service Agreement Identifier",
+      "Format":"String(6) to 2022\r\nString(20) from 2023",
+      "Availability":"2000-01 onwards",
+      "Values":"6an = Commissioning serial number"
+   },
+   {
+      "Field":"CURRWARD",
+      "Field name":"Current Electoral Ward",
+      "Format":"String(4)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"2a = Electoral ward\r\nY = Not known"
+   },
+   {
+      "Field":"CURRWARD_ONS",
+      "Field name":"Current Electoral Ward (ONS)",
+      "Format":"String(9)",
+      "Availability":"2011-12 onwards",
+      "Values":"Ennnnnnnn = England\r\nWnnnnnnnn = Wales\r\nSnnnnnnnn = Scotland\r\nNorthern Ireland start with 95 followed by a letter, then space, then 2 digits (e.g. 95B 24)\r\n\r\nE99999999 = England (not otherwise stated)\r\nW99999999 = Wales (not otherwise stated)\r\nS99999999 = Scotland (not otherwise stated)\r\nN99999999 = Northern Ireland (not otherwise stated)\r\nL99999999 = Channel Islands\r\nM99999999 = Isle of Man\r\nY = Not known"
+   },
+   {
+      "Field":"DELCHANG",
+      "Field name":"Delivery Place Change Reason",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Decision made during pregnancy because the patient's address changed  \r\n2 = Decision made during pregnancy for clinical reasons  \r\n3 = Decision made during pregnancy for other reasons  \r\n4 = Decision made during labour for clinical reasons  \r\n5 = Decision made during labour for other reasons  \r\n6 = Occurred unintentionally during labour  \r\n8 = Not applicable: there was no change  \r\n9 = Devliery change reason not known  \r\nNull = No change (before 1995-96)"
+   },
+   {
+      "Field":"DELINTEN",
+      "Field name":"Delivery Place Intended",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"0 = In NHS hospital: delivery facilities associated with midwife ward  \r\n1 = At a domestic address  \r\n2 = In NHS hospital: delivery facilities associated with consultant ward  \r\n3 = In NHS hospital: delivery facilities associated with General Medical Practitioner ward  \r\n4 = In NHS hospital: delivery facilities associated with consultant / General Medical Practitioner / midwife ward, inclusive of any combination of two of the professionals mentioned \r\n5 = In private hospital  \r\n6 = In other hospital or institution  \r\n7 = In NHS hospital: ward or unit without delivery facilities  \r\n8 = None of the above  \r\n9 = Not known  \r\nNull = Not applicable (from 1990-91 to 1995-96)"
+   },
+   {
+      "Field":"DELMETH_D",
+      "Field name":"Alternative Delivery Method (Derived)",
+      "Format":"String(2)",
+      "Availability":"2008-09 onwards",
+      "Values":"01 = Elective caesarean delivery\r\n02 = Other/emergency caesarean delivery\r\n03 = Breech extraction delivery\r\n04 = Other breech delivery\r\n05 = Low forceps cephalic delivery\r\n06 = Other Forceps Delivery\r\n07 = Ventouse (Vacuum) delivery\r\n08 = Spontaneous other delivery\r\n09 = Normal delivery (Spontaneous vertex)\r\n10 = Other methods of delivery\r\nX = Not known"
+   },
+   {
+      "Field":"DELMETH_n",
+      "Field name":"Delivery Method",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"0 = Spontaneous vertex (normal vaginal delivery, occipitoanterior)  \r\n1 = Spontaneous other cephalic (cephalic vaginal delivery with abnormal presentation of head at delivery, without instruments, with or without manipulation)  \r\n2 = Low forceps, not breech, including forceps delivery not otherwise specified (forceps, low application, without manipulation)  \r\n3 = Other forceps, not breech, including high forceps and mid forceps (forceps with manipulation)  \r\n4 = Ventouse, vacuum extraction  \r\n5 = Breech, including partial breech extraction (spontaneous delivery assisted or unspecified)  \r\n6 = Breech\r\n7 = Elective caesarean section\r\n8 = Emergency caesarean section\r\n9 = Other \r\nX = Not known"
+   },
+   {
+      "Field":"DELONSET",
+      "Field name":"Labour or Delivery Onset Method",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Spontaneous: the onset of regular contractions whether or not preceded by spontaneous rupture of the membranes  \r\n2 = Any caesarean section carried out immediately following the onset of labour, when the decision was made before labour  \r\n3 = Surgical induction by amniotomy  \r\n4 = Medical induction, including the administration of agents either orally, intravenously or intravaginally with the intention of initiating labour  \r\n5 = Combination of surgical induction and medical induction  \r\n9 = Delivery onset method not known\r\nNull = Not applicable (from 1990-91 to 1994-95)\r\n"
+   },
+   {
+      "Field":"DELPLAC_n",
+      "Field name":"Delivery Place Actual",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"0 = In NHS hospital: delivery facilities associated with midwife ward  \r\n1 = At a domestic address  \r\n2 = In NHS hospital: delivery facilities associated with consultant ward  \r\n3 = In NHS hospital: delivery facilities associated with General Medical Practitioner ward  \r\n4 = In NHS hospital: delivery facilities associated with consultant / General Medical Practitioner / midwife ward, inclusive of any combination of two of the professionals mentioned \r\n5 = In private hospital  \r\n6 = In other hospital or institution  \r\n7 = In NHS hospital: ward or unit without delivery facilities  \r\n8 = Other than those above  \r\n9 = Not known"
+   },
+   {
+      "Field":"DELPOSAN",
+      "Field name":"Anaesthetic Given Post-Labour or Delivery",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = General anaesthetic: the administration by a doctor of an agent to produce unconsciousness  \r\n2 = Epidural or caudal anaesthetic: the injection of a local anaesthetic into the epidural space  \r\n3 = Spinal anaesthetic: the injection of a local anaesthetic agent into the subarachnoid space  \r\n4 = General anaesthetic and epidural or caudal anaesthetic  \r\n5 = General anaesthetic and spinal anaesthetic  \r\n6 = Epidural or caudal, and spinal anaesthetic  \r\n7 = Other than 1 to 6  \r\n8 = Not applicable i.e. no analgesic or anaesthetic administered\r\n9 =  Anaesthetic Given Post Labour Not known  \r\nNull = Not applicable (from 1990-91 to 1994-95)"
+   },
+   {
+      "Field":"DELPREAN",
+      "Field name":"Anaesthetic Given During Labour or Delivery",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = General anaesthetic: the administration by a doctor of an agent to produce unconsciousness  \r\n2 = Epidural or caudal anaesthetic: the injection of a local anaesthetic into the epidural space  \r\n3 = Spinal anaesthetic: the injection of a local anaesthetic agent into the subarachnoid space  \r\n4 = General anaesthetic and epidural or caudal anaesthetic  \r\n5 = General anaesthetic and spinal anaesthetic  \r\n6 = Epidural or caudal, and spinal anaesthetic  \r\n7 = Other than 1 to 6  \r\n8 = Not applicable i.e. no analgesic or anaesthetic administered\r\n9 = Anaesthetic Given During Labour Not known  \r\nNull = Not applicable (from 1990-91 to 1994-95)"
+   },
+   {
+      "Field":"DELSTAT_n",
+      "Field name":"Status of Person Conducting Delivery",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Hospital doctor  \r\n2 = General medical practitioner  \r\n3 = Midwife  \r\n8 = Other than above  \r\n9 = Status of Person Conducting Delivery not known"
+   },
+   {
+      "Field":"DEPDAYS_n",
+      "Field name":"High-Dependency Care Level",
+      "Format":"Number",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"4n = Number of days in the range 000 to 9998\r\n9999 = Not known: a validation error"
+   },
+   {
+      "Field":"DETDUR",
+      "Field name":"Duration of Detention",
+      "Format":"Number",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"5n = Duration of detention in days at census date from 0 to 29,200  \r\nNull = Not applicable (EPITYPE is not 4) / not known"
+   },
+   {
+      "Field":"DETNCAT",
+      "Field name":"Detention Category",
+      "Format":"String(1)",
+      "Availability":"1999-00 to 2001-02",
+      "Values":"0 = Informal, not formally detained  \r\n1 = Formally detained under Part II, Mental Health Act 1983  \r\n2 = Formally detained under Part III, Mental Health Act 1983, and other legislation  \r\n3 = Formally detained under Part X, Mental Health Act 1983"
+   },
+   {
+      "Field":"DETNDATE",
+      "Field name":"Date Detention Commenced",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"YYYY-MM-DD = Date detention commenced\r\n01/01/1800 - Null\r\n01/01/1801 - Invalid date submitted"
+   },
+   {
+      "Field":"DIAG_3_CONCAT",
+      "Field name":"Concatenated Diagnosis Codes - 3 Character",
+      "Format":"String(100)",
+      "Availability":"1989-90 onwards",
+      "Values":"Concatenated string of DIAG_3_nn separated by commas"
+   },
+   {
+      "Field":"DIAG_3_nn",
+      "Field name":"Diagnosis Code - 3 Character",
+      "Format":"String(3)",
+      "Availability":"1989-90 onwards",
+      "Values":"3an = A valid ICD-9 or ICD-10 diagnosis code\r\nNull = Not applicable\r\nR69 = Not known, invalid or null"
+   },
+   {
+      "Field":"DIAG_4_CONCAT",
+      "Field name":"Concatenated Diagnosis Codes - 4 Character",
+      "Format":"String(120)",
+      "Availability":"1989-90 onwards",
+      "Values":"Concatenated string of DIAG_4_nn separated by commas"
+   },
+   {
+      "Field":"DIAG_4_nn",
+      "Field name":"Diagnosis Code - 4 Character",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an = A valid ICD-9 or ICD-10 diagnosis code\r\nNull = Not applicable\r\nR69X = Not known, invalid or null"
+   },
+   {
+      "Field":"DIAG_CODE",
+      "Field name":"Diagnosis Code (Unpivoted)",
+      "Format":"String(6)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an to 6an = A valid ICD-9 or ICD-10 diagnosis code\r\nR96X = Not known\r\nR69X6 = Null (primary diagnosis only)\r\nR69X8 = Invalid code submitted\r\nR69X3 = Invalid (external cause code entered as primary diagnosis)\r\nNull = Not applicable"
+   },
+   {
+      "Field":"DIAG_COUNT",
+      "Field name":"Count of Diagnoses",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = Count of diagnoses"
+   },
+   {
+      "Field":"DIAG_nn",
+      "Field name":"Diagnosis Code",
+      "Format":"String(6)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an to 6an = A valid ICD-9 or ICD-10 diagnosis code\r\nR96X = Not known\r\nR69X6 = Null (primary diagnosis only)\r\nR69X8 = Invalid code submitted\r\nR69X3 = Invalid (external cause code entered as primary diagnosis)\r\nNull = Not applicable"
+   },
+   {
+      "Field":"DIAG_SEQ",
+      "Field name":"Diagnosis Code Sequence",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"n = Diagnosis code sequence number"
+   },
+   {
+      "Field":"DISDATE",
+      "Field name":"Date of Discharge",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of discharge\r\n1800-01-01 = Null\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"DISDATE_UNCLN",
+      "Field name":"Date of Discharge - Uncleaned",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date\r\nNull = Not known / not applicable"
+   },
+   {
+      "Field":"DISDEST",
+      "Field name":"Destination on Discharge",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"19 = The usual place of residence, including no fixed abode  \r\n29 = Temporary place of residence when usually resident elsewhere, for example, hotels and residential educational establishments  \r\n30 = Repatriation from high security psychiatric hospital (from 1999-2000)  \r\n37 = Penal establishment - court (from 1999-2000)  \r\n38 = Penal establishment - police station (1999-2000 to 2022-23)  \r\n39 = Penal establishment - court and police station excluded (from 1999-2000)  \r\n40 = Penal establishment\r\n42 = Police Station / Police Custody Suite\r\n48 = High security psychiatric hospital, Scotland (from 1999-2000)  \r\n49 = NHS other hospital provider - high security psychiatric\r\n50 = NHS other hospital provider - medium secure unit \r\n51 = NHS other hospital provider - ward for general PATIENTS or the younger physically disabled \r\n52 = NHS other hospital provider - ward for maternity PATIENTS or Neonates  \r\n53 = NHS other hospital provider - ward for PATIENTS who are mentally ill or have learning disabilities \r\n54 = NHS run Care Home (retired in 2022-23)  \r\n55 = Care Home With Nursing\r\n56 = Care Home Without Nursing\r\n65 = Local Authority residential accommodation i.e. where care is provided (retired in 2022-23)\r\n66 = Local Authority foster care \r\n79 = PATIENT died or still birth \r\n84 = Independent Sector Healthcare Provider run hospital - medium secure unit\r\n85 = Non-NHS (other than Local Authority) run Care Home (retired in 2022-23)\r\n87 = Independent Sector Healthcare Provider run hospital - excluding medium secure unit\r\n88 = Hospice\r\n89 = ORGANISATION responsible for forced repatriation\r\n98 = Not applicable - Hospital Provider Spell not finished at episode end (i.e. not discharged) or current episode unfinished\r\n99 = Destination of Discharge Not Known"
+   },
+   {
+      "Field":"DISDEST_UNCLN",
+      "Field name":"Destination on Discharge - Uncleaned",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"See DISDEST for a list of codes that are valid in this field."
+   },
+   {
+      "Field":"DISMETH",
+      "Field name":"Method of Discharge",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Patient discharged on clinical advice or with clinical consent\r\n2 = Patient discharged him/herself or was discharged by a relative or advocate (retired in 2022-23)\r\n3 = Patient discharged by a mental health review tribunal, Home Secretary or court\r\n4 = Patient died\r\n5 = Stillbirth\r\n6 = Patient discharged himself/herself (available from 2022-23)\r\n7 = Patient discharged by a relative or advocate (available from 2022-23)\r\n8 = Not applicable - Hospital Provider Spell not finished at episode end (i.e. not discharged) or current episode unfinished\r\n9 = Method of Discharge Not Known"
+   },
+   {
+      "Field":"DISMETH_UNCLN",
+      "Field name":"Method of Discharge - Uncleaned",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Discharged on clinical advice or with clinical consent  \r\n2 = Self discharged, or discharged by a relative or advocate  \r\n3 = Discharged by a mental health review tribunal, the Home Secretary or a court  \r\n4 = Died  \r\n5 = Baby was still born  \r\n8 = Not applicable: patient still in hospital  \r\n9 = Not known: a validation error"
+   },
+   {
+      "Field":"DISREADYDATE",
+      "Field name":"Discharge Ready Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2007-08 onwards",
+      "Values":"YYYY-MM-DD = Discharge ready date"
+   },
+   {
+      "Field":"DOB",
+      "Field name":"Date of Birth",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = DOB\r\n1800-01-01 = Null\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"DOBBABY_n",
+      "Field name":"Birth Date (Baby)",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Birth date (baby)\r\nNull = Invalid/not known"
+   },
+   {
+      "Field":"DOMPROC",
+      "Field name":"HRG Dominant Procedure (Provider Derived)",
+      "Format":"String(4)",
+      "Availability":"2001-02 to 2008-09",
+      "Values":"4an = Procedure code  \r\n- = No operation performed  \r\n& = Not known"
+   },
+   {
+      "Field":"DUPLICATE_FLAG",
+      "Field name":"Duplicate Flag",
+      "Format":"Number",
+      "Availability":"1889-90 onwards"
+   },
+   {
+      "Field":"EARLDATOFF",
+      "Field name":"Earliest Reasonable Date Offered",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2008-09 onwards",
+      "Values":"YYYY-MM-DD = Earliest reasonable date offered"
+   },
+   {
+      "Field":"ELECDATE",
+      "Field name":"Date of Decision to Admit",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of decision to admit\r\n1800-01-01 = Null date submitted\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"ELECDUR",
+      "Field name":"Duration of Elective Wait (Derived)",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"max 4n = Duration of elective wait in days\r\n9998 = Not applicable\r\n9999 = Not Known (no date known for Decision to Admit)"
+   },
+   {
+      "Field":"ELECDUR_CALC",
+      "Field name":"Duration of Elective Wait (Calculation)",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"4n = Waiting time in days from 1 to 8887\r\nnull = Not known / not applicable"
+   },
+   {
+      "Field":"ELECDURN",
+      "Field name":"Duration of Elective Wait (Submitted)",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"max 4n = Duration of elective wait in days\r\n9998 = Not applicable\r\n9999 = Not known (i.e. no date known for decision to admit): a validation error\r\nnull = Not known / not applicable"
+   },
+   {
+      "Field":"ENDAGE",
+      "Field name":"Age at End of Episode",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"nnn = Age in years\r\n120 = 120 years or more\r\n7001 = Less than 1 day  \r\n7002 = 1 to 6 days  \r\n7003 = 7 to 28 days  \r\n7004 = 29 to 90 days (under 3 months)  \r\n7005 = 91 to 181 days (approximately 3 months to under 6 months)  \r\n7006 = 182 to 272 days (approximately 6 months to under 9 months)  \r\n7007 = 273 to <1 year (approximately 9 months to under 1 year)  \r\nNull = Not applicable (other maternity event) or not known"
+   },
+   {
+      "Field":"EPIDUR",
+      "Field name":"Episode Duration",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"5n = Duration of episode in days from 0 to 29,200  \r\nNull = Not applicable (other maternity event or not known)"
+   },
+   {
+      "Field":"EPIEND",
+      "Field name":"Episode End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date episode ended\r\n1800-01-01 = Null\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"EPIKEY",
+      "Field name":"HES Record Identifier",
+      "Format":"String(12) (1989-90 to 2020-21)\r\nString(19) (2021-22 onwards)",
+      "Availability":"1989-90 onwards",
+      "Values":"12n (1989-90 to 2020-21); 19n (2021-22 onwards) = Record identifier \r\n"
+   },
+   {
+      "Field":"EPIORDER",
+      "Field name":"Episode Order",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = The number of the episode in the sequence of episodes from 01-87  \r\n98 = Not applicable  \r\n99 = Not known: a validation error  \r\nNull = Not applicable: other maternity event"
+   },
+   {
+      "Field":"EPISTART",
+      "Field name":"Episode Start Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date episode started\r\n1800-01-01 = Null date submitted\r\n1801-01-01 = invalid date submitted"
+   },
+   {
+      "Field":"EPISTAT",
+      "Field name":"Episode Status",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Unfinished (until 2016-17)\r\n3 = Finished  \r\n9 = Derived unfinished (not present on processed data)"
+   },
+   {
+      "Field":"EPITYPE",
+      "Field name":"Episode Type",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = General episode (anything that is not covered by the other codes)  \r\n2 = Delivery episode  \r\n3 = Birth episode  \r\n4 = Formally detained under the provisions of mental health legislation or long-term (over one year) psychiatric patients who should have additional information recorded on the psychiatric census (until 2016-17)\r\n5 = Other delivery event \r\n6 = Other birth event"
+   },
+   {
+      "Field":"ETHNOS",
+      "Field name":"Ethnic Category",
+      "Format":"String(1)",
+      "Availability":"1991-92 onwards",
+      "Values":"From 2001-02 onwards:\r\nA = British (White) \r\nB = Irish (White) \r\nC = Any other White background \r\nD = White and Black Caribbean (Mixed) \r\nE = White and Black African (Mixed) \r\nF = White and Asian (Mixed) \r\nG = Any other Mixed background \r\nH = Indian (Asian or Asian British) \r\nJ = Pakistani (Asian or Asian British)\r\nK = Bangladeshi (Asian or Asian British) \r\nL = Any other Asian background \r\nM = Caribbean (Black or Black British) \r\nN = African (Black or Black British) \r\nP = Any other Black background \r\nR = Chinese (other ethnic group) \r\nS = Any other ethnic group \r\nZ = Not stated\r\nX = Not known (prior to 2013)\r\n99 = Not known (2013 onwards)\r\nFrom 1995-96 to 2000-01:\r\n0= White\r\n1 = Black - Caribbean \r\n2 = Black - African\r\n3 = Black - Other \r\n4 = Indian \r\n5 = Pakistani \r\n6 = Bangladeshi \r\n7 = Chinese \r\n8 = Any other ethnic group \r\n9 = Not given \r\n99 = Not known"
+   },
+   {
+      "Field":"ETHNOSL",
+      "Field name":"Ethnic Category (Local Code)",
+      "Format":"String(1)",
+      "Availability":"1997-98 to 2020-21",
+      "Values":"1an = ethnic character, local code"
+   },
+   {
+      "Field":"ETHRAW",
+      "Field name":"Ethnic Category (Raw)",
+      "Format":"String(1)",
+      "Availability":"2003-04 onwards",
+      "Values":"A = British (White) \r\nB = Irish (White) \r\nC = Any other White background \r\nD = White and Black Caribbean (Mixed) \r\nE = White and Black African (Mixed) \r\nF = White and Asian (Mixed) \r\nG = Any other Mixed background \r\nH = Indian (Asian or Asian British) \r\nJ = Pakistani (Asian or Asian British)\r\nK = Bangladeshi (Asian or Asian British) \r\nL = Any other Asian background \r\nM = Caribbean (Black or Black British) \r\nN = African (Black or Black British) \r\nP = Any other Black background \r\nR = Chinese (other ethnic group) \r\nS = Any other ethnic group \r\nZ = Not stated\r\nX = Not known (prior to 2013)\r\n9 = Not known (2013 onwards)"
+   },
+   {
+      "Field":"FAE",
+      "Field name":"Finished Admission Episode flag",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Finished Admission Episode\r\n0 = All other episodes"
+   },
+   {
+      "Field":"FAE_EMERGENCY",
+      "Field name":"Finished Admission Episode, Emergency Classification flag",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Finished Admission Episode Flag where admission to hospital is from an emergency admission \r\n0 = All other episodes"
+   },
+   {
+      "Field":"FCE",
+      "Field name":"Finished Consultant Episode flag",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Finished Consultant Episode\r\n0 = All other episodes"
+   },
+   {
+      "Field":"FDE",
+      "Field name":"Finished Discharge Episode flag",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Finished Discharge Episode\r\n0 = All other episodes"
+   },
+   {
+      "Field":"FIRSTREG",
+      "Field name":"First Regular Day or Night Admission",
+      "Format":"String(1)",
+      "Availability":"2002-03 onwards",
+      "Values":"0 = First in a series\r\n1 = Subsequent to first in a series"
+   },
+   {
+      "Field":"FYEAR",
+      "Field name":"Financial Year",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"4n = Financial year"
+   },
+   {
+      "Field":"GESTAT_n",
+      "Field name":"Length of Gestation",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = Number of weeks in the range 10 to 49  \r\n99 = Not known: a validation error"
+   },
+   {
+      "Field":"GORTREAT",
+      "Field name":"Government Office Region of Treatment",
+      "Format":"String(1)",
+      "Availability":"2002-03 onwards",
+      "Values":"A = North East  \r\nB = North West  \r\nD = Yorkshire and The Humber  \r\nE = East Midlands  \r\nF = West Midlands  \r\nG = East of England  \r\nH = London  \r\nJ = South East  \r\nK = South West  \r\nY = Not known"
+   },
+   {
+      "Field":"GPPRAC",
+      "Field name":"General Medical Practice (Patient Registration)",
+      "Format":"String(6-8)",
+      "Availability":"1997-98 onwards",
+      "Values":"6an - 8an = GP practice code (English GP's with codes commencing A-P only)  \r\nV81997 = Patient not currently registered at a GP practice, but is eligible to be registered should they wish to\r\nV81998 = Not applicable \r\nV81999 = Not known (submitted value) - where it is not possible to determine a patient's registered GP practice but it is known that they should have one, or where it is impossible to determine whether the patient should or should not have a registered practice (e.g. the patient cannot communicate and is unidentified)\r\n& = Not known (derived in HES where no code was submitted)"
+   },
+   {
+      "Field":"GPPRACHA",
+      "Field name":"Health Authority of GP Practice",
+      "Format":"String(8)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"aaa or aan = Health Authority of GP practice  \r\nY = Unknown"
+   },
+   {
+      "Field":"GPPRACRO",
+      "Field name":"Regional Office of GP Practice",
+      "Format":"String(8)",
+      "Availability":"2002-03 to 2020-21",
+      "Values":"Y01 = Northern and Yorkshire Regional Office  \r\nY02 = Trent Regional Office  \r\nY07 = West Midlands Regional Office  \r\nY08 = North West Regional Office  \r\nY09 = Eastern Regional Office  \r\nY10 = London Regional Office  \r\nY11 = South East Regional Office  \r\nY12 = South West Regional Office  \r\nY00 = Unknown"
+   },
+   {
+      "Field":"GPPRPCT",
+      "Field name":"Primary Care Trust of GP Practice",
+      "Format":"String(8)",
+      "Availability":"1997-98 to 2020-21",
+      "Values":"5nn = PCT \r\nTaa = Care trust \r\n59898 = Not applicable (non-England) \r\n59999 = Unknown"
+   },
+   {
+      "Field":"GPPRSTHA",
+      "Field name":"Strategic Health Authority of GP Practice",
+      "Format":"String(8)",
+      "Availability":"1997-98 to 2020-21",
+      "Values":"3an = Strategic Health Authority  \r\nS = Scotland   \r\nU = England - not otherwise specified  \r\nW = Wales  \r\nX = Foreign (including Isle of Man and Channel Islands)  \r\nY = Unknown  \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"GRIDLINK",
+      "Field name":"Ordnance Survey Grid Reference",
+      "Format":"String(11)",
+      "Availability":"2002-03 onwards",
+      "Values":"9n = Ordnance Survey grid reference (4 digits eastings, 5 digits northings)"
+   },
+   {
+      "Field":"HATREAT",
+      "Field name":"Health Authority of Treatment",
+      "Format":"String(3)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"3a = Health Authority area of treatment  \r\nY = Unknown"
+   },
+   {
+      "Field":"HESID",
+      "Field name":"Patient identifier - HES generated",
+      "Format":"Number",
+      "Availability":"Retired in 2021-22 - replaced by PERSON_ID for all years",
+      "Values":"n = HESID"
+   },
+   {
+      "Field":"HESID_ORIG",
+      "Field name":"Patient  Identifier Origin - HES generated",
+      "Format":"Number",
+      "Availability":"1997-98 to 2001-02"
+   },
+   {
+      "Field":"HNEOIND",
+      "Field name":"Healthy Neonate Indicator",
+      "Format":"String(1)",
+      "Availability":"2011-12 onwards",
+      "Values":"Y = Healthy Neonate\r\nN = Not Healthy Neonate\r\n\r\nIf SUSHRG is null:\r\nHNEOIND = Null"
+   },
+   {
+      "Field":"HOMEADD",
+      "Field name":"Postcode of Patient",
+      "Format":"String(8)",
+      "Availability":"1989-90 onwards",
+      "Values":"8an = Postcode  \r\nZZ99 3CZ = England, GB, UK (not otherwise stated)  \r\nZZ99 3VZ = No fixed abode  \r\nZZ99 3WZ = Not known + sundry categories  \r\nZZ99 2WZ = Northern Ireland  \r\nZZ99 1WZ = Scotland  \r\nZZ99 3GZ = Wales  \r\nZZ99 NNN = Other pseudo codes used for patients normally resident abroad (where NNN is the country code listed in the NHS postcode directory)"
+   },
+   {
+      "Field":"HRGNHS",
+      "Field name":"Healthcare Resource Group - Provider Derived",
+      "Format":"String(3)",
+      "Availability":"2001-02 to 2008-09",
+      "Values":"3an = Provider derived HRG"
+   },
+   {
+      "Field":"HRGNHSVN",
+      "Field name":"Version Number of HRGNHS",
+      "Format":"String(3)",
+      "Availability":"2001-02 to 2008-09",
+      "Values":"3an = Version number of HRGNHS"
+   },
+   {
+      "Field":"IMD04",
+      "Field name":"IMD Index of Multiple Deprivation",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"nn.nn = IMD score"
+   },
+   {
+      "Field":"IMD04_DECILE",
+      "Field name":"IMD Decile Group",
+      "Format":"String(30)",
+      "Availability":"1997-98 onwards",
+      "Values":"Most deprived 10%\r\nMore deprived 10-20%\r\nMore deprived 20-30%\r\nMore deprived 30-40%\r\nMore deprived 40-50%\r\nLess deprived 40-50%\r\nLess deprived 30-40%\r\nLess deprived 20-30%\r\nLess deprived 10-20%\r\nLeast deprived 10%"
+   },
+   {
+      "Field":"IMD04C",
+      "Field name":"IMD Crime Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Crime Domain value"
+   },
+   {
+      "Field":"IMD04ED",
+      "Field name":"IMD Education Training and Skills Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"nn.nn = IMD Education, Skills and Training Domain value"
+   },
+   {
+      "Field":"IMD04EM",
+      "Field name":"IMD Employment Deprivation Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Employment Deprivation Domain value"
+   },
+   {
+      "Field":"IMD04HD",
+      "Field name":"IMD Health and Disability Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Health and Disability Domain value"
+   },
+   {
+      "Field":"IMD04HS",
+      "Field name":"IMD Barriers to Housing and Services Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"nn.nn = IMD Barriers to Housing and Services Domain value"
+   },
+   {
+      "Field":"IMD04I",
+      "Field name":"IMD Income Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Income Domain value"
+   },
+   {
+      "Field":"IMD04IA",
+      "Field name":"IMD Income Affecting Adults Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Income Affecting Adults Index value"
+   },
+   {
+      "Field":"IMD04IC",
+      "Field name":"IMD Income Affecting Children Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"n.nn = IMD Income Affecting Children Index value"
+   },
+   {
+      "Field":"IMD04LE",
+      "Field name":"IMD Living Environment Domain",
+      "Format":"Decimal",
+      "Availability":"1997-98 onwards",
+      "Values":"nn.nn = IMD Living Environment Domain value"
+   },
+   {
+      "Field":"IMD04RK",
+      "Field name":"IMD Overall Rank",
+      "Format":"Number",
+      "Availability":"1997-98 onwards",
+      "Values":"5n = IMD Overall Ranking"
+   },
+   {
+      "Field":"INTDAYS_n",
+      "Field name":"Intensive Care Level Days",
+      "Format":"Number",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"4n = Number of days in the range 0000 to 9998\r\nNull = Not known: a validation error"
+   },
+   {
+      "Field":"INTMANIG",
+      "Field name":"Intended Management",
+      "Format":"String(1)",
+      "Availability":"1997-98 onwards",
+      "Values":"1 = Patient to stay in hospital for at least one night\r\n2 = Patient not to stay in hospital overnight\r\n3 = Patient to have a planned series of admissions at least one overnight stay\r\n4 = Patient to have a planned sequence of admissions no overnight stay\r\n5 = Patient to be admitted regularly for a sequence of nights rest of the 24 hour period at home\r\n8 = Not applicable\r\n9 = Intendend Management not known"
+   },
+   {
+      "Field":"LAD98",
+      "Field name":"Local Authority District 1998",
+      "Format":"String(4)",
+      "Availability":"1999-00 to 2000-01",
+      "Values":"nnaa = Local authority code  \r\nS = Scotland  \r\nU = England (NOS)  \r\nW = Wales  \r\nY = Not known  \r\nZ = Northern Ireland  \r\nX = Foreign"
+   },
+   {
+      "Field":"LEGALGPA",
+      "Field name":"Legal Group of Patient (on Admission)",
+      "Format":"String(1)",
+      "Availability":"2002-03 onwards",
+      "Values":"0 = Not formally detained (LEGLCAT is 01 or spaces)  \r\n1 = Formally detained under Part II, Sections 2 to 34 of the Mental Health Act 1983 (LEGLCAT is 02 to 06, or 2 to 6)  \r\n2 = Formally detained under Part III, Sections 35 to 55 of the Mental Health Act 1983, or previous legislation (LEGLCAT is 07 to18, 30 to 32, 34 or 7 to 9)  \r\n3 = Formally detained under Part X, Sections 131 to 149 of the Mental Health Act 1983 (LEGLCAT is 19 or 20)  \r\n4 = Supervised discharge under the Mental Health Act 1995 (LEGLCAT is 33)  \r\n5 = Guardianship (Sections 7 & 37) under the Mental Health Act 1983 (LEGLCAT is 35 or 36)  \r\nNot applicable = i.e. home births/deliveries where EPITYPE is 5 or 6  \r\nNot known = Any other value for leglcat"
+   },
+   {
+      "Field":"LEGALGPC",
+      "Field name":"Legal Group of Patient (Psychiatric Census Date)",
+      "Format":"String(1)",
+      "Availability":"2002-03 to 2016-17\r\n\r\n",
+      "Values":"0 = Legal status on psychiatric census date is not formally detained, LEGLSTAT =01 or spaces  \r\n1 = Legal status on psychiatric census date, LEGLSTAT = 02-06 or 2-6: Formally detained under Part II (Section 2-34) of the Mental Health Act 1983  \r\n2 = Legal status on admission, LEGLSTAT = 07-18, 30-32, 34 or 7-9: Formally detained under Part III (Section 35-55) of the Mental Health Act 1983, or previous legislation  \r\n3 = Legal status on admission, LEGLSTAT = 19-20: Formally detained under Part X (Sections 131-149) of the Mental Health Act 1983  \r\n4 = Legal status on admission, LEGLSTAT = 33: Supervised discharge under the Mental Health Act 1995  \r\n5 = Legal status on admission, LEGLSTAT = 35, 36: Guardianship (Sections 7 & 37) under the Mental Health Act 1983  \r\n8 = Not applicable \r\n9 = Not known: any other value for LEGLSTAT."
+   },
+   {
+      "Field":"LEGLCAT",
+      "Field name":"Legal Category of Patient",
+      "Format":"String(2)",
+      "Availability":"2000-01 onwards",
+      "Values":"01 = Informal  \r\n02 = Formally detained under the Mental Health Act, Section 2  \r\n03 = Formally detained under the Mental Health Act, Section 3  \r\n04 = Formally detained under the Mental Health Act, Section 4  \r\n05 = Formally detained under the Mental Health Act, Section 5(2)  \r\n06 = Formally detained under the Mental Health Act, Section 5(4)  \r\n07 = Formally detained under the Mental Health Act, Section 35  \r\n08 = Formally detained under the Mental Health Act, Section 36  \r\n09 = Formally detained under the Mental Health Act, Section 37 with Section 41 restrictions  \r\n10 = Formally detained under the Mental Health Act, Section 37 excluding Section 37(4)  \r\n11 = Formally detained under the Mental Health Act, Section 37(4)  \r\n12 = Formally detained under the Mental Health Act, Section 38  \r\n13 = Formally detained under the Mental Health Act, Section 44  \r\n14 = Formally detained under the Mental Health Act, Section 46  \r\n15 = Formally detained under the Mental Health Act, Section 47 with Section 49 restrictions  \r\n16 = Formally detained under the Mental Health Act, Section 47  \r\n17 = Formally detained under the Mental Health Act, Section 48 with Section 49 restrictions  \r\n18 = Formally detained under the Mental Health Act, Section 48  \r\n19 = Formally detained under the Mental Health Act, Section 135  \r\n20 = Formally detained under the Mental Health Act, Section 136  \r\n21 = Formally detained under the previous legislation (fifth schedule)  \r\n22 = Formally detained under Criminal Procedure (Insanity) Act 1964 as amended by the Criminal Procedures (Insanity and Unfitness to Plead) Act 1991  \r\n23 = Formally detained under other Acts  \r\n24 = Supervised discharge under the Mental Health (Patients in the Community) Act 1995  \r\n25 = Formally detained under the Mental Health Act, Section 45A  \r\n26 = Not applicable  \r\n27 = Not known"
+   },
+   {
+      "Field":"LEGLSTAT",
+      "Field name":"Legal Status Classification",
+      "Format":"String(2)",
+      "Availability":"1989-90 to 2016-17\r\n",
+      "Values":"01 = Informal  \r\n02 = Formally detained under the Mental Health Act, Section 2  \r\n03 = Formally detained under the Mental Health Act, Section 3  \r\n04 = Formally detained under the Mental Health Act, Section 4  \r\n05 = Formally detained under the Mental Health Act, Section 5(2)  \r\n06 = Formally detained under the Mental Health Act, Section 5(4)  \r\n07 = Formally detained under the Mental Health Act, Section 35  \r\n08 = Formally detained under the Mental Health Act, Section 36  \r\n09 = Formally detained under the Mental Health Act, Section 37 with Section 41 restrictions  \r\n10 = Formally detained under the Mental Health Act, Section 37 excluding Section 37(4)  \r\n11 = Formally detained under the Mental Health Act, Section 37(4)  \r\n12 = Formally detained under the Mental Health Act, Section 38  \r\n13 = Formally detained under the Mental Health Act, Section 44  \r\n14 = Formally detained under the Mental Health Act, Section 46  \r\n15 = Formally detained under the Mental Health Act, Section 47 with Section 49 restrictions  \r\n16 = Formally detained under the Mental Health Act, Section 47  \r\n17 = Formally detained under the Mental Health Act, Section 48 with Section 49 restrictions  \r\n18 = Formally detained under the Mental Health Act, Section 48  \r\n19 = Formally detained under the Mental Health Act, Section 135  \r\n20 = Formally detained under the Mental Health Act, Section 136  \r\n30 = Formally detained under the previous legislation (fifth schedule)  \r\n31 = Formally detained under Criminal Procedure (Insanity) Act 1964 as amended by the Criminal Procedures (Insanity and Unfitness to Plead) Act 1991  \r\n32 = Formally detained under other Acts  \r\n33 = Supervised discharge under the Mental Health (Patients in the Community) Act 1995  \r\n34 = Formally detained under the Mental Health Act, Section 45A  \r\n35 = Subject to guardianship under Mental Health Act Section 7  \r\n36 = Subject to guardianship under Mental Health Act Section 37  \r\n98 = Not applicable  \r\n99 = Not known"
+   },
+   {
+      "Field":"LEGLSTATST",
+      "Field name":"Legal Status Classification Code on Admission",
+      "Format":"String(2)",
+      "Availability":"2007-08 onwards",
+      "Values":"01 = Informal  \r\n02 = Formally detained under the Mental Health Act, Section 2  \r\n03 = Formally detained under the Mental Health Act, Section 3  \r\n04 = Formally detained under the Mental Health Act, Section 4  \r\n05 = Formally detained under the Mental Health Act, Section 5(2)  \r\n06 = Formally detained under the Mental Health Act, Section 5(4)  \r\n07 = Formally detained under the Mental Health Act, Section 35  \r\n08 = Formally detained under the Mental Health Act, Section 36  \r\n09 = Formally detained under the Mental Health Act, Section 37 with Section 41 restrictions  \r\n10 = Formally detained under the Mental Health Act, Section 37 excluding Section 37(4)  \r\n11 = Formally detained under the Mental Health Act, Section 37(4)  \r\n12 = Formally detained under the Mental Health Act, Section 38  \r\n13 = Formally detained under the Mental Health Act, Section 44  \r\n14 = Formally detained under the Mental Health Act, Section 46  \r\n15 = Formally detained under the Mental Health Act, Section 47 with Section 49 restrictions  \r\n16 = Formally detained under the Mental Health Act, Section 47  \r\n17 = Formally detained under the Mental Health Act, Section 48 with Section 49 restrictions  \r\n18 = Formally detained under the Mental Health Act, Section 48  \r\n19 = Formally detained under the Mental Health Act, Section 135  \r\n20 = Formally detained under the Mental Health Act, Section 136  \r\n30 = Formally detained under the previous legislation (fifth schedule)  \r\n31 = Formally detained under Criminal Procedure (Insanity) Act 1964 as amended by the Criminal Procedures (Insanity and Unfitness to Plead) Act 1991  \r\n32 = Formally detained under other Acts  \r\n33 = Supervised discharge under the Mental Health (Patients in the Community) Act 1995 (Retired 03 November 2008 - but may apply to some patients until 3 May 2009)\r\n34 = Formally detained under the Mental Health Act, Section 45A (retired 01/09/14)  \r\n35 = Subject to guardianship under Mental Health Act Section 7  \r\n36 = Subject to guardianship under Mental Health Act Section 37  \r\n37 =  Formally detained under Mental Health Act Section 45A (Limited direction in force)\r\n38 = Formally detained under Mental Health Act Section 45A (Limitation direction ended)\r\n98 = Not applicable  \r\n99 = Not known"
+   },
+   {
+      "Field":"LOPATID",
+      "Field name":"Local Patient Identifier",
+      "Format":"String(10) (to 2022-23)\r\nString(20) (2022-23 onwards))",
+      "Availability":"1997-98 onwards",
+      "Values":"Local patient identifier"
+   },
+   {
+      "Field":"LSOA01",
+      "Field name":"Lower Super Output Area of Residence 2001",
+      "Format":"String(9)",
+      "Availability":"2003-04 onwards",
+      "Values":"9an = 2001 Lower Super Output Area  \r\nE01000001 - E01032482 = England\r\nW01000001- W01001896 = Wales\r\nS01000001- S01006505 = Scotland\r\n95AA01S1 - 95ZZ16S2 = Northern Ireland\r\nL99999999 (pseudo) = Channel Islands\r\nM99999999 (pseudo) = Isle of Man\r\nZ99999999 = Not known\r\nE99999999 = England Unknown\r\nN99999999 = N. Ireland Unknown"
+   },
+   {
+      "Field":"LSOA11",
+      "Field name":"Lower Super Output Area of Residence 2011",
+      "Format":"String(9)",
+      "Availability":"2013-14 onwards",
+      "Values":"9an = 2011 Lower Super Output Area \r\nE01000001- E01033768 = England\r\nW01000001- W01001958 = Wales\r\nS01006506 - S01013481 = Scotland\r\n95AA01S1 - 95ZZ16S2 = Northern Ireland\r\nL99999999 (pseudo) = Channel Islands\r\nM99999999 (pseudo) = Isle of Man\r\nZ99999999 = Not known\r\nE99999999 = England Unknown\r\nN99999999 = N. Ireland Unknown"
+   },
+   {
+      "Field":"MAINSPEF",
+      "Field name":"Main Specialty",
+      "Format":"String(3)",
+      "Availability":"1989-90 onwards",
+      "Values":"100 = General Surgery\r\n101 = Urology\r\n107 = Vascular Surgery (Introduced 1 April 2021)\r\n110 = Trauma and Orthopaedics\r\n120 = Ear Nose and Throat\r\n130 = Ophthalmology\r\n140 = Oral Surgery\r\n141 = Restorative Dentistry\r\n142 = Paediatric Dentistry\r\n143 = Orthodontics\r\n145 = Oral and Maxillofacial Surgery\r\n146 = Endodontics\r\n147 = Periodontics\r\n148 = Prosthodontics\r\n149 = Surgical Dentistry\r\n150 = Neurosurgery\r\n160 = Plastic Surgery\r\n170 = Cardiothoracic Surgery\r\n171 = Paediatric Surgery\r\n191 = Pain Management (Retired 1 April 2004)\r\n180 = Emergency Medicine\r\n190 = Anaesthetics\r\n192 = Intensive Care Medicine\r\n200 = Aviation and Space Medicine (Introduced 1 April 2021)\r\n300 = General Internal Medicine\r\n301 = Gastroenterology\r\n302 = Endocrinology and Diabetes\r\n303 = Clinical Haematology\r\n304 = Clinical Physiology\r\n305 = Clinical Pharmacology\r\n310 = Audio Vestibular Medicine\r\n311 = Clinical Genetics\r\n312 = Clinical Cytogenetics and Molecular Genetics (Retired 1 April 2010). National Code 312 is retained for consultants qualified in this Main Specialty prior to 1 April 2010\r\n313 = Clinical Immunology\r\n314 = Rehabilitation Medicine\r\n315 = Palliative Medicine\r\n317 = Allergy (Introduced 1 April 2021)\r\n320 = Cardiology\r\n321 = Paediatric Cardiology\r\n325 = Sport and Exercise Medicine\r\n326 = Acute Internal Medicine\r\n330 = Dermatology\r\n340 = Respiratory Medicine\r\n350 = Infectious Diseases\r\n352 = Tropical Medicine\r\n360 = Genitourinary Medicine\r\n361 = Renal Medicine\r\n370 = Medical Oncology\r\n371 = Nuclear Medicine\r\n400 = Neurology\r\n401 = Clinical Neurophysiology\r\n410 = Rheumatology\r\n420 = Paediatrics\r\n421 = Paediatric Neurology\r\n430 = Geriatric Medicine\r\n450 = Dental Medicine\r\n451 = Special Care Dentistry\r\n501 = Obstetrics\r\n502 = Gynaecology\r\n504 = Community Sexual and Reproductive Health\r\n510 = Antenatal Clinic (Retired 1 April 2004)\r\n520 = Postnatal Clinic (Retired 1 April 2004)\r\n560 = Midwifery\r\n600 = General Medical Practice\r\n601 = General Dental Practice\r\n610 = Maternity Function (Retired 1 April 2004)\r\n620 = Other than Maternity (Retired 1 April 2004)\r\n700 = Learning Disability\r\n710 = Adult Mental Illness\r\n711 = Child and Adolescent Psychiatry\r\n712 = Forensic Psychiatry\r\n713 = Medical Psychotherapy\r\n715 = Old Age Psychiatry\r\n800 = Clinical Oncology\r\n810 = Radiology\r\n820 = General Pathology\r\n821 = Blood Transfusion\r\n822 = Chemical Pathology\r\n823 = Haematology\r\n824 = Histopathology\r\n830 = Immunopathology\r\n831 = Medical Microbiology and Virology\r\n832 = Neuropathology (Retired 1 April 2004)\r\n833 = Medical Microbiology\r\n834 = Medical Virology\r\n900 = Community Medicine\r\n901 = Occupational Medicine\r\n902 = Community Health Services Dental\r\n903 = Public Health Medicine\r\n904 = Public Health Dental\r\n950 = Nursing\r\n960 = Allied Health Professional\r\n990 = Joint Consultant Clinics (Retired 1 April 2004)\r\n199 = Non-UK Provider - Specialty Function Not Known, Treatment Mainly Surgical\r\n460 = Medical Ophthalmology\r\n499 = Non-UK Provider - Specialty Function Not Known, Treatment Mainly Medical\r\nNull  = Other Maternity Event\r\n&  = Not Known"
+   },
+   {
+      "Field":"MARSTAT",
+      "Field name":"Marital Status (Psychiatric)",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"From 1/10/2006 onwards: \r\nS = Single  \r\nM = Married/Civil Partner  \r\nD = Divorced/Person whose Civil Partnership has been dissolved  \r\nW = Widowed/Surviving Civil Partner  \r\nP = Separated  \r\nN = Not disclosed.  \r\n8 = Not applicable\r\n9 = Not known\r\n\r\nPrior to 1/10/2006: \r\n1 = Single \r\n2 = Married, including separated  \r\n3 = Divorced  \r\n4 = Widowed \r\n8 = Not applicable\r\n9 = Not known"
+   },
+   {
+      "Field":"MATAGE",
+      "Field name":"Mother’s Age at Delivery",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"nnn = Age in years  \r\nNull = Not valid"
+   },
+   {
+      "Field":"MATERNITY_EPISODE_TYPE",
+      "Field name":"Episode Type - Maternity",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = Finished delivery episode\r\n2 = Finished birth episode\r\n3 = Finished other delivery episode\r\n4 = Finished other birth episode\r\n9 = Unfinished maternity episodes\r\n99 = All other episodes"
+   },
+   {
+      "Field":"MENTCAT",
+      "Field name":"Mental Category",
+      "Format":"String(1)",
+      "Availability":"2007-08 to 2014-15 (phasing out from 2012-13)",
+      "Values":"1 = Mental illness  \r\n2 = Mental impairment  \r\n3 = Severe mental impairment  \r\n4 = Psychopathic disorder  \r\n5 = Not specified (from 1995-96)  \r\n8 = Not applicable  \r\n9 = Not known"
+   },
+   {
+      "Field":"MOTDOB",
+      "Field name":"Date of Birth (Mother)",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Mother's date of birth"
+   },
+   {
+      "Field":"MSOA01",
+      "Field name":"Middle Super Output Area of Residence 2001",
+      "Format":"String(9)",
+      "Availability":"2003-04 onwards",
+      "Values":"9an = Middle Super Output Area  \r\nE02000001- E02006781 = England\r\nW02000001- W02000413 = Wales\r\nS02000001 - S02001235 = Scotland\r\nN99999999 (pseudo) = Northern Ireland\r\nL99999999 (pseudo) = Channel Islands\r\nM99999999 (pseudo) = Isle of Man\r\nZ99999999 = Not known\r\nE99999999 = England Unknown\r\nN99999999 = N. Ireland Unknown"
+   },
+   {
+      "Field":"MSOA11",
+      "Field name":"Middle Super Output Area of Residence 2011",
+      "Format":"String(9)",
+      "Availability":"2013-14 onwards",
+      "Values":"9an = Middle Super Output Area  \r\nE02000001- E02006934 = England\r\nW02000001- W02000423 = Wales\r\nS02001236 - S02002514 = Scotland\r\nN99999999 (pseudo) = Northern Ireland\r\nL99999999 (pseudo) = Channel Islands\r\nM99999999 (pseudo) = Isle of Man\r\nZ99999999 = Not known\r\nE99999999 = England Unknown\r\nN99999999 = N. Ireland Unknown"
+   },
+   {
+      "Field":"MYDOB",
+      "Field name":"Date of Birth - Month and Year",
+      "Format":"String(6)",
+      "Availability":"1989-90 onwards",
+      "Values":"MMYYYY = Date of birth month and year"
+   },
+   {
+      "Field":"NEOCARE",
+      "Field name":"Neonatal Level of Care",
+      "Format":"String(1)",
+      "Availability":"1996-97 onwards",
+      "Values":"0 = Normal care: care given by the mother or mother substitute, with medical and neonatal nursing advice if needed  \r\n1 = Special care: care given in a special nursery, transitional care ward or postnatal ward, which provides care and treatment exceeding normal routine care. Some aspects of special care can be undertaken by a mother supervised by qualified nursing staff. Special nursing care includes support for and education of the infant's parents  \r\n2 = Level 2 intensive care (high dependency intensive care): care given in an intensive or special care nursery, which provides continuous skilled supervision by qualified and specially trained nursing staff who may care for more babies than in level 1 intensive care. Care includes support for the infant's parents  \r\n3 = Level 1 intensive care (maximal intensive care): care given in an intensive or special care nursery, which provides continuous skilled supervision by qualified and specially trained nursing and medical staff. Care includes support for the infant's parents  \r\n8 = Not applicable\r\n9 = Not known"
+   },
+   {
+      "Field":"NEODUR",
+      "Field name":"Age of Baby In Days",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = Age of patient in days from 0 to 27  \r\nNull = Not applicable: other maternity event (EPITYPE is 5 or 6) or patient is older than 27 days"
+   },
+   {
+      "Field":"NER_GP_PRACTICE",
+      "Field name":"Integrated Care Board of GP Practice  (July 2022 onwards)\r\nSustainability and Transformation Partnership of GP Practice (2020 until June 2022)\r\nNHS England Region of GP Practice (until 2020)",
+      "Format":"String(8)",
+      "Availability":"2015-16 onwards",
+      "Values":"ann = ICB / STP / NER of GP practice\r\nQ99 = Wales\r\nY = Not known"
+   },
+   {
+      "Field":"NER_RESIDENCE",
+      "Field name":"Integrated Care Board of Residence  (July 2022 onwards)\r\nSustainability and Transformation Partnership of Residence (2020 until June 2022)\r\nNHS England Region of Residence (until 2020)",
+      "Format":"String(8)",
+      "Availability":"2015-16 onwards",
+      "Values":"ann = ICB / STP / NER of residence\r\nQ99 = Wales\r\nS = Scotland\r\nU = no fixed abode\r\nX = Foreign, Isle of Man or Channel Islands\r\nY = Not known\r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"NER_TREATMENT",
+      "Field name":"Integrated Care Board of Treatment  (July 2022 onwards)\r\nSustainability and Transformation Partnership of Treatment (2020 until June 2022)\r\nNHS England Region of Treatment (until 2020)",
+      "Format":"String(3)",
+      "Availability":"2015-16 onwards",
+      "Values":"ann = ICB / STP / NER of treatment\r\nQ99 = Wales\r\nY = Not known"
+   },
+   {
+      "Field":"NEWNHSNO",
+      "Field name":"NHS Number",
+      "Format":"String(10)",
+      "Availability":"1997-98 onwards",
+      "Values":"10n = NHS number"
+   },
+   {
+      "Field":"NEWNHSNO_CHECK",
+      "Field name":"NHS Number Check Flag",
+      "Format":"String(1)",
+      "Availability":"2007-08 onwards",
+      "Values":"Y = The format of the NEWNHSNO is valid\r\nN = The format of the NEWNHSNO is not valid\r\nNull = NEWNHSNO is null"
+   },
+   {
+      "Field":"NHSNOIND",
+      "Field name":"NHS Number Status Indicator",
+      "Format":"String(2)",
+      "Availability":"2002-03 onwards",
+      "Values":"01 = Number present and verified \r\n02 = Number present but not traced \r\n03 = Trace required\r\n04 = Trace attempted - No match or multiple match found \r\n05 = Trace needs to be resolved - (New NHS number or patient detail conflict) \r\n06 = Trace in progress \r\n07 = Number not present and trace not required \r\n08 = Trace postponed (baby under six weeks old)\r\n91 = Anonymised or pseudonymised by SUS"
+   },
+   {
+      "Field":"NUMACP",
+      "Field name":"Number of Valid Augmented Care Period Groups",
+      "Format":"Number",
+      "Availability":"1997-98 to 2007-08",
+      "Values":"n = Number of augmented care periods within the episode"
+   },
+   {
+      "Field":"NUMBABY",
+      "Field name":"Number of Babies",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"1 = One  \r\n2 = Two  \r\n3 = Three  \r\n4 = Four  \r\n5 = Five  \r\n6 = Six or more  \r\n9 = Number of registrable births not known \r\nX = Not known (derived in HES where the field is null)"
+   },
+   {
+      "Field":"NUMPREG",
+      "Field name":"Number of Previous Pregnancies",
+      "Format":"String(2)",
+      "Availability":"1989-90 onwards",
+      "Values":"max 2n = Number of previous pregnancies, from 00 to 19, resulting in a registrable birth  \r\n99 = Not known"
+   },
+   {
+      "Field":"NUMTAILB",
+      "Field name":"Number of Baby Tails",
+      "Format":"Number",
+      "Availability":"2002-03 onwards",
+      "Values":"1n = Number of valid birth tails associated with a delivery record"
+   },
+   {
+      "Field":"OACODE01",
+      "Field name":"Census Output Area 2001",
+      "Format":"String(10)",
+      "Availability":"2003-04 to 2020-21",
+      "Values":"10an = 2001 Census Output Area\r\nY = not known"
+   },
+   {
+      "Field":"OACODE11",
+      "Field name":"Census Output Area 2011",
+      "Format":"String(9)",
+      "Availability":"2013-14 onwards",
+      "Values":"9an = 2011 Census Output Area\r\nE00000001 - E00176774 = England;\r\nW00000001 - W00010265 = Wales;\r\nS00088956 - S00135306 = Scotland;\r\nN00000001 - N00004537 = Northern Ireland;\r\nL99999999 (pseudo) = Channel Islands;\r\nM99999999 (pseudo) = Isle of Man;\r\nY = not known"
+   },
+   {
+      "Field":"OACODE6",
+      "Field name":"Census Output Area 2001 (Ward Identifier)",
+      "Format":"String(6)",
+      "Availability":"1995-96 to 2020-21",
+      "Values":"6an = 2001 census output area ward identifier code\r\nY = not known"
+   },
+   {
+      "Field":"OPDATE_nn",
+      "Field name":"Date of Procedure",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of procedure\r\n1800-01-01 = Null\r\n1801-01-01 = Invalid date submitted"
+   },
+   {
+      "Field":"OPER_SEQ",
+      "Field name":"Procedure Code Sequence",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"n = Procedure code sequence number"
+   },
+   {
+      "Field":"OPERSTAT",
+      "Field name":"Operation Status Code",
+      "Format":"String(1)",
+      "Availability":"2002-03 to 2022-23",
+      "Values":"1 = One or more operative procedures carried out\r\n8 = No operative procedures performed or intended\r\n9 = Not known, i.e. finished episode but no data entered or the episode is unfinished and no data needs to be present (this would only be a validation error for a finished episode)."
+   },
+   {
+      "Field":"OPERTN_3_CONCAT",
+      "Field name":"Concatenated Procedure Codes - 3 Character",
+      "Format":"String(100)",
+      "Availability":"1989-90 onwards",
+      "Values":"Concatenated string of OPERTN_3_nn separated by commas"
+   },
+   {
+      "Field":"OPERTN_3_nn",
+      "Field name":"Procedure Code - 3 Character",
+      "Format":"String(3)",
+      "Availability":"1989-90 onwards",
+      "Values":"3an = Procedure code\r\n- = No operation performed\r\n& = Not known"
+   },
+   {
+      "Field":"OPERTN_4_CONCAT",
+      "Field name":"Concatenated Procedure Codes - 4 Character",
+      "Format":"String(130)",
+      "Availability":"1989-90 onwards",
+      "Values":"Concatenated string of OPERTN_4_nn separated by commas"
+   },
+   {
+      "Field":"OPERTN_4_nn",
+      "Field name":"Procedure Code - 4 Character",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an = Procedure code\r\n- = No operation performed\r\n& = Not known"
+   },
+   {
+      "Field":"OPERTN_CODE",
+      "Field name":"Procedure Code (Unpivoted)",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an = Procedure code\r\n- = No operation performed\r\n& = Not known"
+   },
+   {
+      "Field":"OPERTN_COUNT",
+      "Field name":"Count of Procedures",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"2n = Count of procedures"
+   },
+   {
+      "Field":"OPERTN_DATE",
+      "Field name":"Date of Procedure",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYY-MM-DD = Date of procedure\r\n1800-01-01 = Null\r\n1801-01-01 = Invalid date submitted"
+   },
+   {
+      "Field":"OPERTN_nn",
+      "Field name":"Procedure Code",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"4an = Procedure code  \r\n- = No procedures performed  \r\n& = Not known  \r\nX998 = Procedure carried out but no appropriate OPCS-4 code available (submitted value present between 1997-98 and 2005-07)\r\nX999 = No procedure carried out (submitted value present between 1997-98 and 2001-02)"
+   },
+   {
+      "Field":"ORGPPPID",
+      "Field name":"Organisation Identifier (Patient Pathway Identifier Issuer)\r\n",
+      "Format":"String(3-5)",
+      "Availability":"2007-08 onwards",
+      "Values":"3an - 5an = Organisation identifier"
+   },
+   {
+      "Field":"ORGSUP_n",
+      "Field name":"Number of Organ Systems Supported",
+      "Format":"Number",
+      "Availability":"1997-98 to 2007-08",
+      "Values":"n = Number of organ systems supported in the range 0 to 5\r\n98 = Not applicable: augmented care period not finished\r\n99 = Not known: a validation error"
+   },
+   {
+      "Field":"PARTYEAR",
+      "Field name":"HES Extract Year and Number",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"YYYYnn = HES year and extract number"
+   },
+   {
+      "Field":"PATPATHID",
+      "Field name":"Patient Pathway Identifier",
+      "Format":"String(20)",
+      "Availability":"2007-08 onwards",
+      "Values":"20an = Patient pathway identifier"
+   },
+   {
+      "Field":"PBC",
+      "Field name":"Programme Budgeting Category",
+      "Format":"String(5)",
+      "Availability":"2008-09 onwards",
+      "Values":"0201A = HIV and AIDS\r\n0201X = Infectious diseases\r\n0202A = Cancer, Head and Neck\r\n0202B = Cancer, UGI\r\n0202C = Cancer, LGI\r\n0202D = Cancer, Lung\r\n0202E = Cancer, Skin\r\n0202F = Cancer, Breast\r\n0202G = Cancer, Gynaecological\r\n0202H = Cancer, Urological\r\n0202I = Cancer, Haematological\r\n0202X = Cancers and Tumours\r\n0203X = Disorders of Blood\r\n0204A = Diabetes\r\n0204B = Endocrine\r\n0204X = Endocrine, Nutritional and Metabolic pro\r\n0205A = Substance Misuse\r\n0205B = Organic Mental Disorders\r\n0205C = Psychotic Disorders\r\n0205D = Child and Adolescent Mental Health Disorders\r\n0205X = Other Mental Health Disorders\r\n0206X = Problems of Learning Disability\r\n0207A = Chronic Pain\r\n0207X = Neurological\r\n0208X = Problems of Vision\r\n0209X = Problems of Hearing\r\n0210A = Coronary Heart Disease\r\n0210B = Cerebrovascular disease\r\n0210C = Problems of Rhythm\r\n0210X = Problems of circulation\r\n0211A = Obstructive Airways Disease\r\n0211B = Asthma\r\n0211X = Problems of the respiratory system\r\n0212X = Dental problems\r\n0213A = Upper GI\r\n0213B = Lower GI\r\n0213C = HepatoBiliary\r\n0213X = Problems of the gastro intestinal system\r\n0214A = Burns\r\n0214X = Problems of the Skin\r\n0215X = Problems of the Musculo skeletal system\r\n0216X = Problems due to Trauma and Injuries\r\n0217A = Genital tract problems\r\n0217B = Renal problems\r\n0217C = STD\r\n0217X = Problems of Genito Urinary system\r\n0218X = Maternity and Reproductive Health\r\n0219X = Conditions of neonates\r\n0220A = Unintended consequences of treatment\r\n0220B = Poisoning\r\n0220C = Violence\r\n0220X = Poisoning and adverse effects\r\n0221A = NSF Prevention programme\r\n0221B = NSF Mental health prevention\r\n0221X = Healthy Individuals\r\n0222X = Social Care Needs\r\n0223X = Other\r\n02U1 = Primary Diagnosis Not Recognised\r\n02U2 = Unclassified"
+   },
+   {
+      "Field":"PCFOUND",
+      "Field name":"Postcode Found Flag",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"Y = Valid\r\nN = Invalid or null"
+   },
+   {
+      "Field":"PCGCODE",
+      "Field name":"Primary Care Group",
+      "Format":"String(8)",
+      "Availability":"1999-00 to 2001-02",
+      "Values":"Not available"
+   },
+   {
+      "Field":"PCGORIG",
+      "Field name":"Origin of Primary Care Group",
+      "Format":"String(1)",
+      "Availability":"1999-00 to 2001-02",
+      "Values":"1 = GPPRAC was used to derive the code  \r\n2 = REGGMP was used to derive the code  \r\n3 = PURCODE was used to derive the code  \r\n4 = POSTCODE was used to derive the code  \r\n5 = POSTCODE allocated code, PCG code was blank  \r\n6 = POSTCODE allocated code, PCG code was 49998  \r\n9 = PCG code not known"
+   },
+   {
+      "Field":"PCON",
+      "Field name":"Westminster Parliamentary Constituency of Residence",
+      "Format":"String(3)",
+      "Availability":"2008-09 to 2020-21",
+      "Values":"3an = English Westminster Parliamentary Constituency\r\nS = Scotland\r\nU = no fixed abode\r\nW = Wales\r\nX = Foreign (includes Channel Islands and Isle of Man)\r\nY = not known\r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"PCON_ONS",
+      "Field name":"Westminster Parliamentary Constituency of Residence (ONS)",
+      "Format":"String(9)",
+      "Availability":"2011-12 onwards",
+      "Values":"9an = English Westminster Parliamentary Constituency\r\nE99999999 = England (not specified)\r\nL99999999 = Channel Islands\r\nM99999999 = Isle of Man\r\nN99999999 = Northern Ireland\r\nS99999999 = Scotland\r\nW99999999 = Wales\r\nU = no fixed abode\r\nX = foreign\r\nY = not known"
+   },
+   {
+      "Field":"PCONSULT",
+      "Field name":"Consultant Code (Pseudonymised)",
+      "Format":"String(16)",
+      "Availability":"1997-98 onwards",
+      "Values":"16an = Pseudonymised consultant code  \r\n& = Consultant code is null\r\n99 = Consultant code is invalid"
+   },
+   {
+      "Field":"PCTCODE",
+      "Field name":"Primary Care Trust of Responsibility",
+      "Format":"String(6)",
+      "Availability":"2006-07 to 2020-21",
+      "Values":"5nn = PCT \r\nTaa = Care trust \r\n59898 = Not applicable\r\n59999 = Unknown"
+   },
+   {
+      "Field":"PCTCODE_HIS",
+      "Field name":"Primary Care Trust of Responsibility",
+      "Format":"String(8)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"5nn = PCT \r\nTaa = Care trust \r\n59898 = Not applicable\r\n59999 = Unknown"
+   },
+   {
+      "Field":"PCTCODE02",
+      "Field name":"Primary Care Trust of Responsibility 2002",
+      "Format":"String(8)",
+      "Availability":"2006-07 to 2012-13",
+      "Values":"nan, naa or aaa = PCT\r\n59898 = Not applicable  \r\n59999 = Unknown"
+   },
+   {
+      "Field":"PCTCODE06",
+      "Field name":"Primary Care Trust of Responsibility 2006",
+      "Format":"String(8)",
+      "Availability":"2006-07 to 2020-21",
+      "Values":"5nn = PCT \r\nTaa = Care trust \r\n59898 = Not applicable\r\n59999 = Unknown"
+   },
+   {
+      "Field":"PCTNHS",
+      "Field name":"Organisation Identifier (Residence Responsibility)",
+      "Format":"String(3-5)",
+      "Availability":"2003-04 onwards",
+      "Values":"3an - 5an = Organisation identifier \r\nQ99 = Not Known\r\nX98 = Not Applicable (Overseas Visitors)"
+   },
+   {
+      "Field":"PCTORIG",
+      "Field name":"Origin of Primary Care Trust of Responsibility",
+      "Format":"String(1)",
+      "Availability":"1997-98 to 2005-06",
+      "Values":"1 = GPPRAC was used to derive the code  \r\n2 = REGGMP was used to derive the code  \r\n3 = PURCODE was used to derive the code  \r\n4 = POSTCODE was used to derive the code  \r\n5 = POSTCODE allocated code, PCT code was blank  \r\n6 = POSTCODE allocated code, PCT code  \r\n9 = PCT code not known"
+   },
+   {
+      "Field":"PCTORIG_HIS",
+      "Field name":"Origin of Primary Care Trust of Responsibility",
+      "Format":"String(1)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"1 = GPPRAC was used to derive the code  \r\n2 = REGGMP was used to derive the code  \r\n3 = PURCODE was used to derive the code  \r\n4 = POSTCODE was used to derive the code  \r\n5 = POSTCODE allocated code, PCT code was blank  \r\n6 = POSTCODE allocated code, PCT code was 59998  \r\n9 = PCT code not known"
+   },
+   {
+      "Field":"PCTORIG02",
+      "Field name":"Origin of Primary Care Trust of Responsibility  2002",
+      "Format":"String(1)",
+      "Availability":"2006-07 to 2012-13",
+      "Values":"1 = GPPRAC was used to derive the code  \r\n2 = REGGMP was used to derive the code  \r\n3 = PURCODE was used to derive the code  \r\n4 = POSTCODE was used to derive the code  \r\n5 = POSTCODE allocated code, PCT code was blank  \r\n6 = POSTCODE allocated code, PCT code was 59998  \r\n9 = PCT code not known"
+   },
+   {
+      "Field":"PCTORIG06",
+      "Field name":"Origin of Primary Care Trust of Responsibility  2006",
+      "Format":"String(1)",
+      "Availability":"2006-07 to 2020-21",
+      "Values":"1 = GPPRAC was used to derive the code  \r\n2 = REGGMP was used to derive the code  \r\n3 = PURCODE was used to derive the code  \r\n4 = POSTCODE was used to derive the code  \r\n5 = POSTCODE allocated code, PCT code was blank  \r\n6 = POSTCODE allocated code, PCT code was 59998  \r\n9 = PCT code not known"
+   },
+   {
+      "Field":"PCTTREAT",
+      "Field name":"Primary Care Trust of Provider",
+      "Format":"String(3)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"3an = PCT of provider\r\n59898 = Not applicable\r\n59999 = Unknown"
+   },
+   {
+      "Field":"PEREND",
+      "Field name":"Cds Report Period End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2003-04 onwards",
+      "Values":"YYYY-MM-DD = The end date for the range of data contained in the SUS submission"
+   },
+   {
+      "Field":"PERSON_ID",
+      "Field name":"Person Identifier (Clear)",
+      "Format":"String(10)",
+      "Availability":"1997-98 onwards",
+      "Values":"max 10an = Person identifier"
+   },
+   {
+      "Field":"PERSTART",
+      "Field name":"Cds Report Period Start Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2003-04 onwards",
+      "Values":"YYYY-MM-DD  = The start date for the range of data contained in the SUS submission"
+   },
+   {
+      "Field":"PGPPRAC",
+      "Field name":"Pseudonymised Code of GP Practice",
+      "Format":"String(16)",
+      "Availability":"1997-98 onwards",
+      "Values":"16an = Pseudonymised GP practice code\r\n& = Unknown"
+   },
+   {
+      "Field":"POSOPDUR",
+      "Field name":"Post-Operative Duration",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1n to 5n = Number of days between the main procedure and the end of the episode\r\nNull = Not applicable: no procedure or episode is unfinished"
+   },
+   {
+      "Field":"POSTDIST",
+      "Field name":"Postcode District",
+      "Format":"String(4)",
+      "Availability":"1989-90 onwards",
+      "Values":"an, aan, ann, or aann = Postcode district \r\nZZ99 = Unavailable / not applicable"
+   },
+   {
+      "Field":"POSTDUR",
+      "Field name":"Postnatal Stay",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"3n = The number of days of stay, from 0 to 270  \r\nNull = Not applicable / not known"
+   },
+   {
+      "Field":"PREFERER",
+      "Field name":"Referrer Code (Pseudonymised)",
+      "Format":"String(16)",
+      "Availability":"1989-90 onwards",
+      "Values":"16an = Pseudonymised referrer code  \r\n& = Referrer code is null\r\n99 = Referrer code is invalid"
+   },
+   {
+      "Field":"PREGGMP",
+      "Field name":"Registered or Referring GP (Pseudonymised)",
+      "Format":"String(16)",
+      "Availability":"1997-98 onwards",
+      "Values":"16an = pseudonymised registered or referring GP code \r\n& = registered or referring GP code is null\r\n99 = registered or referring GP code is invalid"
+   },
+   {
+      "Field":"PREOPDUR",
+      "Field name":"Pre-Operative Duration",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"3n = Number of days between the start of the episode and the main procedure from 0-365\r\nNull = Not applicable: no operation or procedure unfinished"
+   },
+   {
+      "Field":"PRIMERCP",
+      "Field name":"CDS Prime Recipient Identity",
+      "Format":"String(12)",
+      "Availability":"2003-04 onwards",
+      "Values":"3an or 5an = Prime recipient organisation identifier\r\nQ99 = Not known\r\nX98 = Not applicable"
+   },
+   {
+      "Field":"PROCODE",
+      "Field name":"Organisation Identifier (Code of Provider)\r\n",
+      "Format":"String(3) or String(5)",
+      "Availability":"1989-90 onwards",
+      "Values":"3an or 5an = Organisation identifier\r\n89997 = UK provider where no organisation identifier has been issued \r\n89999 = Non-NHS UK provider where no organisation identifier has been issued"
+   },
+   {
+      "Field":"PROCODE3",
+      "Field name":"Organisation Identifier (Code of Provider) (3 Character)",
+      "Format":"String(5)",
+      "Availability":"1989-90 onwards",
+      "Values":"3an = Provider code to 3 characters"
+   },
+   {
+      "Field":"PROCODE5",
+      "Field name":"Organisation Identifier (Code of Provider) (5 Character)",
+      "Format":"String(5)",
+      "Availability":"1989-90 onwards",
+      "Values":"5an = Provider code to 5 characters\r\n89997 = Non-UK provider where no organisation code has been issued  \r\n89999 = Non-NHS UK provider where no organisation code has been issued"
+   },
+   {
+      "Field":"PROCODEO",
+      "Field name":"Organisation Identifier (Code of Provider) (Original)",
+      "Format":"String(5)",
+      "Availability":"2008-09 onwards",
+      "Values":"3an to 5an = Submitted provider code"
+   },
+   {
+      "Field":"PROCODET",
+      "Field name":"Provider Code of Treatment",
+      "Format":"String(5)",
+      "Availability":"2003-04 onwards",
+      "Values":"5an = Provider code"
+   },
+   {
+      "Field":"PROTYPE",
+      "Field name":"Provider Type",
+      "Format":"String(20)",
+      "Availability":"2003-04 onwards",
+      "Values":"CARETRUST = Care trust  \r\nCCG = Clinical Commissioning Group\r\nFOUNDATION = NHS foundation trust  \r\nIND = Independent sector provider  \r\nINDSITE = Independent sector provider site \r\nINDSITETC = Treatment centre at independent sector provider site  \r\nOTHERPROV = Other provider organisation  \r\nPCT = Primary care trust  \r\nTRUST = NHS trust  \r\nTRUSTSITETC = Treatment centre at NHS trust site"
+   },
+   {
+      "Field":"PROVDIST",
+      "Field name":"Distance Between LSOA11 and Provider",
+      "Format":"String(15)",
+      "Availability":"2003-04 onwards",
+      "Values":"nnn.nn = Distance in kilometres"
+   },
+   {
+      "Field":"PROVDIST_FLAG",
+      "Field name":"Derivation of PROVDIST",
+      "Format":"String(1)",
+      "Availability":"2003-04 onwards",
+      "Values":"5 = PROVDIST was calculated from PROCODE5\r\n3 = PROVDIST was calculated from PROCODE3"
+   },
+   {
+      "Field":"PROVSPNO",
+      "Field name":"Hospital Provider Spell Identifier",
+      "Format":"Number",
+      "Values":"20an = Hospital provider spell number"
+   },
+   {
+      "Field":"PROVSPNOPS",
+      "Field name":"Hospital Provider Spell Number (Pseudonymised)",
+      "Format":"String(40)",
+      "Availability":"1997-98 onwards",
+      "Values":"max 40Sp = PROVSPNOPS"
+   },
+   {
+      "Field":"PSEUDO_HESID",
+      "Field name":"Pseudonymised Patient identifier - HES generated",
+      "Format":"String(32)",
+      "Availability":"Retired in 2021-22 - replaced by TOKEN_PERSON_ID for all years",
+      "Values":"32an = Pseudonymised HESID"
+   },
+   {
+      "Field":"PURCODE",
+      "Field name":"Organisation Identifer (Code of Commissioner)",
+      "Format":"String(12)",
+      "Availability":"1989-90 onwards",
+      "Values":"3an - 5an = Organisation Identifier (Commissioning Organisation)\r\nVPP00 = Private patients / overseas visitor liable for charge\r\nXMD00 = Commissioner code for Ministry of Defence (MoD) healthcare\r\nYDD82 = Episodes funded directly by the National Commissioning Group for England (retired September 2018)"
+   },
+   {
+      "Field":"PURRO",
+      "Field name":"Commissioner’s Regional Office",
+      "Format":"String(8)",
+      "Availability":"1995-96 to 2001-02",
+      "Values":"From 1999-2000 to 2001-2002: \r\nS or S0000 = Scotland  \r\nW or W0000 = Wales  \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nY09 = Eastern  \r\nY10 = London  \r\nY11 = South East  \r\nY12 = South West  \r\nZ or Z0000 = Northern Ireland  \r\nNull = Not known  \r\n\r\nFrom 1996-97 to 1998-99: \r\nS or S0000 = Scotland  \r\nW or W0000 = Wales  \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY03 = Anglia and Oxford  \r\nY04 = North Thames  \r\nY05 = South Thames  \r\nY06 = South and West  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nZ or Z0000 = Northern Ireland  \r\nNull = Not known  \r\n9999 = Not known  \r\n\r\n1995-96: \r\nA0000 = Northern  \r\nB0000 = Yorkshire  \r\nC0000 = Trent  \r\nD0000 = East Anglia  \r\nE0000 = North West Thames  \r\nF0000 = North East Thames  \r\nG0000 = South East Thames  \r\nH0000 = South West Thames  \r\nJ0000 = Wessex  \r\nK0000 = South Western  \r\nM0000 = West Midlands  \r\nN0000 = Mersey  \r\nP0000 = North Western  \r\nZ or Z0000 = Northern Ireland  \r\nNull = Not known  \r\n9999 = Not known\r\n"
+   },
+   {
+      "Field":"PURSTHA",
+      "Field name":"Strategic Health Authority of Commissioner",
+      "Format":"String(8)",
+      "Availability":"2002-03 to 2012-13",
+      "Values":"3an = SHA area of commissioner\r\nS = Scotland  \r\nX = Foreign (including Isle of Man and Channel Islands)  \r\nY = Unknown  \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"PURVAL",
+      "Field name":"Commissioner Code Status",
+      "Format":"String(1)",
+      "Availability":"1995-96 onwards",
+      "Values":"0 = Purchaser code is not recognised throughout the NHS  \r\n1 = Purchaser code is recognised throughout the NHS"
+   },
+   {
+      "Field":"RANK_ORDER",
+      "Field name":"Linkage Quality Rank",
+      "Format":"Number",
+      "Availability":"2013-14 onwards",
+      "Values":"1 - 4, where 1 is a strong link and 4 is a poor link between the two records"
+   },
+   {
+      "Field":"REFERORG",
+      "Field name":"Organisation Identifier (Referring Organisation)",
+      "Format":"String(3-8)",
+      "Availability":"2002-03 onwards",
+      "Values":"3an - 8an = Referring organisation identifier  \r\nX99998 = Referring organisation identifier not applicable  \r\nX99999 = Referring organisation identifier not known"
+   },
+   {
+      "Field":"REFERRER",
+      "Field name":"Referrer Code",
+      "Format":"String(8)",
+      "Availability":"1997-98 onwards",
+      "Values":"an8 = Referrer code\r\nA9999998 = Ministry of Defence Doctor\r\nC9999998 = Consultant, General Medical Council (GMC) number not known  \r\nD9999998 = Dentist, General Dental Practitioner Code (GDC) not known\r\nCD999998 = Dental consultant: GMC / GDC number not known  \r\nR9999981 = Referrer other than GP, general dental practitioner or consultant  \r\nX9999998 = Not applicable, e.g. patient has self-presented or not known  \r\n& = referrer code not recorded\r\n99 = referrer code invalid"
+   },
+   {
+      "Field":"REGGMP",
+      "Field name":"Registered or Referring GP",
+      "Format":"String(8)",
+      "Availability":"1997-98 onwards",
+      "Values":"8an = GP code\r\nG followed by up to 7 digits (GP England and Wales)\r\nS followed by up to 7 digits (GP Scotland)\r\n[Z as 1st character] [E, N, S or W as 2nd character] followed by up to 6 digits (GP N. Ireland)\r\nG9999998 = GP code is unknown  \r\nG9999981 = No registered GP  \r\nR9999981 (retired) = referrer other than General Medical Practitioner, General Dental\r\nPractitioner or Consultant  \r\nA9999998 (retired) = Ministry of Defence doctor  \r\nP9999981 (retired) = Prison doctor\r\n& = Registered GP not recorded\r\n99 = Registered GP code invalid"
+   },
+   {
+      "Field":"RESCTY",
+      "Field name":"County of Residence",
+      "Format":"String(2)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"00 = Not available (patient was resident within a Unitary Authority)\r\n11 = Buckinghamshire  \r\n12 = Cambridgeshire  \r\n16 = Cumbria  \r\n17 = Derbyshire  \r\n18 = Devon  \r\n19 = Dorset  \r\n21 = East Sussex  \r\n22 = Essex  \r\n23 = Gloucestershire  \r\n24 = Hampshire  \r\n26 = Hertfordshire  \r\n29 = Kent  \r\n30 = Lancashire  \r\n31 = Leicestershire  \r\n32 = Lincolnshire  \r\n33 = Norfolk  \r\n34 = Northamptonshire  \r\n36 = North Yorkshire  \r\n37 = Nottinghamshire  \r\n38 = Oxfordshire  \r\n40 = Somerset  \r\n41 = Staffordshire  \r\n42 = Suffolk  \r\n43 = Surrey  \r\n44 = Warwickshire  \r\n45 = West Sussex  \r\n47 = Worcestershire  \r\nS = Scotland  \r\nU = No fixed abode\r\nW = Wales  \r\nX = Foreign (from 1990-91 onwards)  \r\nY = Not known  \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"RESCTY_ONS",
+      "Field name":"County of Residence (ONS)",
+      "Format":"String(12)",
+      "Availability":"2011-12 onwards",
+      "Values":"E10000002 - E10000034 = county of residence (England)\r\nE99999999 = Unitary Authority (England)\r\nW99999999 = Wales\r\nS99999999 = Scotland\r\nN99999999 = Northern Ireland\r\nL99999999 = Channel Islands\r\nM99999999 = Isle of Man\r\nU = No fixed abode\r\nX = Foreign   \r\nY = Not known"
+   },
+   {
+      "Field":"RESGOR",
+      "Field name":"Government Office Region of Residence",
+      "Format":"String(1)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"A = North East  \r\nB = North West  \r\nC = Merseyside (until 1998-99)  \r\nD = Yorkshire and Humber  \r\nE = East Midlands  \r\nF = West Midlands  \r\nG = East of England  \r\nH = London  \r\nJ = South East  \r\nK = South West  \r\nS = Scotland  \r\nU = No fixed abode  \r\nW = Wales  \r\nX = Foreign (including Isle of Man and Channel Islands)  \r\nY = Unknown  \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"RESGOR_ONS",
+      "Field name":"Government Office Region of Residence (ONS)",
+      "Format":"String(9)",
+      "Availability":"2011-12 onwards",
+      "Values":"E12000001  =North East\r\nE12000002 = North West\r\nE12000003 = Yorkshire and Humber\r\nE12000004 = East Midlands\r\nE12000005 = West Midlands\r\nE12000006 = East of England\r\nE12000007 = London\r\nE12000008 = South East\r\nE12000009 = South West\r\nE99999999 = England (not otherwise stated)\r\nL99999999 = Channel Islands\r\nM99999999 = Isle of Man\r\nN99999999 = Northern Ireland\r\nS99999999 = Scotland\r\nW99999999 = Wales\r\nU = No fixed abode\r\nX = Foreign\r\nY = Unknown"
+   },
+   {
+      "Field":"RESHA",
+      "Field name":"Health Authority of Residence",
+      "Format":"String(3)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"3an = Health Authority area of residence \r\nS = Scotland \r\nU = no fixed abode\r\nW = Wales \r\nX = Foreign (including Isle of Man and Channel Islands) \r\nY = Unknown \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"RESLADST",
+      "Field name":"Local Authority District of Residence",
+      "Format":"String(9)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"4an = Local authority district code \r\nS = Scotland \r\nU = no fixed abode\r\nW = Wales \r\nY = Not known \r\nZ = Northern Ireland \r\nX = Foreign (includes Isle of Man)"
+   },
+   {
+      "Field":"RESLADST_ONS",
+      "Field name":"Local Authority District of Residence (ONS)",
+      "Format":"String(9)",
+      "Availability":"2011-12 onwards",
+      "Values":"9an = Local authority district code\r\nE99999999 = England (not otherwise stated)\r\nL99999999 = Channel Islands\r\nM99999999 = Isle of Man\r\nN99999999 = Northern Ireland\r\nS99999999 = Scotland\r\nW99999999 = Wales\r\nU = No fixed abode\r\nX = Foreign\r\nY = Not known"
+   },
+   {
+      "Field":"RESPCT_HIS",
+      "Field name":"Primary Care Trust of Residence",
+      "Format":"String(8)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"5** = PCT \r\nTaa = Care trust \r\n6** = Wales \r\nS** = Scotland \r\nY** = Manx and Channel Islands \r\nZ** = Northern Ireland \r\n59898 = Other not applicable (non-England) \r\n59999 = Unknown PCT"
+   },
+   {
+      "Field":"RESPCT02",
+      "Field name":"Primary Care Trust of Residence 2002",
+      "Format":"String(8)",
+      "Availability":"2006-07 to 2012-13",
+      "Values":"5** = PCT \r\nTaa = Care trust \r\n6** = Wales \r\nS** = Scotland \r\nY** = Manx and Channel Islands \r\nZ** = Northern Ireland \r\n59898 = Other not applicable (non-England) \r\n59999 = Unknown PCT"
+   },
+   {
+      "Field":"RESPCT06",
+      "Field name":"Primary Care Trust of Residence 2006",
+      "Format":"String(9)",
+      "Availability":"2006-07 to 2020-21",
+      "Values":"5** = PCT \r\nTaa = Care trust \r\n6** = Wales \r\nS** = Scotland \r\nY** = Manx and Channel Islands \r\nZ** = Northern Ireland \r\n59898 = Other not applicable (non-England) \r\n59999 = Unknown PCT"
+   },
+   {
+      "Field":"RESRO",
+      "Field name":"Regional Office of Residence",
+      "Format":"String(3)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"From 1 April 1999: \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nY09 = Eastern  \r\nY10 = London  \r\nY11 = South East  \r\nY12 = South West  \r\nW00 = Wales  \r\nS00 = Scotland  \r\nZ00 = Northern Ireland  \r\nU00 = no fixed abode\r\nY00 = Unknown  \r\nX00 = Foreign (includes Channel Islands and the Isle of Man)  \r\n\r\nFrom 1 April 1996 to 31 March 1999: \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY03 = Anglia and Oxford  \r\nY04 = North Thames  \r\nY05 = South Thames   \r\nY06 = South and West  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nW = Wales  \r\nS = Scotland  \r\nZ = Northern Ireland \r\nU = no fixed abode \r\nY = Not known  \r\nX = Foreign  \r\n\r\nFrom 1 April 1989 to 31 March 1996: \r\nY0A = Northern RHA  \r\nY0B = Yorkshire RHA  \r\nY0C = Trent RHA  \r\nY0D = East Anglian RHA  \r\nY0E = North West Thames RHA  \r\nY0F = North East Thames RHA  \r\nY0G = South East Thames RHA  \r\nY0H = South West Thames RHA  \r\nY0J = Wessex RHA  \r\nY0K = Oxford RHA  \r\nY0L = South Western RHA  \r\nY0M = West Midlands RHA  \r\nY0N = Mersey RHA  \r\nY0P = North Western RHA  \r\nY0Y = Not known"
+   },
+   {
+      "Field":"RESSTHA_HIS",
+      "Field name":"Strategic Health Authority of Residence",
+      "Format":"String(8)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"3an= Strategic Health Authority of residence\r\nS = Scotland \r\nU = no fixed abode\r\nW or Q99 = Wales \r\nX = Foreign (includes Channel Islands and the Isle of Man)\r\nY = Unknown \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"RESSTHA02",
+      "Field name":"Strategic Health Authority of Residence 2002",
+      "Format":"String(8)",
+      "Availability":"2006-07 to 2012-13",
+      "Values":"3an= Strategic Health Authority of residence 2002\r\nS = Scotland \r\nU = no fixed abode\r\nW or Q99 = Wales \r\nX = Foreign (includes Channel Islands and the Isle of Man)\r\nY = Unknown \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"RESSTHA06",
+      "Field name":"Strategic Health Authority of Residence 2006",
+      "Format":"String(9)",
+      "Availability":"2006-07 to 2020-21",
+      "Values":"3an= Strategic Health Authority of residence 2006\r\nS = Scotland \r\nU = no fixed abode\r\nW or Q99 = Wales \r\nX = Foreign (includes Channel Islands and the Isle of Man)\r\nY = Unknown \r\nZ = Northern Ireland"
+   },
+   {
+      "Field":"ROTREAT",
+      "Field name":"Regional Office of Treatment",
+      "Format":"String(3)",
+      "Availability":"1989-90 to 2020-21",
+      "Values":"From 1 April 1999: \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nY09 = Eastern  \r\nY10 = London  \r\nY11 = South East  \r\nY12 = South West  \r\nY00 = Not Known  \r\n\r\nFrom 1 April 1996 to 31 March 1999: \r\nY01 = Northern and Yorkshire  \r\nY02 = Trent  \r\nY03 = Anglia and Oxford  \r\nY04 = North Thames  \r\nY05 = South Thames  \r\nY06 = South and West  \r\nY07 = West Midlands  \r\nY08 = North West  \r\nY00 = Not Known  \r\n\r\nFrom 1 April 1989 to 31 March 1996: \r\nY0A = Northern RHA  \r\nY0B = Yorkshire RHA  \r\nY0C = Trent RHA  \r\nY0D = East Anglian RHA  \r\nY0E = North West Thames RHA  \r\nY0F = North East Thames RHA  \r\nY0G = South East Thames RHA  \r\nY0H = South West Thames RHA  \r\nY0J = Wessex RHA  \r\nY0K = Oxford RHA  \r\nY0L = South Western RHA  \r\nY0M = West Midlands RHA  \r\nY0N = Mersey RHA  \r\nY0P = North Western RHA  \r\nY0Y = Not known"
+   },
+   {
+      "Field":"RTTPEREND",
+      "Field name":"Referral to Treatment Period End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2007-08 onwards",
+      "Values":"YYYY-MM-DD = RTT period end date"
+   },
+   {
+      "Field":"RTTPERSTART",
+      "Field name":"Referral to Treatment Period Start Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2007-08 onwards",
+      "Values":"YYYY-MM-DD = RTT period start date"
+   },
+   {
+      "Field":"RTTPERSTAT",
+      "Field name":"Referral to Treatment Period Status",
+      "Format":"String(2)",
+      "Availability":"2007-08 onwards",
+      "Values":"The first activity in a referral to treatment period where the first definitive treatment will be a subsequent activity:\r\n10 = First activity in a referral to treatment period\r\n11 = First activity at the start of a new referral to treatment period following active monitoring\r\n12 = First activity at the start of a new referral to treatment period following a decision to refer directly to the consultant or NHS allied health professional service (referral to treatment measurement) for a separate condition\r\n\r\nSubsequent activity during a referral to treatment period:\r\n20 = Subsequent activity during a referral to treatment period - further activities anticipated \r\n21 = Subsequent activity by another health care provider following a transfer to another health care provider during a referral to treatment period anticipated\r\n\r\nActivity that ends the referral to treatment period:\r\n30 = Start of first definitive treatment\r\n31 = Start of active monitoring initiated by the patient\r\n32 = Start of active monitoring initiated by the care professional\r\n33 = Did not attend - the patient did not attend the first care activity after the referral1 \r\n34 = Decision not to treat - decision not to treat made or no further contact required2\r\n35 = Patient declined offered treatment\r\n36 = Patient died before treatment\r\n\r\nActivity that is not part of a referral to treatment period:\r\n90 = After treatment - first definitive treatment occurred previously (e.g. admitted as an emergency from A&E or the activity is after the start of treatment)\r\n91 = Care activity during active monitoring\r\n92 = Not yet referred for treatment, undergoing diagnostic tests by general practitioner before referral\r\n98 = Not applicable - activity not applicable to referral to treatment periods\r\n\r\nActivity where the referral to treatment period status is not yet known:\r\n99 = Not yet known\r\n\r\nWhere the Referral to treatment period status is National Code 99 - \"not yet known\", the status is treated as if the activity is a subsequent activity during a referral to treatment period. In this case the referral to treatment period status should be corrected once it is possible to determine the correct value.\r\n\r\n1Patients who do not attend an appointment:\r\nNational code 33 - \"Did not attend - the patient did not attend the first care activity after the referral\" may only be used where\r\n• The patient did not attend their first appointment following the referral request that started the referral to treatment period, provided that the health care provider can demonstrate that the appointment was clearly communicated to the patient.\r\nReferral to treatment periods with referral to treatment period status of national code 33 are excluded from the measurement of the 18 weeks referral to treatment period included in referral to treatment consultant-led waiting times measurement and the count of allied health professional referral to treatment measurement referral to treatment periods\r\n\r\n2Decision not to treat:\r\nNational Code 34 - \"decision not to treat - decision not to treat made or no further contact required\" includes\r\n• a discharge after patient did not attend the second or a subsequent care activity after the referral.\r\n• a change resulting in care no longer being commissioned by the English NHS.\r\n• a referral to a consultant led service during a referral to treatment period excluded from target for the same condition, disease or injury. A new referral to treatment period will start."
+   },
+   {
+      "Field":"RURURB_IND",
+      "Field name":"Rural / Urban Indicator",
+      "Format":"String(9)",
+      "Availability":"1995-96 onwards",
+      "Values":"1 = Urban =>10K - sparse: Output Area falls within Urban settlements with a population of 10,000 or more and the wider surrounding area is sparsely populated.  \r\n2 = Town and Fringe - sparse. Output Area falls within the Small Town and Fringe areas category and the wider surrounding area is sparsely populated.  \r\n3 = Village - sparse. Output Area falls within the Village category and the wider surrounding area is sparsely populated. \r\n4 = Hamlet and Isolated dwelling - sparse. Output Area falls within the Hamlet & Isolated Dwelling category and the wider surrounding area is sparsely populated.  \r\n5 = Urban =>10K - less sparse. Output Area falls within Urban settlements with a population of 10,000 or more and the wider surrounding area is less sparsely populated.  \r\n6 = Town and Fringe - less sparse. Output Area falls within the Small Town and Fringe areas category and the wider surrounding area is less sparsely populated.  \r\n7 = Village - less sparse. Output Area falls within the Village category and the wider surrounding area is less sparsely populated.  \r\n8 = Hamlet and Isolated Dwelling - less sparse. Output Area falls within the Hamlet & Isolated Dwelling category and the wider surrounding area is less sparsely populated.  \r\n9 = Postcode in Scotland/NI/Channel Islands/Isle of Man/pseudo postcodes  \r\nSpace = No information available"
+   },
+   {
+      "Field":"SENDER",
+      "Field name":"CDS Sender Identity",
+      "Format":"String(12)",
+      "Availability":"2003-04 onwards",
+      "Values":"3an to 5an = CDS sender identity"
+   },
+   {
+      "Field":"SEX",
+      "Field name":"Person Stated Gender Code",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"From 2022-23 onwards: \r\n1 = Male\r\n2 = Female\r\n9 = Indeterminate (unable to be classified as either male or female)\r\nX = Not Known (Person stated gender code not recorded)\r\n\r\nFrom 1996-97 to 2022-23:\r\n1 = Male  \r\n2 = Female  \r\n9 = Not specified (indeterminate, i.e. unable to be classified as either male or female)\r\n0 = Not known (not recorded)\r\n\r\nPrior to April 1996: \r\n1 = Male  \r\n2 = Female  \r\n3 = Indeterminate, including those undergoing sex change operations"
+   },
+   {
+      "Field":"SEXBABY_n",
+      "Field name":"Person Phenotypic Sex (Baby)",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"From 2022-23 onwards: \r\n1 = Male\r\n2 = Female\r\n9 = Indeterminate (unable to be classified as either male or female)\r\nX = Not Known (Person stated gender code not recorded)\r\n\r\nFrom 1996-97 to 2022-23:\r\n1 = Male  \r\n2 = Female  \r\n9 = Not specified (indeterminate, i.e. unable to be classified as either male or female)\r\n0 = Not known (not recorded)\r\n\r\nPrior to April 1996: \r\n1 = Male  \r\n2 = Female  \r\n3 = Indeterminate, including those undergoing sex change operations"
+   },
+   {
+      "Field":"SITEDIST",
+      "Field name":"Distance Between LSOA11 and Site Code of Treatment",
+      "Format":"String(15)",
+      "Availability":"2003-04 onwards",
+      "Values":"nnn.nn = Distance in kilometres"
+   },
+   {
+      "Field":"SITEDIST_FLAG",
+      "Field name":"Derivation of SITEDIST",
+      "Format":"String(1)",
+      "Availability":"2003-04 onwards",
+      "Values":"5 = SITEDIST was calculated from the first 3-characters of SITETRET\r\n3 = SITEDIST was calculated from the full 5-character SITETRET code"
+   },
+   {
+      "Field":"SITETRET",
+      "Field name":"Organisation Site Identifier (of Treatment) (at Start of Episode)",
+      "Format":"String(5-9)",
+      "Availability":"1997-98 onwards",
+      "Values":"5an - 9an = Site code\r\n89999 = Non-NHS UK provider where no organisation site code has been issued  \r\n89997 = Non-UK provider where no organisation site code has been issued"
+   },
+   {
+      "Field":"SPELBGIN",
+      "Field name":"Beginning of Spell Indicator",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"0 = Not the first episode of spell  \r\n1 = First episode of spell that started in a previous year  \r\n2 = First episode of spell that started in current year  \r\nNull = Not applicable"
+   },
+   {
+      "Field":"SPELDUR",
+      "Field name":"Duration of Spell",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"5n = Duration of spell in days from 0 to 29,200  \r\nNull = Not applicable: patient not discharged (DISMETH not in range 1-5), other maternity event (EPITYPE is 5 or 6) or not valid"
+   },
+   {
+      "Field":"SPELDUR_CALC",
+      "Field name":"Calculation of SPELDUR",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"5n = Duration of spell in days from 0 to 29,200  \r\nNull = Not applicable"
+   },
+   {
+      "Field":"SPELEND",
+      "Field name":"End of Spell Indicator",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"Y = Last episode of spell  \r\nN = Not last episode of spell"
+   },
+   {
+      "Field":"STARTAGE",
+      "Field name":"Age at Start of Episode",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"nnn = Age in whole years from 1-119\r\n120 = 120 years or more\r\n7001 = Less than 1 day\r\n7002 = 1 to 6 days\r\n7003 = 7 to 28 days \r\n7004 = 29 to 90 days (under 3 months) \r\n7005 = 91 to 181 days (approximately 3 months to under 6 months) \r\n7006 = 182 to 272 days (approximately 6 months to under 9 months)\r\n7007 = 273 to <1 year (approximately 9 months to 1 year)\r\nNull = Not applicable (other maternity event) or not known"
+   },
+   {
+      "Field":"STARTAGE_CALC",
+      "Field name":"Age at Start of Episode (Decimalised)",
+      "Format":"Decimal",
+      "Availability":"1989-90 onwards",
+      "Values":"nnn.nnn = Age in whole years from 1.000 to 119.000\r\n120.000 = 120 years or more\r\n0.002 = Less than 1 day\r\n0.010 = 1 to 6 days\r\n0.048 = 7 to 28 days\r\n0.167 = 29 to 90 days (under 3 months)\r\n0.375 = 91 to 181 days (approximately 3 months to under 6 months)\r\n0.625 = 182 to 272 days (approximately 6 months to under 9 months)\r\n0.875 = 273 to <1 year (approximately 9 months to 1 year)\r\nNull = Not applicable (other maternity event) or not known"
+   },
+   {
+      "Field":"STHATRET",
+      "Field name":"Strategic Health Authority of Treatment",
+      "Format":"String(3)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"3an = Strategic Health Authority area of treatment  \r\nY = Not known"
+   },
+   {
+      "Field":"STP_GP_PRACTICE",
+      "Field name":"Integrated Care Board of GP Practice (July 2022 onwards)\r\nSustainability and Transformation Partnership of GP Practice (until June 2022)\r\n",
+      "Format":"String(9)",
+      "Availability":"2021-22 onwards",
+      "Values":"an9 = ICB / STP code of GP practice\r\nnull = Not known, or GP practice is outside of England"
+   },
+   {
+      "Field":"STP_RESIDENCE",
+      "Field name":"Integrated Care Board of Residence (July 2022 onwards)\r\nSustainability and Transformation Partnership of Residence (until June 2022)",
+      "Format":"String(9)",
+      "Availability":"2021-22 onwards",
+      "Values":"an9 = ICB / STP code of residence\r\nnull = Not known, or patient's postcode is outside of England"
+   },
+   {
+      "Field":"STP_RESPONSIBILITY",
+      "Field name":"Integrated Care Board of Responsibility (July 2022 onwards)\r\nSustainability and Transformation Partnership of Responsibility (until June 2022)\r\n",
+      "Format":"String(9)",
+      "Availability":"2021-22 onwards",
+      "Values":"an9 = ICB / STP code of responsibility\r\nnull = Not known"
+   },
+   {
+      "Field":"STP_RESPONSIBILITY_ORIGIN",
+      "Field name":"Origin of STP_RESPONSIBILITY",
+      "Format":"String(1)",
+      "Availability":"2021-22 onwards",
+      "Values":"max 1re = STP_RESPONSIBILITY_ORIGIN"
+   },
+   {
+      "Field":"STP_TREATMENT",
+      "Field name":"Integrated Care Board of Treatment (July 2022 onwards)\r\nSustainability and Transformation Partnership of Treatment (until June 2022)",
+      "Format":"String(9)",
+      "Availability":"2021-22 onwards",
+      "Values":"an9 = ICB / STP code of treatment\r\nnull = Not known"
+   },
+   {
+      "Field":"STP_TREATMENT_ORIGIN",
+      "Field name":"Origin of STP_TREATMENT",
+      "Format":"String(1)",
+      "Availability":"2021-22 onwards",
+      "Values":"max 1tr = STP_TREATMENT_ORIGIN"
+   },
+   {
+      "Field":"SUBDATE",
+      "Field name":"Submission Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2000-01 onwards",
+      "Values":"YYYY-MM-DD = The date on which data was received"
+   },
+   {
+      "Field":"SUSCOREHRG",
+      "Field name":"SUS Generated Core Spell HRG",
+      "Format":"String(5)",
+      "Availability":"2009-10 onwards",
+      "Values":"5an = SUS generated Core Spell HRG\r\nNull = Spells that have been excluded from PbR in SUS as the activity is outside the scope of PbR"
+   },
+   {
+      "Field":"SUSHRG",
+      "Field name":"Healthcare Resource Group - SUS Generated",
+      "Format":"String(5)",
+      "Availability":"2009-10 onwards",
+      "Values":"5an = SUS generated HRG\r\nNull = Records that have been excluded from PbR in SUS as the activity is outside the scope of PbR"
+   },
+   {
+      "Field":"SUSHRGVERS",
+      "Field name":"Healthcare Resource Group Version Number - SUS Generated",
+      "Format":"String(3)",
+      "Availability":"2009-10 onwards",
+      "Values":"4.0 = HRG4 \r\nNull = Not applicable"
+   },
+   {
+      "Field":"SUSLDDATE",
+      "Field name":"SUS Loaded Staging Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"2007-08 onwards",
+      "Values":"YYYY-MM-DD = SUS loaded staging date"
+   },
+   {
+      "Field":"SUSRECID",
+      "Field name":"SUS Record Identifier",
+      "Format":"Number",
+      "Availability":"2007-08 onwards",
+      "Values":"14n = SUS-generated record identifier"
+   },
+   {
+      "Field":"SUSSPELLID",
+      "Field name":"SUS Generated Spell Identifier",
+      "Format":"String(38)",
+      "Availability":"2009-10 onwards",
+      "Values":"19n (10n until 2016-17) = SUS spell identifier \r\nNull = Records that have excluded from PbR in SUS as the activity is outside the scope of PbR\r\n-1 = Unspellable episodes"
+   },
+   {
+      "Field":"TOKEN_PERSON_ID",
+      "Field name":"Person Identifier (Tokenised)",
+      "Format":"String(32)",
+      "Availability":"1997-98 onwards",
+      "Values":"32an = Tokenised person identifier"
+   },
+   {
+      "Field":"TREAT",
+      "Field name":"Treatment Specialty (retired)",
+      "Format":"Number",
+      "Availability":"1995-96 to 2008-09",
+      "Values":"max 4n = TREAT"
+   },
+   {
+      "Field":"TRETSPEF",
+      "Field name":"Treatment Specialty",
+      "Format":"String(3)",
+      "Availability":"1989-90 onwards",
+      "Values":"100 =  General Surgery Service\r\n101 =  Urology Service\r\n102 =  Transplant Surgery Service (From 1 April 2004)\r\n103 =  Breast Surgery Service (From 1 April 2004)\r\n104 =  Colorectal Surgery Service (From 1 April 2004)\r\n105 =  Hepatobiliary and Pancreatic Surgery Service (From 1 April 2004)\r\n106 =  Upper Gastrointestinal Surgery Service (From 1 April 2004)\r\n107 =  Vascular Surgery Service (From 1 April 2004)\r\n108 =  Spinal Surgery Service (From April 2013)\r\n109 =  Bariatric Surgery Service (From 1 April 2021)\r\n110 =  Trauma and Orthopaedic Service\r\n111 =  Orthopaedic Service (From 1 April 2021)\r\n113 =  Endocrine Surgery Service (From 1 April 2021)\r\n115 =  Trauma Surgery Service (From 1 April 2021)\r\n120 =  Ear Nose and Throat Service\r\n130 =  Ophthalmology Service\r\n140 =  Oral Surgery Service\r\n141 =  Restorative Dentistry Service\r\n142 =  Paediatric Dentistry Service (From 1999-2000)\r\n143 =  Orthodontic Service\r\n144 =  Maxillofacial Surgery Service (From 1 April 2004)\r\n145 =  Oral and Maxillofacial Surgery Service (From 1 April 2021)\r\n150 =  Neurosurgical Service\r\n160 =  Plastic Surgery Service\r\n161 =  Burns Care Service (From 1 April 2004)\r\n170 =  Cardiothoracic Surgery Service\r\n171 =  Paediatric Surgery Service\r\n172 =  Cardiac Surgery Service (From 1 April 2004)\r\n173 =  Thoracic Surgery Service (From 1 April 2004)\r\n174 =  Cardiothoracic Transplantation Service (From 1 April 2004)\r\n180 =  Emergency Medicine Service\r\n190 =  Anaesthetic Service\r\n191 =  Pain Management Service (From 1998-99)\r\n192 =  Intensive Care Medicine Service (From 1 April 2004)\r\n200 =  Aviation and Space Medicine Service (From 1 April 2021)\r\n211 =  Paediatric Urology Service (From 2006-07)\r\n212 =  Paediatric Transplantation Surgery Service (From 2006-07)\r\n213 =  Paediatric Gastrointestinal Surgery Service (From 2006-07)\r\n214 =  Paediatric Trauma and Orthopaedic Service (From 2006-07)\r\n215 =  Paediatric Ear Nose and Throat Service (From 2006-07)\r\n216 =  Paediatric Ophthalmology Service (From 2006-07)\r\n217 =  Paediatric Oral and Maxillofacial Surgery Service (From 2006-07)\r\n218 =  Paediatric Neurosurgery Service (From 2006-07)\r\n219 =  Paediatric Plastic Surgery Service (From 2006-07)\r\n220 =  Paediatric Burns Care Service (From 2006-07)\r\n221 =  Paediatric Cardiac Surgery Service (From 2006-07)\r\n222 =  Paediatric Thoracic Surgery Service (From 2006-07)\r\n223 =  Paediatric Epilepsy Service (From April 2013)\r\n230 =  Paediatric Clinical Pharmacology Service (From 1 April 2021)\r\n240 =  Paediatric Palliative Medicine Service (From 1 April 2021)\r\n241 =  Paediatric Pain Management Service (From 2006-07)\r\n242 =  Paediatric Intensive Care Service (From 2006-07)\r\n250 =  Paediatric Hepatology Service (From 1 April 2021)\r\n251 =  Paediatric Gastroenterology Service (From 2006-07)\r\n252 =  Paediatric Endocrinology Service (From 2006-07)\r\n253 =  Paediatric Clinical Haematology Service (From 2006-07)\r\n254 =  Paediatric Audio Vestibular Medicine Service (From 2006-07)\r\n255 =  Paediatric Clinical Immunology and Allergy Service (From 2006-07)\r\n256 =  Paediatric Infectious Diseases Service (From 2006-07)\r\n257 =  Paediatric Dermatology Service (From 2006-07)\r\n258 =  Paediatric Respiratory Medicine Service (From 2006-07)\r\n259 =  Paediatric Nephrology Service (From 2006-07)\r\n260 =  Paediatric Medical Oncology Service (From 2006-07)\r\n261 =  Paediatric Inherited Metabolic Medicine Service (From 2006-07)\r\n262 =  Paediatric Rheumatology Service (From 2006-07)\r\n263 =  Paediatric Diabetes Service (From 1 April 2004)\r\n264 =  Paediatric Cystic Fibrosis Service (From 1 April 2004)\r\n270 =  Paediatric Emergency Medicine Service (From 1 April 2021)\r\n280 =  Paediatric Interventional Radiology Service (From 2006-07)\r\n290 =  Community Paediatric Service (From 2006-07)\r\n291 =  Paediatric Neurodisability Service (From 2006-07)\r\n300 =  General Internal Medicine Service\r\n301 =  Gastroenterology Service\r\n302 =  Endocrinology Service\r\n303 =  Clinical Haematology Service\r\n304 =  Clinical Physiology Service (From 2008-09)\r\n305 =  Clinical Pharmacology Service\r\n306 =  Hepatology Service (From 1 April 2004)\r\n307 =  Diabetes Service (From 1 April 2004)\r\n308 =  Blood and Marrow Transplantation Service (From 1 April 2004)\r\n309 =  Haemophilia Service (From 1 April 2004)\r\n310 =  Audio Vestibular Medicine Service\r\n311 =  Clinical Genetics Service\r\n313 =  Clinical Immunology and Allergy Service (From 1991-92)\r\n314 =  Rehabilitation Medicine Service (From 1991-92)\r\n315 =  Palliative Medicine Service\r\n316 =  Clinical Immunology Service (From 1 April 2004)\r\n317 =  Allergy Service (From 1 April 2004)\r\n318 =  Intermediate Care Service (From 1 April 2004)\r\n319 =  Respite Care Service (From 1 April 2004)\r\n320 =  Cardiology Service\r\n321 =  Paediatric Cardiology Service (From 1 April 2004)\r\n322 =  Clinical Microbiology Service (From 1 April 2004)\r\n323 =  Spinal Injuries Service (From 2006-07)\r\n324 =  Anticoagulant Service (From 1 April 2004)\r\n325 =  Sport and Exercise Medicine Service (From 1 April 2004)\r\n326 =  Acute Internal Medicine Service (From 1 April 2021)\r\n327 =  Cardiac Rehabilitation Service (From 1 April 2004)\r\n328 =  Stroke Medicine Service (From 1 April 2004)\r\n329 =  Transient Ischaemic Attack Service (From 1 April 2004)\r\n330 =  Dermatology Service\r\n331 =  Congenital Heart Disease Service (From April 2013)\r\n333 =  Rare Disease Service (From 1 April 2021)\r\n335 =  Inherited Metabolic Medicine Service (From 1 April 2021)\r\n340 =  Respiratory Medicine Service\r\n341 =  Respiratory Physiology Service (From 1 April 2004)\r\n342 =  Pulmonary Rehabilitation Service (From 1 April 2004)\r\n343 =  Adult Cystic Fibrosis Service (From 1 April 2004)\r\n344 =  Complex Specialised Rehabilitation Service (From April 2013)\r\n345 =  Specialist Rehabilitation Service (From April 2013)\r\n346 =  Local Specialist Rehabilitation Service (From April 2013)\r\n347 =  Sleep Medicine Service (From 1 April 2021)\r\n348 =  Post-COVID-19 Syndrome Service (From 1 April 2021)\r\n350 =  Infectious Diseases Service\r\n352 =  Tropical Medicine Service (From 1 April 2004)\r\n360 =  Genitourinary Medicine Service\r\n361 =  Renal Medicine Service\r\n370 =  Medical Oncology Service\r\n371 =  Nuclear Medicine Service (From 2008-09)\r\n400 =  Neurology Service\r\n401 =  Clinical Neurophysiology Service (From 2008-09)\r\n410 =  Rheumatology Service\r\n420 =  Paediatric Service\r\n421 =  Paediatric Neurology Service\r\n422 =  Neonatal Critical Care Service (From 1 April 2004)\r\n424 =  Well Baby Service (From 1 April 2004)\r\n430 =  Elderly Medicine Service\r\n431 =  Orthogeriatric Medicine Service (From 1 April 2021)\r\n450 =  Dental Medicine Service (From 1990-91)\r\n451 =  Special Care Dentistry Service (From 1 April 2021)\r\n460 =  Medical Ophthalmology Service (From 1993-94)\r\n461 =  Ophthalmic and Vision Science Service (From 1 April 2021)\r\n501 =  Obstetrics Service\r\n502 =  Gynaecology Service\r\n503 =  Gynaecological Oncology Service (From 1 April 2004)\r\n504 =  Community Sexual and Reproductive Health Service (From 1 April 2021)\r\n505 =  Fetal Medicine Service (From 1 April 2021)\r\n560 =  Midwifery Service (From October 1995)\r\n650 =  Physiotherapy Service (From 2006-07)\r\n651 =  Occupational Therapy Service (From 2006-07)\r\n652 =  Speech and Language Therapy Service (From 2006-07)\r\n653 =  Podiatry Service (From 2006-07)\r\n654 =  Dietetics Service (From 2006-07)\r\n655 =  Orthoptics Service (From 2006-07)\r\n656 =  Clinical Psychology Service (From 2006-07)\r\n657 =  Prosthetics Service (From 1 April 2004)\r\n658 =  Orthotics Service (From 1 April 2004)\r\n659 =  Dramatherapy Service (From 1 April 2004)\r\n660 =  Art Therapy Service (From 1 April 2004)\r\n661 =  Music Therapy Service (From 1 April 2004)\r\n662 =  Optometry Service (From 1 April 2004)\r\n663 =  Podiatric Surgery Service (From April 2013)\r\n670 =  Urological Physiology Service (From 1 April 2021)\r\n673 =  Vascular Physiology Service (From 1 April 2021)\r\n675 =  Cardiac Physiology Service (From 1 April 2021)\r\n677 =  Gastrointestinal Physiology Service (From 1 April 2021)\r\n700 =  Learning Disability Service\r\n710 =  Adult Mental Health Service\r\n711 =  Child and Adolescent Psychiatry Service\r\n712 =  Forensic Psychiatry Service\r\n713 =  Medical Psychotherapy Service\r\n715 =  Old Age Psychiatry Service (From 1990-91)\r\n720 =  Eating Disorders Service (From 2006-07)\r\n721 =  Addiction Service (From 2006-07)\r\n722 =  Liaison Psychiatry Service (From 2006-07)\r\n723 =  Psychiatric Intensive Care Service (From 2006-07)\r\n724 =  Perinatal Mental Health Service (From 2006-07)\r\n725 =  Mental Health Recovery and Rehabilitation Service (From April 2013)\r\n726 =  Mental Health Dual Diagnosis Service (From April 2013)\r\n727 =  Dementia Assessment Service (From April 2013)\r\n730 =  Neuropsychiatry Service (From 1 April 2021)\r\n800 =  Clinical Oncology Service\r\n811 =  Interventional Radiology Service (From 1 April 2004)\r\n812 =  Diagnostic Imaging Service (From 2008-09)\r\n822 =  Chemical Pathology Service\r\n834 =  Medical Virology Service (From 1 April 2004)\r\n840 =  Audiology Service (From 2008-09)\r\n920 =  Diabetic Education Service (From April 2013)\r\nNull = Other Maternity Event\r\n& = Not known"
+   },
+   {
+      "Field":"VIND",
+      "Field name":"V Code Indicator",
+      "Format":"String(1)",
+      "Availability":"1989-90 to 1995-96",
+      "Values":"From 1989-90: \r\n1 = V290 - Neonate: normal care usually given by a mother in a maternity neonatal ward, supervised by a midwife and doctor but requiring minimal medical or nursing advice  \r\n2 = V291 - Neonate: special care which provided observation and treatment falling short of intensive care but exceeding routine care  \r\n3 = V292 - Neonate: intensive care which involved continuous skills supervision by nursing and medical staff for at least one hour or until death. Resuscitation carried out immediately after birth and completed within an hour or so does not constitute intensive care  \r\n4 = V690 - Psychiatric: not previously known to be admitted to a psychiatric hospital or hospital unit  \r\n5 = V691 - Psychiatric: previously admitted to a psychiatric hospital or hospital unit of the provider  \r\n6 = V692 - Psychiatric: previously admitted to a psychiatric hospital or a hospital unit of another provider  \r\n\r\nFor the 1995-96 year only, the codes were changed to the following (see above for definitions): \r\nV290 became U500  \r\nV291 became U501  \r\nV292 became U502 or U503 (U502 denoting a level of care higher than that previously denoted by V291 but falling short of the highest, for which U503 was used)  \r\nV690 became U510  \r\nV691 became U511  \r\nV692 became U512  \r\n\r\nFrom 1996-97 this field was replaced by neocare and admistat."
+   },
+   {
+      "Field":"WAITDAYS",
+      "Field name":"Duration of Wait (Referral to Treatment Period)",
+      "Format":"Number",
+      "Availability":"2008-09 onwards",
+      "Values":"4n = Waiting time in days from 1 to 8887\r\nnull = Not applicable / not known"
+   },
+   {
+      "Field":"WAITING_TIME_MEASUREMENT_TYPE",
+      "Field name":"Waiting Time Measurement Type (Commissioning Data Set)",
+      "Format":"String(2)",
+      "Availability":"2013-14 onwards",
+      "Values":"01 = Referral to Treatment period included in Referral to Treatment consultant-led waiting times measurement\r\n02 = Allied Health Professional Referral to Treatment measurement\r\n03 = Improving Access to Psychological Therapies Referral to Treatment measurement (retired 1 April 2020)\r\n04 = Early Intervention in Psychosis waiting time measurement (retired 1 April 2020)\r\n09 = Other Referral to Treatment measurement type (not listed)"
+   },
+   {
+      "Field":"WAITLIST",
+      "Field name":"Method of Admission - Waiting List",
+      "Format":"Number",
+      "Availability":"1989-90 onwards",
+      "Values":"1 - Patient who was admitted via the waiting list\r\n0 - Patient not admitted via the waiting list"
+   },
+   {
+      "Field":"WARD91",
+      "Field name":"Electoral Ward 1991",
+      "Format":"String(9)",
+      "Availability":"1996-97 to 2020-21",
+      "Values":"6a = Electoral ward\r\nY = Not known"
+   },
+   {
+      "Field":"WARD98",
+      "Field name":"Electoral Ward In 1998",
+      "Format":"String(8)",
+      "Availability":"1999-00 to 2020-21",
+      "Values":"6a = Electoral ward"
+   },
+   {
+      "Field":"WARDSTRT",
+      "Field name":"Ward Type at Start of Episode",
+      "Format":"String(7)",
+      "Availability":"1997-98 to 2000-01",
+      "Values":"A is as follows: \r\n71 = Home leave, non-psychiatric  \r\n72 = Home leave, psychiatric  \r\n\r\nB is age as follows: \r\n1 = Neonates  \r\n2 = Children and adolescents  \r\n3 = Elderly  \r\n8 = Any age  \r\n9 = Invalid  \r\n\r\nC is sex as follows: \r\n8 = Not specified  \r\n9 = Invalid  \r\n\r\nD is the hospital provider as follows: \r\n1 = NHS hospital provider  \r\n2 = Non-NHS hospital provider  \r\n9 = Invalid  \r\n\r\nE is the number of days in a week that the ward is open only during the day  \r\n\r\nF is the number of days in a week that the ward is open at night"
+   },
+   {
+      "Field":"WELL_BABY_IND",
+      "Field name":"Well Baby Flag",
+      "Format":"String(1)",
+      "Availability":"1989-90 onwards",
+      "Values":"Y = Well baby episode  \r\nN = Any other episode"
+   },
+   {
+      "Field":"ACTIVITY_LOCATION_TYPE_CODE",
+      "Field name":"Activity Location Type Code",
+      "Format":"String(3)",
+      "Availability":"Not yet available in HES",
+      "Values":"List of Values available at: \r\n\r\nhttps://www.datadictionary.nhs.uk/data_elements/activity_location_type_code.html"
+   },
+   {
+      "Field":"AMBULANCE_CALL_IDENTIFIER",
+      "Field name":"Ambulance Call Identifier",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Ambulance Call Idenfitier"
+   },
+   {
+      "Field":"ASSESSMENT_TOOL_TIMESTAMP",
+      "Field name":"Assessment Tool Completion Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 25an = Assessment Tool Completion Timestamp"
+   },
+   {
+      "Field":"CARE_CONTACT_IDENTIFIER_",
+      "Field name":"Care Contact Identifier (Ambulance Service)",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Care Contact Identifier"
+   },
+   {
+      "Field":"CODED_CLINICAL_ENTRY",
+      "Field name":"Coded Clinical Entry",
+      "Format":"String(5)",
+      "Availability":"Not yet available in HES",
+      "Values":"1n - 5n = Coded Clinical Entry"
+   },
+   {
+      "Field":"CODED_CLINICAL_ENTRY_SEQUENCE_NUMBER",
+      "Field name":"Coded Clinical Entry Sequence Number",
+      "Format":"String(5)",
+      "Availability":"Not yet available in HES",
+      "Values":"1n - 2n = Coded Clinical Entry Sequence Number"
+   },
+   {
+      "Field":"CODED_DIAGNOSIS_TIMESTAMP",
+      "Field name":"Coded Diagnosis Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 25an = Coded Diagnosis Timestamp"
+   },
+   {
+      "Field":"CODED_FINDING_TIMESTAMP",
+      "Field name":"Coded Finding Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 25an = Coded Finding Timestamp"
+   },
+   {
+      "Field":"CODED_OBSERVATION_TIMESTAMP",
+      "Field name":"Coded Observation Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 25an = Coded Observation Timestamp"
+   },
+   {
+      "Field":"CODED_PROCEDURE_TIMESTAMP",
+      "Field name":"Coded Procedure Timestamp",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Coded Procedure Timestamp"
+   },
+   {
+      "Field":"COMMISSIONER_REFERENCE",
+      "Field name":"Commissioner Reference Identifier",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Commissioner Reference Identifier"
+   },
+   {
+      "Field":"COMORBIDITY",
+      "Field name":"Comorbidity",
+      "Format":"String(6-40000)",
+      "Availability":"Not yet available in HES",
+      "Values":"6an - 4000an = Comorbidity"
+   },
+   {
+      "Field":"CONVEYING_AMBULANCE_TRUST",
+      "Field name":"Organisation Identifier (Conveying Ambulance Trust)",
+      "Format":"String(5)",
+      "Availability":"Not yet available in HES",
+      "Values":"3an - 5an = Organisation Identifier"
+   },
+   {
+      "Field":"DATA_ABSENT_REASON_",
+      "Field name":"Data Absent Reason (Fhir R4)",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Data Absent Reason"
+   },
+   {
+      "Field":"DAY_PERIOD_AVAILABILITY",
+      "Field name":"Ward Intended Day Period Availability",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"0 = Zero Days\r\n1 = One Day\r\n2 = Two Days\r\n3 = Three Days\r\n4 = Four Days\r\n5 = Five Days\r\n6 = Six Days\r\n7 = Seven Days"
+   },
+   {
+      "Field":"DELIVERY_TIMESTAMP",
+      "Field name":"Delivery Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 25an = Delivery Timestamp"
+   },
+   {
+      "Field":"DIAGNOSIS_SCHEME_IN_USE_",
+      "Field name":"Diagnosis Scheme In Use",
+      "Format":"String(2)",
+      "Availability":"Not yet available in HES",
+      "Values":"02 = ICD-10"
+   },
+   {
+      "Field":"DISCHARGED_TO_NHS_AT_HOME",
+      "Field name":"Discharged To Nhs At Home Service Indicator",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"Y = Yes - Discharged to NHS at Home Service\r\nN = No - Not discharged to NHS at Home Service\r\n9 = Not known whether the patient was discharged at NHS at Home Service"
+   },
+   {
+      "Field":"EARLIEST_APPROPRIATE_DATE",
+      "Field name":"Earliest Clinically Appropriate Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Earliest Clinically Appropriate Date"
+   },
+   {
+      "Field":"EMED_ASSESSMENT_REQUIRED",
+      "Field name":"Emed3 Fit Note Follow Up Assessment Required Indicator",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"Y = Yes - A Follow Up Care Contact is required at the end of the Emed3 Fit Note Applicable Period\r\nN = No - A Follow Up Care Contact is not required at the end of the Emed3 Fit Note Applicable Period"
+   },
+   {
+      "Field":"EMED3_ASSESSMENT_DATE",
+      "Field name":"Emed3 Fit Note Assessment Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Emed3 Fit Note Assessment Date"
+   },
+   {
+      "Field":"EMED3_CONDITION",
+      "Field name":"Emed3 Fit Note Condition (Snomed Ct Expression)",
+      "Format":"String(6-40000)",
+      "Availability":"Not yet available in HES",
+      "Values":"6an - 4000an = Emed Fit Note Condition"
+   },
+   {
+      "Field":"EMED3_DIAGNOSIS",
+      "Field name":"Emed3 Fit Note Diagnosis (Icd)",
+      "Format":"String(6)",
+      "Availability":"Not yet available in HES",
+      "Values":"6an - 4an = Diagnosis"
+   },
+   {
+      "Field":"EMED3_DURATION",
+      "Field name":"Emed3 Fit Note Duration",
+      "Format":"String(3)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 3an= Emed3\r\n999 = Emed3 Fit Note Is For an Indefinite Period"
+   },
+   {
+      "Field":"EMED3_END_DATE",
+      "Field name":"Emed3 Fit Note End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Emed3 Fit Note End Date"
+   },
+   {
+      "Field":"EMED3_FIT_NOTE_ISSUER",
+      "Field name":"Emed3 Fit Note Issuer",
+      "Format":"String(2)",
+      "Availability":"Not yet available in HES",
+      "Values":"2an = EMED3 Fit Note Issuer"
+   },
+   {
+      "Field":"EMED3_RECORDED_DATE",
+      "Field name":"Emed3 Fit Note Recorded Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Emed3 Fit Note Recorded Date"
+   },
+   {
+      "Field":"EMED3_START_DATE",
+      "Field name":"Emed3 Fit Note Start Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Emed3 Fit Note Start Date"
+   },
+   {
+      "Field":"ETHNIC_CATEGORY_2021",
+      "Field name":"Ethnic Category 2021",
+      "Format":"String(3)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 3an = Ethnic Category 2021"
+   },
+   {
+      "Field":"FINDING",
+      "Field name":"Finding  (Snomed Ct)",
+      "Format":"String(4-6000)",
+      "Availability":"Not yet available in HES",
+      "Values":"Min 6an and max 4000an = Finding"
+   },
+   {
+      "Field":"LAST_EPISODE_IN_SPELL",
+      "Field name":"Last Episode In Spell Indicator Code",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"1 = This episode is the last episode in the Hospital Provider Spell\r\n2 = The episode is not the last episode in the Hospital Provider Spell\r\n9 = Not Known"
+   },
+   {
+      "Field":"LATEST_APPROPRIATE_DATE",
+      "Field name":"Latest Clinically Appropriate Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Latest Clinically Appropriate Date"
+   },
+   {
+      "Field":"LENGTH_OF_STAY_ADJUSTMENT",
+      "Field name":"Length Of Stay Adjustment (Rehabilitation)",
+      "Format":"Number",
+      "Availability":"Not yet available in HES",
+      "Values":"max 3an= Length of Stay Adjustment"
+   },
+   {
+      "Field":"LENGTH_OF_STAY_ADJUSTMENT",
+      "Field name":"Length Of Stay Adjustment (Specialist Palliative Care)",
+      "Format":"Number",
+      "Availability":"Not yet available in HES",
+      "Values":"max 3an= Length of Stay Adjustment (Specialist Palliative Care)"
+   },
+   {
+      "Field":"ORGANISATION_LOCAL_PATIENT_IDENTIFIER",
+      "Field name":"Organisation Identifier (Local Patient Identifier)",
+      "Format":"String(5)",
+      "Availability":"Not yet available in HES",
+      "Values":"3an - 5an = Organisation Identifier ( Local Patient Identifier)"
+   },
+   {
+      "Field":"LOCAL_SUB-SPECIALTY_CODE",
+      "Field name":"Local Sub-Specialty Code",
+      "Format":"String(8)",
+      "Availability":"Not yet available in HES",
+      "Values":"max an8 = Local Sub-Specialty Code"
+   },
+   {
+      "Field":"NHS_SERVICE_AGREEMENT_IDENTIFIER",
+      "Field name":"NHS Service Agreement Identifier",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Nhs Service Agreement Identifier"
+   },
+   {
+      "Field":"NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER",
+      "Field name":"NHS Service Agreement Line Identifier",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Nhs Service Agreement Line Identifier"
+   },
+   {
+      "Field":"NIGHT_PERIOD_AVAILABILITY",
+      "Field name":"Ward Intended Night Period Availability",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"0 = Zero Days\r\n1 = One Day\r\n2 = Two Days\r\n3 = Three Days\r\n4 = Four Days\r\n5 = Five Days\r\n6 = Six Days\r\n7 = Seven Days"
+   },
+   {
+      "Field":"OBSERVATION",
+      "Field name":"Observation",
+      "Format":"String(4-6000)",
+      "Availability":"Not yet available in HES",
+      "Values":"6an - 4000an = Observation"
+   },
+   {
+      "Field":"OBSERVATION_VALUE",
+      "Field name":"Observation Value",
+      "Format":"String(10)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 10an = Observation Value"
+   },
+   {
+      "Field":"OVERSEAS_VISITOR_APPLICABLE_FROM",
+      "Field name":"Overseas Visitor Charging Category Applicable From Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Overseas Visitor Charging Category Applicable From Date"
+   },
+   {
+      "Field":"OVERSEAS_VISITOR_CATEGORY",
+      "Field name":"Overseas Visitor Charging Category",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"A = Standard NHS-funded PATIENT\r\nB = Immigration Health Surcharge payee\r\nC = Charge-exempt Overseas Visitor (European Economic Area)\r\nD = Chargeable European Economic Area PATIENTE = Charge-exempt Overseas Visitor (non-European Economic Area)\r\nF = Chargeable non-European Economic Area PATIENT\r\nP = Decision Pending on OVERSEAS VISITOR CHARGING CATEGORY\r\n9 = Not Known (Not Recorded)"
+   },
+   {
+      "Field":"OVERSEAS_VISITOR_CHARGING_END",
+      "Field name":"Overseas Visitor Charging Category Applicable End Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Overseas Visitor Charging Category Applicable End Date"
+   },
+   {
+      "Field":"PATIENT_FAMILY_NAME",
+      "Field name":"Patient Family Name",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient family name"
+   },
+   {
+      "Field":"PATIENT_FULL_NAME",
+      "Field name":"Patient Full Name",
+      "Format":"String(70)",
+      "Availability":"Not available in HES",
+      "Values":"max 70an = Patient full name"
+   },
+   {
+      "Field":"PATIENT_GIVEN_NAME",
+      "Field name":"Patient Given Name",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient given name"
+   },
+   {
+      "Field":"PATIENT_INITIALS",
+      "Field name":"Patient Initials",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient initials"
+   },
+   {
+      "Field":"PATIENT_NAME_SUFFIX",
+      "Field name":"Patient Name Suffix",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient name suffix"
+   },
+   {
+      "Field":"PATIENT_TITLE",
+      "Field name":"Patient Title",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient title"
+   },
+   {
+      "Field":"PATIENT_USUAL_ADDRESS_STRUCTURED",
+      "Field name":"Patient Usual Address (Structured)",
+      "Format":"String(35)",
+      "Availability":"Not available in HES",
+      "Values":"max an35 = Patient Usual Address (Structured)"
+   },
+   {
+      "Field":"PATIENT_USUAL_ADDRESS_UNSTRUCTURED",
+      "Field name":"Patient Usual Address (Unstructured)",
+      "Format":"String(175)",
+      "Availability":"Not available in HES",
+      "Values":"max an175 = Patient Usual Address (Unstructured)"
+   },
+   {
+      "Field":"PERSON_MARITAL_STATUS",
+      "Field name":"Person Marital Status",
+      "Format":"String(1)",
+      "Availability":"Not available in HES",
+      "Values":"From 1/10/2006 onwards: \r\nS = Single \r\nM = Married/Civil Partner \r\nD = Divorced/Person whose Civil Partnership has been dissolved \r\nW = Widowed/Surviving Civil Partner \r\nP = Separated \r\nN = Not disclosed. \r\n8 = Not applicable\r\n9 = Not known\r\n\r\nPrior to 1/10/2006: \r\n1 = Single \r\n2 = Married, including separated \r\n3 = Divorced \r\n4 = Widowed \r\n8 = Not applicable\r\n9 = Not known"
+   },
+   {
+      "Field":"PERSON_SCORE",
+      "Field name":"Person Score",
+      "Format":"String(5)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 5an = Person Score"
+   },
+   {
+      "Field":"PRESENT_ON_ADMISSION_INDICATOR",
+      "Field name":"Present On Admission Indicator",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"Y = Patient Diagnosis Already Present\r\nN = Patient Diagnosis Not Already Present\r\n8 = Not Applicable (Indication Of This Patient Diagnosis On Admission Not Required Nationally)\r\n9 = Not Known Where The Patient Diagnosis Was Present On Admission"
+   },
+   {
+      "Field":"PROCEDURE",
+      "Field name":"Procedure",
+      "Format":"String(6-40000)",
+      "Availability":"Not yet available in HES",
+      "Values":"6an - 4000an = Procedure"
+   },
+   {
+      "Field":"PROCEDURE_DATE",
+      "Field name":"Procedure Date",
+      "Format":"Date(YYYY-MM-DD)",
+      "Availability":"Not yet available in HES",
+      "Values":"YYYY-MM-DD = Procedure Date"
+   },
+   {
+      "Field":"PROVIDER_REFERENCE_IDENTIFIER",
+      "Field name":"Provider Reference Identifier",
+      "Format":"String(20)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Provider Reference Identifier"
+   },
+   {
+      "Field":"REFERRAL_INDICATOR",
+      "Field name":"Direct Access Referral Indicator",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"Y = Referred toa Direct Access Service\r\nN = Not Referred toa Direct Access Service\r\n9 = Not Known Whether The Patient Was Referred to a Direct Access Service"
+   },
+   {
+      "Field":"REGISTRATION_ENTRY_IDENTIFIER",
+      "Field name":"Professional Registration Entry Identifier",
+      "Format":"String(32)",
+      "Availability":"Not yet available in HES",
+      "Values":"max an32 = Professional Registration Entry Identifier"
+   },
+   {
+      "Field":"REGISTRATION_ISSUER_CODE",
+      "Field name":"Professional Registration Issuer Code",
+      "Format":"String(2)",
+      "Availability":"Not yet available in HES",
+      "Values":"02 = General Dental Council\r\n03 = General Medical Council\r\n04 = General Optical Council\r\n08 = Health and Care Professions Council\r\n09 = Nursing and Midwifery Council\r\n16 = General Pharmaceutical Council"
+   },
+   {
+      "Field":"RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR",
+      "Field name":"Responsible Care Professional Indicator",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"Y = Yes - The Care Professional Has Overall Clinical Responsibility For The Patient\r\nN = No - The Care Professional Does Not Have Overall Clinical Responsibility For The Patient"
+   },
+   {
+      "Field":"SERVICE_CODE",
+      "Field name":"Service Code",
+      "Format":"String(12)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 20an = Service Code"
+   },
+   {
+      "Field":"SOCIAL_AND_PERSONAL_CIRCUMSTANCE",
+      "Field name":"Social And Personal Circumstance (Snomed Ct Expression)",
+      "Format":"?",
+      "Availability":"Not yet available in HES"
+   },
+   {
+      "Field":"SOCIAL_AND_PERSONAL_CIRCUMSTANCE_TIMESTAMP",
+      "Field name":"Social And Personal Circumstance Recorded Timestamp",
+      "Format":"String(25)",
+      "Availability":"Not yet available in HES"
+   },
+   {
+      "Field":"TEAM_TYPE",
+      "Field name":"Rehabilitation Assessment Team Type",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"1 = Specialised Rehabilitation Team\r\n2 = Non-specialised Rehabilitation Team\r\n8 = Not applicable - Activity is not Rehabilitation Assessment \r\n9 = Rehabilitation Assessment Team Type not known"
+   },
+   {
+      "Field":"UCUM_UNIT_OF_MEASUREMENT",
+      "Field name":"Ucum Unit Of Measurement",
+      "Format":"String(10)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 10an = Ucum Unit Of Measurement"
+   },
+   {
+      "Field":"WARD_CODE",
+      "Field name":"Ward Code",
+      "Format":"String(12)",
+      "Availability":"Not yet available in HES",
+      "Values":"max 12an= Ward Code"
+   },
+   {
+      "Field":"WARD_INTENDED_AGE_GROUP",
+      "Field name":"Ward Intended Age Group",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"1 = Neonates\r\n2 = Children and/Or Adolescents\r\n3 = Elderly\r\n8 = any Age"
+   },
+   {
+      "Field":"WARD_INTENDED_INTENSITY",
+      "Field name":"Ward Intended Clinical Care Intensity",
+      "Format":"String(2)",
+      "Availability":"Not yet available in HES",
+      "Values":"51 = For Intensive Care: Specially Designated Ward For Patients Needing Containment and More Intensive Management. This Is Not to Be Confused With Intensive Nursing Where Patients May Require One to One Nursing While On a Standard Ward\r\n52 = For Short Stay: Patients Intended to Stay Less Than a Year\r\n53 = For Long Stay: Patients Intended to Stay a Year Or More \r\n\r\nFor Patients With Learning Disabilities:\r\n61 = Designated Or Interim Secure Unit\r\n62 = Patients Intending to Stay Less Than a Year\r\n63 = Patients Intending to Stay a Year Or More\r\n\r\nFor Maternity Patients:\r\n41 = Only For Patients Looked After By Consultants\r\n43 = Only For Patients Looked After By General Medical Practitioners\r\n42 = For Joint Use By Consultants & General Medical Practitionersfor Neonates\r\n33 = Maternity: Associated With The Maternity Ward In That Cots Are In The Maternity Ward Nursery Or In The Ward Itself\r\n32 = Non-Maternity: Not Associated With The Maternity Ward and Without Designated Cots For Intensive Care\r\n31 = Not Associated With The Maternity Ward and In Which There Are Some Designated Cots For Intensive Care\r\n\r\nFor The Younger Physically Disabled:\r\n21 = Spinal Units, Only Those Units Which Are Nationally Recognised\r\n22 = Other Unitsfor Terminally Ill/Palliative Care\r\n81 = Terminally Ill/Palliative Care\r\n\r\nFor General Patients:\r\n11 = For Intensive Therapy, Including High Dependency Care\r\n12 = For Normal Therapy: Where Resources Permit The Admission Of Patients Who Might Need All But Intensive Or High Dependency Therapy\r\n13 = For Limited Therapy: Where Nursing Care Rather Than Continuous Medical Care Is Provided. Such Wards Can Be Used Only For Patients Carefully Selected and Restricted to a Narrow Range In Terms Of The Extent and Nature Of Disease"
+   },
+   {
+      "Field":"WARD_INTENDED_SEX",
+      "Field name":"Ward Intended Sex Of Patients",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"1 = Male\r\n2 = Female\r\n8 = Not Specified"
+   },
+   {
+      "Field":"WARD_SECURITY_LEVEL",
+      "Field name":"Ward Security Level",
+      "Format":"String(1)",
+      "Availability":"Not yet available in HES",
+      "Values":"0 = General (Non-Secure)\r\n1 = Low Secure\r\n3 = Medium Secure\r\n3 = High Secure"
+   },
+   {
+      "Field":"WITHHELD_IDENTITY_REASON",
+      "Field name":"Withheld Identity Reason",
+      "Format":"String(2)",
+      "Availability":"Not yet available in HES",
+      "Values":"01 = Record anonymised for legal/statutory reasons\r\n02 = Record anonymised at request of Caldicott Guardian\r\n03 = Record anonymised at request of PATIENT\r\n97 = Record anonymised for other reasons\r\n99 = Identity withheld but reasons not known"
+   },
+   {
+      "Field":"YEAR",
+      "Field name":"HES Extract Year",
+      "Format":"Number",
+      "Availability":"1997-98 to 2007-08",
+      "Values":"YYYY = HES year"
+   },
+   {
+      
+   }
+]
