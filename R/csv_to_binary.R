@@ -26,12 +26,12 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
   data_types <- get_data_types(metadata)
   data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
 
-  # Ensure output directory exists
-  dir.create(output_data_dir, recursive = TRUE)
-
   # Convert file format
   # Load the CSV file and save to Apache Parquet format.
+  
   # Build SQL query
+  # The error message for this query will appear after the query itself, so you might need to truncate the query
+  # to be able to see the error message.
   query <- stringr::str_glue("
     -- Convert CSV files to Apache Parquet format
     -- DuckDB COPY statement documentation
@@ -50,6 +50,9 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
     TO '{output_path}'
     WITH (FORMAT 'PARQUET');")
 
+  # Ensure output directory exists
+  dir.create(output_data_dir, recursive = TRUE)
+  
   # Write SQL query to text file
   fileConn <- file(sql_query_file_path)
   writeLines(query, fileConn)
