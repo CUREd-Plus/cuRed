@@ -5,11 +5,9 @@
 #' @param sheet_number int Number of worksheet to be loaded
 #' @export
 load_xls <- function(xls_file, sheet = "HES APC TOS", sheet_number = NA) {
-  # Get col names
-  col_names <- as.character(read_excel(xls_file, sheet, skip = 1, n_max = 1, col_names = FALSE))
   # Get data only and attached the cols names
-  my_data <- read_excel(xls_file, sheet, skip = 2, col_names = col_names)
   var_list <- c("Field", "Field name", "Format", "Availability", "Values")
+  my_data <- read_excel(xls_file, sheet, skip = 2, col_names = var_list)
   my_data2 <- select(my_data, all_of(var_list))
   my_data2
 }
