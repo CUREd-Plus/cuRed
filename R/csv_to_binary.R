@@ -17,17 +17,12 @@ library(cli)
 #'
 #' @returns String. Path. The path of the output data file.
 csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
-  cli::cli_alert_info("Converting from CSV to parquet...")
-
   # Define the absolute paths
   input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
-  metadata_path <- normalizePath(file.path(raw_data_dir, "metadata.json"), mustWork = FALSE)
   sql_query_file_path <- normalizePath(file.path(output_data_dir, "query.sql"), mustWork = FALSE)
   output_path <- normalizePath(file.path(output_data_dir, "data.parquet"), mustWork = FALSE)
 
   # Get data types
-  cli::cli_alert_info("Loading '{metadata_path}'")
-  metadata <- jsonlite::fromJSON(metadata_path)
   data_types <- get_data_types(metadata)
   data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
 
