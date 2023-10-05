@@ -8,6 +8,8 @@ library(cli)
 #' @details
 #' TODO
 #'
+#' @export
+#'
 #' @param data_set_id String. Data set identifier e.g. "apc" or "op"
 #' @param root_directory String. The root directory that contains all the data.
 run_workflow <- function(data_set_id, root_directory) {
