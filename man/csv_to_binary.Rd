@@ -4,7 +4,7 @@
 \alias{csv_to_binary}
 \title{Use Duck DB to perform file format conversion.}
 \usage{
-csv_to_binary(raw_data_dir, output_data_dir, metadata)
+csv_to_binary(raw_data_dir, output_data_dir, metadata, data_set_id)
 }
 \arguments{
 \item{raw_data_dir}{String. Path. The directory that contains the raw data files.}
@@ -12,16 +12,20 @@ csv_to_binary(raw_data_dir, output_data_dir, metadata)
 \item{output_data_dir}{String. Path. The directory the output data file(s) should be written to.}
 
 \item{metadata}{List. Dictionary containing the column definitions.}
+
+\item{data_set_id}{String. Data set identifier e.g. "apc", "op"}
 }
 \value{
 String. Path. The path of the output data file.
 }
 \description{
-See:
+A JSON file must be specified that contains an object where the keys are the headers of the input CSV files in order
+and the values are the SQL data types (default to "VARCHAR"). The location of this file is \code{data_types_path}.
 }
 \details{
+See:
 \itemize{
-\item \href{https://duckdb.org/docs/archive/0.8.1/api/r}{DuckDB R API}
+\item \href{https://duckdb.org/docs/api/r}{DuckDB R API}
 \item \href{https://dbi.r-dbi.org/}{DBI documentation}
 }
 }

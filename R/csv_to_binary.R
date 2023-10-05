@@ -1,8 +1,12 @@
 library(DBI)
 library(duckdb)
 library(cli)
+library(utils)
 
 #' Use Duck DB to perform file format conversion.
+#' 
+#' A JSON file must be specified that contains an object where the keys are the headers of the input CSV files in order
+#' and the values are the SQL data types (default to "VARCHAR"). The location of this file is `data_types_path`.
 #'
 #' See:
 #'
@@ -14,7 +18,7 @@ library(cli)
 #' @param raw_data_dir String. Path. The directory that contains the raw data files.
 #' @param output_data_dir String. Path. The directory the output data file(s) should be written to.
 #' @param metadata List. Dictionary containing the column definitions.
-#' @param metadata String. Data set identifier e.g. "apc", "op"
+#' @param data_set_id String. Data set identifier e.g. "apc", "op"
 #'
 #' @returns String. Path. The path of the output data file.
 csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) {
@@ -28,7 +32,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   data_types <- jsonlite::fromJSON(data_types_path)
   
   # Update data types based on TOS spreadsheet
-  data_types <- modifyList(data_types, get_data_types(metadata)) 
+  data_types <- utils::modifyList(data_types, get_data_types(metadata)) 
 
   # Convert file format
   # Load the CSV file and save to Apache Parquet format.
@@ -49,6 +53,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
       FROM read_csv('{input_glob}',
         header=TRUE,
         filename=TRUE,
+        -- Columns must be ordered
         columns={data_types_struct}
       )
     )
@@ -74,7 +79,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   affected_rows_count <- DBI::dbExecute(con, query)
   cli::cli_alert_info("{affected_rows_count} rows affected")
   
-  dbDisconnect()
+  DBI::dbDisconnect()
 
   return(output_path)
 }

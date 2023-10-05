@@ -6,6 +6,9 @@
 \usage{
 format_to_data_type(format_str)
 }
+\arguments{
+\item{format_str}{String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"}
+}
 \value{
 String. SQL data type.
 }
