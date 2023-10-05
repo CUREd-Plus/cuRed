@@ -19,7 +19,7 @@
 NULL
 
 #' HES Admitted Patient Care (APC) metadata
-#' 
+#'
 #' This is extracted from the Technical Output Specification (TOS) for the Hospital Episode Statistics (HES) data.
 #'
 #' @name hes_apc_metadata

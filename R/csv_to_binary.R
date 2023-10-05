@@ -4,7 +4,7 @@ library(cli)
 library(utils)
 
 #' Use Duck DB to perform file format conversion.
-#' 
+#'
 #' A JSON file must be specified that contains an object where the keys are the headers of the input CSV files in order
 #' and the values are the SQL data types (default to "VARCHAR"). The location of this file is `data_types_path`.
 #'
@@ -26,17 +26,17 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
   sql_query_file_path <- normalizePath(file.path(output_data_dir, "query.sql"), mustWork = FALSE)
   output_path <- normalizePath(file.path(output_data_dir, "data.parquet"), mustWork = FALSE)
-  data_types_path = file.path(system.file("extdata", package="cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
+  data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
 
   # Load column order and default data types
   data_types <- jsonlite::fromJSON(data_types_path)
-  
+
   # Update data types based on TOS spreadsheet
-  data_types <- utils::modifyList(data_types, get_data_types(metadata)) 
+  data_types <- utils::modifyList(data_types, get_data_types(metadata))
 
   # Convert file format
   # Load the CSV file and save to Apache Parquet format.
-  
+
   # Build SQL query
   # The error message for this query will appear after the query itself, so you might need to truncate the query
   # to be able to see the error message.
@@ -62,7 +62,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
 
   # Ensure output directory exists
   dir.create(output_data_dir, recursive = TRUE)
-  
+
   # Write SQL query to text file
   fileConn <- file(sql_query_file_path)
   writeLines(query, fileConn)
@@ -78,7 +78,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   # Run the query
   affected_rows_count <- DBI::dbExecute(con, query)
   cli::cli_alert_info("{affected_rows_count} rows affected")
-  
+
   DBI::dbDisconnect()
 
   return(output_path)
@@ -100,7 +100,6 @@ get_data_types <- function(metadata) {
 
   # Iterate over list items
   for (i in 1:nrow(metadata)) {
-    
     field_name <- as.character(metadata$Field[i])
     tos_format <- as.character(metadata$Format[i])
 
@@ -146,22 +145,21 @@ convert_json_to_struct <- function(data) {
 #' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
 #'
 #' @export
-#' 
+#'
 #' @param format_str String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
 #'
 #' @returns String. SQL data type.
 #'
 format_to_data_type <- function(format_str) {
-  
   format_str <- as.character(format_str)
 
   if (is.na(format_str)) {
     stop("Format string is null.")
   }
-  
+
   # Map TOS format to SQL data type
   # https://duckdb.org/docs/sql/data_types/overview.html
-  
+
   # Integer
   if (format_str == "Number") {
     # unsigned four-byte integer
@@ -176,9 +174,9 @@ format_to_data_type <- function(format_str) {
     data_type <- "TIME"
   } else if (format_str == "Decimal") {
     data_type <- "DOUBLE"
-  # The HES APC TOS field SOCIAL_AND_PERSONAL_CIRCUMSTANCE has format "?" because it's a 
-  # SNOMED CT Expression, which is of alphanumeric "an" type (a structured object).
-  # https://www.datadictionary.nhs.uk/data_elements/snomed_ct_expression.html
+    # The HES APC TOS field SOCIAL_AND_PERSONAL_CIRCUMSTANCE has format "?" because it's a
+    # SNOMED CT Expression, which is of alphanumeric "an" type (a structured object).
+    # https://www.datadictionary.nhs.uk/data_elements/snomed_ct_expression.html
   } else if (format_str == "?") {
     data_type <- "VARCHAR"
   } else {
