@@ -6,7 +6,7 @@ library(cli)
 #'
 #' See:
 #'
-#' - [DuckDB R API](https://duckdb.org/docs/archive/0.8.1/api/r)
+#' - [DuckDB R API](https://duckdb.org/docs/api/r)
 #' - [DBI documentation](https://dbi.r-dbi.org/)
 #'
 #' @export
@@ -14,17 +14,21 @@ library(cli)
 #' @param raw_data_dir String. Path. The directory that contains the raw data files.
 #' @param output_data_dir String. Path. The directory the output data file(s) should be written to.
 #' @param metadata List. Dictionary containing the column definitions.
+#' @param metadata String. Data set identifier e.g. "apc", "op"
 #'
 #' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
+csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) {
   # Define the absolute paths
   input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
   sql_query_file_path <- normalizePath(file.path(output_data_dir, "query.sql"), mustWork = FALSE)
   output_path <- normalizePath(file.path(output_data_dir, "data.parquet"), mustWork = FALSE)
+  data_types_path = file.path(system.file("extdata", package="cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
 
-  # Get data types
-  data_types <- get_data_types(metadata)
-  data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
+  # Load column order and default data types
+  data_types <- jsonlite::fromJSON(data_types_path)
+  
+  # Update data types based on TOS spreadsheet
+  data_types <- modifyList(data_types, get_data_types(metadata)) 
 
   # Convert file format
   # Load the CSV file and save to Apache Parquet format.
@@ -32,6 +36,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
   # Build SQL query
   # The error message for this query will appear after the query itself, so you might need to truncate the query
   # to be able to see the error message.
+  data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
   query <- stringr::str_glue("
     -- Convert CSV files to Apache Parquet format
     -- DuckDB COPY statement documentation
@@ -60,6 +65,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
   cli::cli_alert_info("Wrote '{sql_query_file_path}'")
 
   # Create an in-memory database connection
+  # https://duckdb.org/docs/api/r
   con <- DBI::dbConnect(duckdb::duckdb(), dbdir = ":memory:")
 
   cli::cli_alert_info("Reading input data from '{input_glob}'...")
@@ -67,6 +73,8 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
   # Run the query
   affected_rows_count <- DBI::dbExecute(con, query)
   cli::cli_alert_info("{affected_rows_count} rows affected")
+  
+  dbDisconnect()
 
   return(output_path)
 }
@@ -146,10 +154,13 @@ format_to_data_type <- function(format_str) {
     stop("Format string is null.")
   }
   
+  # Map TOS format to SQL data type
+  # https://duckdb.org/docs/sql/data_types/overview.html
+  
   # Integer
   if (format_str == "Number") {
     # unsigned four-byte integer
-    data_type <- "UINTEGER"
+    data_type <- "UBIGINT"
   } else if (startsWith(format_str, "String")) {
     # TODO set maximum string length
     # https://duckdb.org/docs/sql/data_types/text
