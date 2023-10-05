@@ -40,7 +40,6 @@ dbExecute
 dbi
 deps
 desc
-df
 dir
 directry
 docstring
@@ -123,7 +122,6 @@ Organisation
 organisation
 os
 OSX
-outputdir
 pandoc
 param
 parsable
@@ -147,8 +145,8 @@ RData
 RDataTmp
 readme
 README
-readxl
 refmans
+renv
 Renviron
 repo
 repos
@@ -160,6 +158,7 @@ Roxygen
 roxygen
 roxygenize
 RoxygenNote
+Rprofile
 Rproj
 rsconnect
 Rscript
@@ -189,7 +188,6 @@ sublicense
 Sys
 SystemRequirements
 testthat
-tibble
 timezones
 toJSON
 toml
@@ -212,7 +210,6 @@ Wickham
 wJ
 writeLines
 www
-xls
 xlsx
 yaml
 yml

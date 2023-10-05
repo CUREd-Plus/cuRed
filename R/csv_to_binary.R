@@ -14,6 +14,8 @@ library(cli)
 #' @param metadata List. Dictionary containing the column definitions.
 #'
 #' @returns String. Path. The path of the output data file.
+#'
+#' @export
 csv_to_binary <- function(raw_data_dir, output_data_dir, metadata) {
   cli::cli_alert_info("Converting from CSV to parquet...")
 
