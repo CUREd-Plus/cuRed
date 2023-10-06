@@ -145,3 +145,15 @@ usethis::use_readme_rmd()
 # Development environment
 
 See the chapter on [system setup](https://r-pkgs.org/setup.html) in the online book [R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan.
+
+# Automated testing
+
+Unit tests are implemented using [testthat](https://testthat.r-lib.org/) as described in the [Testing basics](https://r-pkgs.org/testing-basics.html) chapter of the R Packages book.
+
+## Add a new unit test
+
+To create a unit test for a function named `my_function()`, run:
+
+```R
+usethis::use_test("my_function")
+```
