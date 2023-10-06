@@ -1,6 +1,8 @@
 [
   {
     "id": "apc",
-    "raw_data_dir": "C:\\data\\raw\\apc"
+    "raw_data_dir": "C:/Users/Administrator/CURED Data/apc/raw",
+	"staging_dir": "C:/Users/Administrator/CURED Data/apc/staging",
+	"metadata_path": "C:/Users/Administrator/CURED Data/apc/HES+TOS+V1.15.xlsx"
   }
 ]
