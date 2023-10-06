@@ -126,6 +126,7 @@ Please refer to this documentation for authoring R packages:
 
 * R manual [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
 * [R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan.
+* [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 
 # README.md
 
