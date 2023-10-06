@@ -18,4 +18,3 @@ The documentation and the artificial data files are © Crown copyright and avail
 
 One row per care event.
 }
-

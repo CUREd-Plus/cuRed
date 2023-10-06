@@ -14,7 +14,7 @@ library(cli)
 #' @param raw_data_dir String. The directory that contains the raw data for this data set.
 #' @param metadata_path String path. The technical output specificiation (TOS) file path.
 #' @param staging_dir The directory to store working data files.
-#' 
+#'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
@@ -25,9 +25,9 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
   # TODO
   # Parse the TOS
   # metadata <- parse_tos(metadata_path)
-  
+
   metadata <- as.data.frame(list())
-  
+
   # Convert to binary format
   csv_to_binary(
     raw_data_dir = raw_data_dir,
