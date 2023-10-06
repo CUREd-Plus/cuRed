@@ -1,8 +1,24 @@
-## Development and Contributing
+# Development and Contributing
 
 This section describes how to contribute to the development of `cuRed`.
 
-### Create an Issue
+# Workflow overview
+
+These are the general steps required to contribute to this code:
+
+1. [Create an issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue) that describes the user requirements, context, and possible solutions.
+2. [Create a branch for that issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-a-branch-for-an-issue). Open that issue and create a branch to contain the code associated with that issue.
+3. Check out that branch (See: [remote branches](https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches))
+4. Write your code
+5. Run the R package checks with [R CMD check](https://r-pkgs.org/workflow101.html#sec-workflow101-r-cmd-check) (Ctrl+Shift+E in [RStudio](https://docs.posit.co/ide/user/ide/guide/pkg-devel/writing-packages.html)
+6. Run the pre-commit checks `pre-commit run --all-files` (this will happen automatically if pre-commit is configured.)
+7. Commit your changes to your local branch
+8. [Push](https://git-scm.com/docs/git-push) the changes to GitHub
+9. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+10. Code review
+11. Merge PR (and delete the branch)
+
+# Create an Issue
 
 If you find there are problems or errors with running the code please
 search and review the existing
