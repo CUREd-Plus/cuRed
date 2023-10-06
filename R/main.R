@@ -17,7 +17,7 @@ main <- function(data_sets_path = NA) {
   if (is.na(data_sets_path)) {
     data_sets_path <- system.file("extdata", "data_sets.json", package = "cuRed", mustWork = TRUE)
   }
-  
+
   data_sets_path <- normalizePath(file.path(data_sets_path), mustWork = TRUE)
 
   # Load the configuration file
@@ -31,7 +31,7 @@ main <- function(data_sets_path = NA) {
     raw_data_dir <- normalizePath(file.path(data_sets$raw_data_dir[i]), mustWork = TRUE)
     staging_dir <- normalizePath(file.path(data_sets$staging_dir[i]), mustWork = FALSE)
     metadata_path <- normalizePath(file.path(data_sets$metadata_path[i]), mustWork = TRUE)
-    
+
     cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
     cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
 
