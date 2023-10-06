@@ -12,11 +12,12 @@ These are the general steps required to contribute to this code:
 4. Write your code
 5. Run the R package checks with [R CMD check](https://r-pkgs.org/workflow101.html#sec-workflow101-r-cmd-check) (Ctrl+Shift+E in [RStudio](https://docs.posit.co/ide/user/ide/guide/pkg-devel/writing-packages.html)
 6. Run the pre-commit checks `pre-commit run --all-files` (this will happen automatically if pre-commit is configured.)
-7. Commit your changes to your local branch
-8. [Push](https://git-scm.com/docs/git-push) the changes to GitHub
-9. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-10. Code review
-11. Merge PR (and delete the branch)
+7. Keep running pre-commit until all problems are resolved.
+8. Commit your changes to your local branch
+9. [Push](https://git-scm.com/docs/git-push) the changes to GitHub
+10. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+11. Code review
+12. Merge PR (and delete the branch)
 
 # Create an Issue
 
