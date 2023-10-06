@@ -23,6 +23,7 @@ main <- function(data_sets_path = NA) {
   # Load the configuration file
   # This is a list of objects, each represents a data set
   data_sets <- as.data.frame(jsonlite::fromJSON(data_sets_path))
+  data_sets <- as.data.frame(jsonlite::fromJSON())
 
   # Iterate over data sets
   for (i in seq_len(nrow(data_sets))) {
