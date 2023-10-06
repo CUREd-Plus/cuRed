@@ -24,9 +24,9 @@ main <- function(root_directory) {
   }
 
   # Load the configuration file
-  data_sets_path <- system.file('extdata', 'data-sets.json', package='cuRed')
-  data_sets = as.data.frame(jsonlite::fromJSON())
-  
+  data_sets_path <- system.file("extdata", "data-sets.json", package = "cuRed")
+  data_sets <- as.data.frame(jsonlite::fromJSON())
+
   # Iterate over data sets
   for (i in seq_len(nrow(data_sets))) {
     data_set_id <- data_sets$id[i]
