@@ -4,12 +4,12 @@
 \alias{run_workflow}
 \title{Run a data processing workflow for a single data set.}
 \usage{
-run_workflow(data_set_id, root_directry)
+run_workflow(data_set_id, root_directory)
 }
 \arguments{
 \item{data_set_id}{String. Data set identifier e.g. "apc" or "op"}
 
-\item{root_directry}{String. The root directory that contains all the data.}
+\item{root_directory}{String. The root directory that contains all the data.}
 }
 \description{
 \code{run_workflow} executes the data pipeline for a single data set.
