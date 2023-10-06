@@ -86,7 +86,12 @@ commits are made.
 are configured to run on the code base prior to Git commits being
 made. It is highly configurable but as it is written in Python requires
 installing in order to analyse the R code and package structure of
-`cuRed`. If you are not already familiar with Python and the various
+`cuRed`.
+
+For more information, please read the blog post
+[Pre-commit and R Packaging](https://ns-rse.github.io/posts/pre-commit-r/) by Neil Shephard.
+
+If you are not already familiar with Python and the various
 options for Virtual Environments the simplest solution will likely be to
 install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 then install the `pre-commit` package and install within the repository
