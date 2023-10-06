@@ -108,6 +108,8 @@ options for Virtual Environments the simplest solution will likely be to
 install [miniconda](https://docs.conda.io/en/latest/miniconda.html) and
 then install the `pre-commit` package and install within the repository
 
+. This can be done from within R and there are instructions on how to do this [here](https://ns-rse.github.io/posts/pre-commit-r/#windows).
+
 ``` bash
 conda install conda-forge pre-commit
 cd path/to/cloned/cuRed
