@@ -38,6 +38,7 @@ run_workflow <- function(data_set_id, root_directory) {
   staging_dir <- csv_to_binary(raw_data_dir, metadata)
 
   # Validate
+  validate(staging_dir)
 
   # Generate summary report
 
