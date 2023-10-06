@@ -99,7 +99,7 @@ get_data_types <- function(metadata) {
   field_names <- list()
 
   # Iterate over list items
-  for (i in 1:nrow(metadata)) {
+  for (i in seq_len(nrow(metadata))) {
     field_name <- as.character(metadata$Field[i])
     tos_format <- as.character(metadata$Format[i])
 
