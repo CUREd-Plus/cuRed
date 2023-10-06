@@ -6,6 +6,9 @@
 \usage{
 parse_tos(metadata_path)
 }
+\arguments{
+\item{metadata_path}{String path. The metadata file i.e. TOS spreadsheet file path.}
+}
 \description{
 Parse Technical Output Specification (TOS) metadata file.
 }
