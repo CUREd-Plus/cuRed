@@ -23,11 +23,13 @@ main <- function(root_directory) {
     stop("Data directory not found")
   }
 
-  # A list of the unique identifier of each of the data sets to work with.
-  data_set_ids <- c("apc", "ae", "op")
-
+  # Load the configuration file
+  data_sets_path <- system.file('extdata', 'data-sets.json', package='cuRed')
+  data_sets = as.data.frame(jsonlite::fromJSON())
+  
   # Iterate over data sets
-  for (data_set_id in data_set_ids) {
+  for (i in seq_len(nrow(data_sets))) {
+    data_set_id <- data_sets$id[i]
     cli::cli_alert_info("Running {data_set_id}")
     # Run each workflow
     run_workflow(data_set_id, root_directory)
