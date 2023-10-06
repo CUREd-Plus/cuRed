@@ -24,9 +24,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
 
   # TODO
   # Parse the TOS
-  # metadata <- parse_tos(metadata_path)
-
-  metadata <- as.data.frame(list())
+  metadata <- parse_tos(metadata_path)
 
   # Convert to binary format
   csv_to_binary(
