@@ -35,13 +35,14 @@ run_workflow <- function(data_set_id, root_directory) {
   raw_data_dir <- file.path(data_set_dir, "/01-raw")
 
   # Convert to binary format
-  staging_dir <- csv_to_binary(raw_data_dir, metadata)
+  binary_path <- csv_to_binary(raw_data_dir, metadata)
 
   # Validate
 
   # Generate summary report
 
   # Data linkage
+  link(input_path = binary_path)
 
   # Cleaning
 
