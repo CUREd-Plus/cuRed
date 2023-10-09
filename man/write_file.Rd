@@ -7,9 +7,9 @@
 write_file(file_path, data)
 }
 \arguments{
-\item{file_path}{Target text file path.}
+\item{file_path}{String path. Target text file path.}
 
-\item{string}{Text data to write.}
+\item{data}{String. Text data to write.}
 }
 \description{
 Serialise text data to a file

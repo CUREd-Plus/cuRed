@@ -1,10 +1,10 @@
 library(cli)
 
 #' Serialise text data to a file
-#' 
-#' @param file_path Target text file path.
-#' @param string Text data to write.
-#' 
+#'
+#' @param file_path String path. Target text file path.
+#' @param data String. Text data to write.
+#'
 write_file <- function(file_path, data) {
   file_path <- normalizePath(file.path(file_path), mustWork = FALSE)
 
