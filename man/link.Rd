@@ -4,12 +4,14 @@
 \alias{link}
 \title{Link the data set to the reference data.}
 \usage{
-link(input_path, output_path)
+link(input_path, output_path, patient_path)
 }
 \arguments{
 \item{input_path}{Source Parquet file path.}
 
 \item{output_path}{Target Parquet file path.}
+
+\item{patient_path}{String. Path to the patient ID bridge file.}
 }
 \description{
 Link the data set to the reference data.
