@@ -15,6 +15,8 @@ run_query <- function(query) {
   # https://duckdb.org/docs/connect
   con <- DBI::dbConnect(duckdb::duckdb(), dbdir = ":memory:")
 
+  # Error messages may appear after the query itself, so you might need to truncate the query.
+
   # Run the query
   # TODO https://dbi.r-dbi.org/reference/dbgetquery
   affected_rows_count <- DBI::dbExecute(con, query)

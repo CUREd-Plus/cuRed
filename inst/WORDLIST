@@ -103,6 +103,7 @@ env
 EPIDUR
 EPIEND
 EPIKEY
+epikey
 EPIORDER
 EPISTART
 EPISTAT
@@ -319,6 +320,7 @@ RDataTmp
 readChar
 readme
 README
+readr
 refmans
 REGGMP
 renv
@@ -389,6 +391,7 @@ SystemRequirements
 tempfile
 testthat
 th
+tidyverse
 timezones
 toJSON
 toml
@@ -421,6 +424,7 @@ writeLines
 www
 xlsx
 yaml
+yas
 yml
 yyyy
 yyyymmdd

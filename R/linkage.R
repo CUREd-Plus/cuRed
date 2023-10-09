@@ -1,4 +1,5 @@
 library(stringr)
+library(readr)
 
 #' Link the data set to the reference data.
 #'
@@ -11,17 +12,13 @@ link <- function(input_path, output_path) {
   input_path <- normalizePath(file.path(input_path), mustWork = TRUE)
   sql_query_file_path <- normalizePath(file.path(output_path, "../linkage_query.sql"), mustWork = FALSE)
 
-  query <- stringr::str_glue("
-    -- https://duckdb.org/docs/data/parquet/overview.html
-    COPY (
-      SELECT *
-      FROM read_parquet('{input_path}')
-    )
-    TO '{output_path}'
-    WITH (FORMAT 'PARQUET');")
+  query_path <- normalizePath(system.file("extdata", "queries/linkage/apc.sql", package = "cuRed"), mustWork = TRUE)
+  # https://readr.tidyverse.org/reference/read_file.html
+  query_template <- readr::read_file(query_path)
+  query <- stringr::str_glue(query_template)
 
   # Write SQL query to text file
-  write_file(sql_query_file_path, query)
+  readr::write_file(query, sql_query_file_path)
 
   # Execute the data operation
   run_query(query)
