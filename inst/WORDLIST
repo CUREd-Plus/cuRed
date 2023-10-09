@@ -73,6 +73,7 @@ dbConnect
 dbdir
 dbDisconnect
 dbExecute
+dbgetquery
 dbi
 Decimalised
 Defence
@@ -288,6 +289,7 @@ PCTCODE
 PCTORIG
 PCTTREAT
 pkgdown
+pkgs
 po
 Podiatric
 Posix
@@ -345,6 +347,7 @@ Ruserdata
 sameAs
 se
 sep
+Serialise
 sheffield
 shephard
 Shephard
