@@ -73,6 +73,7 @@ dbConnect
 dbdir
 dbDisconnect
 dbExecute
+dbgetquery
 dbi
 Decimalised
 Defence
@@ -116,6 +117,7 @@ FCE
 FDE
 FHIR
 fileConn
+fileext
 fileSize
 fnS
 fromJSON
@@ -201,6 +203,7 @@ nA
 nationalarchives
 nB
 nC
+nchars
 nClinical
 nD
 nE
@@ -288,6 +291,7 @@ PCTCODE
 PCTORIG
 PCTTREAT
 pkgdown
+pkgs
 po
 Podiatric
 Posix
@@ -312,6 +316,7 @@ rcmdcheck
 Rdata
 RData
 RDataTmp
+readChar
 readme
 README
 refmans
@@ -345,6 +350,7 @@ Ruserdata
 sameAs
 se
 sep
+Serialise
 sheffield
 shephard
 Shephard
@@ -380,6 +386,7 @@ SUSHRG
 SUSRECID
 Sys
 SystemRequirements
+tempfile
 testthat
 th
 timezones

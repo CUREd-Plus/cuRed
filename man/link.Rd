@@ -6,6 +6,11 @@
 \usage{
 link(input_path, output_path)
 }
+\arguments{
+\item{input_path}{Source Parquet file path.}
+
+\item{output_path}{Target Parquet file path.}
+}
 \description{
 Link the data set to the reference data.
 }
