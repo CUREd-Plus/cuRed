@@ -1,4 +1,3 @@
-
 test_that("Convert TOS Format to integer SQL data type", {
   format_str <- "Number"
   data_type <- cuRed::format_to_data_type(format_str)
