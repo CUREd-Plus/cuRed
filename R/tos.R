@@ -6,11 +6,14 @@
 #' @export
 #'
 load_xls <- function(xls_file, sheet = "HES APC TOS", sheet_number = NA) {
-  myCols <- as.character(read_excel(xls_file, sheet, n_max = 2, skip = 1, col_names = FALSE))
+  myCols <- as.character(read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))
   print(myCols)
   # Get data only and attached the cols names
   var_list <- c("Field", "Field name", "Format", "Availability", "Values")
   my_data <- read_excel(xls_file, sheet, skip = 2, col_names = myCols)
+  my_data2 <- select(my_data, all_of(var_list))
+  my_data2 <- my_data2[!apply(my_data2 == "", 1, all), ]
+  return(my_data2)
 }
 
 #' write dataframe to json
