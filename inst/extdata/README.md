@@ -1,6 +1,8 @@
 # Raw data files
 
-The `inst/extdata` directory contains raw data files. The documentation for these data sets is contained in `R/extdata.R`.
+The `inst/extdata` directory contains raw data files that may be used to support this code e.g. for automated testing, etc.
+
+The documentation for these data sets is contained in `R/extdata.R`.
 
 See:
 
