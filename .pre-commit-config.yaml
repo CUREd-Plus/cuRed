@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0  # Use the ref you want to point at
+    rev: v4.5.0  # Use the ref you want to point at
     hooks:
       - id: check-case-conflict
       - id: check-docstring-first
@@ -29,10 +29,6 @@ repos:
     - id: parsable-R
     - id: readme-rmd-rendered
     - id: codemeta-description-updated
-    # https://search.r-project.org/CRAN/refmans/spelling/html/spell_check_files.html
-    - id: spell-check
-      # Don't spell-check data files
-      exclude: '^.+\.csv$'
     - id: deps-in-desc
     - id: lintr
 
