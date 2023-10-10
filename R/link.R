@@ -9,10 +9,13 @@ library(readr)
 #'
 #' @export
 #'
-link <- function(input_path, output_path, patient_path) {
+link <- function(input_path, output_path, patient_path, demographics_path, deaths_path) {
   # Get file paths
   input_path <- normalizePath(file.path(input_path), mustWork = TRUE)
   output_path <-  normalizePath(file.path(output_path), mustWork = FALSE)
+  patient_path <- normalizePath(file.path(patient_path), mustWork = TRUE)
+  demographics_path <- normalizePath(file.path(demographics_path), mustWork = TRUE)
+  deaths_path <- normalizePath(file.path(deaths_path), mustWork = TRUE)
   query_template_path <- normalizePath(system.file("extdata", "queries/linkage/apc.sql", package = "cuRed"), mustWork = TRUE)
   query_path <- normalizePath(paste(output_path, "query.sql", sep=""), mustWork = FALSE)
 
