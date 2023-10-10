@@ -2,6 +2,8 @@ test_that("linkage works", {
   # Get file paths
   # Use the dummy data
   input_path <- normalizePath(system.file("extdata", "artificial_hes_apc_0102.parquet", package = "cuRed"), mustWork = TRUE)
+  # We'll append some fake data to this file, and use this as the input to the
+  # data linkage function.
   temp_input_path <- tempfile(fileext = ".parquet")
   # Generate a temporary output file
   output_path <- tempfile(fileext = ".parquet")
@@ -11,6 +13,7 @@ test_that("linkage works", {
   run_query(stringr::str_glue("
 COPY (
   SELECT
+    -- Generate mock patient identifiers
     uuid() AS token_person_id,
     uuid() AS yas_id,
     uuid() AS cured_id,
