@@ -16,10 +16,10 @@ link <- function(input_path, output_path, patient_path, demographics_path, death
   patient_path <- normalizePath(file.path(patient_path), mustWork = TRUE)
   demographics_path <- normalizePath(file.path(demographics_path), mustWork = TRUE)
   deaths_path <- normalizePath(file.path(deaths_path), mustWork = TRUE)
-  query_template_path <- normalizePath(system.file("extdata", "queries/linkage/apc.sql", package = "cuRed"), mustWork = TRUE)
-  query_path <- normalizePath(paste(output_path, "query.sql", sep = ""), mustWork = FALSE)
 
   # Build the linkage SQL query
+  query_template_path <- normalizePath(system.file("extdata", "queries/linkage/apc.sql", package = "cuRed"), mustWork = TRUE)
+  query_path <- normalizePath(paste(output_path, "query.sql", sep = ""), mustWork = FALSE)
   query_template <- readr::read_file(query_template_path)
   # Inject variable values into the SQL template
   query <- stringr::str_glue(query_template)
