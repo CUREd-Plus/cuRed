@@ -12,9 +12,9 @@ library(readr)
 link <- function(input_path, output_path, patient_path) {
   # Get file paths
   input_path <- normalizePath(file.path(input_path), mustWork = TRUE)
-  output_path <-  normalizePath(file.path(output_path), mustWork = FALSE)
+  output_path <- normalizePath(file.path(output_path), mustWork = FALSE)
   query_template_path <- normalizePath(system.file("extdata", "queries/linkage/apc.sql", package = "cuRed"), mustWork = TRUE)
-  query_path <- normalizePath(paste(output_path, "query.sql", sep=""), mustWork = FALSE)
+  query_path <- normalizePath(paste(output_path, "query.sql", sep = ""), mustWork = FALSE)
 
   # Build the linkage SQL query
   query_template <- readr::read_file(query_template_path)
