@@ -15,11 +15,12 @@ repos:
     rev: v0.3.2.9021
     hooks:
     - id: no-debug-statement
-    - id: roxygenize
-      additional_dependencies:
-        - jsonlite
-        - duckdb
-        - stringr
+    #- id: roxygenize
+    #  additional_dependencies:
+    #    - jsonlite
+    #    - duckdb
+    #    - readxl
+    #    - stringr
     - id: use-tidy-description
     # Pretty-print files with {styler} https://styler.r-lib.org/
     - id: style-files
