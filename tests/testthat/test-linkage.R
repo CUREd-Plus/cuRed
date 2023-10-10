@@ -17,10 +17,26 @@ COPY (
     uuid() AS token_person_id,
     uuid() AS yas_id,
     uuid() AS cured_id,
+    uuid() AS study_id,
     apc.*
   FROM read_parquet('{input_path}') AS apc
 )
 TO '{temp_input_path}'
+WITH (FORMAT 'PARQUET');
+"))
+
+  # Generate mock patient demographics data
+  demographics_path <- tempfile(fileext = ".parquet")
+  run_query(stringr::str_glue("
+COPY (
+  SELECT
+    -- Generate mock patient identifiers
+    uuid() AS study_id,
+    'SG13' AS derived_postcode_dist,
+    'F' AS gender,
+    '1970-01' AS dob_year_month
+)
+TO '{demographics_path}'
 WITH (FORMAT 'PARQUET');
 "))
 
