@@ -18,16 +18,16 @@ validate <- function(data_path, rules_path) {
   # Load rule set from a YAML file
   rules <- dataverifyr::read_rules(rules_path)
   results <- verify(file_path = data_path, rules = rules)
-  
-  plot <- dataverifyr::plot_res(results, main=data_path)
-  
+
+  plot <- dataverifyr::plot_res(results, main = data_path)
+
   return(results)
 }
 
 #' Verify the schema of a data file using a rule set.
-#' 
+#'
 #' Uses the [dataverifyr package](https://davzim.github.io/dataverifyr/index.html).
-#' 
+#'
 #' @param file_path String. Input data file path.
 #' @param rules String. YAML file path, data validation rules.
 #'
@@ -38,10 +38,10 @@ validate <- function(data_path, rules_path) {
 verify <- function(file_path, rules) {
   # Check input file exists
   file_path <- normalizePath(file.path(file_path), mustWork = TRUE)
-  
+
   # Load data
   data <- read_parquet(file_path)
-  
+
   # Run the data validation checks
   # https://davzim.github.io/dataverifyr/reference/check_data.html
   # fail_on_error: throw an error on a failed rule

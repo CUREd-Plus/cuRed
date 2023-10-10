@@ -8,10 +8,10 @@
 read_parquet <- function(file_path) {
   # Check file exists
   file_path <- normalizePath(file.path(file_path), mustWork = TRUE)
-  
+
   # Parse Parquet file
   query <- stringr::str_glue("SELECT * FROM read_parquet('{file_path}')")
   data <- get_query(query)
-  
+
   return(data)
 }
