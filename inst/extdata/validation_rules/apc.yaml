@@ -1,0 +1,8 @@
+---
+# APC data validation rules
+# This file is written using dataverifyr YAML format.
+# https://davzim.github.io/dataverifyr
+- name: EPIKEY
+  allow_na: no
+  expr: is.integer(EPIKEY) & EPIKEY > 0
+...
