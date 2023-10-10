@@ -23,8 +23,7 @@ Imports:
     jsonlite,
     DBI,
     duckdb,
-    dataverifyr,
-    dplyr
+    dataverifyr
 Suggests:
     codemetar,
     testthat (>= 3.0.0)
