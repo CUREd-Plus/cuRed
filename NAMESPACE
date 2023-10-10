@@ -2,6 +2,7 @@
 
 export(convert_json_to_struct)
 export(csv_to_binary)
+export(df2json)
 export(format_to_data_type)
 export(get_data_types)
 export(main)
