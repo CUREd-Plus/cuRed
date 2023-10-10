@@ -1,5 +1,5 @@
 #' Get SQL query result using the [DuckDB R API](https://duckdb.org/docs/api/r.html)
-#' 
+#'
 #' @param query String. SQL query.
 #' @returns Data frame containing query results.
 #' @export
