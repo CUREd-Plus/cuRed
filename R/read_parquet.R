@@ -1,7 +1,7 @@
 #' Load an Apache Parquet file into an R data frame.
-#' 
+#'
 #' https://duckdb.org/docs/data/parquet/overview#read_parquet-function
-#' 
+#'
 #' @param file_path String. Source data file path.
 #' @export
 #' @returns data.frame Data file contents.
