@@ -30,8 +30,11 @@ validate <- function(data_path, rules_path) {
 #' @export
 #'
 verify <- function(file_path, rules) {
-  query <- stringr::str_glue("SELECT * FROM read_parquet('{file_path}')")
-  data <- get_query(query)
+  # Check input file exists
+  file_path <- normalizePath(file.path(file_path), mustWork = TRUE)
+  
+  # Load data
+  data <- read_parquet(file_path)
 
   # Run the data validation checks
   results <- dataverifyr::check_data(data, rules = rules)
