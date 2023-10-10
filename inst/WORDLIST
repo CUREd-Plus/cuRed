@@ -40,6 +40,7 @@ dbExecute
 dbi
 deps
 desc
+df
 dir
 directry
 docstring
@@ -104,6 +105,7 @@ MERCHANTABILITY
 miniconda
 msg
 mustWork
+myCols
 nationalarchives
 NHS
 nhs
@@ -122,6 +124,7 @@ Organisation
 organisation
 os
 OSX
+outputdir
 pandoc
 param
 parsable
@@ -188,6 +191,7 @@ sublicense
 Sys
 SystemRequirements
 testthat
+tibble
 timezones
 toJSON
 toml
@@ -210,6 +214,7 @@ Wickham
 wJ
 writeLines
 www
+xls
 xlsx
 yaml
 yml
