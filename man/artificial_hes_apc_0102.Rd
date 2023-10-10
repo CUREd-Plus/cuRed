@@ -7,10 +7,12 @@
 https://digital.nhs.uk/services/artificial-data
 }
 \description{
-Hospital Episode Statistics (HES)
-\href{https://digital.nhs.uk/services/artificial-data}{NHS Artificial data pilot}
+This data file has been truncated to reduce the file size.
 }
 \details{
+Hospital Episode Statistics (HES)
+\href{https://digital.nhs.uk/services/artificial-data}{NHS Artificial data pilot}
+
 The documentation and the artificial data files are © Crown copyright and available under the terms of the
 \href{https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/}{Open Government 3.0} licence.
 }
@@ -18,3 +20,4 @@ The documentation and the artificial data files are © Crown copyright and avail
 
 One row per care event.
 }
+

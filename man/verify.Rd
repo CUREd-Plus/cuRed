@@ -12,8 +12,8 @@ verify(file_path, rules)
 \item{rules}{String. YAML file path, data validation rules.}
 }
 \value{
-Data validation results
+Data validation results, one row per rule.
 }
 \description{
-Verify the schema of a data file using a rule set.
+Uses the \href{https://davzim.github.io/dataverifyr/index.html}{dataverifyr package}.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_query.R
 \name{get_query}
 \alias{get_query}
-\title{Get SQL query result}
+\title{Get SQL query result using the \href{https://duckdb.org/docs/api/r.html}{DuckDB R API}}
 \usage{
 get_query(query)
 }
@@ -13,5 +13,5 @@ get_query(query)
 Data frame containing query results.
 }
 \description{
-Get SQL query result
+Get SQL query result using the \href{https://duckdb.org/docs/api/r.html}{DuckDB R API}
 }

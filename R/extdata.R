@@ -31,3 +31,11 @@ NULL
 #' Each item is a field in this data set.
 #'
 NULL
+#' HES Admitted Patient Care TOS file
+#'
+#' @name HES+TOS+V1.15
+#'
+#' @source https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics
+#'
+#' @section HES+TOS+V1.15.xlsx:
+#'
