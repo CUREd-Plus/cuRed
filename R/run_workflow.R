@@ -35,6 +35,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
   )
 
   # Validate
+  validate(staging_dir)
 
   # Generate summary report
 
