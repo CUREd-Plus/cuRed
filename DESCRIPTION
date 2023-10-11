@@ -22,7 +22,8 @@ Imports:
     stringr,
     jsonlite,
     DBI,
-    duckdb
+    duckdb,
+    readxl
 Suggests:
     codemetar,
     testthat (>= 3.0.0)
