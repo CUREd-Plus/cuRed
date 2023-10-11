@@ -28,7 +28,6 @@ repos:
     - id: no-debug-statement
     - id: parsable-R
     - id: readme-rmd-rendered
-    - id: codemeta-description-updated
     - id: deps-in-desc
     - id: lintr
 
