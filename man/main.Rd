@@ -4,10 +4,10 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(root_directory)
+main(data_sets_path = NA)
 }
 \arguments{
-\item{root_directory}{String. Path. The directory that contains all the working directories.}
+\item{data_sets_path}{String. Path. The path of the configuration file. Defaults to the one included in the library.}
 }
 \description{
 \code{main} executes the entire data pipeline for all data sets.
