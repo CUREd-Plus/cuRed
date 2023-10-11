@@ -11,31 +11,28 @@ library(cli)
 #' @export
 #'
 #' @param data_set_id String. Data set identifier e.g. "apc" or "op"
-#' @param root_directory String. The root directory that contains all the data.
-run_workflow <- function(data_set_id, root_directory) {
+#' @param raw_data_dir String. The directory that contains the raw data for this data set.
+#' @param metadata_path String path. The technical output specificiation (TOS) file path.
+#' @param staging_dir The directory to store working data files.
+#'
+run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
-  root_directory <- file.path(root_directory)
 
-  # Check whether the data directory exists
-  if (!file.exists(root_directory)) {
-    cli::cli_alert_warning("Directory doesn't exist '{root_directory}'")
-    stop("Data directory not found")
-  }
-
-  cli::cli_alert_info("Root directory '{root_directory}'")
+  # Ensure input directory exists
+  raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
 
   # TODO
   # Parse the TOS
-  tos_path <- file.path("/path/to/TOS.xlsx")
-  # Get data types for each column
-
-  # Define working directories
-  data_set_dir <- file.path(root_directory, "/", data_set_id)
-  raw_data_dir <- file.path(data_set_dir, "/01-raw")
+  metadata <- parse_tos(metadata_path)
 
   # Convert to binary format
-  staging_dir <- csv_to_binary(raw_data_dir, metadata)
+  csv_to_binary(
+    raw_data_dir = raw_data_dir,
+    output_data_dir = staging_dir,
+    metadata = metadata,
+    data_set_id = data_set_id
+  )
 
   # Validate
 

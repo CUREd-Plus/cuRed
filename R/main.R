@@ -10,26 +10,36 @@ library(cli)
 #'
 #' @export
 #'
-#' @param root_directory String. Path. The directory that contains all the working directories.
+#' @param data_sets_path String. Path. The path of the configuration file. Defaults to the one included in the library.
 #'
-main <- function(root_directory) {
-  root_directory <- file.path(root_directory)
-
-  # Check whether the data directory exists
-  if (file.exists(root_directory)) {
-    cli::cli_alert_info("Root directory '{root_directory}'")
-  } else {
-    cli::cli_alert_warning("Directory doesn't exist '{root_directory}'")
-    stop("Data directory not found")
+main <- function(data_sets_path = NA) {
+  # Set the file path of the configuration file
+  if (is.na(data_sets_path)) {
+    data_sets_path <- system.file("extdata", "data_sets.json", package = "cuRed", mustWork = TRUE)
   }
 
-  # A list of the unique identifier of each of the data sets to work with.
-  data_set_ids <- c("apc", "ae", "op")
+  data_sets_path <- normalizePath(file.path(data_sets_path), mustWork = TRUE)
+
+  # Load the configuration file
+  # This is a list of objects, each represents a data set
+  data_sets <- as.data.frame(jsonlite::fromJSON(data_sets_path))
+  data_sets <- as.data.frame(jsonlite::fromJSON())
 
   # Iterate over data sets
-  for (data_set_id in data_set_ids) {
-    cli::cli_alert_info("Running {data_set_id}")
-    # Run each workflow
-    run_workflow(data_set_id, root_directory)
+  for (i in seq_len(nrow(data_sets))) {
+    data_set_id <- as.character(data_sets$id[i])
+    raw_data_dir <- normalizePath(file.path(data_sets$raw_data_dir[i]), mustWork = TRUE)
+    staging_dir <- normalizePath(file.path(data_sets$staging_dir[i]), mustWork = FALSE)
+    metadata_path <- normalizePath(file.path(data_sets$metadata_path[i]), mustWork = TRUE)
+
+    cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
+    cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
+
+    # Run the workflow for this data set
+    run_workflow(
+      data_set_id = data_set_id,
+      raw_data_dir = raw_data_dir,
+      staging_dir = staging_dir
+    )
   }
 }
