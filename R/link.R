@@ -32,4 +32,6 @@ link <- function(input_path, output_path, patient_path, demographics_path, death
 
   # Execute the data operation
   run_query(query)
+  
+  cli::cli_alert_info("Wrote '{output_path}'")
 }
