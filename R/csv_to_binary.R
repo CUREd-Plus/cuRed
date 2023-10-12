@@ -61,7 +61,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
     WITH (FORMAT 'PARQUET');")
 
   # Ensure output directory exists
-  dir.create(output_data_dir, recursive = TRUE)
+  dir.create(output_data_dir, recursive = TRUE, showWarnings = FALSE)
 
   # Write SQL query to text file
   fileConn <- file(sql_query_file_path)
@@ -78,8 +78,9 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   # Run the query
   affected_rows_count <- DBI::dbExecute(con, query)
   cli::cli_alert_info("{affected_rows_count} rows affected")
+  cli::cli_alert_info("Wrote '{output_path}'")
 
-  DBI::dbDisconnect()
+  DBI::dbDisconnect(con)
 
   return(output_path)
 }
@@ -181,7 +182,7 @@ format_to_data_type <- function(format_str) {
     data_type <- "VARCHAR"
   } else {
     cli::cli_alert_danger("Unknown field format '{format_str}'")
-    stop("Unknown field format '{format_str}'")
+    stop("Unknown field format")
   }
 
   return(data_type)

@@ -4,5 +4,5 @@
 # https://davzim.github.io/dataverifyr
 - name: EPIKEY
   allow_na: no
-  expr: is.integer(EPIKEY) & EPIKEY > 0
+  expr: is.integer(EPIKEY)
 ...

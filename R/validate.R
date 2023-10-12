@@ -49,7 +49,7 @@ verify <- function(file_path, rules) {
     x = data,
     rules = rules,
     fail_on_warn = FALSE,
-    fail_on_error = TRUE,
+    fail_on_error = TRUE
   )
 
   return(results)

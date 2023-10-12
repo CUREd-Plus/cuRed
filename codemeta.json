@@ -167,7 +167,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1603.178KB",
+  "fileSize": "1606.325KB",
   "readme": "https://github.com/CUREd-Plus/cuRed/blob/main/README.md",
   "contIntegration": "https://github.com/CUREd-Plus/cuRed/actions/workflows/R-CMD-check.yaml"
 }
