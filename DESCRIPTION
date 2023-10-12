@@ -25,4 +25,6 @@ Imports:
     duckdb,
     readxl
 Suggests:
-    codemetar
+    codemetar,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
