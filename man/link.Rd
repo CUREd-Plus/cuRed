@@ -7,11 +7,15 @@
 link(input_path, output_path, patient_path, demographics_path, deaths_path)
 }
 \arguments{
-\item{input_path}{Source Parquet file path.}
+\item{input_path}{Path of the source data file.}
 
-\item{output_path}{Target Parquet file path.}
+\item{output_path}{String. Path of the merged data file.}
 
-\item{patient_path}{String. Path to the patient ID bridge file.}
+\item{patient_path}{String. Path of the patient ID bridge file.}
+
+\item{demographics_path}{String. Path of the demographics data file.}
+
+\item{deaths_path}{String. Path of the deaths record data file.}
 }
 \description{
 Link the data set to the reference data.
