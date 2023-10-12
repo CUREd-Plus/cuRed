@@ -4,3 +4,104 @@ author: "GraceAccad"
 date: "2023-10-12"
 output: html_document
 ---
+
+
+```{r data loading, echo=FALSE}
+
+data <- read.csv("C:/Users/cs1gac/Desktop/artificial_hes_apc_0203.csv")
+#data <- readRDS("path/to/your/data.rds")
+
+```
+
+
+```{r packages, echo=FALSE, message=FALSE}
+# if(!require(knitr)){
+#     install.packages("knitr")
+#     library(knitr)}
+
+if(!require(ggplot2)){
+    install.packages("ggplot2")
+    library(ggplot2)}
+
+
+
+    # library(knitr)
+    # 
+    # library(kableExtra)
+
+```
+
+```{r convert to date format, echo =FALSE}
+
+# Function to convert character columns in "XXXX-XX-XX" format to Date
+convertToDate <- function(column) {
+  # Check if the column follows the "XXXX-XX-XX" format
+  if (all(grepl("^\\d{4}-\\d{2}-\\d{2}$", column))) {
+    # Convert the character column to Date
+    column <- as.Date(column)
+  }
+  
+  return(column)
+}
+
+```
+
+```{r 6th, echo=FALSE}
+# Loop through the columns in the dataset
+for (col_name in names(data)) {
+  # Get the column type
+  col_type <- class(data[[col_name]])
+  
+  # Print the column number, name, and type
+  cat("Column Number: ", which(names(data) == col_name), "\n")
+  cat("Column Name: ", col_name, "\n")
+  cat("Column Type: ", col_type, "\n")
+  
+  # Check if the column is of unrecognized date format and convert it
+  data[[col_name]] <- convertToDate(data[[col_name]])
+  
+  # Perform actions based on the column type
+  if (col_type == "numeric" || col_type == "integer") {
+    # Summary for numeric columns
+    cat("Summary:\n")
+    print(summary(data[[col_name]]))
+    
+    # Check if min equals max (and there are no missing values)
+    if (!anyNA(data[[col_name]]) && min(data[[col_name]]) == max(data[[col_name]])) {
+      cat("Min equals Max; skipping Histogram and Boxplot\n")
+    } else {
+      # Create a histogram with a specified number of breaks (e.g., 30)
+      cat("Histogram:\n")
+      hist(data[[col_name]], main = col_name, xlab = col_name, breaks = 30, col = "lightblue")
+      
+      # Create a boxplot with outliers and whiskers
+      cat("Boxplot:\n")
+      boxplot(data[[col_name]], main = col_name, xlab = col_name, outline = TRUE, col = "#D8BFD8")  # Pastel Purple
+    }
+  }
+  else if (col_type == "character") {
+    # Number of unique values for character columns
+    cat("Number of Unique Values: ", length(unique(data[[col_name]])), "\n")
+    
+  } else if (col_type == "factor") {
+    # Summary for factor columns
+    cat("Summary:\n")
+    print(summary(data[[col_name]]))
+  } else if (col_type == "logical") {
+    # Sum for logical columns
+    cat("Sum:\n")
+    print(sum(data[[col_name]]))
+  } else if (col_type %in% c("Date", "POSIXct", "POSIXt")) {
+    # Min and max for date or time columns
+    cat("Min: ", min(data[[col_name]], na.rm = TRUE), "\n")  # Handle missing values with na.rm
+    cat("Max: ", max(data[[col_name]], na.rm = TRUE), "\n")  # Handle missing values with na.rm
+  }
+  else {
+    cat("Column type not recognized: ", col_type, "\n")
+  }
+}
+
+#//return the number of Nas in each column 
+
+#//for date, return the min and return the max and return which months are missing between min and mix
+```
