@@ -61,13 +61,21 @@ WITH (FORMAT 'PARQUET');
 "))
 
   # Run the data linkage workflow step
-  link(
-    input_path = temp_input_path,
-    output_path = output_path,
-    patient_path = patient_path,
-    demographics_path = demographics_path,
-    deaths_path = deaths_path
+  expect_no_error(
+    link(
+      input_path = temp_input_path,
+      output_path = output_path,
+      patient_path = patient_path,
+      demographics_path = demographics_path,
+      deaths_path = deaths_path
+    )
   )
+
+  # TODO
+  # Tests:
+  # count rows
+  # count columns
+  # check unique identifier
 
   # Tidy up
   file.remove(demographics_path)
