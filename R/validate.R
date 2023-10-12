@@ -44,11 +44,11 @@ verify <- function(file_path, rules) {
   # https://davzim.github.io/dataverifyr/reference/check_data.html
   # fail_on_error: throw an error on a failed rule
   results <- dataverifyr::check_data(
-      x = data,
-      rules = rules,
-      fail_on_warn = FALSE,
-      fail_on_error = FALSE
-    )
+    x = data,
+    rules = rules,
+    fail_on_warn = FALSE,
+    fail_on_error = FALSE
+  )
 
   return(results)
 }
