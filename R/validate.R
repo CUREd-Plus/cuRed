@@ -19,8 +19,6 @@ validate <- function(data_path, rules_path) {
   rules <- dataverifyr::read_rules(rules_path)
   results <- verify(file_path = data_path, rules = rules)
 
-  plot <- dataverifyr::plot_res(results, main = data_path)
-
   return(results)
 }
 
@@ -46,11 +44,11 @@ verify <- function(file_path, rules) {
   # https://davzim.github.io/dataverifyr/reference/check_data.html
   # fail_on_error: throw an error on a failed rule
   results <- dataverifyr::check_data(
-    x = data,
-    rules = rules,
-    fail_on_warn = FALSE,
-    fail_on_error = TRUE
-  )
+      x = data,
+      rules = rules,
+      fail_on_warn = FALSE,
+      fail_on_error = FALSE
+    )
 
   return(results)
 }
