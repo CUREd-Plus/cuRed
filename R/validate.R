@@ -1,5 +1,4 @@
 library(dataverifyr)
-library(DBI)
 
 #' Validate input raw data
 #'
