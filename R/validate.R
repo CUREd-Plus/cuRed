@@ -2,6 +2,8 @@ library(dataverifyr)
 
 #' Validate input raw data
 #'
+#' This uses the [Data vertifyer package](https://davzim.github.io/dataverifyr/).
+#'
 #' @param data_path String. Source data file path.
 #' @param rules_path String. Data validation rules file path.
 #'
@@ -11,10 +13,8 @@ validate <- function(data_path, rules_path) {
   data_path <- normalizePath(file.path(data_path), mustWork = TRUE)
   rules_path <- normalizePath(file.path(rules_path), mustWork = TRUE)
 
-  # Data vertifyer package
-  # https://davzim.github.io/dataverifyr/
-
   # Load rule set from a YAML file
+  # https://davzim.github.io/dataverifyr/reference/write_rules.html
   rules <- dataverifyr::read_rules(rules_path)
   results <- verify(file_path = data_path, rules = rules)
 
@@ -41,7 +41,6 @@ verify <- function(file_path, rules) {
 
   # Run the data validation checks
   # https://davzim.github.io/dataverifyr/reference/check_data.html
-  # fail_on_error: throw an error on a failed rule
   results <- dataverifyr::check_data(
     x = data,
     rules = rules,
