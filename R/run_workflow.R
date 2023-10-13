@@ -12,7 +12,7 @@ library(cli)
 #'
 #' @param data_set_id String. Data set identifier e.g. "apc" or "op"
 #' @param raw_data_dir String. The directory that contains the raw data for this data set.
-#' @param metadata_path String path. The technical output specificiation (TOS) file path.
+#' @param metadata_path String path. The technical output specificiation (TOS) spreadsheet file path.
 #' @param staging_dir The directory to store working data files.
 #'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) {
@@ -39,7 +39,8 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
   # Generate summary report
 
   # Data linkage
-  link(input_path = binary_path)
+  output_path <- normalizePath(file.path(staging_dir, "linked.parquet"), mustWork = FALSE)
+  link(input_path = binary_path, output_path = output_path)
 
   # Cleaning
 
