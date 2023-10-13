@@ -22,7 +22,6 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
   # Ensure input directory exists
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
 
-  # TODO
   # Parse the TOS
   metadata <- parse_tos(metadata_path)
 
@@ -40,6 +39,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) 
   # Generate summary report
 
   # Data linkage
+  link(input_path = binary_path)
 
   # Cleaning
 
