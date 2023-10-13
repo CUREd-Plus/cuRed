@@ -9,5 +9,4 @@
 - name: 'My rule'
   expr: TRUE
   allow_na: no
-  negate: no
 ...
