@@ -63,3 +63,6 @@ rsconnect/
 \#*
 
 venv/
+
+# Notepad++ backup files
+*.bak

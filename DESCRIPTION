@@ -23,6 +23,7 @@ Imports:
     jsonlite,
     DBI,
     duckdb,
+    dataverifyr,
     readxl
 Suggests:
     codemetar,
