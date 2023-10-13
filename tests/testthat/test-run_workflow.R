@@ -15,11 +15,11 @@ test_that("run_workflow", {
   # Run the workflow
   expect_no_error(
     run_workflow(
-      data_set_id=data_set_id,
+      data_set_id = data_set_id,
       # Load all CSV files in this directory
-      raw_data_dir=raw_data_dir,
-      metadata_path=tos_path,
-      staging_dir=staging_dir
+      raw_data_dir = raw_data_dir,
+      metadata_path = tos_path,
+      staging_dir = staging_dir
     )
   )
 
