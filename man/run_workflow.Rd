@@ -11,7 +11,7 @@ run_workflow(data_set_id, raw_data_dir, metadata_path, staging_dir)
 
 \item{raw_data_dir}{String. The directory that contains the raw data for this data set.}
 
-\item{metadata_path}{String path. The technical output specificiation (TOS) file path.}
+\item{metadata_path}{String path. The technical output specificiation (TOS) spreadsheet file path.}
 
 \item{staging_dir}{The directory to store working data files.}
 }
