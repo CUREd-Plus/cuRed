@@ -1,5 +1,6 @@
-library(readxl)
+library(cli)
 library(dplyr)
+library(readxl)
 
 #' Parse Technical Output Specification (TOS) metadata file.
 #'
@@ -30,8 +31,13 @@ parse_tos <- function(xls_file, sheet = "HES APC TOS") {
 #' @param json_file character. Path. File name for the JSON file.
 #' @export
 df2json <- function(df, outputdir, json_file) {
+  # Create output directory if it doesn't exist
   if (!dir.exists(file.path(outputdir))) {
     dir.create(outputdir, showWarnings = FALSE, recursive = TRUE)
   }
-  jsonlite::write_json(df, file.path(outputdir, json_file))
+  # Build path
+  path <- file.path(outputdir, json_file)
+  # Serialise
+  jsonlite::write_json(df, path)
+  cli::cli_alert_info("Wrote '{path}'")
 }
