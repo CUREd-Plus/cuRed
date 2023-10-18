@@ -6,7 +6,7 @@
 #' @export
 #' @returns data.frame TOS metadata
 #'
-parse_tos <- function(xls_file, sheet = "HES APC TOS", sheet_number = NA) {
+parse_tos <- function(xls_file, sheet, sheet_number = NA) {
   myCols <- as.character(read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))
   # Get data only and attached the cols names
   var_list <- c("Field", "Field name", "Format", "Availability", "Values")

@@ -15,10 +15,10 @@ library(utils)
 #'
 #' @export
 #'
-#' @param raw_data_dir String. Path. The directory that contains the raw data files.
-#' @param output_data_dir String. Path. The directory the output data file(s) should be written to.
+#' @param raw_data_dir character Path. The directory that contains the raw data files.
+#' @param output_data_dir character Path. The directory the output data file(s) should be written to.
 #' @param metadata List. Dictionary containing the column definitions.
-#' @param data_set_id String. Data set identifier e.g. "apc", "op"
+#' @param data_set_id character Data set identifier e.g. "apc", "op"
 #'
 #' @returns String. Path. The path of the output data file.
 csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) {
@@ -32,7 +32,10 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   data_types <- jsonlite::fromJSON(data_types_path)
 
   # Update data types based on TOS spreadsheet
-  data_types <- utils::modifyList(data_types, get_data_types(metadata))
+  tos_data_types <- get_data_types(metadata)
+  for (key in data_types) {
+    data_types[key] <- tos_data_types[key]
+  }
 
   # Convert file format
   # Load the CSV file and save to Apache Parquet format.
