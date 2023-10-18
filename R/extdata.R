@@ -10,9 +10,6 @@
 #'
 #' @source https://digital.nhs.uk/services/artificial-data
 #'
-#' @examples
-#' path <- system.file(package = "cuRed", "extdata", "data/apc/artificial_hes_apc_0102_truncated.csv", )
-#'
 NULL
 
 #' HES Admitted Patient Care (APC) metadata
