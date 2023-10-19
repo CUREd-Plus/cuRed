@@ -15,12 +15,6 @@ repos:
     rev: v0.3.2.9023
     hooks:
     - id: no-debug-statement
-    #- id: roxygenize
-    #  additional_dependencies:
-    #    - jsonlite
-    #    - duckdb
-    #    - readxl
-    #    - stringr
     - id: use-tidy-description
     - id: no-browser-statement
     - id: no-debug-statement

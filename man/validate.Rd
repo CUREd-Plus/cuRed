@@ -2,15 +2,15 @@
 % Please edit documentation in R/validate.R
 \name{validate}
 \alias{validate}
-\title{Validate a data set}
+\title{Validate input raw data}
 \usage{
-validate(data_dir, metadata)
+validate(data_path, rules_path)
 }
 \arguments{
-\item{data_dir}{String path. The path of the directory containing the data.}
+\item{data_path}{String. Source data file path.}
 
-\item{metadata}{The validation rules}
+\item{rules_path}{String. Data validation rules file path.}
 }
 \description{
-Stop and raise an error if any of the rules aren't met.
+This uses the \href{https://davzim.github.io/dataverifyr/}{Data vertifyer package}.
 }
