@@ -4,7 +4,7 @@
 \alias{parse_tos}
 \title{Parse Technical Output Specification (TOS) metadata file.}
 \usage{
-parse_tos(xls_file, sheet = "HES APC TOS")
+parse_tos(xls_file, sheet)
 }
 \arguments{
 \item{xls_file}{character. Path File to Excel file from which TOS are to be loaded.}
