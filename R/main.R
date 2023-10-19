@@ -10,9 +10,11 @@ library(cli)
 #'
 #' @export
 #'
-#' @param data_sets_path String. Path. The path of the configuration file. Defaults to the one included in the library.
+#' @param data_sets_path character Path of the configuration file. Defaults to the one included in the library.
+#' @param patient_path character Path of the patient ID bridge file.
+#' @param demographics_path character Path of the demographics file.
 #'
-main <- function(data_sets_path = NA) {
+main <- function(data_sets_path = NA, patient_path, demographics_path) {
   # Set the file path of the configuration file
   if (is.na(data_sets_path)) {
     data_sets_path <- system.file("extdata", "data_sets.json", package = "cuRed", mustWork = TRUE)
@@ -37,12 +39,14 @@ main <- function(data_sets_path = NA) {
     cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
 
     # Run the workflow for this data set
-    run_workflow(
+    cuRed::run_workflow(
       data_set_id = data_set_id,
       raw_data_dir = raw_data_dir,
       metadata_path = metadata_path,
       sheet = sheet,
-      staging_dir = staging_dir
+      staging_dir = staging_dir,
+      patient_path = patient_path,
+      demographics_path = demographics_path
     )
   }
 }

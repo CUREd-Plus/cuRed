@@ -2,8 +2,10 @@
 test_that("run_workflow", {
   data_set_id <- "apc"
   raw_data_dir <- extdata_path("data/apc/raw", mustWork = TRUE)
+  patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
   staging_dir <- temp_dir()
   dir.create(staging_dir, showWarnings = FALSE, recursive = TRUE)
+  demographics_path <- tempfile(fileext = ".parquet", tmpdir = staging_dir)
 
   # Download Technical Output Specification (TOS) spreadsheet for  Hospital Episode Statistics (HES)
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
@@ -14,6 +16,22 @@ test_that("run_workflow", {
   # We must specify mode = "wb" for this to work on Windows
   download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
+  
+  # Generate mock patient demographics data
+  run_query(stringr::str_glue("
+COPY (
+  SELECT
+    uuid() AS study_id,
+    'SG13' AS derived_postcode_dist,
+    'F' AS gender,
+    '1970-01' AS dob_year_month
+  -- https://duckdb.org/docs/sql/functions/nested.html
+  FROM generate_series(1, 10)
+)
+TO '{demographics_path}'
+WITH (FORMAT 'PARQUET');
+"))
+  
   # Run the workflow
   expect_no_error(
     run_workflow(
@@ -21,7 +39,9 @@ test_that("run_workflow", {
       # Load all CSV files in this directory
       raw_data_dir = raw_data_dir,
       metadata_path = tos_path,
-      staging_dir = staging_dir
+      staging_dir = staging_dir,
+      patient_path = patient_path,
+      demographics_path = demographics_path
     )
   )
 
