@@ -4,7 +4,7 @@
 \alias{link}
 \title{Link the data set to the reference data.}
 \usage{
-link(input_path, output_path, patient_path, demographics_path, deaths_path)
+link(input_path, output_path, patient_path, demographics_path)
 }
 \arguments{
 \item{input_path}{Path of the source data file.}
@@ -14,8 +14,6 @@ link(input_path, output_path, patient_path, demographics_path, deaths_path)
 \item{patient_path}{String. Path of the patient ID bridge file.}
 
 \item{demographics_path}{String. Path of the demographics data file.}
-
-\item{deaths_path}{String. Path of the deaths record data file.}
 }
 \description{
 Link the data set to the reference data.
