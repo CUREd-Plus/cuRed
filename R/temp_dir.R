@@ -3,6 +3,7 @@
 #' R can't handle long path names on Windows, so use a short path.
 #' See [issue 75](https://github.com/CUREd-Plus/cuRed/issues/75).
 #'
+#' This is a wrapper for tempdir(), which is documented here:
 #' https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
 #' 
 #' @param check logical indicating if temp_dir() should be checked and recreated if no longer valid.

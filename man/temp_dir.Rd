@@ -14,5 +14,6 @@ R can't handle long path names on Windows, so use a short path.
 See \href{https://github.com/CUREd-Plus/cuRed/issues/75}{issue 75}.
 }
 \details{
+This is a wrapper for tempdir(), which is documented here:
 https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
 }
