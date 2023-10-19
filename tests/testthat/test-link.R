@@ -7,7 +7,7 @@ test_that("linkage works", {
   # data linkage function.
   # Create a temporary working directory for this test
   test_dir <- temp_dir()
-  dir.create(test_dir, recursive = TRUE)
+  dir.create(test_dir, recursive = TRUE, showWarnings = FALSE)
   temp_input_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
   demographics_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
   output_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
