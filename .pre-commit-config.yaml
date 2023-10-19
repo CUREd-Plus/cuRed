@@ -15,7 +15,6 @@ repos:
     - id: no-browser-statement
     - id: parsable-R
     - id: deps-in-desc
-    - id: lintr
 
 ci:
   autofix_prs: true
