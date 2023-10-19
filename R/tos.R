@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 library(cli)
 library(dplyr)
->>>>>>> main
 library(readxl)
 
 #' Parse Technical Output Specification (TOS) metadata file.
@@ -12,23 +9,14 @@ library(readxl)
 #' @export
 #' @returns data.frame TOS metadata
 #'
-<<<<<<< HEAD
-parse_tos <- function(xls_file, sheet = "HES APC TOS", sheet_number = NA) {
-=======
 parse_tos <- function(xls_file, sheet) {
-
   # Use the readxl package
   # https://readxl.tidyverse.org/reference/read_excel.html
->>>>>>> main
   myCols <- as.character(readxl::read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))
   # Get data only and attached the cols names
   var_list <- c("Field", "Field name", "Format", "Availability", "Values")
   my_data <- readxl::read_excel(xls_file, sheet, skip = 2, col_names = myCols)
-<<<<<<< HEAD
-  my_data2 <- select(my_data, all_of(var_list))
-=======
   my_data2 <- dplyr::select(my_data, dplyr::all_of(var_list))
->>>>>>> main
   # Remove empty rows
   my_data2 <- my_data2[!apply(my_data2 == "", 1, all), ]
   # Remove rows that contains NA only, nothing else.
