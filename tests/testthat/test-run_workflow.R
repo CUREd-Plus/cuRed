@@ -1,6 +1,7 @@
 # Automatically test the entire workflow for a single data set
 test_that("run_workflow", {
   data_set_id <- "apc"
+  sheet <- "HES AE TOS"
   raw_data_dir <- extdata_path("data/apc/raw", mustWork = TRUE)
   patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
   staging_dir <- temp_dir()
@@ -16,7 +17,6 @@ test_that("run_workflow", {
   # We must specify mode = "wb" for this to work on Windows
   download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
-  
   # Generate mock patient demographics data
   run_query(stringr::str_glue("
 COPY (
@@ -39,6 +39,7 @@ WITH (FORMAT 'PARQUET');
       # Load all CSV files in this directory
       raw_data_dir = raw_data_dir,
       metadata_path = tos_path,
+      sheet = sheet,
       staging_dir = staging_dir,
       patient_path = patient_path,
       demographics_path = demographics_path
