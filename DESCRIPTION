@@ -23,7 +23,8 @@ Imports:
     jsonlite,
     DBI,
     duckdb,
-    readxl
+    readxl,
+    dplyr
 Suggests:
     codemetar,
     testthat (>= 3.0.0)

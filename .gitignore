@@ -63,3 +63,4 @@ rsconnect/
 \#*
 
 venv/
+*.bak
