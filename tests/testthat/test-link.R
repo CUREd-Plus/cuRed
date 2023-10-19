@@ -61,5 +61,5 @@ WITH (FORMAT 'PARQUET');
   # check unique identifier
 
   # Tidy up
-  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE))
+  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
 })
