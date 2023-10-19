@@ -29,8 +29,9 @@ main <- function(data_sets_path = NA) {
   for (i in seq_len(nrow(data_sets))) {
     data_set_id <- as.character(data_sets$id[i])
     raw_data_dir <- normalizePath(file.path(data_sets$raw_data_dir[i]), mustWork = TRUE)
-    staging_dir <- normalizePath(file.path(data_sets$staging_dir[i]), mustWork = FALSE)
     metadata_path <- normalizePath(file.path(data_sets$metadata_path[i]), mustWork = TRUE)
+    sheet <- data_sets$sheet[i]
+    staging_dir <- normalizePath(file.path(data_sets$staging_dir[i]), mustWork = FALSE)
 
     cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
     cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
@@ -39,6 +40,8 @@ main <- function(data_sets_path = NA) {
     run_workflow(
       data_set_id = data_set_id,
       raw_data_dir = raw_data_dir,
+      metadata_path = metadata_path,
+      sheet = sheet,
       staging_dir = staging_dir
     )
   }

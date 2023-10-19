@@ -10,12 +10,13 @@ library(cli)
 #'
 #' @export
 #'
-#' @param data_set_id String. Data set identifier e.g. "apc" or "op"
-#' @param raw_data_dir String. The directory that contains the raw data for this data set.
-#' @param metadata_path String path. The technical output specificiation (TOS) spreadsheet file path.
-#' @param staging_dir The directory to store working data files.
+#' @param data_set_id character Data set identifier e.g. "apc" or "op"
+#' @param raw_data_dir character The directory that contains the raw data for this data set.
+#' @param metadata_path character Path of the technical output specification (TOS) workbook file path.
+#' @param sheet character Name of the sheet (tab) in the TOS workbook
+#' @param staging_dir character The directory to store working data files.
 #'
-run_workflow <- function(data_set_id, raw_data_dir, metadata_path, staging_dir) {
+run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
 
