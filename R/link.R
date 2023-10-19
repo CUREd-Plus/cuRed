@@ -16,7 +16,6 @@ link <- function(input_path, output_path, patient_path, demographics_path) {
   output_path <- normalizePath(file.path(output_path), mustWork = FALSE)
   patient_path <- normalizePath(file.path(patient_path), mustWork = TRUE)
   demographics_path <- normalizePath(file.path(demographics_path), mustWork = TRUE)
-  deaths_path <- normalizePath(file.path(deaths_path), mustWork = TRUE)
 
   # Build the linkage SQL query
   # Load the query template
