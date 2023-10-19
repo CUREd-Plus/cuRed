@@ -1,3 +1,4 @@
+library(cli)
 library(stringr)
 library(readr)
 
@@ -33,5 +34,6 @@ link <- function(input_path, output_path, patient_path, demographics_path, death
   # Execute the data operation
   run_query(query)
 
+  # Inform the user that the SQL query file has been written
   cli::cli_alert_info("Wrote '{output_path}'")
 }
