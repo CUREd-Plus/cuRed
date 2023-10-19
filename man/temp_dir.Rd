@@ -4,7 +4,10 @@
 \alias{temp_dir}
 \title{Create a temporary directory}
 \usage{
-temp_dir(tmpdir = "C:\\\\temp", check = FALSE)
+temp_dir(check = FALSE)
+}
+\arguments{
+\item{check}{logical indicating if temp_dir() should be checked and recreated if no longer valid.}
 }
 \description{
 R can't handle long path names on Windows, so use a short path.
