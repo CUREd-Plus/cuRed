@@ -1,4 +1,5 @@
 test_that("parse_tos", {
+  # Get the Admitted patient care TOS sheet (tab) from the Excel workbook.
   sheet <- "HES APC TOS"
   
   # Download Technical Output Specification (TOS) spreadsheet for  Hospital Episode Statistics (HES)
