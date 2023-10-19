@@ -7,13 +7,13 @@
 csv_to_binary(raw_data_dir, output_data_dir, metadata, data_set_id)
 }
 \arguments{
-\item{raw_data_dir}{String. Path. The directory that contains the raw data files.}
+\item{raw_data_dir}{character Path. The directory that contains the raw data files.}
 
-\item{output_data_dir}{String. Path. The directory the output data file(s) should be written to.}
+\item{output_data_dir}{character Path. The directory the output data file(s) should be written to.}
 
 \item{metadata}{List. Dictionary containing the column definitions.}
 
-\item{data_set_id}{String. Data set identifier e.g. "apc", "op"}
+\item{data_set_id}{character Data set identifier e.g. "apc", "op"}
 }
 \value{
 String. Path. The path of the output data file.
