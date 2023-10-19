@@ -9,7 +9,8 @@ library(readxl)
 #' @export
 #' @returns data.frame TOS metadata
 #'
-parse_tos <- function(xls_file, sheet = "HES APC TOS") {
+parse_tos <- function(xls_file, sheet) {
+
   # Use the readxl package
   # https://readxl.tidyverse.org/reference/read_excel.html
   myCols <- as.character(readxl::read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))
