@@ -24,7 +24,9 @@ Imports:
     DBI,
     duckdb,
     readr,
-    readxl
+    dataverifyr,
+    readxl,
+    dplyr
 Suggests:
     codemetar,
     testthat (>= 3.0.0)

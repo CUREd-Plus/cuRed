@@ -5,8 +5,15 @@ export(csv_to_binary)
 export(df2json)
 export(format_to_data_type)
 export(get_data_types)
+<<<<<<< HEAD
 export(link)
+=======
+export(get_query)
+>>>>>>> main
 export(main)
+export(parquet_metadata)
 export(parse_tos)
+export(read_parquet)
 export(run_workflow)
 export(validate)
+export(verify)

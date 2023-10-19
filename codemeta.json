@@ -155,6 +155,18 @@
     },
     "7": {
       "@type": "SoftwareApplication",
+      "identifier": "dataverifyr",
+      "name": "dataverifyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dataverifyr"
+    },
+    "8": {
+      "@type": "SoftwareApplication",
       "identifier": "readxl",
       "name": "readxl",
       "provider": {
@@ -165,9 +177,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
     },
+    "9": {
+      "@type": "SoftwareApplication",
+      "identifier": "dplyr",
+      "name": "dplyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dplyr"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "1601.333KB",
+  "fileSize": "1610.576KB",
   "readme": "https://github.com/CUREd-Plus/cuRed/blob/main/README.md",
   "contIntegration": "https://github.com/CUREd-Plus/cuRed/actions/workflows/R-CMD-check.yaml"
 }
