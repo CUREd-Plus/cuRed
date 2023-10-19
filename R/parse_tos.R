@@ -6,7 +6,9 @@ library(readxl)
 #'
 #' @param xls_file character. Path File to Excel file from which TOS are to be loaded.
 #' @param sheet character. Name of worksheet to be loaded.
+#'
 #' @export
+#'
 #' @returns data.frame TOS metadata
 #'
 parse_tos <- function(xls_file, sheet) {
