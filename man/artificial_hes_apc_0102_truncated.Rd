@@ -16,11 +16,3 @@ Hospital Episode Statistics (HES)
 The documentation and the artificial data files are © Crown copyright and available under the terms of the
 \href{https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/}{Open Government 3.0} licence.
 }
-<<<<<<< HEAD:man/artificial_hes_apc_0102.Rd
-\section{artificial_hes_apc_0102.csv}{
-
-One row per care event.
-}
-
-=======
->>>>>>> main:man/artificial_hes_apc_0102_truncated.Rd
