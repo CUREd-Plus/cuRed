@@ -2,7 +2,7 @@
 % Please edit documentation in R/temp_dir.R
 \name{temp_dir}
 \alias{temp_dir}
-\title{Create a temporary directory}
+\title{Create a random path for a temporary directory.}
 \usage{
 temp_dir(check = FALSE)
 }
@@ -10,10 +10,17 @@ temp_dir(check = FALSE)
 \item{check}{logical indicating if temp_dir() should be checked and recreated if no longer valid.}
 }
 \description{
-R can't handle long path names on Windows, so use a short path.
-See \href{https://github.com/CUREd-Plus/cuRed/issues/75}{issue 75}.
+This \emph{doesn't} create the directory. To do so, use dir.create.
 }
 \details{
+R can't handle long path names on Windows, so use a short path.
+See \href{https://github.com/CUREd-Plus/cuRed/issues/75}{issue 75}.
+
 This is a wrapper for tempdir(), which is documented here:
 https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
+}
+\examples{
+my_directory <- temp_dir()
+dir.create(my_directory)
+
 }
