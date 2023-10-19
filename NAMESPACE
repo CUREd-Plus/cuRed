@@ -5,11 +5,8 @@ export(csv_to_binary)
 export(df2json)
 export(format_to_data_type)
 export(get_data_types)
-<<<<<<< HEAD
-export(link)
-=======
 export(get_query)
->>>>>>> main
+export(link)
 export(main)
 export(parquet_metadata)
 export(parse_tos)
