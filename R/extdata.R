@@ -1,5 +1,7 @@
 #' HES Admitted Patient Care (APC) artificial data set
 #'
+#' This data file has been truncated to reduce the file size.
+#'
 #' Hospital Episode Statistics (HES)
 #' [NHS Artificial data pilot](https://digital.nhs.uk/services/artificial-data)
 #'

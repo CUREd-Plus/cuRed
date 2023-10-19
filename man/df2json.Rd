@@ -2,17 +2,17 @@
 % Please edit documentation in R/tos.R
 \name{df2json}
 \alias{df2json}
-\title{write dataframe to json}
+\title{Serialise a data frame to a JSON file.}
 \usage{
 df2json(df, outputdir, json_file)
 }
 \arguments{
-\item{df}{dataframe(tibble)}
+\item{df}{data.frame Data frame.}
 
-\item{outputdir}{str}
+\item{outputdir}{character. Path. Output directory.}
 
-\item{json_file}{str}
+\item{json_file}{character. Path. File name for the JSON file.}
 }
 \description{
-write dataframe to json
+Serialise a data frame to a JSON file.
 }
