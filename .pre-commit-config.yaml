@@ -17,7 +17,6 @@ repos:
     - id: no-debug-statement
     - id: use-tidy-description
     - id: no-browser-statement
-    - id: no-debug-statement
     - id: parsable-R
     - id: deps-in-desc
     - id: lintr
