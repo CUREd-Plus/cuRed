@@ -1,14 +1,13 @@
 test_that("linkage works", {
   # Get file paths
   # Use the dummy data
-  input_path <- extdata_path("data/apc/apc.csv")
-  input_path <- normalizePath(system.file("extdata", "artificial_hes_apc_0102.parquet", package = "cuRed"), mustWork = TRUE)
+  input_path <- extdata_path("data/apc/artificial_hes_apc_0102_truncated.parquet", mustWork = TRUE)
   # We'll append some fake data to this file, and use this as the input to the
   # data linkage function.
-  temp_input_path <- tempfile(fileext = ".parquet")
+  temp_input_path <- tempfile(fileext = ".parquet", tmpdir = temp_dir())
   # Generate a temporary output file
-  output_path <- tempfile(fileext = ".parquet")
-  patient_path <- normalizePath(system.file("extdata", "patient_id_bridge.csv", package = "cuRed"), mustWork = TRUE)
+  output_path <- tempfile(fileext = ".parquet", tmpdir = temp_dir())
+  patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
 
   # Append fake patient ID to the HES synthetic data
   run_query(stringr::str_glue("
