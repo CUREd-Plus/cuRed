@@ -23,10 +23,10 @@ Imports:
     jsonlite,
     DBI,
     duckdb,
+    readr,
     dataverifyr,
     readxl,
     dplyr
 Suggests:
-    codemetar,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
