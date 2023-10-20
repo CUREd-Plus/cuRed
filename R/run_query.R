@@ -6,6 +6,8 @@ library(duckdb)
 #' @param query Structured Query Language (SQL) https://duckdb.org/docs/sql/introduction
 #'
 #' @returns The number of rows affected by the query.
+#' 
+#' @export
 #'
 run_query <- function(query) {
   # https://duckdb.org/docs/api/r

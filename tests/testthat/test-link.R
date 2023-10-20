@@ -1,9 +1,17 @@
 test_that("linkage works", {
   # Get file paths
-  input_path <- extdata_path("artificial_hes_apc_0102.parquet")
+  # Use the dummy data from this package
+  input_path <- extdata_path("data/apc/artificial_hes_apc_0102_truncated.parquet", mustWork = TRUE)
+  patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
+  # We'll append some fake data to this file, and use this as the input to the
+  # data linkage function.
+  # Create a temporary working directory for this test
+  test_dir <- temp_dir()
+  dir.create(test_dir, recursive = TRUE, showWarnings = FALSE)
+  temp_input_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
+  demographics_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
   # Generate a temporary output file
-  output_path <- tempfile(fileext = ".parquet")
-  patient_path <- extdata_path("patient_id_bridge.csv")
+  output_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
 
   # Count the number of rows in the input data set
   apc_rows <- count_rows(input_path)
@@ -29,7 +37,6 @@ WITH (FORMAT 'PARQUET');
 "))
 
   # Generate mock patient demographics data
-  demographics_path <- tempfile(fileext = ".parquet")
   run_query(stringr::str_glue("
 COPY (
   SELECT
@@ -44,33 +51,13 @@ TO '{demographics_path}'
 WITH (FORMAT 'PARQUET');
 "))
 
-  # Generate mock death data
-  deaths_path <- tempfile(fileext = ".parquet")
-  run_query(stringr::str_glue("
-COPY (
-  SELECT
-    uuid() AS token_person_id,
-    uuid() AS study_id,
-    CAST('2010-01-01' AS DATE) AS reg_date_of_death,
-    70 AS dec_agec,
-    '?' AS dec_marital_status,
-    '?' AS dec_occ_type,
-    '?' AS pod_code,
-    '?' AS reg_date
-  FROM generate_series(1, 10)
-)
-TO '{deaths_path}'
-WITH (FORMAT 'PARQUET');
-"))
-
   # Run the data linkage workflow step
   expect_no_error(
     link(
       input_path = temp_input_path,
       output_path = output_path,
       patient_path = patient_path,
-      demographics_path = demographics_path,
-      deaths_path = deaths_path
+      demographics_path = demographics_path
     )
   )
 
@@ -82,7 +69,5 @@ WITH (FORMAT 'PARQUET');
   # check unique identifier
 
   # Tidy up
-  file.remove(demographics_path)
-  file.remove(deaths_path)
-  file.remove(output_path)
+  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE))
 })

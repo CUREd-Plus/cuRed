@@ -1,9 +1,14 @@
 #' Count the number of rows in the input data set.
 #'
-#' @param path String. File path of a Parquet file.
+#' @param path character File path of a Parquet file.
+#'
+#' @export
+#'
+#' @returns The number of rows in the input data file.
+#'
 count_rows <- function(path) {
   query <- stringr::str_glue("SELECT COUNT(*) FROM read_parquet('{path}')")
-  count <- get_query(query)
-  count <- as.integer(apc_rows[[1]])
+  result <- get_query(query)
+  count <- as.integer(result[[1]])
   return(count)
 }
