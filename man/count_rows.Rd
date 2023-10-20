@@ -4,10 +4,12 @@
 \alias{count_rows}
 \title{Count the number of rows in the input data set.}
 \usage{
-count_rows(path)
+count_rows(path, read_func = "read_parquet")
 }
 \arguments{
 \item{path}{character File path of a Parquet file.}
+
+\item{read_func}{character, name of DuckDB function that loads the file}
 }
 \value{
 The number of rows in the input data file.
