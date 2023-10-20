@@ -4,10 +4,14 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(data_sets_path = NA)
+main(data_sets_path = NA, patient_path, demographics_path)
 }
 \arguments{
-\item{data_sets_path}{String. Path. The path of the configuration file. Defaults to the one included in the library.}
+\item{data_sets_path}{character Path of the configuration file. Defaults to the one included in the library.}
+
+\item{patient_path}{character Path of the patient ID bridge file.}
+
+\item{demographics_path}{character Path of the demographics file.}
 }
 \description{
 \code{main} executes the entire data pipeline for all data sets.

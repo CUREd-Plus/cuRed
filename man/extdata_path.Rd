@@ -5,7 +5,7 @@
 \title{Get absolute path for an extdata file in this package
 https://r-pkgs.org/data.html#sec-data-extdata}
 \usage{
-extdata_path(path, mustWork = TRUE)
+extdata_path(path = "", mustWork = TRUE)
 }
 \arguments{
 \item{path}{String. Path.}

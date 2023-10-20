@@ -1,14 +1,16 @@
 #' Create a temporary directory
-temp_dir <- function() {
-  # RStudio can't handle long path names, so use a short path on Windows
-  # https://github.com/CUREd-Plus/cuRed/issues/75
+#' 
+#' R can't handle long path names on Windows, so use a short path.
+#' See [issue 75](https://github.com/CUREd-Plus/cuRed/issues/75).
+#' 
+#' https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
+temp_dir <- function(tmpdir = "C:/temp", check = FALSE) {
   if (.Platform$OS.type == "windows") {
-    # Use a path with fewer characters
-    # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
-    new_temp_dir <- tempfile(tmpdir = "C:\\temp")
+    # Build a path with fewer characters
+    dir_name = basename(tempdir())
+    path <- file.path(tmpdir, dir_name)
   } else {
-    new_temp_dir <- tempdir()
+    path <- tempdir(check = check)
   }
-  dir.create(new_temp_dir, showWarnings = FALSE, recursive = TRUE)
-  return(new_temp_dir)
+  return(path)
 }

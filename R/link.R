@@ -7,17 +7,15 @@ library(readr)
 #' @param output_path String. Path of the merged data file.
 #' @param patient_path String. Path of the patient ID bridge file.
 #' @param demographics_path String. Path of the demographics data file.
-#' @param deaths_path String. Path of the deaths record data file.
 #'
 #' @export
 #'
-link <- function(input_path, output_path, patient_path, demographics_path, deaths_path) {
+link <- function(input_path, output_path, patient_path, demographics_path) {
   # Get file paths
   input_path <- normalizePath(file.path(input_path), mustWork = TRUE)
   output_path <- normalizePath(file.path(output_path), mustWork = FALSE)
   patient_path <- normalizePath(file.path(patient_path), mustWork = TRUE)
   demographics_path <- normalizePath(file.path(demographics_path), mustWork = TRUE)
-  deaths_path <- normalizePath(file.path(deaths_path), mustWork = TRUE)
 
   # Build the linkage SQL query
   # Load the query template
