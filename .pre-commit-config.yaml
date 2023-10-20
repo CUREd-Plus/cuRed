@@ -11,7 +11,6 @@ repos:
   - repo: https://github.com/lorenzwalthert/precommit
     rev: v0.3.2.9023
     hooks:
-    - id: no-debug-statement
     - id: use-tidy-description
     - id: no-browser-statement
     - id: parsable-R

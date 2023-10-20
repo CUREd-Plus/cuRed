@@ -7,7 +7,10 @@
 count_rows(path)
 }
 \arguments{
-\item{path}{String. File path of a Parquet file.}
+\item{path}{character File path of a Parquet file.}
+}
+\value{
+The number of rows in the input data file.
 }
 \description{
 Count the number of rows in the input data set.

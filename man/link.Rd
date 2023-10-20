@@ -9,11 +9,11 @@ link(input_path, output_path, patient_path, demographics_path)
 \arguments{
 \item{input_path}{Path of the source data file.}
 
-\item{output_path}{String. Path of the merged data file.}
+\item{output_path}{character. Path of the merged data file.}
 
-\item{patient_path}{String. Path of the patient ID bridge file.}
+\item{patient_path}{character. Path of the patient ID bridge file.}
 
-\item{demographics_path}{String. Path of the demographics data file.}
+\item{demographics_path}{character. Path of the demographics data file.}
 }
 \description{
 Link the data set to the reference data.

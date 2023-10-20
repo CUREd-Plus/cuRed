@@ -10,10 +10,17 @@ test_that("linkage works", {
   dir.create(test_dir, recursive = TRUE, showWarnings = FALSE)
   temp_input_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
   demographics_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
+  # Generate a temporary output file
   output_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
-  
 
+  # Count the number of rows in the input data set
+  apc_rows <- count_rows(input_path)
+
+  # Generate dummy data
   # Append fake patient ID to the HES synthetic data
+  # We'll append some fake data to this file,
+  # and use this as the input to the data linkage code.
+  temp_input_path <- tempfile(fileext = ".parquet")
   run_query(stringr::str_glue("
 COPY (
   SELECT
@@ -57,9 +64,10 @@ WITH (FORMAT 'PARQUET');
   # TODO
   # Tests:
   # count rows
+  expect_equal(apc_rows, count_rows(output_path))
   # count columns
   # check unique identifier
 
   # Tidy up
-  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
+  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE))
 })
