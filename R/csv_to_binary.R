@@ -32,6 +32,8 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) 
   data_types <- jsonlite::fromJSON(data_types_path)
 
   # Update data types based on TOS spreadsheet
+  # I'm not using modifyList because we don't want to include all the fields in the TOS,
+  # but only use the columns we've specified.
   tos_data_types <- get_data_types(metadata)
   for (key in data_types) {
     data_types[key] <- tos_data_types[key]
