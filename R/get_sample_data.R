@@ -1,31 +1,5 @@
 library(cli)
 
-#' Generate sample data from NHS Artificial data pilot
-#'
-#' NHS Digital [Artificial data pilot](https://digital.nhs.uk/services/artificial-data)
-#'
-#' @export
-#'
-#' @param data_urls character, set of URIs of CSV data files to download
-#' @param number_of_rows integer, How many rows to export
-#'
-get_sample_data <- function(data_urls, number_of_rows = 100) {
-
-  output_paths <- list()
-
-  for (url in data_urls) {
-
-    path <- get_sample_data_file(
-      url = url,
-      number_of_rows = number_of_rows
-    )
-
-    append(output_paths, path)
-  }
-
-  return(output_paths)
-}
-
 #' Download a sample data file
 #'
 #' @param url character URI of CSV file to download
@@ -36,7 +10,7 @@ get_sample_data <- function(data_urls, number_of_rows = 100) {
 #'
 #' @returns Character path of output CSV file
 #'
-get_sample_data_file <- function(url, number_of_rows, output_path = NA) {
+get_sample_data <- function(url, number_of_rows, output_path = NA) {
 
   # Create a temporary file
   if (is.na(output_path)) {
@@ -45,6 +19,7 @@ get_sample_data_file <- function(url, number_of_rows, output_path = NA) {
 
   # Create working directory
   tmpdir <- temp_dir()
+  on.exit(unlink(tmpdir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
 
   filename <- basename(url)
 
@@ -63,12 +38,65 @@ get_sample_data_file <- function(url, number_of_rows, output_path = NA) {
   unzip(path, files = files, exdir = tmpdir, setTimes = TRUE)
 
   # Truncate CSV
+  number_of_lines <- number_of_rows + 1 # including the CSV header
   files = file.path(tmpdir, files)
-  lines <- readr::read_lines(files, n_max = number_of_rows)
+  lines <- readr::read_lines(files, n_max = number_of_lines)
   readr::write_lines(lines, file = output_path)
 
   # Inform user what happened
   cli::cli_alert_info("Wrote {number_of_rows} rows to '{output_path}'")
+
+  return(output_path)
+}
+
+#' Generate dummy data
+#'
+#' Append fake patient identifiers to the synthetic data.
+#'
+#' @param input_path character path of input data file
+#' @param output_path character path of output data file
+#' @param format character output file format
+#'
+#' @returns character path of output data file
+#'
+#' @export
+#'
+append_mock_ids <- function(input_path, output_path = NA, format="CSV", read_func = "read_csv_auto") {
+
+  # Get file paths
+  input_path <- normalizePath(input_path, mustWork = TRUE)
+
+  # Guess sensible default
+  if (is.na(output_path)) {
+    # File extension e.g. ".csv"
+    fileext <- paste(".", casefold(format), sep = "")
+    output_path <- tempfile(fileext = fileext, tmpdir = temp_dir())
+  } else {
+    output_path <- normalizePath(output_path, mustWork = FALSE)
+  }
+
+  if (read_func != "read_csv_auto") {
+    read_func = casefold(stringr::str_glue("read_{format}"))
+  }
+
+  # Run query to generate data
+  query <- stringr::str_glue("
+  COPY (
+    SELECT
+      -- Generate mock patient identifiers
+      uuid() AS token_person_id,
+      uuid() AS yas_id,
+      uuid() AS cured_id,
+      uuid() AS study_id,
+      -- Append input data set
+      input_data.*
+    FROM {read_func}('{input_path}') AS input_data
+  )
+  TO '{output_path}'
+  WITH (FORMAT '{format}');
+  ")
+  run_query(query)
+  cli::cli_alert_info("Wrote '{output_path}'")
 
   return(output_path)
 }

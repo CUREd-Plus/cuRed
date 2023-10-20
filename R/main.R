@@ -39,7 +39,7 @@ main <- function(data_sets_path = NA, patient_path, demographics_path) {
     cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
 
     # Run the workflow for this data set
-    cuRed::run_workflow(
+    run_workflow(
       data_set_id = data_set_id,
       raw_data_dir = raw_data_dir,
       metadata_path = metadata_path,

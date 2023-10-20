@@ -4,7 +4,7 @@
 \alias{count_rows}
 \title{Count the number of rows in the input data set.}
 \usage{
-count_rows(path, read_func = "read_parquet")
+count_rows(path, read_func = NA)
 }
 \arguments{
 \item{path}{character File path of a Parquet file.}

@@ -2,15 +2,20 @@
 % Please edit documentation in R/get_sample_data.R
 \name{get_sample_data}
 \alias{get_sample_data}
-\title{Generate sample data from NHS Artificial data pilot}
+\title{Download a sample data file}
 \usage{
-get_sample_data(data_urls, number_of_rows = 100)
+get_sample_data(url, number_of_rows, output_path = NA)
 }
 \arguments{
-\item{data_urls}{character, set of URIs of CSV data files to download}
+\item{url}{character URI of CSV file to download}
 
-\item{number_of_rows}{integer, How many rows to export}
+\item{number_of_rows}{integer truncate the output data to this number of lines}
+
+\item{output_path}{character path, export the output data to the file}
+}
+\value{
+Character path of output CSV file
 }
 \description{
-NHS Digital \href{https://digital.nhs.uk/services/artificial-data}{Artificial data pilot}
+Download a sample data file
 }
