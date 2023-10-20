@@ -19,8 +19,3 @@ See \href{https://github.com/CUREd-Plus/cuRed/issues/75}{issue 75}.
 This is a wrapper for tempdir(), which is documented here:
 https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
 }
-\examples{
-my_directory <- temp_dir()
-dir.create(my_directory)
-
-}
