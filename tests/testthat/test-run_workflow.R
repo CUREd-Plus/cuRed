@@ -1,3 +1,5 @@
+library(utils)
+
 # Automatically test the entire workflow for a single data set
 test_that("run_workflow", {
   data_set_id <- "apc"
@@ -20,7 +22,7 @@ test_that("run_workflow", {
   url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
   tos_path <- file.path(staging_dir, basename(url))
   # We must specify mode = "wb" for this to work on Windows
-  download.file(url, method = "auto", destfile = tos_path, mode = "wb")
+  utils::download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
   # Generate mock patient demographics data
   run_query(stringr::str_glue("

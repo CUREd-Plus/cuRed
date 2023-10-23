@@ -6,7 +6,7 @@
 https://duckdb.org/docs/api/r.html
 https://dbi.r-dbi.org/reference/dbconnect}
 \usage{
-connect(dbdir = ":memory:", ..)
+connect(dbdir = ":memory:", ...)
 }
 \arguments{
 \item{dbdir}{The location of the database, default :memory:}

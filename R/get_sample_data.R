@@ -1,4 +1,5 @@
 library(cli)
+library(utils)
 
 #' Download a sample data file
 #'
@@ -25,17 +26,17 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 
   # Download sample data (ZIP archive of CSVs)
   path <- file.path(tmpdir, filename)
-  download.file(url, method = "auto", destfile = path, mode = "wb", quiet = TRUE)
+  utils::download.file(url, method = "auto", destfile = path, mode = "wb", quiet = TRUE)
   cli::cli_alert_info("Downloaded '{path}'")
 
   # Show archive contents
-  zipped_files <- unzip(path, list = TRUE)$Name
+  zipped_files <- utils::unzip(path, list = TRUE)$Name
   # Just get CSV files
   zipped_files = zipped_files[grepl("\\.csv$", zipped_files)]
 
   # Get the first CSV file only
   files <- zipped_files[1]
-  unzip(path, files = files, exdir = tmpdir, setTimes = TRUE)
+  utils::unzip(path, files = files, exdir = tmpdir, setTimes = TRUE)
 
   # Truncate CSV
   if (!is.na(number_of_rows)) {

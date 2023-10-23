@@ -16,6 +16,7 @@ library(stringr)
 #' @param metadata_path character Path of the technical output specification (TOS) workbook file path.
 #' @param sheet character Name of the sheet (tab) in the TOS workbook
 #' @param staging_dir character The directory to store working data files.
+#' @param demographics_path character Path of the patient identifier bridge data file.
 #' @param demographics_path character Path of the demographics file.
 #'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, demographics_path) {

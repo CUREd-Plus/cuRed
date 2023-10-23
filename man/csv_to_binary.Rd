@@ -9,7 +9,7 @@ csv_to_binary(
   output_data_dir,
   metadata,
   data_set_id,
-  output_filename = "data.parquet"
+  output_filename = NA
 )
 }
 \arguments{
@@ -20,6 +20,8 @@ csv_to_binary(
 \item{metadata}{List. Dictionary containing the column definitions.}
 
 \item{data_set_id}{character Data set identifier e.g. "apc", "op"}
+
+\item{output_filename}{character,file name of the binary data file e.g. "apc_binary.parquet"}
 }
 \value{
 String. Path. The path of the output data file.

@@ -50,10 +50,10 @@ get_query <- function(query) {
 #' @param dbdir The location of the database, default :memory:
 #' @returns Database connection handle
 #' @export
-connect <- function(dbdir = ":memory:", ..) {
+connect <- function(dbdir = ":memory:", ...) {
 
   # Connect to an in-memory database
-  con <- DBI::dbConnect(duckdb::duckdb(), dbdir = dbdir, ..)
+  con <- DBI::dbConnect(duckdb::duckdb(), dbdir = dbdir, ...)
 
   return(con)
 }
