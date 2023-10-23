@@ -29,11 +29,14 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
     output_filename = stringr::str_glue("{data_set_id}_binary.parquet")
   }
 
+  raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
+  output_data_dir <- normalizePath(output_data_dir, mustWork = FALSE)
+
   # Define the absolute paths
-  input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
-  output_path <- normalizePath(file.path(output_data_dir, output_filename), mustWork = FALSE)
+  input_glob <- file.path(raw_data_dir, "*.csv")
+  output_path <- file.path(output_data_dir, output_filename)
   sql_query_file_path <- paste(output_path, ".sql", sep = "")
-  data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
+  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
 
   # Load column order and default data types
   data_types <- jsonlite::fromJSON(data_types_path)
