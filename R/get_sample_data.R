@@ -58,7 +58,6 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 #'
 #' @param input_path character path of input CSV data file (or files, e.g. "*.csv")
 #' @param output_path character path of output CSV data file
-#' @param format character output file format
 #'
 #' @returns character path of output data file
 #'
@@ -82,7 +81,7 @@ append_mock_ids <- function(input_path, output_path) {
   TO '{output_path}'
   WITH (FORMAT 'CSV', HEADER);
   ")
-  query_path <- paste(output_path, ".sql", sep="")
+  query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(x = query, file = query_path)
   run_query(query)
   cli::cli_alert_info("Wrote '{output_path}'")

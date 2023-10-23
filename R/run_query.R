@@ -47,7 +47,9 @@ get_query <- function(query) {
 #' Connect to database
 #' https://duckdb.org/docs/api/r.html
 #' https://dbi.r-dbi.org/reference/dbconnect
+#' @param dbdir The location of the database, default :memory:
 #' @returns Database connection handle
+#' @export
 connect <- function(dbdir = ":memory:", ..) {
 
   # Connect to an in-memory database

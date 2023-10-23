@@ -8,6 +8,9 @@ https://dbi.r-dbi.org/reference/dbconnect}
 \usage{
 connect(dbdir = ":memory:", ..)
 }
+\arguments{
+\item{dbdir}{The location of the database, default :memory:}
+}
 \value{
 Database connection handle
 }

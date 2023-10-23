@@ -10,8 +10,6 @@ append_mock_ids(input_path, output_path)
 \item{input_path}{character path of input CSV data file (or files, e.g. "*.csv")}
 
 \item{output_path}{character path of output CSV data file}
-
-\item{format}{character output file format}
 }
 \value{
 character path of output data file
