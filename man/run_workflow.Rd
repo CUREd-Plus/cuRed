@@ -25,6 +25,8 @@ run_workflow(
 
 \item{staging_dir}{character The directory to store working data files.}
 
+\item{patient_path}{character Path of the patient identifier bridge data file.}
+
 \item{demographics_path}{character Path of the demographics file.}
 }
 \description{

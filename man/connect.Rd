@@ -10,6 +10,8 @@ connect(dbdir = ":memory:", ...)
 }
 \arguments{
 \item{dbdir}{The location of the database, default :memory:}
+
+\item{...}{Arguments to DBI::dbConnect(...)}
 }
 \value{
 Database connection handle
