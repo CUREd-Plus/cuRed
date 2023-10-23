@@ -15,12 +15,10 @@ test_that("run_workflow", {
     output_path = file.path(staging_dir, stringr::str_glue("{data_set_id}_raw_appended.csv"))
   )
 
-  # Download Technical Output Specification (TOS) spreadsheet for  Hospital Episode Statistics (HES)
+  # Download Technical Output Specification (TOS) spreadsheet
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
   url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
-  # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
   tos_path <- file.path(staging_dir, basename(url))
-  # https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file
   # We must specify mode = "wb" for this to work on Windows
   download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
