@@ -14,7 +14,7 @@ test_that("linkage works", {
   output_path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
 
   # Count the number of rows in the input data set
-  apc_rows <- count_rows(input_path)
+  apc_rows <- count_rows(input_path, read_func = 'read_parquet')
 
   # Generate dummy data
   # Append fake patient ID to the HES synthetic data
@@ -64,7 +64,7 @@ WITH (FORMAT 'PARQUET');
   # TODO
   # Tests:
   # count rows
-  expect_equal(apc_rows, count_rows(output_path))
+  expect_equal(apc_rows, count_rows(output_path, read_func = "read_parquet"))
   # count columns
   # check unique identifier
 

@@ -1,11 +1,14 @@
 # Automatically test the entire workflow for a single data set
 test_that("run_workflow", {
   data_set_id <- "apc"
-  raw_data_dir <- file.path(staging_dir, "raw")
-  dir.create(raw_data_dir, showWarnings = FALSE, recursive = TRUE)
   sheet <- "HES APC TOS"
   patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
+  # Create temporary working directory
   staging_dir <- temp_dir()
+  # Tidy up on exit/failure
+  on.exit(unlink(staging_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
+  raw_data_dir <- file.path(staging_dir, "raw")
+  dir.create(raw_data_dir, showWarnings = FALSE, recursive = TRUE)
   demographics_path <- tempfile(fileext = ".parquet", tmpdir = staging_dir)
 
   # Generate dummy data
@@ -52,7 +55,4 @@ WITH (FORMAT 'PARQUET');
     )
   )
 
-  # Tidy up
-  # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/unlink
-  on.exit(unlink(staging_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
 })

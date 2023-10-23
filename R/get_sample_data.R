@@ -92,6 +92,8 @@ append_mock_ids <- function(input_path, output_path = NA, format="CSV", read_fun
   TO '{output_path}'
   WITH (FORMAT '{format}');
   ")
+  query_path <- file.path(dirname(output_path), "mock.sql")
+  readr::write_file(x = query, file = query_path)
   run_query(query)
   cli::cli_alert_info("Wrote '{output_path}'")
 
