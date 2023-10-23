@@ -4,15 +4,15 @@
 \alias{count_rows}
 \title{Count the number of rows in the input data set.}
 \usage{
-count_rows(path, read_func = NA)
+count_rows(path, read_func = "read_csv_auto")
 }
 \arguments{
 \item{path}{character File path of a Parquet file.}
 
-\item{read_func}{character, name of DuckDB function that loads the file}
+\item{read_func}{character, name of DuckDB function that loads the file e.g. "read_csv_auto", "read_parquet"}
 }
 \value{
-The number of rows in the input data file.
+integer number of rows in the input data file.
 }
 \description{
 Count the number of rows in the input data set.

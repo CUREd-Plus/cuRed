@@ -4,7 +4,13 @@
 \alias{csv_to_binary}
 \title{Use Duck DB to perform file format conversion.}
 \usage{
-csv_to_binary(raw_data_dir, output_data_dir, metadata, data_set_id)
+csv_to_binary(
+  raw_data_dir,
+  output_data_dir,
+  metadata,
+  data_set_id,
+  output_filename = "data.parquet"
+)
 }
 \arguments{
 \item{raw_data_dir}{character Path. The directory that contains the raw data files.}

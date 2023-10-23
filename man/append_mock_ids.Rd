@@ -2,19 +2,14 @@
 % Please edit documentation in R/get_sample_data.R
 \name{append_mock_ids}
 \alias{append_mock_ids}
-\title{Generate dummy data}
+\title{Append generated dummy data in CSV format.}
 \usage{
-append_mock_ids(
-  input_path,
-  output_path = NA,
-  format = "CSV",
-  read_func = "read_csv_auto"
-)
+append_mock_ids(input_path, output_path)
 }
 \arguments{
-\item{input_path}{character path of input data file}
+\item{input_path}{character path of input CSV data file (or files, e.g. "*.csv")}
 
-\item{output_path}{character path of output data file}
+\item{output_path}{character path of output CSV data file}
 
 \item{format}{character output file format}
 }

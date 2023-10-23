@@ -4,7 +4,7 @@
 \alias{get_sample_data}
 \title{Download a sample data file}
 \usage{
-get_sample_data(url, number_of_rows, output_path = NA)
+get_sample_data(url, number_of_rows = NA, output_path = NA)
 }
 \arguments{
 \item{url}{character URI of CSV file to download}
