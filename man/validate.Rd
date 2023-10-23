@@ -7,9 +7,9 @@
 validate(data_path, rules_path)
 }
 \arguments{
-\item{data_path}{String. Source data file path.}
+\item{data_path}{character Source data file path.}
 
-\item{rules_path}{String. Data validation rules file path.}
+\item{rules_path}{character Data validation rules file path.}
 }
 \description{
 This uses the \href{https://davzim.github.io/dataverifyr/}{Data vertifyer package}.

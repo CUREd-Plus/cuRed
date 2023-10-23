@@ -1,0 +1,6 @@
+{
+  "token_person_id": "VARCHAR",
+  "yas_id": "VARCHAR",
+  "cured_id": "VARCHAR",
+  "study_id": "VARCHAR"
+}

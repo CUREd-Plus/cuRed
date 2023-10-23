@@ -4,14 +4,14 @@ library(dataverifyr)
 #'
 #' This uses the [Data vertifyer package](https://davzim.github.io/dataverifyr/).
 #'
-#' @param data_path String. Source data file path.
-#' @param rules_path String. Data validation rules file path.
+#' @param data_path character Source data file path.
+#' @param rules_path character Data validation rules file path.
 #'
 #' @export
 validate <- function(data_path, rules_path) {
   # Get input file paths
-  data_path <- normalizePath(file.path(data_path), mustWork = TRUE)
-  rules_path <- normalizePath(file.path(rules_path), mustWork = TRUE)
+  data_path <- normalizePath(data_path, mustWork = TRUE)
+  rules_path <- normalizePath(rules_path, mustWork = TRUE)
 
   # Load rule set from a YAML file
   # https://davzim.github.io/dataverifyr/reference/write_rules.html
@@ -34,7 +34,7 @@ validate <- function(data_path, rules_path) {
 #'
 verify <- function(file_path, rules) {
   # Check input file exists
-  file_path <- normalizePath(file.path(file_path), mustWork = TRUE)
+  file_path <- normalizePath(file_path, mustWork = TRUE)
 
   # Load data
   data <- read_parquet(file_path)

@@ -1,6 +1,7 @@
-#' Create a random path for a temporary directory.
+#' Create a temporary directory with a random path.
 #'
-#' This *doesn't* create the directory. To do so, use dir.create.
+#' The directory will be deleted when the session ends, as
+#' tempdir() creates a per-session directory path.
 #'
 #' R can't handle long path names on Windows, so use a short path.
 #' See [issue 75](https://github.com/CUREd-Plus/cuRed/issues/75).
@@ -21,5 +22,12 @@ temp_dir <- function(check = FALSE) {
   } else {
     path <- tempdir(check = check)
   }
+
+  # Append a random subdirectory
+  path = file.path(path, basename(tempfile(pattern = "")))
+
+  # Make the directory
+  dir.create(path, showWarnings = FALSE, recursive = TRUE)
+
   return(path)
 }

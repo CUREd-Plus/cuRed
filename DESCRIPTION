@@ -23,8 +23,8 @@ Imports:
     jsonlite,
     DBI,
     duckdb,
-    readr,
     dataverifyr,
+    readr,
     readxl,
     dplyr
 Suggests:

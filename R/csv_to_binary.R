@@ -1,6 +1,7 @@
+library(cli)
 library(DBI)
 library(duckdb)
-library(cli)
+library(stringr)
 library(utils)
 
 #' Use Duck DB to perform file format conversion.
@@ -19,19 +20,32 @@ library(utils)
 #' @param output_data_dir character Path. The directory the output data file(s) should be written to.
 #' @param metadata List. Dictionary containing the column definitions.
 #' @param data_set_id character Data set identifier e.g. "apc", "op"
+#' @param output_filename character,file name of the binary data file e.g. "apc_binary.parquet"
 #'
 #' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) {
+csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, output_filename=NA) {
+
+  if (is.na(output_filename)) {
+    output_filename = stringr::str_glue("{data_set_id}_binary.parquet")
+  }
+
   # Define the absolute paths
   input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
-  sql_query_file_path <- normalizePath(file.path(output_data_dir, "query.sql"), mustWork = FALSE)
-  output_path <- normalizePath(file.path(output_data_dir, "data.parquet"), mustWork = FALSE)
+  output_path <- normalizePath(file.path(output_data_dir, output_filename), mustWork = FALSE)
+  sql_query_file_path <- paste(output_path, ".sql", sep = "")
   data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
 
   # Load column order and default data types
   data_types <- jsonlite::fromJSON(data_types_path)
 
+  # Append patient ID fields
+  patient_id_data_types_path <- extdata_path("sql_data_types/patient_id_bridge.json")
+  patient_id_data_types <- jsonlite::fromJSON(patient_id_data_types_path)
+  data_types = utils::modifyList(data_types, patient_id_data_types)
+
   # Update data types based on TOS spreadsheet
+  # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
+  # but only use the columns we've specified.
   tos_data_types <- get_data_types(metadata)
   for (key in data_types) {
     data_types[key] <- tos_data_types[key]

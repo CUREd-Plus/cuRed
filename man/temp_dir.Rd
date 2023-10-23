@@ -2,7 +2,7 @@
 % Please edit documentation in R/temp_dir.R
 \name{temp_dir}
 \alias{temp_dir}
-\title{Create a random path for a temporary directory.}
+\title{Create a temporary directory with a random path.}
 \usage{
 temp_dir(check = FALSE)
 }
@@ -10,7 +10,8 @@ temp_dir(check = FALSE)
 \item{check}{logical indicating if temp_dir() should be checked and recreated if no longer valid.}
 }
 \description{
-This \emph{doesn't} create the directory. To do so, use dir.create.
+The directory will be deleted when the session ends, as
+tempdir() creates a per-session directory path.
 }
 \details{
 R can't handle long path names on Windows, so use a short path.

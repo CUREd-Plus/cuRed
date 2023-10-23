@@ -1,3 +1,5 @@
+library(utils)
+
 test_that("parse_tos", {
   # Get the Admitted patient care TOS sheet (tab) from the Excel workbook.
   sheet <- "HES APC TOS"
@@ -10,13 +12,13 @@ test_that("parse_tos", {
   dir.create(tmpdir, showWarnings = FALSE, recursive = TRUE)
   tos_path <- tempfile(fileext = ".xlsx", tmpdir = tmpdir)
   # https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file
-  download.file(url, method = "auto", destfile = tos_path, mode = "wb")
+  utils::download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
   # Parse TOS
   expect_no_error(
     parse_tos(tos_path, sheet = sheet)
   )
-  
+
   # Tidy up (delete temporary files)
   on.exit(unlink(tmpdir, recursive = TRUE, force = TRUE))
 })

@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_query.R
 \name{run_query}
 \alias{run_query}
-\title{Run a DuckDB query}
+\title{Execute a DuckDB query that doesn't return a result.}
 \usage{
 run_query(query)
 }
@@ -13,5 +13,5 @@ run_query(query)
 The number of rows affected by the query.
 }
 \description{
-Run a DuckDB query
+Execute a DuckDB query that doesn't return a result.
 }
