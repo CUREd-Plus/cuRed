@@ -1,7 +1,7 @@
 library(DBI)
 library(duckdb)
 
-#' Run a DuckDB query
+#' Execute a DuckDB query that doesn't return a result.
 #'
 #' @param query Structured Query Language (SQL) https://duckdb.org/docs/sql/introduction
 #'
@@ -11,12 +11,12 @@ library(duckdb)
 #'
 run_query <- function(query) {
   con <- DBI::dbConnect(duckdb::duckdb(), dbdir = ":memory:")
-  on.exit(DBI::dbDisconnect(con), add = TRUE, after = FALSE)
+  on.exit(DBI::dbDisconnect(con, shutdown = TRUE), add = TRUE, after = FALSE)
 
   # Error messages may appear after the query itself, so you might need to truncate the query.
 
-  # Run the query
-  # TODO https://dbi.r-dbi.org/reference/dbgetquery
+  # Execute the query
+  # https://dbi.r-dbi.org/reference/dbexecute
   affected_rows_count <- DBI::dbExecute(con, query)
   cli::cli_alert_info("{affected_rows_count} rows affected")
 
@@ -34,6 +34,7 @@ run_query <- function(query) {
 get_query <- function(query) {
 
   con <- connect()
+  on.exit(DBI::dbDisconnect(con, shutdown = TRUE), add = TRUE, after = FALSE)
 
   # Run the query
   # https://duckdb.org/docs/api/r.html
@@ -44,11 +45,13 @@ get_query <- function(query) {
 
 
 #' Connect to database
+#' https://duckdb.org/docs/api/r.html
+#' https://dbi.r-dbi.org/reference/dbconnect
+#' @returns Database connection handle
 connect <- function(dbdir = ":memory:", ..) {
 
   # Connect to an in-memory database
   con <- DBI::dbConnect(duckdb::duckdb(), dbdir = dbdir, ..)
-  on.exit(DBI::dbDisconnect(con), add = TRUE, after = FALSE)
 
   return(con)
 }
