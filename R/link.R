@@ -23,7 +23,7 @@ link <- function(data_set_id, input_path, output_path, patient_path, demographic
 
   # Build the linkage SQL query
   # Load the query template
-  query_template_path <- extdata_path(stringr::str_glur("queries/linkage/{data_set_id}.sql"))
+  query_template_path <- extdata_path(stringr::str_glue("queries/linkage/{data_set_id}.sql"))
   query_template <- readr::read_file(query_template_path)
   # Inject variable values into the SQL template
   query <- stringr::str_glue(query_template)
