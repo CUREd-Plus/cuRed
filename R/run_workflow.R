@@ -48,6 +48,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
 
   # Data linkage
   link(
+    data_set_id = data_set_id,
     input_path = binary_path,
     output_path = linked_path,
     patient_path = patient_path,

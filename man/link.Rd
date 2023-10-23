@@ -4,9 +4,11 @@
 \alias{link}
 \title{Link the data set to the reference data.}
 \usage{
-link(input_path, output_path, patient_path, demographics_path)
+link(data_set_id, input_path, output_path, patient_path, demographics_path)
 }
 \arguments{
+\item{data_set_id}{character. Data set identifier e.g. "apc", "ae", "op"}
+
 \item{input_path}{Path of the source data file.}
 
 \item{output_path}{character. Path of the merged data file.}
@@ -14,6 +16,9 @@ link(input_path, output_path, patient_path, demographics_path)
 \item{patient_path}{character. Path of the patient ID bridge file.}
 
 \item{demographics_path}{character. Path of the demographics data file.}
+}
+\value{
+character. Path of output file.
 }
 \description{
 Link the data set to the reference data.
