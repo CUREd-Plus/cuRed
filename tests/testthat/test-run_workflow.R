@@ -1,12 +1,18 @@
 # Automatically test the entire workflow for a single data set
 test_that("run_workflow", {
   data_set_id <- "apc"
-  raw_data_dir <- extdata_path("data/apc/raw", mustWork = TRUE)
+  raw_data_dir <- file.path(staging_dir, "raw")
+  dir.create(raw_data_dir, showWarnings = FALSE, recursive = TRUE)
   sheet <- "HES APC TOS"
   patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
   staging_dir <- temp_dir()
-  dir.create(staging_dir, showWarnings = FALSE, recursive = TRUE)
   demographics_path <- tempfile(fileext = ".parquet", tmpdir = staging_dir)
+
+  # Generate dummy data
+  append_mock_ids(
+    input_path = file.path(extdata_path("data/apc/raw", mustWork = TRUE), "*.csv"),
+    output_path = raw_data_dir
+  )
 
   # Download Technical Output Specification (TOS) spreadsheet for  Hospital Episode Statistics (HES)
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary

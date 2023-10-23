@@ -53,7 +53,7 @@ get_sample_data <- function(url, number_of_rows, output_path = NA) {
 #'
 #' Append fake patient identifiers to the synthetic data.
 #'
-#' @param input_path character path of input data file
+#' @param input_path character path of input data file (or files, e.g. "*.csv")
 #' @param output_path character path of output data file
 #' @param format character output file format
 #'
@@ -62,9 +62,6 @@ get_sample_data <- function(url, number_of_rows, output_path = NA) {
 #' @export
 #'
 append_mock_ids <- function(input_path, output_path = NA, format="CSV", read_func = "read_csv_auto") {
-
-  # Get file paths
-  input_path <- normalizePath(input_path, mustWork = TRUE)
 
   # Guess sensible default
   if (is.na(output_path)) {
