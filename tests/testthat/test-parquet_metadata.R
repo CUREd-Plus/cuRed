@@ -3,7 +3,7 @@ library(stringr)
 test_that("parquet_metadata works", {
   # Generate dummy data
   test_dir <- temp_dir()
-  dir.create(test_dir, showWarnings = FALSE, recursive = TRUE)
+  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
   path <- tempfile(fileext = ".parquet", tmpdir = test_dir)
   query <- stringr::str_glue("COPY(SELECT CAST(42 AS INT) AS my_column) TO '{path}' (FORMAT 'parquet');")
   run_query(query)
@@ -12,7 +12,4 @@ test_that("parquet_metadata works", {
   expect_no_error(metadata <- parquet_metadata(path))
   expect_equal(nrow(metadata), 1)
   expect_equal(metadata$path_in_schema[1], "my_column")
-
-  # Tidy up
-  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE))
 })
