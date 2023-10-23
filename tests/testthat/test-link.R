@@ -54,6 +54,7 @@ WITH (FORMAT 'PARQUET');
   # Run the data linkage workflow step
   expect_no_error(
     link(
+      data_set_id = data_set_id,
       input_path = temp_input_path,
       output_path = output_path,
       patient_path = patient_path,
