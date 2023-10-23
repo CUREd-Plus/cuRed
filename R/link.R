@@ -26,7 +26,7 @@ link <- function(input_path, output_path, patient_path, demographics_path) {
   query <- stringr::str_glue(query_template)
 
   # Write SQL query to text file
-  query_path <- normalizePath(paste(output_path, "_query.sql", sep = ""), mustWork = FALSE)
+  query_path <- normalizePath(paste(output_path, ".sql", sep = ""), mustWork = FALSE)
   readr::write_file(query, query_path)
 
   # Execute the data operation

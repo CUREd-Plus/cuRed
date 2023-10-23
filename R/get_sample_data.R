@@ -10,7 +10,7 @@ library(cli)
 #'
 #' @returns Character path of output CSV file
 #'
-get_sample_data <- function(url, number_of_rows, output_path = NA) {
+get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 
   # Create a temporary file
   if (is.na(output_path)) {
@@ -38,10 +38,13 @@ get_sample_data <- function(url, number_of_rows, output_path = NA) {
   unzip(path, files = files, exdir = tmpdir, setTimes = TRUE)
 
   # Truncate CSV
-  number_of_lines <- number_of_rows + 1 # including the CSV header
-  files = file.path(tmpdir, files)
-  lines <- readr::read_lines(files, n_max = number_of_lines)
-  readr::write_lines(lines, file = output_path)
+  if (!is.na(number_of_rows)) {
+    number_of_rows = as.integer(number_of_rows)
+    number_of_lines <- number_of_rows + 1 # including the CSV header
+    files = file.path(tmpdir, files)
+    lines <- readr::read_lines(files, n_max = number_of_lines)
+    readr::write_lines(lines, file = output_path)
+  }
 
   # Inform user what happened
   cli::cli_alert_info("Wrote {number_of_rows} rows to '{output_path}'")
@@ -49,32 +52,19 @@ get_sample_data <- function(url, number_of_rows, output_path = NA) {
   return(output_path)
 }
 
-#' Generate dummy data
+#' Append generated dummy data in CSV format.
 #'
 #' Append fake patient identifiers to the synthetic data.
 #'
-#' @param input_path character path of input data file (or files, e.g. "*.csv")
-#' @param output_path character path of output data file
+#' @param input_path character path of input CSV data file (or files, e.g. "*.csv")
+#' @param output_path character path of output CSV data file
 #' @param format character output file format
 #'
 #' @returns character path of output data file
 #'
 #' @export
 #'
-append_mock_ids <- function(input_path, output_path = NA, format="CSV", read_func = "read_csv_auto") {
-
-  # Guess sensible default
-  if (is.na(output_path)) {
-    # File extension e.g. ".csv"
-    fileext <- paste(".", casefold(format), sep = "")
-    output_path <- tempfile(fileext = fileext, tmpdir = temp_dir())
-  } else {
-    output_path <- normalizePath(output_path, mustWork = FALSE)
-  }
-
-  if (read_func != "read_csv_auto") {
-    read_func = casefold(stringr::str_glue("read_{format}"))
-  }
+append_mock_ids <- function(input_path, output_path) {
 
   # Run query to generate data
   query <- stringr::str_glue("
@@ -87,12 +77,12 @@ append_mock_ids <- function(input_path, output_path = NA, format="CSV", read_fun
       uuid() AS study_id,
       -- Append input data set
       input_data.*
-    FROM {read_func}('{input_path}') AS input_data
+    FROM read_csv_auto('{input_path}') AS input_data
   )
   TO '{output_path}'
-  WITH (FORMAT '{format}');
+  WITH (FORMAT 'CSV', HEADER);
   ")
-  query_path <- file.path(dirname(output_path), "mock.sql")
+  query_path <- paste(output_path, ".sql", sep="")
   readr::write_file(x = query, file = query_path)
   run_query(query)
   cli::cli_alert_info("Wrote '{output_path}'")

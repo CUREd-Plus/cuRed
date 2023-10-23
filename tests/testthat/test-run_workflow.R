@@ -7,21 +7,19 @@ test_that("run_workflow", {
   staging_dir <- temp_dir()
   # Tidy up on exit/failure
   on.exit(unlink(staging_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
-  raw_data_dir <- file.path(staging_dir, "raw")
-  dir.create(raw_data_dir, showWarnings = FALSE, recursive = TRUE)
-  demographics_path <- tempfile(fileext = ".parquet", tmpdir = staging_dir)
+  demographics_path <- file.path(staging_dir, "demographics.parquet")
 
   # Generate dummy data
   append_mock_ids(
     input_path = file.path(extdata_path("data/apc/raw", mustWork = TRUE), "*.csv"),
-    output_path = raw_data_dir
+    output_path = file.path(staging_dir, stringr::str_glue("{data_set_id}_raw_appended.csv"))
   )
 
   # Download Technical Output Specification (TOS) spreadsheet for  Hospital Episode Statistics (HES)
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
   url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
   # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/tempfile
-  tos_path <- tempfile(tmpdir = staging_dir, fileext = ".xlsx")
+  tos_path <- file.path(staging_dir, basename(url))
   # https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file
   # We must specify mode = "wb" for this to work on Windows
   download.file(url, method = "auto", destfile = tos_path, mode = "wb")
@@ -46,7 +44,7 @@ WITH (FORMAT 'PARQUET');
     run_workflow(
       data_set_id = data_set_id,
       # Load all CSV files in this directory
-      raw_data_dir = raw_data_dir,
+      raw_data_dir = staging_dir,
       metadata_path = tos_path,
       sheet = sheet,
       staging_dir = staging_dir,

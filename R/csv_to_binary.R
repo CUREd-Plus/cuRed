@@ -21,15 +21,20 @@ library(utils)
 #' @param data_set_id character Data set identifier e.g. "apc", "op"
 #'
 #' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id) {
+csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, output_filename="data.parquet") {
   # Define the absolute paths
   input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
-  sql_query_file_path <- normalizePath(file.path(output_data_dir, "query.sql"), mustWork = FALSE)
-  output_path <- normalizePath(file.path(output_data_dir, "data.parquet"), mustWork = FALSE)
+  output_path <- normalizePath(file.path(output_data_dir, output_filename), mustWork = FALSE)
+  sql_query_file_path <- paste(output_path, ".sql", sep = "")
   data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
 
   # Load column order and default data types
   data_types <- jsonlite::fromJSON(data_types_path)
+
+  # Append patient ID fields
+  patient_id_data_types_path <- extdata_path("sql_data_types/patient_id_bridge.json")
+  patient_id_data_types <- jsonlite::fromJSON(patient_id_data_types_path)
+  data_types = modifyList(data_types, patient_id_data_types)
 
   # Update data types based on TOS spreadsheet
   # I'm not using modifyList because we don't want to include all the fields in the TOS,

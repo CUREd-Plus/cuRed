@@ -26,7 +26,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
-  output_path <- normalizePath(file.path(staging_dir, "linked.parquet"), mustWork = FALSE)
+  linked_path <- file.path(staging_dir, stringr::str_glue("{data_set_id}_linked.parquet"))
 
   # Parse the TOS
   metadata <- parse_tos(metadata_path, sheet = sheet)
@@ -36,7 +36,8 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     raw_data_dir = raw_data_dir,
     output_data_dir = staging_dir,
     metadata = metadata,
-    data_set_id = data_set_id
+    data_set_id = data_set_id,
+    output_filename = stringr::str_glue("{data_set_id}_binary.parquet")
   )
 
   # Validate
@@ -48,7 +49,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   # Data linkage
   link(
     input_path = binary_path,
-    output_path = output_path,
+    output_path = linked_path,
     patient_path = patient_path,
     demographics_path = demographics_path
   )
