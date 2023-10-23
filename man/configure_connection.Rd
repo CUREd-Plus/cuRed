@@ -4,10 +4,12 @@
 \alias{configure_connection}
 \title{Configure database connection}
 \usage{
-configure_connection(con)
+configure_connection(con, log_query_path = NA)
 }
 \arguments{
 \item{con}{DBI::DBIConnection}
+
+\item{log_query_path}{character. Path to which queries should be logged}
 }
 \value{
 DBI::DBIConnection

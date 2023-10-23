@@ -73,6 +73,7 @@ connect <- function(dbdir = ":memory:", ...) {
 #' See: [DuckDB Configuration](https://duckdb.org/docs/sql/configuration.html)
 #'
 #' @param con DBI::DBIConnection
+#' @param log_query_path character. Path to which queries should be logged
 #'
 #' @return DBI::DBIConnection
 #' @export
@@ -80,6 +81,7 @@ connect <- function(dbdir = ":memory:", ...) {
 configure_connection <- function(con, log_query_path=NA) {
 
   if (is.na(log_query_path)) {
+    # Write to log file in temp dir
     log_query_path = file.path(tempdir(check = TRUE), "queries.log")
   }
 
