@@ -7,7 +7,9 @@
 get_query(query, read_only = FALSE)
 }
 \arguments{
-\item{query}{logical. If true, use READ_ONLY access mode}
+\item{query}{character. SQL query}
+
+\item{read_only}{logical. If true, use READ_ONLY access mode}
 }
 \value{
 Data frame containing query results.
