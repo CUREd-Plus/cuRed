@@ -1,13 +1,20 @@
 ---
 # APC data validation rules
-# This file is written using dataverifyr YAML format.
-# https://davzim.github.io/dataverifyr
+
+# This file is written using YAML format.
+# https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML
 
 # Each rule has the following arguments:
-# https://davzim.github.io/dataverifyr/reference/rule.html
+# TODO
 
-- name: 'My rule'
-  expr: TRUE
-  allow_na: no
-  negate: no
+rules:
+# 🔑 EPIKEY (HES Record Identifier) Unique
+- name: EPIKEY 19n
+  description: EPIKEY has 19 integers (2021-22 onwards)
+# https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/grep
+  expr: grepl("^\\d{19}$", EPIKEY)
+
+- name: EPIKEY 12n
+  description: EPIKEY has 12 integers (1989-90 to 2020-21)
+  expr: grepl("^\\d{12}$", EPIKEY)
 ...
