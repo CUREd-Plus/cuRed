@@ -31,10 +31,10 @@ main <- function(data_sets_path = NA, patient_path, demographics_path) {
   for (i in seq_len(nrow(data_sets))) {
     # Get the details of this data set
     data_set_id <- as.character(data_sets$id[i])
-    raw_data_dir <- normalizePath(file.path(data_sets$raw_data_dir[i]), mustWork = TRUE)
-    metadata_path <- normalizePath(file.path(data_sets$metadata_path[i]), mustWork = TRUE)
-    sheet <- data_sets$sheet[i]
-    staging_dir <- normalizePath(file.path(data_sets$staging_dir[i]), mustWork = FALSE)
+    raw_data_dir <- normalizePath(data_sets$raw_data_dir[i], mustWork = TRUE)
+    metadata_path <- normalizePath(data_sets$metadata_path[i], mustWork = TRUE)
+    sheet <- as.character(data_sets$sheet[i])
+    staging_dir <- normalizePath(data_sets$staging_dir[i], mustWork = FALSE)
 
     # Inform user what's happening
     cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
