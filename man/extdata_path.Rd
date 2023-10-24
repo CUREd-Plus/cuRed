@@ -5,12 +5,12 @@
 \title{Get absolute path for an extdata file in this package
 https://r-pkgs.org/data.html#sec-data-extdata}
 \usage{
-extdata_path(filename = "", mustWork = TRUE)
+extdata_path(path = "", mustWork = TRUE)
 }
 \arguments{
-\item{mustWork}{Logical. Raise an error if the file is not found.}
+\item{path}{Character. Path of file within inst/extdata}
 
-\item{path}{String. Path.}
+\item{mustWork}{Logical. Raise an error if the file is not found}
 }
 \description{
 Get absolute path for an extdata file in this package
