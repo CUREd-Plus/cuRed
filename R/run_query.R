@@ -27,7 +27,7 @@ run_query <- function(query) {
 #' Get SQL query result using the [DuckDB R API](https://duckdb.org/docs/api/r.html)
 #'
 #' @param query character. SQL query
-#' @param query logical. If true, use READ_ONLY access mode
+#' @param read_only logical. If true, use READ_ONLY access mode
 #'
 #' @returns Data frame containing query results.
 #'
