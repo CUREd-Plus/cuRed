@@ -3,7 +3,10 @@ library(validate)
 
 #' Validate a data set
 #'
+#' @description
 #' This uses the [validate](https://cran.r-project.org/web/packages/validate/) package.
+#'
+#' Please read the [data validation cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html).
 #'
 #' @param data_path character. Path of input data file.
 #' @param rules_path character. Validation rules file path.

@@ -17,4 +17,12 @@ rules:
 - name: EPIKEY 12n
   description: EPIKEY has 12 integers (1989-90 to 2020-21)
   expr: grepl("^\\d{12}$", EPIKEY)
+  
+- name: EPIKEY is required
+# In YAML, we need to use quotes for special characters
+# https://stackoverflow.com/a/22235064/15368268
+  expr: '!is.na(EPIKEY)'
+  
+- name: EPIKEY is unique
+  expr: is_unique(EPIKEY)
 ...
