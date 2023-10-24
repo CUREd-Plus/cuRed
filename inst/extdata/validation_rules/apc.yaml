@@ -8,7 +8,7 @@
 # TODO
 
 rules:
-# 🔑 EPIKEY (HES Record Identifier) Unique
+# 🔑 EPIKEY (HES Record Identifier)
 - name: EPIKEY 19n
   description: EPIKEY has 19 integers (2021-22 onwards)
 # https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/grep
@@ -22,7 +22,11 @@ rules:
 # In YAML, we need to use quotes for special characters
 # https://stackoverflow.com/a/22235064/15368268
   expr: '!is.na(EPIKEY)'
+  meta:
+    severity: error
   
 - name: EPIKEY is unique
   expr: is_unique(EPIKEY)
+  meta:
+    severity: error
 ...
