@@ -31,8 +31,6 @@ rules:
     severity: error
 
 # SUSSPELLID SUS-generated spell identifier
-# Null = Records that have excluded from PbR in SUS as the activity is outside the scope of PbR
-# -1 = Unspellable episodes"
 - name: SUSSPELLID 19n
   description: SUSSPELLID has 19 integers
   expr: grepl("^\\d{19}$", SUSSPELLID)
@@ -40,6 +38,12 @@ rules:
 - name: SUSSPELLID 10n
   description: SUSSPELLID has 10 integers (until 2016-17)
   expr: grepl("^\\d{10}$", SUSSPELLID)
+
+- name: SUSSPELLID missing values
+  description: SUSSPELLID is Null or -1
+  # Null = Records that have excluded from PbR in SUS as the activity is outside the scope of PbR
+  # -1 = Unspellable episodes
+  expr: SUSSPELLID %in% c("Null", "-1")
 
 # SUSRECID SUS Record Identifier
 # SUS (Secondary Uses Service)-generated record identifier
@@ -83,4 +87,12 @@ rules:
 - name: LSOA11 9an
   description: Alphanumeric length 9
   expr: grepl("^[a-zA-Z0-9]{9}$", LSOA11)
+
+# EPISTART Episode Start Date
+# Date(YYYY-MM-DD)
+# YYYY-MM-DD = Date episode started
+# 1800-01-01 = Null date submitted
+# 1801-01-01 = invalid date submitted
+- name: EPISTART is date
+  expr: 'inherits(EPISTART, "Date")'
 ...

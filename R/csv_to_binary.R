@@ -30,10 +30,11 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
   }
 
   # Define the absolute paths
-  input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
+  raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
+  input_glob <- file.path(raw_data_dir, "*.csv")
   output_path <- normalizePath(file.path(output_data_dir, output_filename), mustWork = FALSE)
   sql_query_file_path <- paste(output_path, ".sql", sep = "")
-  data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
+  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
 
   # Load column order and default data types
   data_types <- jsonlite::fromJSON(data_types_path)
@@ -47,8 +48,11 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
   # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
   # but only use the columns we've specified.
   tos_data_types <- get_data_types(metadata)
-  for (key in data_types) {
-    data_types[key] <- tos_data_types[key]
+  for (key in names(data_types)) {
+    value <- tos_data_types[[key]]
+    if (!is.null(value)) {
+      data_types[key] <- value
+    }
   }
 
   # Convert file format
@@ -56,7 +60,7 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
 
   # Build SQL query
   data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
-  query_path <- normalizePath(system.file("extdata", "queries/csv_to_binary.sql", package = "cuRed"), mustWork = TRUE)
+  query_path <- extdata_path("queries/csv_to_binary.sql")
   query_template <- readr::read_file(query_path)
   query <- stringr::str_glue(query_template)
 
