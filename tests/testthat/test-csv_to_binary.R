@@ -10,7 +10,7 @@ test_that("csv_to_binary", {
 
   # Append mock patient ID bridge
   append_mock_ids(
-    input_path = file.path(extdata_path(""), "*.csv"),
+    input_path = file.path(extdata_path(""), "/data/apc/*.csv"),
     output_path = file.path(tmpdir, "apc_appended.csv")
   )
 

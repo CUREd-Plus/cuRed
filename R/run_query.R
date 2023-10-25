@@ -1,5 +1,6 @@
 library(DBI)
 library(duckdb)
+library(readr)
 
 #' Execute a DuckDB query that doesn't return a result.
 #'

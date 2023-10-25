@@ -66,24 +66,15 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 #'
 append_mock_ids <- function(input_path, output_path) {
 
-  # Run query to generate data
-  query <- stringr::str_glue("
-  COPY (
-    SELECT
-      -- Generate mock patient identifiers
-      uuid() AS token_person_id,
-      uuid() AS yas_id,
-      uuid() AS cured_id,
-      uuid() AS study_id,
-      -- Append input data set
-      input_data.*
-    FROM read_csv_auto('{input_path}') AS input_data
-  )
-  TO '{output_path}'
-  WITH (FORMAT 'CSV', HEADER);
-  ")
+  # Build the SQL query using a template
+  query_template_path <- extdata_path("queries/append_mock_ids.sql")
+  query_template <- readr::read_file(query_template_path)
+  query <- stringr::str_glue(query_template)
   query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(x = query, file = query_path)
+  cli::cli_alert_info("Wrote '{query_path}'")
+
+  # Run query to generate data
   run_query(query)
   cli::cli_alert_success("Wrote '{output_path}'")
 
