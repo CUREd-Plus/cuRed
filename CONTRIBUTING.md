@@ -19,6 +19,10 @@ These are the general steps required to contribute to this code:
 11. Code review
 12. Merge PR (and delete the branch)
 
+# Development in R
+
+* Online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
+
 # R environments
 
 Please read [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) including the section on [libraries and repositories](https://rstudio.github.io/renv/articles/renv.html#libraries-and-repositories) to understand how virtual environments work when developing in R.
