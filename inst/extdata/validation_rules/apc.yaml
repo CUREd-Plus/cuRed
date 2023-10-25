@@ -80,14 +80,26 @@ rules:
 
 # LSOA01 Lower Super Output Area of Residence 2001
 - name: LSOA01 9an
-  description: Alphanumeric length 9
+  description: LSOA01 Alphanumeric length 9
   expr: grepl("^[a-zA-Z0-9]{9}$", LSOA01)
 
-# LSOA11 2011 Lower Super Output Area
+# LSOA11 Lower Super Output Area of Residence 2011
 - name: LSOA11 9an
-  description: Alphanumeric length 9
+  description: LSOA11 Alphanumeric length 9.
   expr: grepl("^[a-zA-Z0-9]{9}$", LSOA11)
 
+# ADMIDATE Date of admission
+# ADMIDATE is recorded on all episodes within the spell.
+- name: ADMIDATE is DATE
+  description: ADMIDATE Date(YYYY-MM-DD)
+  # TODO check date data type
+  expr: FALSE
+  
+- name: ADMIDATE is required
+  expr: '!is.na(ADMIDATE)'
+  meta:
+    severity: error
+    
 # EPISTART Episode Start Date
 # Date(YYYY-MM-DD)
 # YYYY-MM-DD = Date episode started
