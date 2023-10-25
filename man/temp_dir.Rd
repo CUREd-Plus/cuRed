@@ -10,10 +10,11 @@ temp_dir(check = FALSE)
 \item{check}{logical indicating if temp_dir() should be checked and recreated if no longer valid.}
 }
 \description{
-The directory will be deleted when the session ends, as
-tempdir() creates a per-session directory path.
+The directory will be deleted when the session ends, as tempdir() creates a per-session directory path.
 }
 \details{
+On Windows, the temporary directory is determined by the \code{TEMP} environment variable.
+
 R can't handle long path names on Windows, so use a short path.
 See \href{https://github.com/CUREd-Plus/cuRed/issues/75}{issue 75}.
 

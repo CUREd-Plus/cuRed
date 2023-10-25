@@ -4,38 +4,45 @@ library(duckdb)
 library(stringr)
 library(utils)
 
-#' Use Duck DB to perform file format conversion.
+#' Convert CSV data into binary format
 #'
-#' A JSON file must be specified that contains an object where the keys are the headers of the input CSV files in order
-#' and the values are the SQL data types (default to "VARCHAR"). The location of this file is `data_types_path`.
+#' @description
+#' The code uses DuckDB to perform file format conversion.
+#'
+#' By default, this function will read all the CSV files in the `input_dir` and convert them to
+#' [Apache Parquet](https://parquet.apache.org/) format.
+#'
+#' The resultant binary data file will be written to `output_path`.
+#'
+#' A [JSON](https://www.json.org/json-en.html) file must be specified that contains an object where the keys are the
+#' headers of the input CSV files in order and the values are the SQL data types (default to `"VARCHAR"`). The location
+#' of this file is stored in the `data_types_path` variable and defaults to
+#' `inst/extdata/sql_data_types/{data_set_id}.json`.
 #'
 #' See:
 #'
 #' - [DuckDB R API](https://duckdb.org/docs/api/r)
 #' - [DBI documentation](https://dbi.r-dbi.org/)
+#' - DuckDB [CSV Import](https://duckdb.org/docs/data/csv/overview.html)
 #'
 #' @export
 #'
-#' @param raw_data_dir character Path. The directory that contains the raw data files.
-#' @param output_data_dir character Path. The directory the output data file(s) should be written to.
+#' @param input_dir character. Path. The directory that contains the raw data files.
+#' @param output_path character. Path of the output binary data file.
 #' @param metadata List. Dictionary containing the column definitions.
-#' @param data_set_id character Data set identifier e.g. "apc", "op"
-#' @param output_filename character,file name of the binary data file e.g. "apc_binary.parquet"
+#' @param data_set_id character. Data set identifier e.g. "apc", "op"
+#' @param glob character. *(Optional)* Input file pattern e.g. "*.csv" or "*_raw.csv"
 #'
 #' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, output_filename=NA) {
-
-  if (is.na(output_filename)) {
-    output_filename = stringr::str_glue("{data_set_id}_binary.parquet")
-  }
+csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*.csv") {
 
   # Define the absolute paths
-  input_glob <- normalizePath(file.path(raw_data_dir, "*.csv"), mustWork = FALSE)
-  output_path <- normalizePath(file.path(output_data_dir, output_filename), mustWork = FALSE)
-  sql_query_file_path <- paste(output_path, ".sql", sep = "")
-  data_types_path <- file.path(system.file("extdata", package = "cuRed"), "sql_data_types", stringr::str_glue("{data_set_id}.json"))
+  input_dir <- normalizePath(input_dir, mustWork = TRUE)
+  input_glob <- file.path(input_dir, glob)
+  output_path <- normalizePath(output_path, mustWork = FALSE)
 
   # Load column order and default data types
+  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
   data_types <- jsonlite::fromJSON(data_types_path)
 
   # Append patient ID fields
@@ -47,8 +54,11 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
   # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
   # but only use the columns we've specified.
   tos_data_types <- get_data_types(metadata)
-  for (key in data_types) {
-    data_types[key] <- tos_data_types[key]
+  for (key in names(data_types)) {
+    value <- tos_data_types[[key]]
+    if (!is.null(value)) {
+      data_types[key] <- value
+    }
   }
 
   # Convert file format
@@ -56,17 +66,19 @@ csv_to_binary <- function(raw_data_dir, output_data_dir, metadata, data_set_id, 
 
   # Build SQL query
   data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
-  query_path <- normalizePath(system.file("extdata", "queries/csv_to_binary.sql", package = "cuRed"), mustWork = TRUE)
+  query_path <- extdata_path("queries/csv_to_binary.sql")
   query_template <- readr::read_file(query_path)
   query <- stringr::str_glue(query_template)
 
   # Ensure output directory exists
-  dir.create(output_data_dir, recursive = TRUE, showWarnings = FALSE)
+  dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
 
   # Write SQL query to text file
+  sql_query_file_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(query, sql_query_file_path)
   cli::cli_alert_info("Wrote '{sql_query_file_path}'")
 
+  # Execute the query
   cli::cli_alert_info("Reading input data from '{input_glob}'...")
   run_query(query)
   cli::cli_alert_info("Wrote '{output_path}'")
