@@ -19,6 +19,14 @@ These are the general steps required to contribute to this code:
 11. Code review
 12. Merge PR (and delete the branch)
 
+# R environments
+
+Please read [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) including the section on [libraries and repositories](https://rstudio.github.io/renv/articles/renv.html#libraries-and-repositories) to understand how virtual environments work when developing in R.
+
+`renv` may be used from within the RStudio IDE. See: [RStudio User Guide - renv](https://docs.posit.co/ide/user/ide/guide/environments/r/renv.html).
+
+Also read the RStudio documentation for environements: [R Startup](https://docs.posit.co/ide/user/ide/guide/environments/r/managing-r.html).
+
 # Create an Issue
 
 If you find there are problems or errors with running the code please
@@ -29,7 +37,7 @@ to see if anyone has reported the bug or requested the feature already
 and work is already in progress. If nothing exists then you should
 create a [new issue](https://github.com/CUREd-Plus/cuRed/issues/new).
 
-### Development/Contributing
+# Development/Contributing
 
 If you wish to contribute to the development of the `cuRed` package by
 fixing bugs, adding to or extending documentation or extending
@@ -45,7 +53,7 @@ If you are unfamiliar working with Git and GitHub with R then you may
 find [Happy Git and GitHub for the useR](https://happygitwithr.com/) a
 useful resource.
 
-#### Cloning the Repository
+## Cloning the Repository
 
 If you are a member of the the [CUREd-Plus
 Organisation](https://github.com/CUREd-Plus/) you can [clone the
@@ -63,7 +71,7 @@ git clone git@github.com:AFM-SPM/TopoStats.git
 git clone git@github.com:<YOUR_GITHUB_USERNAME>/TopoStats.git
 ```
 
-### Creating a branch
+## Creating a branch
 
 If you have cloned the repository directly you will now create a
 [branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
@@ -78,7 +86,7 @@ are shown below…
 |:-------------------------|:--------------------------------------|:--------------------------------------------------|:-----------------------------------------------------------------------------------|
 | `ns-rse/1-package-setup` | [`ns-rse`](https://github.com/ns-rse) | [1](https://github.com/CUREd-Plus/cuRed/issues/1) | `package-setup` short for the issue subject *Package setup, checking and linting*. |
 
-## Coding Standards
+# Coding Standards
 
 To make the codebase easier to maintain we ask that you follow the
 guidelines below on coding style, linting, typing, documentation and
