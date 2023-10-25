@@ -35,6 +35,17 @@ help(csv_to_binary)
 
 This will display the help page for that function, which is specified in the `roxygen2` markup for that function.
 
+## Logging
+
+We're using the [`cli`](https://cran.r-project.org/web/packages/cli/index.html) package to provide logging and print messages to inform the user what's happening. The [README](https://cran.r-project.org/web/packages/cli/readme/README.html) for this package is available online.
+
+Usage examples:
+
+```R
+cli::cli_alert_success("The file was converted successfully.")
+cli::cli_alert_info("Opened database connection")
+```
+
 # R environments
 
 See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
