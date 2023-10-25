@@ -1,6 +1,4 @@
 library(cli)
-library(DBI)
-library(duckdb)
 library(stringr)
 library(utils)
 
@@ -167,8 +165,9 @@ format_to_data_type <- function(format_str) {
     # unsigned four-byte integer
     data_type <- "UBIGINT"
   } else if (startsWith(format_str, "String")) {
-    # TODO set maximum string length
-    # https://duckdb.org/docs/sql/data_types/text
+    # DuckDB doesn't implement maximum string length
+    # i.e. VARCHAR(n) has no effect
+    # See: https://duckdb.org/docs/sql/data_types/text
     data_type <- "VARCHAR"
   } else if (format_str == "Date(YYYY-MM-DD)") {
     data_type <- "DATE"

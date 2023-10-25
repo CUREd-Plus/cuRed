@@ -4,9 +4,16 @@ We're using the [validate](https://cran.r-project.org/web/packages/validate/inde
 
 The files in this directory are used to define these sets of rules to be applied to check that data are valid.
 
-The files are written in [YAML](https://en.wikipedia.org/wiki/YAML) format, which is loaded by the data pipeline.
+The files are [written in YAML format](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML), which is loaded by the data pipeline.
 
 There is one file per data set, e.g. `apc.yaml`, `op.yaml`, `ae.yaml`, etc. where the filename is the data set identifier.
+
+The data types codes, such as `10n`, are used by the [NHS Data Model and Dictionary](https://www.datadictionary.nhs.uk/). For example:
+
+| Type | Meaning                                |
+| ---- | -------------------------------------- |
+| 12an | Alphanumeric string with 12 characters |
+| 6n   | A number with six digits               |
 
 See:
 - [The Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html) by Mark P.J. van der Loo
