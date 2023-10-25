@@ -25,6 +25,8 @@ These are the general steps required to contribute to this code:
 
 # R environments
 
+See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
+
 Please read [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) including the section on [libraries and repositories](https://rstudio.github.io/renv/articles/renv.html#libraries-and-repositories) to understand how virtual environments work when developing in R.
 
 `renv` may be used from within the RStudio IDE. See: [RStudio User Guide - renv](https://docs.posit.co/ide/user/ide/guide/environments/r/renv.html).
