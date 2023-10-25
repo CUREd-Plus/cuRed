@@ -50,3 +50,27 @@ validate_data <- function(data_path, rules_path, output_dir=NA) {
 
   return(results)
 }
+
+#' Is this a valid date
+#'
+#' @description
+#' Compare an object's string representation to [ISO 8601 date](https://en.wikipedia.org/wiki/ISO_8601#Dates).
+#'
+#' @param x Input object to check
+#'
+#' @return logical. If TRUE, this is a valid date.
+#' @export
+#'
+#' @examples
+#' date_format("1970-01-01")
+#'
+date_format <- function(x) {
+  # https://en.wikipedia.org/wiki/ISO_8601#Dates
+  # YYYY-MM-DD
+  # YYYY = Four digits
+  # MM = a zero-padded number up to 1-12
+  # DD = a zero padded number up to 31
+  return(
+    grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", x)
+  )
+}

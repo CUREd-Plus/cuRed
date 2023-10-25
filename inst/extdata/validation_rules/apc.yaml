@@ -90,8 +90,8 @@ rules:
 
 # ADMIDATE Date of admission
 # ADMIDATE is recorded on all episodes within the spell.
-- name: ADMIDATE is Date
-  description: ADMIDATE Date(YYYY-MM-DD)
+- name: ADMIDATE is date
+  description: Date(YYYY-MM-DD)
   expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", ADMIDATE)
   meta:
     severity: error
@@ -102,10 +102,11 @@ rules:
     severity: error
     
 # EPISTART Episode Start Date
-# Date(YYYY-MM-DD)
-# YYYY-MM-DD = Date episode started
 # 1800-01-01 = Null date submitted
 # 1801-01-01 = invalid date submitted
 - name: EPISTART is date
+  description: Date(YYYY-MM-DD)
   expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", EPISTART)
+  meta:
+    severity: error
 ...
