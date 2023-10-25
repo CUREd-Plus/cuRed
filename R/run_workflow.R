@@ -43,7 +43,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
 
   # Validate
   rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}.yaml"))
-  validate(data_path = binary_path, rules_path = rules_path)
+  validate_data(data_path = binary_path, rules_path = rules_path)
 
   # Generate summary report
 
