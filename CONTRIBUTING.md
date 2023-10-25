@@ -66,7 +66,7 @@ to see if anyone has reported the bug or requested the feature already
 and work is already in progress. If nothing exists then you should
 create a [new issue](https://github.com/CUREd-Plus/cuRed/issues/new).
 
-# Development/Contributing
+# Contributing
 
 If you wish to contribute to the development of the `cuRed` package by
 fixing bugs, adding to or extending documentation or extending
@@ -213,8 +213,22 @@ Unit tests are implemented using [testthat](https://testthat.r-lib.org/) as desc
 
 ## Add a new unit test
 
-To create a unit test for a function named `my_function()`, run:
+To create a unit test for a function named `my_function()`, run to creatae the file `tests/testtaht/test-my_function.R`:
 
 ```R
 usethis::use_test("my_function")
+```
+
+## Run tests
+
+See [run tests](https://r-pkgs.org/testing-basics.html#run-tests)
+
+The `stop_on_failure` option is useful when squashing one bug at a time.
+
+```R
+# Test current file
+devtools::test_active_file(stop_on_failure = TRUE)
+
+# Test all files
+devtools::test(stop_on_failure = TRUE)
 ```
