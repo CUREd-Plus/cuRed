@@ -48,7 +48,7 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
   }
 
   # Inform user what happened
-  cli::cli_alert_info("Wrote {number_of_rows} rows to '{output_path}'")
+  cli::cli_alert_success("Wrote {number_of_rows} rows to '{output_path}'")
 
   return(output_path)
 }
@@ -85,7 +85,7 @@ append_mock_ids <- function(input_path, output_path) {
   query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(x = query, file = query_path)
   run_query(query)
-  cli::cli_alert_info("Wrote '{output_path}'")
+  cli::cli_alert_success("Wrote '{output_path}'")
 
   return(output_path)
 }

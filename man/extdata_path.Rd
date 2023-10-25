@@ -2,17 +2,20 @@
 % Please edit documentation in R/extdata_path.R
 \name{extdata_path}
 \alias{extdata_path}
-\title{Get absolute path for an extdata file in this package
-https://r-pkgs.org/data.html#sec-data-extdata}
+\title{Get an extdata file path}
 \usage{
 extdata_path(path = "", mustWork = TRUE)
 }
 \arguments{
-\item{path}{Character. Path of file within inst/extdata}
+\item{path}{Character. The relative path of file within inst/extdata.}
 
 \item{mustWork}{Logical. Raise an error if the file is not found}
 }
+\value{
+character. The file path
+}
 \description{
-Get absolute path for an extdata file in this package
-https://r-pkgs.org/data.html#sec-data-extdata
+This function builds the absolute path for an extdata file in this package.
+
+See: \href{https://r-pkgs.org/data.html#sec-data-extdata}{Raw data file} in \emph{R Packages} by H. Wickham.
 }
