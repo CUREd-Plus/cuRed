@@ -23,6 +23,18 @@ These are the general steps required to contribute to this code:
 
 * Online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 
+## Documenting functions
+
+Please [document functions](https://r-pkgs.org/man.html) using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+
+You can view the documentation for a function using the [`help()` function](https://www.r-project.org/help.html), for example:
+
+```R
+help(csv_to_binary)
+```
+
+This will display the help page for that function, which is specified in the `roxygen2` markup for that function.
+
 # R environments
 
 See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
