@@ -11,8 +11,7 @@ test_that("parse_tos", {
   # Tidy up (delete temporary files) on exit or failure
   on.exit(unlink(tmpdir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
   tos_path <- tempfile(fileext = ".xlsx", tmpdir = tmpdir)
-  # https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file
-  utils::download.file(url, method = "auto", destfile = tos_path, mode = "wb")
+  download_file(url, destfile = tos_path)
 
   # Parse TOS
   expect_no_error(

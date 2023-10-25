@@ -16,7 +16,7 @@
 #'
 extdata_path <- function(path = "", mustWork = TRUE) {
   # Get path of a file within inst/extdata
-  path = system.file("extdata", path, package = "cuRed")
+  path <- system.file("extdata", path, package = "cuRed")
   # Ensure the path is absolute and that the file exists
   path <- normalizePath(path, mustWork = mustWork)
   return(path)
