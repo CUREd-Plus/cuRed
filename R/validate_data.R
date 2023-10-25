@@ -68,8 +68,8 @@ date_format <- function(x) {
   # https://en.wikipedia.org/wiki/ISO_8601#Dates
   # YYYY-MM-DD
   # YYYY = Four digits
-  # MM = a zero-padded number up to 1-12
-  # DD = a zero padded number up to 31
+  # MM = a zero-padded number from 01 to 12
+  # DD = a zero padded number from 00 to 31
   return(
     grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", x)
   )
