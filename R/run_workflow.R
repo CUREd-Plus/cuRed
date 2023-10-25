@@ -27,18 +27,18 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
-  linked_path <- file.path(staging_dir, stringr::str_glue("{data_set_id}_linked.parquet"))
+  binary_path <- file.path(staging_dir, stringr::str_glue("02-{data_set_id}_binary"))
+  linked_path <- file.path(staging_dir, stringr::str_glue("03-{data_set_id}_linked.parquet"))
 
   # Parse the TOS
   metadata <- parse_tos(metadata_path, sheet = sheet)
 
   # Convert to binary format
   binary_path <- csv_to_binary(
-    raw_data_dir = raw_data_dir,
-    output_data_dir = staging_dir,
+    input_dir = raw_data_dir,
+    output_path = binary_path,
     metadata = metadata,
-    data_set_id = data_set_id,
-    output_filename = stringr::str_glue("{data_set_id}_binary.parquet")
+    data_set_id = data_set_id
   )
 
   # Validate
