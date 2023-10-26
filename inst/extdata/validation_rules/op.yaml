@@ -1,0 +1,13 @@
+---
+# Outpatient (OP) data validation rules
+
+rules:
+# ATTENDKEY HES Record Identifier
+- name: ATTENDKEY 12n 
+  description: ATTENDKEY has 12 integers (2003-04 to 2020-21)
+  expr: grepl("^\\d{12}$", ATTENDKEY)
+
+- name: ATTENDKEY 19n
+  description: ATTENDKEY has 19 integers (2021-22 onwards)
+  expr: grepl("^\\d{19}$", ATTENDKEY)
+...

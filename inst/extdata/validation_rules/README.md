@@ -2,7 +2,23 @@
 
 We're using the [validate](https://cran.r-project.org/web/packages/validate/index.html) R package for data validation. This defines a collection of rules that the data must conform to. To learn how to use this package, please read [*The Data Validation Cookbook*](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html) by Mark P.J. van der Loo.
 
+## Defining rules
+
 The files in this directory are used to define these sets of rules to be applied to check that data are valid. The files are [written in YAML format](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML), which is loaded by the data pipeline. There is one file per data set, e.g. `apc.yaml`, `op.yaml`, `ae.yaml`, etc. where the filename is the data set identifier.
+
+This is an example rule for validating the `ATTENDKEY` column in the outpatient (OP) data set.
+
+```yaml
+- name: ATTENDKEY 12n 
+  description: ATTENDKEY has 12 integers (2003-04 to 2020-21)
+  expr: grepl("^\\d{12}$", ATTENDKEY)
+```
+
+The rule has three properties:
+
+* `name` is a brief summary of the rule. `12n` is an NHS format as discussed below.
+* `description` is a less brief explanation of the rule
+* `expr` contains R code that must evaluate to a logical value (`TRUE` or `FALSE`). This example uses the `grepl` function to evaluate whether the value matches the pattern, using regular expressions as discussed below.
 
 # NHS data formats
 
