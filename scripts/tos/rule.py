@@ -1,4 +1,4 @@
-from collections import OrderedDict
+import yaml
 
 class Rule:
     """
@@ -9,6 +9,11 @@ class Rule:
     """
     
     def __init__(self, name, expr, description = None):
+        """
+        :param name: Short rule name
+        :param description: Human-readable label
+        :param expr: R expression (evaluates to boolean)
+        """
         self.name = str(name)
         self.description = str(description or '')
         self.expr = str(expr)
@@ -26,7 +31,7 @@ class Rule:
         return yaml.dump(self.as_dict())
 
     def as_dict(self):
-        return OrderedDict(self)
+        return dict(self)
     
     def __iter__(self):
         yield 'name', self.name

@@ -1,0 +1,4 @@
+rules:
+- description: Census Output Area 2001  is String(10)
+  expr: is.character(OACODE01) & nchar(OACODE01) == 10
+  name: OACODE01 String(10)

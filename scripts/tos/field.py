@@ -1,9 +1,7 @@
-from collections.abc import Mapping
-from collections import OrderedDict
 import re
 
 from rule import Rule
-from data_format import Format
+from data_format import Format, Values
 
 class Field:
     """
@@ -20,7 +18,7 @@ class Field:
         self.name = str(name)
         self.title = str(title)
         self.format = Format(format_)
-        self._values = str(values or '')
+        self.values = Values(values)
         self.required = required
         self.unique = unique
         self.description = str(description or '')
@@ -48,11 +46,18 @@ class Field:
                 expr=f"is_unique({self})"
             )
 
-        # Generate rules for the format (e.g. 'Number', 'String(2)')
+        # Generate rules based on the format (e.g. 'Number', 'String(2)')
         for expr in self.format.generate_expressions(field=self.name):
             yield Rule(
                 name=f"{self} {self.format}",
                 description=f"{self.title} is {self.format}",
+                expr=expr
+            )
+
+        # Generate rules based on the values
+        for expr in self.values.generate_expressions(field=self.name):
+            yield Rule(
+                name='TODO',
                 expr=expr
             )
     
@@ -60,15 +65,6 @@ class Field:
     def range(self) -> tuple[int]:
         raise NotImplementedError
 
-    def parse_values(self):
-        for line in self._values.splitlines():
-            key, _, value = line.partition(' = ')
-            yield key, value
-    
-    @property
-    def values(self) -> Mapping[str, str]:
-        return OrderedDict(self.parse_values())
-    
     @property
     def length(self) -> int:
         return self.format.length
