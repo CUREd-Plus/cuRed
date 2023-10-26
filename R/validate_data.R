@@ -99,3 +99,15 @@ lsoa_format <- function(x) {
   # Length 9 alphanumeric (upper-case)
   return(grepl("^[A-Z0-9]{9}$", x))
 }
+
+#' Test if an object is a Date
+#'
+#' @param x The object to check
+#'
+#' @return logical
+#' @export
+#'
+is_date <- function(x) {
+  # https://stackoverflow.com/a/37062951/15368268
+  return(inherits(x, 'Date'))
+}

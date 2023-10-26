@@ -18,3 +18,4 @@
 ^venv$
 ^R\\README.md$
 ^README\.Rmd$
+^scripts$
