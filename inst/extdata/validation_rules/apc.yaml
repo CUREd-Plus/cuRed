@@ -48,7 +48,7 @@ rules:
 # SUSRECID SUS Record Identifier
 # SUS (Secondary Uses Service)-generated record identifier
 - name: SUSRECID 14n
-  description: SUSRECID is a number with 10 integers (2007-08 onwards)
+  description: SUSRECID is a number with 14 integers (2007-08 onwards)
   expr: grepl("^\\d{14}$", SUSRECID)
 
 # TOKEN_PERSON_ID
@@ -81,12 +81,13 @@ rules:
 # LSOA01 Lower Super Output Area of Residence 2001
 - name: LSOA01 9an
   description: LSOA01 Alphanumeric length 9
-  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA01)
+  expr: grepl("^[A-Z0-9]{9}$", LSOA01)
 
 # LSOA11 Lower Super Output Area of Residence 2011
+# https://www.datadictionary.nhs.uk/nhs_business_definitions/lower_layer_super_output_area.html
 - name: LSOA11 9an
   description: LSOA11 Alphanumeric length 9.
-  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA11)
+  expr: grepl("^[A-Z0-9]{9}$", LSOA11)
 
 # ADMIDATE Date of admission
 # ADMIDATE is recorded on all episodes within the spell.

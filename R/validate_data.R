@@ -74,3 +74,28 @@ date_format <- function(x) {
     grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", x)
   )
 }
+
+#' Check LSOA string format
+#'
+#' @description
+#'
+#' An LSOA is a [Lower Layer Super Output Area](https://webarchive.nationalarchives.gov.uk/ukgwa/20160106001702/https://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html) geographical area clustering code.
+#'
+#' See:
+#' - Wikipedia [GSS coding system](https://en.wikipedia.org/wiki/GSS_coding_system)
+#' - UK ONS Geography [Lower Layer Super Output Areas (December 2011) Names and Codes in England and Wales](https://geoportal.statistics.gov.uk/datasets/ons::lower-layer-super-output-areas-december-2011-names-and-codes-in-england-and-wales-1/explore)
+#' - UK Data Service [Lower Super Output Areas and Data Zones borders](https://statistics.ukdataservice.ac.uk/dataset/2011-census-geography-boundaries-lower-layer-super-output-areas-and-data-zones/resource/d65a0201-7240-4d18-8ab2-9d8c1ad830d6) contains all possible LSOA values.
+#'
+#' @param x character. String to validate.
+#'
+#' @return
+#' logical. Returns TRUE if the string is a valid LSOA code.
+#' @export
+#'
+#' @examples
+#' lsoa_format("E01014417") # TRUE
+#' lsoa_format("E101447") # FALSE
+lsoa_format <- function(x) {
+  # Length 9 alphanumeric (upper-case)
+  return(grepl("^[A-Z0-9]{9}$", x))
+}

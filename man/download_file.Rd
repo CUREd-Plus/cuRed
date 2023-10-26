@@ -18,7 +18,7 @@ download_file(url, mode = "wb", destfile = NA, method = "auto", ...)
 \item{...}{Arguments to be passed to utils::download.file(...)}
 }
 \value{
-See the "Value" section in \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file}{utils::download.file}.
+character. Path of downloaded file (\code{destfile})
 }
 \description{
 This is a wrapper for \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file}{utils::download.file}
