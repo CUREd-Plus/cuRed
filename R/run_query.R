@@ -1,5 +1,6 @@
 library(DBI)
 library(duckdb)
+library(readr)
 
 #' Execute a DuckDB query that doesn't return a result.
 #'
@@ -45,8 +46,12 @@ get_query <- function(query) {
 
 
 #' Connect to database
-#' https://duckdb.org/docs/api/r.html
-#' https://dbi.r-dbi.org/reference/dbconnect
+#'
+#' @description
+#' See [DuckDB R API](https://duckdb.org/docs/api/r.html)
+#'
+#' We want an in-memory database.
+#'
 #' @param dbdir The location of the database, default :memory:
 #' @param ... Arguments to DBI::dbConnect(...)
 #' @returns Database connection handle
@@ -54,6 +59,7 @@ get_query <- function(query) {
 connect <- function(dbdir = ":memory:", ...) {
 
   # Connect to an in-memory database
+  # https://dbi.r-dbi.org/reference/dbconnect
   con <- DBI::dbConnect(duckdb::duckdb(), dbdir = dbdir, ...)
 
   return(con)

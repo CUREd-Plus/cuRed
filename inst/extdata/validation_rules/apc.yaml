@@ -1,13 +1,112 @@
 ---
 # APC data validation rules
-# This file is written using dataverifyr YAML format.
-# https://davzim.github.io/dataverifyr
 
-# Each rule has the following arguments:
-# https://davzim.github.io/dataverifyr/reference/rule.html
+# This file is written using YAML format.
+# https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML
 
-- name: 'My rule'
-  expr: TRUE
-  allow_na: no
-  negate: no
+# The data types codes, such as "10n" are used by the NHS Data Model and Dictionary
+# https://www.datadictionary.nhs.uk/
+
+rules:
+# 🔑 EPIKEY (HES Record Identifier)
+- name: EPIKEY 19n
+  description: EPIKEY has 19 integers (2021-22 onwards)
+# https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/grep
+  expr: grepl("^\\d{19}$", EPIKEY)
+
+- name: EPIKEY 12n
+  description: EPIKEY has 12 integers (1989-90 to 2020-21)
+  expr: grepl("^\\d{12}$", EPIKEY)
+  
+- name: EPIKEY is required
+# In YAML, we need to use quotes for special characters
+# https://stackoverflow.com/a/22235064/15368268
+  expr: '!is.na(EPIKEY)'
+  meta:
+    severity: error
+  
+- name: EPIKEY is unique
+  expr: is_unique(EPIKEY)
+  meta:
+    severity: error
+
+# SUSSPELLID SUS-generated spell identifier
+- name: SUSSPELLID 19n
+  description: SUSSPELLID has 19 integers
+  expr: grepl("^\\d{19}$", SUSSPELLID)
+
+- name: SUSSPELLID 10n
+  description: SUSSPELLID has 10 integers (until 2016-17)
+  expr: grepl("^\\d{10}$", SUSSPELLID)
+
+- name: SUSSPELLID missing values
+  description: SUSSPELLID is Null or -1
+  # Null = Records that have excluded from PbR in SUS as the activity is outside the scope of PbR
+  # -1 = Unspellable episodes
+  expr: SUSSPELLID %in% c("Null", "-1")
+
+# SUSRECID SUS Record Identifier
+# SUS (Secondary Uses Service)-generated record identifier
+- name: SUSRECID 14n
+  description: SUSRECID is a number with 10 integers (2007-08 onwards)
+  expr: grepl("^\\d{14}$", SUSRECID)
+
+# TOKEN_PERSON_ID
+- name: TOKEN_PERSON_ID is required
+  expr: '!is.na(TOKEN_PERSON_ID)'
+  meta:
+    severity: error
+    
+- name: TOKEN_PERSON_ID is VARCHAR(32)
+  description: TOKEN_PERSON_ID is alphanumeric with length 32
+  expr: grepl("^[a-zA-Z0-9]{32}$", TOKEN_PERSON_ID)
+  meta:
+    severity: error
+
+# STUDY_ID person cohort identifier
+- name: STUDY_ID is required
+  expr: '!is.na(STUDY_ID)'
+  meta:
+    severity: error
+
+# AEKEY	Record identifier of the A&E attendance
+- name: AEKEY 12n
+  description: Numeric length 12 (2013-14 to 2020-21)
+  expr: grepl("^\\d{12}$", AEKEY)
+
+- name: AEKEY 19n
+  description: Numeric length 19 (2021-22 onwards)
+  expr: grepl("^\\d{19}$", AEKEY)
+
+# LSOA01 Lower Super Output Area of Residence 2001
+- name: LSOA01 9an
+  description: LSOA01 Alphanumeric length 9
+  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA01)
+
+# LSOA11 Lower Super Output Area of Residence 2011
+- name: LSOA11 9an
+  description: LSOA11 Alphanumeric length 9.
+  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA11)
+
+# ADMIDATE Date of admission
+# ADMIDATE is recorded on all episodes within the spell.
+- name: ADMIDATE is date
+  description: Date(YYYY-MM-DD)
+  expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", ADMIDATE)
+  meta:
+    severity: error
+  
+- name: ADMIDATE is required
+  expr: '!is.na(ADMIDATE)'
+  meta:
+    severity: error
+    
+# EPISTART Episode Start Date
+# 1800-01-01 = Null date submitted
+# 1801-01-01 = invalid date submitted
+- name: EPISTART is date
+  description: Date(YYYY-MM-DD)
+  expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", EPISTART)
+  meta:
+    severity: error
 ...

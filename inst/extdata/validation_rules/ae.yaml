@@ -1,0 +1,35 @@
+---
+# Accident and Emergency (A&E) data validation rules
+
+rules:
+# AEKEY	Record identifier of the A&E attendance
+- name: AEKEY is required
+  expr: '!is.na(AEKEY)'
+  meta:
+    severity: error
+  
+- name: AEKEY is unique
+  expr: is_unique(AEKEY)
+  meta:
+    severity: error
+
+- name: AEKEY 12n
+  description: Numeric length 12 (2013-14 to 2020-21)
+  expr: grepl("^\\d{12}$", AEKEY)
+
+- name: AEKEY 19n
+  description: Numeric length 19 (2021-22 onwards)
+  expr: grepl("^\\d{19}$", AEKEY)
+
+# TOKEN_PERSON_ID
+- name: TOKEN_PERSON_ID is required
+  expr: '!is.na(TOKEN_PERSON_ID)'
+  meta:
+    severity: error
+    
+- name: TOKEN_PERSON_ID is VARCHAR(32)
+  description: TOKEN_PERSON_ID is alphanumeric with length 32
+  expr: grepl("^[a-zA-Z0-9]{32}$", TOKEN_PERSON_ID)
+  meta:
+    severity: error
+...

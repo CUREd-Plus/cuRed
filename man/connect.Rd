@@ -2,9 +2,7 @@
 % Please edit documentation in R/run_query.R
 \name{connect}
 \alias{connect}
-\title{Connect to database
-https://duckdb.org/docs/api/r.html
-https://dbi.r-dbi.org/reference/dbconnect}
+\title{Connect to database}
 \usage{
 connect(dbdir = ":memory:", ...)
 }
@@ -17,7 +15,7 @@ connect(dbdir = ":memory:", ...)
 Database connection handle
 }
 \description{
-Connect to database
-https://duckdb.org/docs/api/r.html
-https://dbi.r-dbi.org/reference/dbconnect
+See \href{https://duckdb.org/docs/api/r.html}{DuckDB R API}
+
+We want an in-memory database.
 }
