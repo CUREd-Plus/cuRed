@@ -68,3 +68,7 @@ venv/
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints
+
+# Python temporary files
+__pycache__/
+*.pyc
