@@ -1,6 +1,6 @@
-# Development and Contributing
+# Contributing
 
-This section describes how to contribute to the development of `cuRed`.
+This document describes how to contribute to the development of `cuRed`.
 
 # Workflow overview
 
@@ -80,7 +80,7 @@ and [lintr](https://lintr.r-lib.org/).
 
 If you are unfamiliar working with Git and GitHub with R then you may
 find [Happy Git and GitHub for the useR](https://happygitwithr.com/) a
-useful resource.
+useful resource. There's also an online book called [Pro Git](https://git-scm.com/book/en/v2) which is a useful primer.
 
 ## Cloning the Repository
 
