@@ -2,7 +2,17 @@
 # Outpatient (OP) data validation rules
 
 rules:
-# ATTENDKEY HES Record Identifier
+# 🔑 ATTENDKEY HES Record Identifier (primary key)
+- name: ATTENDKEY is required
+  expr: '!is.na(ATTENDKEY)'
+  meta:
+    severity: error
+  
+- name: ATTENDKEY is unique
+  expr: is_unique(ATTENDKEY)
+  meta:
+    severity: error
+
 - name: ATTENDKEY 12n 
   description: ATTENDKEY has 12 integers (2003-04 to 2020-21)
   expr: grepl("^\\d{12}$", ATTENDKEY)
