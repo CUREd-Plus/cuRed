@@ -7,15 +7,14 @@
 main(data_sets_path = NA, patient_path, demographics_path)
 }
 \arguments{
-\item{data_sets_path}{character Path of the configuration file. Defaults to the one included in the library.}
+\item{data_sets_path}{character Path of the configuration file. Defaults to the one included in the library at \code{inst/extdata/data_sets.json}}
 
 \item{patient_path}{character Path of the patient ID bridge file.}
 
 \item{demographics_path}{character Path of the demographics file.}
 }
 \description{
-\code{main} executes the entire data pipeline for all data sets.
-}
-\details{
-TODO
+The function executes the entire data pipeline for all data sets.
+
+It will iterate over the data sets and execute \code{run_workflow()} for each one.
 }

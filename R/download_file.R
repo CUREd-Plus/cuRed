@@ -12,9 +12,7 @@ library(cli)
 #' @param method Method to be used for downloading files. See [utils::download.file](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file)
 #' @param ... Arguments to be passed to utils::download.file(...)
 #'
-#' @return
-#'
-#' See the "Value" section in [utils::download.file](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file).
+#' @return character. Path of downloaded file (`destfile`)
 #'
 #' @export
 #'
@@ -37,5 +35,5 @@ download_file <- function(url, mode="wb", destfile=NA, method="auto", ...) {
 
   cli::cli_alert_success("Wrote '{destfile}'")
 
-  return(result)
+  return(destfile)
 }

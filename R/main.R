@@ -3,14 +3,13 @@ library(cli)
 #' Run workflow
 #'
 #' @description
-#' `main` executes the entire data pipeline for all data sets.
+#' The function executes the entire data pipeline for all data sets.
 #'
-#' @details
-#' TODO
+#' It will iterate over the data sets and execute `run_workflow()` for each one.
 #'
 #' @export
 #'
-#' @param data_sets_path character Path of the configuration file. Defaults to the one included in the library.
+#' @param data_sets_path character Path of the configuration file. Defaults to the one included in the library at `inst/extdata/data_sets.json`
 #' @param patient_path character Path of the patient ID bridge file.
 #' @param demographics_path character Path of the demographics file.
 #'
