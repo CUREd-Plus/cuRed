@@ -53,12 +53,8 @@ class NHSFormat:
 
         return length
 
-    def generate_expressions(self, field: str):
-        try:
-            yield f'grepl("{self.regex}", {field})'
-        # No regular pattern possible
-        except NotImplementedError:
-            pass
+    def expr(self, field: str) -> str:
+        return f'grepl("{self.regex}", {field})'
 
     @property
     def regex(self):

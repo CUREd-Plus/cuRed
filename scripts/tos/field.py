@@ -1,7 +1,7 @@
 import re
 from collections.abc import Mapping
 
-from rule import Rule
+from validation_rule import Rule
 from field_format import Format
 from field_values import Values
 
@@ -61,13 +61,7 @@ class Field:
             expr=self.format.expr(field=self.name)
         )
 
-        # Generate rules based on the values
-        for i, expr in enumerate(self.values.generate_expressions(field=self.name)):
-            yield Rule(
-                name=f"{self} values rule {i + 1}",
-                expr=expr,
-                description=str(self.values)
-            )
+        yield from self.values.generate_rules(field=self.name)
 
     @property
     def length(self) -> int:

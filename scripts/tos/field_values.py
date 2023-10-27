@@ -4,6 +4,7 @@ from collections.abc import Mapping
 from typing import Optional
 
 from nhs_data_model import NHSFormat
+from validation_rule import Rule
 
 logger = logging.getLogger(__name__)
 
@@ -16,20 +17,17 @@ class Values:
     """
 
     DELIMITER = '='
-    "The string that delimit the codes and values"
+    "The string that separates the codes and values, on each line of the cell."
 
     def __init__(self, values):
         self._values_str: str = str(values).replace('\r\n', '\n')
-        self._values: Optional[Mapping] = None
+        self._data: Optional[Mapping] = None
 
     def __str__(self):
         return self._values_str
 
     def __repr__(self):
         return f'Values("""{self._values_str}""")'
-
-    def __iter__(self):
-        yield from self.parse(self._values_str)
 
     @classmethod
     def parse(cls, values):
@@ -44,10 +42,19 @@ class Values:
 
             yield key.strip(), value.strip()
 
+    def keys(self):
+        return self.data.keys()
+
+    def values(self):
+        return self.data.values()
+
+    def items(self):
+        return self.data.items()
+
     @property
     def nhs_format(self) -> NHSFormat:
         # Get the first value key
-        for key in self.values.keys():
+        for key in self.keys():
             return NHSFormat(key)
 
     @property
@@ -56,26 +63,39 @@ class Values:
             return x
 
     @property
-    def values(self) -> Mapping[str, str]:
-        if self._values is None:
-            self._values = dict(self)
-        return self._values
+    def data(self) -> Mapping[str, str]:
+        if self._data is None:
+            self._data = dict(self.parse(values=self._values_str))
+        return self._data
 
     def __index__(self, x):
         return self.values[x]
 
-    def generate_expressions(self, field):
-        try:
-            # The first value may be an NHS data model format
-            yield from self.nhs_format.generate_expressions(field)
-        # Some values don't have an NHS format specified
-        except AttributeError:
-            if self.nhs_format is not None:
-                raise
+    def __len__(self):
+        return len(self.data)
 
-        # Code lists: specific values
-        # https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#28_Code_lists
-        yield self.expr(field)
+    def generate_rules(self, field: str):
+
+        # NHS Format
+        # The first value may be an NHS data model format
+        try:
+            yield Rule(
+                name=f"{field} {self.nhs_format}",
+                expr=self.nhs_format.expr(field),
+                description=f"{field} NHS Data Model and Dictionary"
+            )
+        # Some values don't have an NHS format specified
+        except (NotImplementedError, AttributeError):
+            pass
+
+        # Avoid cases without a code list
+        if len(self) > 1:
+            # Generate rules based on the values (code list)
+            yield Rule(
+                name=f"{field} values codes",
+                expr=self.expr(field),
+                description=str(self)
+            )
 
     def expr(self, field: str) -> str:
         """
@@ -95,9 +115,9 @@ class Values:
         Generate the possible codes (and their values) in this value set.
         """
         # Iterate over values
-        for code, value in itertools.islice(self, 1, None):
-            if code.startswith('*'):
-                raise ValueError("%s %s", code, value)
+        for i, (code, value) in enumerate(self.data.items()):
+            # TODO
+            # How can we differentiate between codes and formats?
             yield code, value
 
     @property

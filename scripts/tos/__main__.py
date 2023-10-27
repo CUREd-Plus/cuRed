@@ -8,7 +8,7 @@ import pandas as pd
 import yaml
 
 from field import Field
-from rule import Rule
+from validation_rule import Rule
 
 logger = logging.getLogger(__name__)
 

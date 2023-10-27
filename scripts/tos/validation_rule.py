@@ -25,6 +25,10 @@ class Rule:
     def __str__(self):
         return self.as_yaml()
 
+    @staticmethod
+    def yaml_dump(rules: list):
+        return yaml.dump(dict(rules=rules))
+
     def as_yaml(self) -> str:
         """
         Serialise the rule as a YAML data file.
