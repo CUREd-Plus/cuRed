@@ -36,7 +36,7 @@ class Format:
         elif self.format.startswith('String'):
             return f"is.character({field}) & {self.nchar(field)}"
         elif self.format == "Date(YYYY-MM-DD)":
-            regex = r"^\d{4}-([0]\|1[0-2])-([0-2]\d|3[01])$"
+            regex = r"^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"
             return fr'grepl("{regex}", {field})'
         elif self.format == "Decimal":
             return f"is.numeric({field})"
