@@ -56,7 +56,7 @@ class Field:
 
         # Generate rules based on the format (e.g. 'Number', 'String(2)')
         yield Rule(
-            name=f'{self} "{self.format}"',
+            name=f'{self} {self.format}',
             description=f"{self.title} is {self.format}".strip(),
             expr=self.format.expr(field=self.name)
         )
