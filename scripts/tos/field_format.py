@@ -17,7 +17,7 @@ class Format:
     """
 
     def __init__(self, format_):
-        self.format = str(format_)
+        self.format = str(format_).strip()
 
     def __str__(self):
         return self.format
