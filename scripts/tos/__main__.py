@@ -38,12 +38,18 @@ def main():
     logging.basicConfig(level=args.log_level)
 
     tos_file = pd.ExcelFile(args.tos_path)
-
-    logger.info(tos_file.sheet_names)
+    logger.info("Loaded '%s'", args.tos_path)
+    logger.info("Worksheets: %s", tos_file.sheet_names)
 
     tos = pd.read_excel(tos_file, sheet_name=args.sheet_name, index_col=args.index_col, skiprows=args.skiprows)
 
-    for row in tos.sample(50).reset_index().replace(pd.NA, None).to_dict(orient='records'):
+    # Build a set of rules
+    rules = list()
+    # Iterate over fields in the TOS
+    rows = tos.sample(50).reset_index().replace(pd.NA, None).to_dict(orient='records')
+    for i, row in enumerate(rows):
+        logger.info("%s: %s", i, row['Field'])
+
         field = Field(
             name=row['Field'],
             title=row['Field name'],
@@ -52,12 +58,17 @@ def main():
             description=row['Description'],
         )
 
-        logger.info(field)
-        logger.info(field.values)
-        logger.info(repr(field.values.nhs_format))
         for rule in field.generate_rules():
-            logger.info(rule)
-        logger.info('_' * 128)
+            try:
+                rules.append(dict(rule))
+
+            # Skip field formats we haven't implemented
+            except NotImplementedError as exc:
+                logger.error(exc)
+
+    # Output results
+    rules_data = yaml.dump(dict(rules=rules))
+    print(rules_data)
 
 
 if __name__ == '__main__':

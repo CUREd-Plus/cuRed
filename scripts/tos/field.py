@@ -1,7 +1,7 @@
 import re
 
 from rule import Rule
-from data_format import Format
+from field_format import Format
 from field_values import Values
 
 
@@ -21,6 +21,7 @@ class Field:
         :param name: Field name e.g. 'AT_GP_PRACTICE'
         :param title: Pretty, human-readable label for this field.
         """
+
         self.name = str(name)
         self.title = str(title)
         self.format = Format(format_)
@@ -29,12 +30,12 @@ class Field:
         self.unique = unique
         self.description = str(description or '')
 
+    def __str__(self):
+        return self.name
+
     @property
     def rules(self) -> set:
         return set(self.generate_rules())
-
-    def __str__(self):
-        return self.name
 
     def generate_rules(self):
 

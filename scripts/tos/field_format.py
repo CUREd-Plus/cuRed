@@ -11,7 +11,7 @@ from nhs_data_model import NHSFormat
 
 class Format:
     """
-    An NHS data format e.g. "Number", "String(4)", "Date(YYYY-MM-DD)"
+    An NHS HES TOS field data format e.g. "Number", "String(4)", "Date(YYYY-MM-DD)"
     """
 
     def __init__(self, format_):

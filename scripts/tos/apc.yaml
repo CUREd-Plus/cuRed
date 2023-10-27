@@ -1,0 +1,215 @@
+rules:
+- description: NHS Number Check Flag is String(1)
+  expr: is.character(NEWNHSNO_CHECK) & nchar(NEWNHSNO_CHECK) == 1
+  name: NEWNHSNO_CHECK String(1)
+- description: Procedure Date is Date(YYYY-MM-DD)
+  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PROCEDURE_DATE)
+  name: PROCEDURE_DATE Date(YYYY-MM-DD)
+- expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PROCEDURE_DATE)
+  name: PROCEDURE_DATE YYYY-MM-DD
+- description: Patient Pathway Identifier  is String(20)
+  expr: is.character(PATPATHID) & nchar(PATPATHID) == 20
+  name: PATPATHID String(20)
+- expr: grepl("^[a-zA-Z0-9]{20}$", PATPATHID)
+  name: PATPATHID 20an
+- description: Emed3 Fit Note Start Date is Date(YYYY-MM-DD)
+  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_START_DATE)
+  name: EMED3_START_DATE Date(YYYY-MM-DD)
+- expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_START_DATE)
+  name: EMED3_START_DATE YYYY-MM-DD
+- description: Duration of Elective Wait (Calculation) is Number
+  expr: is.integer(ELECDUR_CALC)
+  name: ELECDUR_CALC Number
+- expr: grepl("^\d$", ELECDUR_CALC)
+  name: ELECDUR_CALC 4n
+- description: Patient identifier - HES generated  is Number
+  expr: is.integer(HESID)
+  name: HESID Number
+- expr: grepl("^\d$", HESID)
+  name: HESID n
+- description: Overseas Visitor Charging Category is String(1)
+  expr: is.character(OVERSEAS_VISITOR_CATEGORY) & nchar(OVERSEAS_VISITOR_CATEGORY)
+    == 1
+  name: OVERSEAS_VISITOR_CATEGORY String(1)
+- description: Ordnance Survey Grid Reference is String(11)
+  expr: is.character(GRIDLINK) & nchar(GRIDLINK) == 11
+  name: GRIDLINK String(11)
+- expr: grepl("^\d$", GRIDLINK)
+  name: GRIDLINK 9n
+- description: Labour or Delivery Onset Method is Number
+  expr: is.integer(DELONSET)
+  name: DELONSET Number
+- description: Direct Access Referral Indicator is String(1)
+  expr: is.character(REFERRAL_INDICATOR) & nchar(REFERRAL_INDICATOR) == 1
+  name: REFERRAL_INDICATOR String(1)
+- description: "Integrated Care Board of Treatment (July 2022 onwards)\nSustainability\
+    \ and Transformation Partnership of Treatment\_(until June 2022) is String(9)"
+  expr: is.character(STP_TREATMENT) & nchar(STP_TREATMENT) == 9
+  name: STP_TREATMENT String(9)
+- description: Westminster Parliamentary Constituency of Residence is String(3)
+  expr: is.character(PCON) & nchar(PCON) == 3
+  name: PCON String(3)
+- expr: grepl("^[a-zA-Z0-9]{3}$", PCON)
+  name: PCON 3an
+- description: Ward Intended Day Period Availability is String(1)
+  expr: is.character(DAY_PERIOD_AVAILABILITY) & nchar(DAY_PERIOD_AVAILABILITY) ==
+    1
+  name: DAY_PERIOD_AVAILABILITY String(1)
+- description: IMD Employment Deprivation Domain is Decimal
+  expr: is.numeric(IMD04EM)
+  name: IMD04EM Decimal
+- expr: grepl("^\d*\.?\d*$", IMD04EM)
+  name: IMD04EM n.nn
+- description: Comorbidity is String(6-40000)
+  expr: is.character(COMORBIDITY) & nchar(COMORBIDITY) == 640000
+  name: COMORBIDITY String(6-40000)
+- description: V Code Indicator is String(1)
+  expr: is.character(VIND) & nchar(VIND) == 1
+  name: VIND String(1)
+- description: Electoral Ward 1991 is String(9)
+  expr: is.character(WARD91) & nchar(WARD91) == 9
+  name: WARD91 String(9)
+- expr: grepl("^[a-zA-Z0-9]{6}$", WARD91)
+  name: WARD91 6a
+- description: Origin of Primary Care Trust of Responsibility  2006 is String(1)
+  expr: is.character(PCTORIG06) & nchar(PCTORIG06) == 1
+  name: PCTORIG06 String(1)
+- description: SUS Generated Core Spell HRG is String(5)
+  expr: is.character(SUSCOREHRG) & nchar(SUSCOREHRG) == 5
+  name: SUSCOREHRG String(5)
+- expr: grepl("^[a-zA-Z0-9]{5}$", SUSCOREHRG)
+  name: SUSCOREHRG 5an
+- description: Government Office Region of Residence (ONS) is String(9)
+  expr: is.character(RESGOR_ONS) & nchar(RESGOR_ONS) == 9
+  name: RESGOR_ONS String(9)
+- description: IMD Overall Rank  is Number
+  expr: is.integer(IMD04RK)
+  name: IMD04RK Number
+- expr: grepl("^\d$", IMD04RK)
+  name: IMD04RK 5n
+- description: NHS Service Agreement Line Identifier is String(20)
+  expr: is.character(NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER) & nchar(NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER)
+    == 20
+  name: NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER String(20)
+- expr: grepl("^[a-zA-Z0-9]{0,20}$", NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER)
+  name: NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER max 20an
+- description: Version Number of HRGNHS is String(3)
+  expr: is.character(HRGNHSVN) & nchar(HRGNHSVN) == 3
+  name: HRGNHSVN String(3)
+- expr: grepl("^[a-zA-Z0-9]{3}$", HRGNHSVN)
+  name: HRGNHSVN 3an
+- description: Legal Group of Patient (Psychiatric Census Date) is String(1)
+  expr: is.character(LEGALGPC) & nchar(LEGALGPC) == 1
+  name: LEGALGPC String(1)
+- description: Financial Year is String(4)
+  expr: is.character(FYEAR) & nchar(FYEAR) == 4
+  name: FYEAR String(4)
+- expr: grepl("^\d$", FYEAR)
+  name: FYEAR 4n
+- description: Duration of Elective Wait (Submitted) is Number
+  expr: is.integer(ELECDURN)
+  name: ELECDURN Number
+- expr: grepl("^\d$", ELECDURN)
+  name: ELECDURN max 4n
+- description: Emed3 Fit Note Follow Up Assessment Required Indicator is String(1)
+  expr: is.character(EMED_ASSESSMENT_REQUIRED) & nchar(EMED_ASSESSMENT_REQUIRED) ==
+    1
+  name: EMED_ASSESSMENT_REQUIRED String(1)
+- description: Duplicate Flag  is Number
+  expr: is.integer(DUPLICATE_FLAG)
+  name: DUPLICATE_FLAG Number
+- description: Census Output Area 2011  is String(9)
+  expr: is.character(OACODE11) & nchar(OACODE11) == 9
+  name: OACODE11 String(9)
+- expr: grepl("^[a-zA-Z0-9]{9}$", OACODE11)
+  name: OACODE11 9an
+- description: First Regular Day or Night Admission is String(1)
+  expr: is.character(FIRSTREG) & nchar(FIRSTREG) == 1
+  name: FIRSTREG String(1)
+- description: Number of Previous Pregnancies is String(2)
+  expr: is.character(NUMPREG) & nchar(NUMPREG) == 2
+  name: NUMPREG String(2)
+- expr: grepl("^\d$", NUMPREG)
+  name: NUMPREG max 2n
+- description: Neonatal Level of Care is String(1)
+  expr: is.character(NEOCARE) & nchar(NEOCARE) == 1
+  name: NEOCARE String(1)
+- description: Destination on Discharge is String(2)
+  expr: is.character(DISDEST) & nchar(DISDEST) == 2
+  name: DISDEST String(2)
+- description: "Organisation Identifier (Code of Provider)\n is String(3) or String(5)"
+  expr: is.character(PROCODE) & nchar(PROCODE) == 35
+  name: PROCODE String(3) or String(5)
+- description: Ambulance Call Identifier is String(20)
+  expr: is.character(AMBULANCE_CALL_IDENTIFIER) & nchar(AMBULANCE_CALL_IDENTIFIER)
+    == 20
+  name: AMBULANCE_CALL_IDENTIFIER String(20)
+- expr: grepl("^[a-zA-Z0-9]{0,20}$", AMBULANCE_CALL_IDENTIFIER)
+  name: AMBULANCE_CALL_IDENTIFIER max 20an
+- description: Augmented Care Period Data Quality Indicator  is String(1)
+  expr: is.character(ACPDQIND_n) & nchar(ACPDQIND_n) == 1
+  name: ACPDQIND_n String(1)
+- description: Concatenated Procedure Codes - 4 Character is String(130)
+  expr: is.character(OPERTN_4_CONCAT) & nchar(OPERTN_4_CONCAT) == 130
+  name: OPERTN_4_CONCAT String(130)
+- description: Emed3 Fit Note Assessment Date is Date(YYYY-MM-DD)
+  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_ASSESSMENT_DATE)
+  name: EMED3_ASSESSMENT_DATE Date(YYYY-MM-DD)
+- expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_ASSESSMENT_DATE)
+  name: EMED3_ASSESSMENT_DATE YYYY-MM-DD
+- description: Patient Usual Address (Unstructured) is String(175)
+  expr: is.character(PATIENT_USUAL_ADDRESS_UNSTRUCTURED) & nchar(PATIENT_USUAL_ADDRESS_UNSTRUCTURED)
+    == 175
+  name: PATIENT_USUAL_ADDRESS_UNSTRUCTURED String(175)
+- description: IMD Income Affecting Children Domain  is Decimal
+  expr: is.numeric(IMD04IC)
+  name: IMD04IC Decimal
+- expr: grepl("^\d*\.?\d*$", IMD04IC)
+  name: IMD04IC n.nn
+- description: IMD Health and Disability Domain  is Decimal
+  expr: is.numeric(IMD04HD)
+  name: IMD04HD Decimal
+- expr: grepl("^\d*\.?\d*$", IMD04HD)
+  name: IMD04HD n.nn
+- description: Legal Status Classification is String(2)
+  expr: is.character(LEGLSTAT) & nchar(LEGLSTAT) == 2
+  name: LEGLSTAT String(2)
+- description: CDS Version Number is String(8)
+  expr: is.character(CDSVERSION) & nchar(CDSVERSION) == 8
+  name: CDSVERSION String(8)
+- description: Augmented Care Period Specialty Function Code is String(3)
+  expr: is.character(ACPSPEF_n) & nchar(ACPSPEF_n) == 3
+  name: ACPSPEF_n String(3)
+- description: Ambulatory Care Sensitive Condition Flag is Number
+  expr: is.integer(ACSCFLAG)
+  name: ACSCFLAG Number
+- description: Augmented Care Period Start Date is Date(YYYY-MM-DD)
+  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", ACPSTAR_n)
+  name: ACPSTAR_n Date(YYYY-MM-DD)
+- expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    ACPSTAR_n)
+  name: ACPSTAR_n YYYY-MM-DD
+- description: Number of Valid Augmented Care Period Groups is Number
+  expr: is.integer(A_NUMACP)
+  name: A_NUMACP Number
+- expr: grepl("^\d$", A_NUMACP)
+  name: A_NUMACP n
+- description: 'HES Record Identifier is String(12) (1989-90 to 2020-21)
+
+    String(19) (2021-22 onwards)'
+  expr: is.character(EPIKEY) & nchar(EPIKEY) == 1219899020202119202122
+  name: 'EPIKEY String(12) (1989-90 to 2020-21)
+
+    String(19) (2021-22 onwards)'
+- description: Origin of STP_TREATMENT  is String(1)
+  expr: is.character(STP_TREATMENT_ORIGIN) & nchar(STP_TREATMENT_ORIGIN) == 1
+  name: STP_TREATMENT_ORIGIN String(1)
+- description: Age of Baby In Days is Number
+  expr: is.integer(NEODUR)
+  name: NEODUR Number
+- expr: grepl("^\d$", NEODUR)
+  name: NEODUR 2n
+
