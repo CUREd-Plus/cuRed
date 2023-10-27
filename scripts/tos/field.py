@@ -64,7 +64,7 @@ class Field:
         # Generate rules based on the values
         for i, expr in enumerate(self.values.generate_expressions(field=self.name)):
             yield Rule(
-                name=f"{self} values rule {i}",
+                name=f"{self} values rule {i + 1}",
                 expr=expr,
                 description=str(self.values)
             )

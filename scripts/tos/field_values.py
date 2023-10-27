@@ -19,7 +19,7 @@ class Values:
     "The string that delimit the codes and values"
 
     def __init__(self, values):
-        self._values_str: str = str(values)
+        self._values_str: str = str(values).replace('\r\n', '\n')
         self._values: Optional[Mapping] = None
 
     def __str__(self):

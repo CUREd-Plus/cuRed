@@ -56,7 +56,7 @@ def main():
     # Build a set of rules
     rules = list()
     # Iterate over fields in the TOS
-    rows = tos.reset_index().replace(pd.NA, None).to_dict(orient='records')
+    rows = tos.reset_index().replace(pd.NA, str()).to_dict(orient='records')
     for i, row in enumerate(rows):
         i += 1
         logger.info("Row %s '%s'", i, row['Field'])
