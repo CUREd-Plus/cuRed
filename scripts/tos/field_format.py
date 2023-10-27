@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class Format:
     """
-    An NHS HES TOS field data format e.g. "Number", "String(4)", "Date(YYYY-MM-DD)"
+    An NHS HES TOS field data format e.g. "Number", "String(4)", "Date(YYYY-MM-DD)", "String(6-40000)"
     """
 
     def __init__(self, format_):
@@ -23,22 +23,58 @@ class Format:
     def __str__(self):
         return self.format
 
-    def generate_expressions(self, field: str):
+    def __repr__(self):
+        return f'{self.__class__.__name__}({repr(self.format)})'
+
+    def expr(self, field: str) -> str:
         """
-        Generate R code to validate each field format.
+        The R expression of the data validation rule for this field.
         """
+        # Assume we can represent this field format using a single expression
         if self.format == 'Number':
-            yield f"is.integer({field})"
+            return f"is.integer({field})"
             # String(n)
         elif self.format.startswith('String'):
-            yield f"is.character({field}) & nchar({field}) == {self.length}"
+            return f"is.character({field}) & {self.nchar(field)}"
         elif self.format == "Date(YYYY-MM-DD)":
-            yield f'grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", {field})'
+            return f'grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", {field})'
         elif self.format == "Decimal":
-            yield f"is.numeric({field})"
+            return f"is.numeric({field})"
         else:
             logger.error("%s %s", field, repr(self))
             raise NotImplementedError(self.format)
+
+    def nchar(self, field: str) -> str:
+        """
+        Build character length check logical expression in the R programming language.
+        """
+        try:
+            # Fixed length e.g. "nchar(MY_FIELD) == 2"
+            return f"nchar({field}) == {self.length}"
+        except ValueError:
+            # Range of acceptable lengths
+            min_, max_ = self.range
+            return f"({min_} <= nchar({field})) & (nchar({field}) <= {max_})"
+
+    @property
+    def range(self) -> tuple[int, int]:
+        """
+        The range of lengths for this field
+        """
+        # String(4-6000)
+        if self.format.startswith('String('):
+            s = self.format[7:-1]
+            n_min, _, n_max = s.partition('-')
+            n_min = int(n_min)
+            n_max = int(n_max)
+            if n_min >= n_max:
+                raise ValueError("Invalid range %s", self.format)
+            return n_min, n_max
+
+        raise NotImplementedError(self.format)
+
+    def is_string(self) -> bool:
+        return self.format.startswith('String(')
 
     @property
     def length(self) -> int:
@@ -46,7 +82,9 @@ class Format:
         The length (number of characters or digits) of values in this format.
         """
         # Get numbers only
-        try:
-            return int(''.join(c for c in self.format if c.isdigit()))
-        except ValueError:
-            pass
+        if self.is_string():
+            # 'String(42)' -> '42'
+            s = self.format[7:-1]
+            return int(s)
+        else:
+            raise NotImplementedError(self.format)

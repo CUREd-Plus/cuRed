@@ -54,12 +54,11 @@ class Field:
             )
 
         # Generate rules based on the format (e.g. 'Number', 'String(2)')
-        for expr in self.format.generate_expressions(field=self.name):
-            yield Rule(
-                name=f"{self} {self.format}",
-                description=f"{self.title} is {self.format}",
-                expr=expr
-            )
+        yield Rule(
+            name=f"{self} {self.format}",
+            description=f"{self.title} is {self.format}",
+            expr=self.format.expr(field=self.name)
+        )
 
         # Generate rules based on the values
         for expr in self.values.generate_expressions(field=self.name):
@@ -67,10 +66,6 @@ class Field:
                 name=f"{self} {self.values.nhs_format}",
                 expr=expr
             )
-
-    @property
-    def range(self) -> tuple[int]:
-        raise NotImplementedError
 
     @property
     def length(self) -> int:
