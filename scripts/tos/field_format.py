@@ -4,9 +4,12 @@ This module contains classes that represent and NHS formats and value sets.
 These classes may be used as part of the process of generating data validation rules.
 """
 
+import logging
 import re
 from collections.abc import Mapping
 from nhs_data_model import NHSFormat
+
+logger = logging.getLogger(__name__)
 
 
 class Format:
@@ -34,7 +37,8 @@ class Format:
         elif self.format == "Decimal":
             yield f"is.numeric({field})"
         else:
-            raise NotImplementedError
+            logger.error("%s %s", field, repr(self))
+            raise NotImplementedError(self.format)
 
     @property
     def length(self) -> int:
