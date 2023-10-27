@@ -36,11 +36,13 @@ class Format:
         elif self.format.startswith('String'):
             return f"is.character({field}) & {self.nchar(field)}"
         elif self.format == "Date(YYYY-MM-DD)":
-            return f'grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", {field})'
+            regex = r"^\d{4}-([0]\|1[0-2])-([0-2]\d|3[01])$"
+            return fr'grepl("{regex}", {field})'
         elif self.format == "Decimal":
             return f"is.numeric({field})"
         elif self.format == "Time(HH24:MI:ss)":
-            return f'grepl("^^[0-2]\\d:[0-5]\\d:[0-5]\\d$", {field})'
+            regex = r"^^[0-2]\d:[0-5]\d:[0-5]\d$"
+            return fr'grepl("{regex}", {field})'
         else:
             logger.error("%s %s", field, repr(self))
             raise NotImplementedError(self.format)

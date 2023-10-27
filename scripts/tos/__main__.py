@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
+import re
 import yaml
 
 from field import Field
@@ -73,6 +74,8 @@ def main():
         )
 
         for rule in field.generate_rules():
+            # In R, escape characters must be escaped
+            rule.expr = rule.expr.replace('\\', '\\\\')
             rules.append(dict(rule))
 
     # Output results

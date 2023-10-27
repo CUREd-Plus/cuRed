@@ -83,7 +83,7 @@ class NHSFormat:
         elif self.match(r"^n+\.n+"):
             return r"^\d*\.?\d*$"
 
-        # Fixed string format e.g. ann aan aann
+        # Fixed string format e.g. ann, aan, aann
         elif self.match(r"^a*n*$"):
             regex = str()
             num_a = self.format.count('a')
