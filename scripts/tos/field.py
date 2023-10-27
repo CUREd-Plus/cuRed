@@ -1,4 +1,5 @@
 import re
+from collections.abc import Mapping
 
 from rule import Rule
 from field_format import Format
@@ -61,11 +62,11 @@ class Field:
         )
 
         # Generate rules based on the values
-        for expr in self.values.generate_expressions(field=self.name):
+        for i, expr in enumerate(self.values.generate_expressions(field=self.name)):
             yield Rule(
-                name=f"{self} {self.values.nhs_format}",
+                name=f"{self} values rule {i}",
                 expr=expr,
-                description=str(self.format)
+                description=str(self.values)
             )
 
     @property

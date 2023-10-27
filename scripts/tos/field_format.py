@@ -6,7 +6,6 @@ These classes may be used as part of the process of generating data validation r
 
 import logging
 import re
-from collections.abc import Mapping
 from nhs_data_model import NHSFormat
 
 logger = logging.getLogger(__name__)

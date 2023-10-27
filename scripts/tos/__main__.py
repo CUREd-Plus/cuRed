@@ -65,7 +65,7 @@ def main():
         format_ = field_format_overrides.get(row['Field'], row['Format'])
 
         field = Field(
-            name=row['Field'],
+            name=row['Field'].strip(),
             title=row['Field name'],
             format_=format_,
             values=row['Values'],
