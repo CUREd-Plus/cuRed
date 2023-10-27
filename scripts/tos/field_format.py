@@ -51,10 +51,23 @@ class Format:
         try:
             # Fixed length e.g. "nchar(MY_FIELD) == 2"
             return f"nchar({field}) == {self.length}"
+
         except ValueError:
-            # Range of acceptable lengths
-            min_, max_ = self.range
-            return f"({min_} <= nchar({field})) & (nchar({field}) <= {max_})"
+            try:
+                # Range of acceptable lengths
+                min_, max_ = self.range
+                return f"({min_} <= nchar({field})) & (nchar({field}) <= {max_})"
+            except ValueError:
+                # Handle wierd cases e.g.
+                """"String(12) (2013-14 to 2020-21)
+                String(19) (2021-22 onwards)"""
+
+                # Grab all possible values
+                lengths = re.findall(r"String\((\d+)\)", self.format)
+                # nchar(FIELD) == 12 OR nchar(FIELD) == 19
+                nchar = ' | '.join((f"nchar({field}) == {n}" for n in lengths))
+                # Wrap logical expressions in brackets to form a single expression
+                return f"({nchar})"
 
     @property
     def range(self) -> tuple[int, int]:
