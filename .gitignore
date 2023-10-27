@@ -72,3 +72,4 @@ venv/
 # Python temporary files
 __pycache__/
 *.pyc
+.idea/

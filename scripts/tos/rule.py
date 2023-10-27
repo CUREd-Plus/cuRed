@@ -1,5 +1,6 @@
 import yaml
 
+
 class Rule:
     """
     A data validation rule.
@@ -7,8 +8,8 @@ class Rule:
     See: Section 8.2 Metadata in text files: YAML
     https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html
     """
-    
-    def __init__(self, name, expr, description = None):
+
+    def __init__(self, name, expr, description=None):
         """
         :param name: Short rule name
         :param description: Human-readable label
@@ -20,10 +21,10 @@ class Rule:
 
     def __repr__(self):
         return f"Rule('{self.name}', description='{self.description}', expr='{self.expr}')"
-    
+
     def __str__(self):
         return self.as_yaml()
-    
+
     def as_yaml(self) -> str:
         """
         Serialise the rule as a YAML data file.
@@ -32,7 +33,7 @@ class Rule:
 
     def as_dict(self):
         return dict(self)
-    
+
     def __iter__(self):
         yield 'name', self.name
         if self.description:

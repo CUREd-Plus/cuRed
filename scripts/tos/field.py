@@ -1,16 +1,22 @@
 import re
 
 from rule import Rule
-from data_format import Format, Values
+from data_format import Format
+from field_values import Values
+
 
 class Field:
     """
     A field is a column in a tabular data set.
+
+    A field is represented by a row in the NHS HES TOS.
+    https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
     """
-    
-    def __init__(self, title, name, format_: str, values: str = None, required: bool = False, unique: bool = False, description: str = None):
+
+    def __init__(self, name: str, title: str, format_: str, values: str = None, required: bool = False,
+                 unique: bool = False, description: str = None):
         """
-        Field
+        TOS Field
 
         :param name: Field name e.g. 'AT_GP_PRACTICE'
         :param title: Pretty, human-readable label for this field.
@@ -29,13 +35,13 @@ class Field:
 
     def __str__(self):
         return self.name
-    
+
     def generate_rules(self):
 
         if self.required:
             yield Rule(
                 name=f"{self} required",
-               description=f"{self.title} is required", 
+                description=f"{self.title} is required",
                 expr=f"!is.na({self})"
             )
 
@@ -57,10 +63,10 @@ class Field:
         # Generate rules based on the values
         for expr in self.values.generate_expressions(field=self.name):
             yield Rule(
-                name='TODO',
+                name=f"{self} {self.values.nhs_format}",
                 expr=expr
             )
-    
+
     @property
     def range(self) -> tuple[int]:
         raise NotImplementedError

@@ -18,6 +18,12 @@ class NHSFormat:
     def __init__(self, format_: str):
         self.format = format_
 
+    def __str__(self):
+        return self.format
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}({repr(self.format)})'
+
     @property
     def max(self) -> bool:
         """
@@ -30,23 +36,69 @@ class NHSFormat:
     @property
     def length(self) -> int:
         """
-        The specified length of this data value,
-        e.g. format "4n" has length 4
-        e.g. format "12an" has length 12
+        The specified length of this data value, e.g.:
+        {
+          "4n": 4,
+          "12an": 12,
+          "max 20an": 20
+        }
         """
-        raise NotImplementedError
-    
-    @classmethod
-    def is_valid(cls, s: str) -> bool:
-        return bool(re.match(r"^\d*a*n*$", s))
+
+        match = re.search(r"^(?:max )?(\d+)[an]+$", self.format)
+        groups = match.groups()
+        if len(groups) != 1:
+            raise ValueError(groups)
+
+        length = int(groups[0])
+
+        return length
 
     def generate_expressions(self, field: str):
-        if self.is_valid(self.format):
-            yield f'grepl("{self.regex}", {field})'
+        yield f'grepl("{self.regex}", {field})'
 
     @property
     def regex(self):
-        raise NotImplementedError
-        # Regular expression representing this field format
-        # e.g. '$[a-zA-Z0-9]{12}' means 12an
-        return f"$[a-zA-Z0-9]{{{self.length}}}"
+
+        # Date
+        if self.format == 'YYYY-MM-DD':
+            return r"^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$"
+
+        # Alphanumeric e.g. {'12an', 'an', '3an', 'max 20an'}
+        elif self.match(r"^(max )?\d+a+n*$"):
+            # Regular expression representing this field format
+            length_regex = f"{{{self.length}}}"  # Fixed length
+            if self.max:
+                length_regex = f"{{0,{self.length}}}"  # Up to x characters
+            # '^[a-zA-Z0-9]{12}$' means 12an
+            return f"^[a-zA-Z0-9]{length_regex}$"
+
+        # Integer {'n', '2n', 'max 4n'}
+        elif self.match(r"^(max )?\d*n+$"):
+            regex = r"\d"
+            if self.max:
+                pass
+            return rf"^{regex}$"
+
+        # Decimal
+        elif self.match(r"^n+\.n+"):
+            return r"^\d*\.?\d*$"
+
+        # Fixed string format e.g. ann aan aann
+        elif self.match(r"^a*n*$"):
+            regex = str()
+            num_a = self.format.count('a')
+            if num_a:
+                regex += fr"[a-zA-Z]{{{num_a}}}"
+            num_b = self.format.count('n')
+            if num_b:
+                regex += fr"\d{{{num_b}}}"
+            return rf"^{regex}$"
+
+        else:
+            raise NotImplementedError(self.format)
+
+    def match(self, pattern, **kwargs) -> bool:
+        """
+        Does the format match the Regular Expression pattern?
+        """
+        return bool(re.match(pattern=pattern, string=self.format, **kwargs))
