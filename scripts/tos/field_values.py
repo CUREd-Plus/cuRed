@@ -82,7 +82,7 @@ class Values:
             yield Rule(
                 name=f"{field} {self.nhs_format}",
                 expr=self.nhs_format.expr(field),
-                description=f"{field} NHS Data Model and Dictionary"
+                description=f"{field} {self.nhs_format} NHS Data Model and Dictionary"
             )
         # Some values don't have an NHS format specified
         except (NotImplementedError, AttributeError):
