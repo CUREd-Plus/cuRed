@@ -56,7 +56,7 @@ class Field:
         # Generate rules based on the format (e.g. 'Number', 'String(2)')
         yield Rule(
             name=f"{self} {self.format}",
-            description=f"{self.title} is {self.format}",
+            description=f"{self.title} is {self.format}".strip(),
             expr=self.format.expr(field=self.name)
         )
 
@@ -64,7 +64,8 @@ class Field:
         for expr in self.values.generate_expressions(field=self.name):
             yield Rule(
                 name=f"{self} {self.values.nhs_format}",
-                expr=expr
+                expr=expr,
+                description=str(self.format)
             )
 
     @property
