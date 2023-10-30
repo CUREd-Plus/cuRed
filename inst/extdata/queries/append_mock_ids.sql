@@ -4,10 +4,10 @@ COPY (
     -- Replicate input data
      input_data.*
       -- Generate mock patient identifiers
-    ,uuid() AS token_person_id
-    ,uuid() AS yas_id
-    ,uuid() AS cured_id
-    ,uuid() AS study_id
+    ,'TODO' AS token_person_id
+    ,'TODO' AS yas_id
+    ,'TODO' AS cured_id
+    ,'TODO' AS study_id
   FROM read_csv_auto('{input_path}') AS input_data
 )
 TO '{output_path}'

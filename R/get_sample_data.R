@@ -80,3 +80,36 @@ append_mock_ids <- function(input_path, output_path) {
 
   return(output_path)
 }
+
+
+generate_mock_demographics_data <- function(path) {
+  run_query(stringr::str_glue("
+COPY (
+  SELECT
+     '?' AS PATIENT_CARE_EXTENSION
+    ,'?' AS ADDRESS_LINE1
+    ,'?' AS ADDRESS_LINE2
+    ,'?' AS ADDRESS_LINE3
+    ,'?' AS ADDRESS_LINE4
+    ,'?' AS ADDRESS_LINE5
+    ,'?' AS ADDRESS_TYPE
+    ,'AA11 1AA' AS POSTCODE
+    ,'?' AS DEATH_NOTIFICATION_STATUS
+    ,'?' AS DERIVED_FOR_DODYM
+    ,'?' AS DERIVED_INF_DODYM
+    ,'AA11' AS DERIVED_POSTCODE_DIST
+    ,'?' AS DERIVED_RFR
+    ,'1970-01' AS DOB_YEAR_MONTH
+    ,'?' AS GENDER
+    ,'?' AS GP_PDS_BUS_EFF_FROM
+    ,'?' AS NHAIS_PDS_BUS_EFF_FROM
+    ,'?' AS RFR_PDS_BUS_EFF_FROM
+
+  -- https://duckdb.org/docs/sql/functions/nested.html
+  FROM generate_series(1, 10)
+)
+TO '{path}'
+WITH (FORMAT 'PARQUET');
+"))
+  cli::cli_alert_info("Wrote '{path}'")
+}
