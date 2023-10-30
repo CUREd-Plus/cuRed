@@ -82,28 +82,36 @@ append_mock_ids <- function(input_path, output_path) {
 }
 
 
+#' Generate synthetic patient demographics data
+#'
+#' @param path character. Output data file path.
+#'
+#' @return character. Output data file path.
+#' @export
+#'
 generate_mock_demographics_data <- function(path) {
   run_query(stringr::str_glue("
 COPY (
   SELECT
-     '?' AS PATIENT_CARE_EXTENSION
-    ,'?' AS ADDRESS_LINE1
-    ,'?' AS ADDRESS_LINE2
-    ,'?' AS ADDRESS_LINE3
-    ,'?' AS ADDRESS_LINE4
-    ,'?' AS ADDRESS_LINE5
-    ,'?' AS ADDRESS_TYPE
-    ,'AA11 1AA' AS POSTCODE
-    ,'?' AS DEATH_NOTIFICATION_STATUS
-    ,'?' AS DERIVED_FOR_DODYM
-    ,'?' AS DERIVED_INF_DODYM
-    ,'AA11' AS DERIVED_POSTCODE_DIST
-    ,'?' AS DERIVED_RFR
-    ,'1970-01' AS DOB_YEAR_MONTH
-    ,'?' AS GENDER
-    ,'?' AS GP_PDS_BUS_EFF_FROM
-    ,'?' AS NHAIS_PDS_BUS_EFF_FROM
-    ,'?' AS RFR_PDS_BUS_EFF_FROM
+     'TODO' AS PATIENT_CARE_EXTENSION
+    ,'TODO' AS ADDRESS_LINE1
+    ,'TODO' AS ADDRESS_LINE2
+    ,'TODO' AS ADDRESS_LINE3
+    ,'TODO' AS ADDRESS_LINE4
+    ,'TODO' AS ADDRESS_LINE5
+    ,'TODO' AS ADDRESS_TYPE
+    ,'TODO' AS POSTCODE
+    ,'TODO' AS DEATH_NOTIFICATION_STATUS
+    ,'TODO' AS DERIVED_FOR_DODYM
+    ,'TODO' AS DERIVED_INF_DODYM
+    ,'TODO' AS DERIVED_POSTCODE_DIST
+    ,'TODO' AS DERIVED_RFR
+    ,'TODO' AS DOB_YEAR_MONTH
+    ,'TODO' AS GENDER
+    ,'TODO' AS GP_PDS_BUS_EFF_FROM
+    ,'TODO' AS NHAIS_PDS_BUS_EFF_FROM
+    ,'TODO' AS RFR_PDS_BUS_EFF_FROM
+    ,'TODO' AS STUDY_ID
 
   -- https://duckdb.org/docs/sql/functions/nested.html
   FROM generate_series(1, 10)
@@ -112,4 +120,6 @@ TO '{path}'
 WITH (FORMAT 'PARQUET');
 "))
   cli::cli_alert_info("Wrote '{path}'")
+
+  return(path)
 }
