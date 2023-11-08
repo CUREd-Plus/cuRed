@@ -16,7 +16,7 @@ These are the general steps required to contribute to this code:
 8. Commit your changes to your local branch
 9. [Push](https://git-scm.com/docs/git-push) the changes to GitHub
 10. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-11. Code review
+11. [Code review](https://code-review.tidyverse.org/reviewer/purpose.html) using the GitHub [PR review system](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review).
 12. Merge PR (and delete the branch)
 
 # Development in R
