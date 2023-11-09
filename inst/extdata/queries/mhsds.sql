@@ -28,7 +28,7 @@ SELECT
   ,WardStay.SpecialisedMHServiceCode
   ,WardStay.WardCode
 
-  -- MHS501 Hospital Provider Spel
+  -- MHS501 Hospital Provider Spell
   ,HospitalProviderSpell.HospProvSpellID -- HOSPITAL PROVIDER SPELL IDENTIFIER
   ,HospitalProviderSpell.DecidedToAdmitDate
   ,HospitalProviderSpell.DecidedToAdmitTime
