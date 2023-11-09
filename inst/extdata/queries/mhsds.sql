@@ -29,7 +29,7 @@ SELECT
   ,WardStay.WardCode
 
   -- MHS501 Hospital Provider Spel
-  ,WardStay.HospProvSpellID -- M502160 HOSPITAL PROVIDER SPELL IDENTIFIER
+  ,HospitalProviderSpell.HospProvSpellID -- HOSPITAL PROVIDER SPELL IDENTIFIER
   ,HospitalProviderSpell.DecidedToAdmitDate
   ,HospitalProviderSpell.DecidedToAdmitTime
   ,HospitalProviderSpell.StartDateHospProvSpell
@@ -49,7 +49,7 @@ SELECT
   ,HospitalProviderSpell.TransformingCareCategory
   
   -- MHS101 Service or Team Referral
-  ,HospitalProviderSpell.ServiceRequestId -- M501902 SERVICE REQUEST IDENTIFIER
+  ,Referral.ServiceRequestId -- SERVICE REQUEST IDENTIFIER
   ,Referral.LocalPatientId -- M101901 LOCAL PATIENT IDENTIFIER
   ,Referral.OrgIDComm -- M101922 ORGANISATION IDENTIFIER (CODE OF COMMISSIONER)
   ,Referral.ReferralRequestReceivedDate -- M101010 REFERRAL REQUEST RECEIVED DATE
@@ -70,9 +70,32 @@ SELECT
   ,Referral.DischPlanLastUpdatedTime
   ,Referral.ServDischDate
   ,Referral.ServDischTime
-  
+
+  -- MHS001 Master Patient Index
+  ,Patient.LocalPatientId -- M001901 LOCAL PATIENT IDENTIFIER (EXTENDED)
+  ,Patient.OrgIDLocalPatientId -- M001170	ORGANISATION IDENTIFIER (LOCAL PATIENT IDENTIFIER)
+  ,Patient.OrgIDEduEstab -- M001190	ORGANISATION IDENTIFIER (EDUCATIONAL ESTABLISHMENT)
+  ,Patient.NHSNumber
+  ,Patient.NHSNumberStatus
+  ,Patient.PersonBirthDate
+  ,Patient.Postcode
+  ,Patient.GenderIDCode
+  ,Patient.GenderSameAtBirth
+  ,Patient.Gender
+  ,Patient.MaritalStatus
+  ,Patient.EthnicCategory
+  ,Patient.EthnicCategory2021
+  ,Patient.LanguageCodePreferred
+  ,Patient.PersDeathDate
+
+-- MHS502 Ward Stay
 FROM MHS502WardStay AS WardStay;
+-- MHS501 Hospital Provider Spell
 LEFT INNER JOIN MHS501HospProvSpell AS HospitalProviderSpell
   ON WardStay.HospProvSpellID = HospitalProviderSpell.HospProvSpellID
+-- MHS101 Service or Team Referral
 LEFT INNER JOIN MHS101Referral AS Referral
   ON HospitalProviderSpell.ServiceRequestId = Referral.ServiceRequestId
+-- MHS001 Master Patient Index
+LEFT INNER JOIN MHS001MPI AS Patient
+  Referral.LocalPatientId = Patient.LocalPatientId
