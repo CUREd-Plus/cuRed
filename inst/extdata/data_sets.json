@@ -4,7 +4,7 @@
     "raw_data_dir": "C:/Users/Administrator/curedplus-raw-data/ae",
 	"staging_dir": "C:/Users/Administrator/curedplus-staging/ae",
 	"metadata_path": "C:/Users/Administrator/curedplus-raw-data/HES+TOS+V1.15.xlsx",
-	"sheet": "HES AE TOS",
+	"sheet": "HES AE TOS"
 	
   },{
     "id": "apc",
