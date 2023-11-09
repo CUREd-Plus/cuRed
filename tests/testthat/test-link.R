@@ -10,14 +10,14 @@ test_that("linkage works", {
   # Create a temporary working directory for this test
   test_dir <- temp_dir()
   # Tidy up
-  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
+  #on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
   temp_input_path <- file.path(test_dir, "input.parquet")
   demographics_path <- file.path(test_dir, "demographics.parquet")
   # Generate a temporary output file
   output_path <- file.path(test_dir, "linked.parquet")
 
   # Count the number of rows in the input data set
-  apc_rows <- count_rows(input_path, read_func = 'read_parquet')
+  expected_apc_rows <- count_rows(input_path, read_func = 'read_parquet')
 
   # Generate dummy data
   # Append fake patient ID to the HES synthetic data
@@ -28,10 +28,10 @@ test_that("linkage works", {
 COPY (
   SELECT
     -- Generate mock patient identifiers
-    'TODO' AS token_person_id,
-    'TODO' AS yas_id,
-    'TODO' AS cured_id,
-    'TODO' AS study_id,
+    uuid() AS token_person_id,
+    uuid() AS yas_id,
+    uuid() AS cured_id,
+    uuid() AS study_id,
     apc.*
   FROM read_parquet('{input_path}') AS apc
 )
@@ -56,7 +56,8 @@ WITH (FORMAT 'PARQUET');
   # TODO
   # Tests:
   # count rows
-  expect_equal(apc_rows, count_rows(output_path, read_func = "read_parquet"))
+  actual_apc_rows <- count_rows(output_path, read_func = "read_parquet")
+  expect_equal(actual_apc_rows, expected_apc_rows)
   # count columns
   # check unique identifier
 })

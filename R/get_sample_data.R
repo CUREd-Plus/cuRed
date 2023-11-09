@@ -85,11 +85,12 @@ append_mock_ids <- function(input_path, output_path) {
 #' Generate synthetic patient demographics data
 #'
 #' @param path character. Output data file path.
+#' @param n_rows integer number of rows to generate
 #'
 #' @return character. Output data file path.
 #' @export
 #'
-generate_mock_demographics_data <- function(path) {
+generate_mock_demographics_data <- function(path, n_rows = 100) {
   run_query(stringr::str_glue("
 COPY (
   SELECT
@@ -111,10 +112,10 @@ COPY (
     ,'TODO' AS GP_PDS_BUS_EFF_FROM
     ,'TODO' AS NHAIS_PDS_BUS_EFF_FROM
     ,'TODO' AS RFR_PDS_BUS_EFF_FROM
-    ,'TODO' AS STUDY_ID
+    ,uuid() AS STUDY_ID
 
   -- https://duckdb.org/docs/sql/functions/nested.html
-  FROM generate_series(1, 10)
+  FROM generate_series(1, {n_rows})
 )
 TO '{path}'
 WITH (FORMAT 'PARQUET');
