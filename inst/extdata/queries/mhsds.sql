@@ -10,21 +10,21 @@ https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-
 SELECT
   -- Ward Stay
    WardStay.WardStayId -- M502915 WARD STAY IDENTIFIER
-	,WardStay.StartDateWardStay -- START DATE (WARD STAY)
-	,WardStay.StartTimeWardStay
-	,WardStay.EndDateMHTrialLeave
-	,WardStay.EndDateWardStay
-	,WardStay.EndTimeWardStay
-	,WardStay.SiteIDOfTreat
-	,WardStay.WardType
-	,WardStay.WardAge
-	,WardStay.WardSexTypeCode
-	,WardStay.IntendClinCareIntenCodeMH
-	,WardStay.WardSecLevel
-	,WardStay.LockedWardInd
-	,WardStay.HospitalBedTypeMH
-	,WardStay.SpecialisedMHServiceCode
-	,WardStay.WardCode
+  ,WardStay.StartDateWardStay -- START DATE (WARD STAY)
+  ,WardStay.StartTimeWardStay
+  ,WardStay.EndDateMHTrialLeave
+  ,WardStay.EndDateWardStay
+  ,WardStay.EndTimeWardStay
+  ,WardStay.SiteIDOfTreat
+  ,WardStay.WardType
+  ,WardStay.WardAge
+  ,WardStay.WardSexTypeCode
+  ,WardStay.IntendClinCareIntenCodeMH
+  ,WardStay.WardSecLevel
+  ,WardStay.LockedWardInd
+  ,WardStay.HospitalBedTypeMH
+  ,WardStay.SpecialisedMHServiceCode
+  ,WardStay.WardCode
   -- Hospital Provider Spell
   ,WardStay.HospProvSpellID -- M502160 HOSPITAL PROVIDER SPELL IDENTIFIER
   ,HospitalProviderSpell.ServiceRequestId -- M501902 SERVICE REQUEST IDENTIFIER
