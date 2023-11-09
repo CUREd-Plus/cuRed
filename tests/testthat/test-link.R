@@ -10,7 +10,7 @@ test_that("linkage works", {
   # Create a temporary working directory for this test
   test_dir <- temp_dir()
   # Tidy up
-  #on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
+  on.exit(unlink(test_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
   temp_input_path <- file.path(test_dir, "input.parquet")
   demographics_path <- file.path(test_dir, "demographics.parquet")
   # Generate a temporary output file

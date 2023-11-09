@@ -4,7 +4,7 @@ test_that("Validate APC", {
 
   working_dir <- temp_dir()
   # Tidy up temporary files on exit or failure
-  #on.exit(unlink(working_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
+  on.exit(unlink(working_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
 
   # Use the dummy data
   data_path <- extdata_path("data/apc/artificial_hes_apc_0102_truncated.parquet")
