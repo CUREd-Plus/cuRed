@@ -35,7 +35,6 @@ library(utils)
 csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*.csv") {
 
   # Define the absolute paths
-  raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
   input_dir <- normalizePath(input_dir, mustWork = TRUE)
   input_glob <- file.path(input_dir, glob)
   output_path <- normalizePath(output_path, mustWork = FALSE)
