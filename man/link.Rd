@@ -9,7 +9,7 @@ link(data_set_id, input_path, output_path, patient_path, demographics_path)
 \arguments{
 \item{data_set_id}{character. Data set identifier e.g. "apc", "ae", "op"}
 
-\item{input_path}{Path of the source data file.}
+\item{input_path}{character. Path of the source data file.}
 
 \item{output_path}{character. Path of the merged data file.}
 
@@ -21,5 +21,5 @@ link(data_set_id, input_path, output_path, patient_path, demographics_path)
 character. Path of output file.
 }
 \description{
-Link the data set to the reference data.
+See \code{R/link.md} for more information about this function.
 }
