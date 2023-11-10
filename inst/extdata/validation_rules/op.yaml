@@ -61,11 +61,16 @@ rules:
   meta:
     severity: error
 
+#######################################
+# Automatically generated rules below #
+# using scripts/tos/__main__.py       #
+#######################################
+
 - description: Age at Activity Date is String(3)
   expr: is.character(ACTIVAGE) & nchar(ACTIVAGE) == 3
   name: ACTIVAGE String(3)
 - description: ACTIVAGE nnn NHS Data Model and Dictionary
-  expr: grepl("^\d$", ACTIVAGE)
+  expr: grepl("^\\d$", ACTIVAGE)
   name: ACTIVAGE nnn
 - description: "nnn = Age at activity date \n999 = Not known, i.e. date of birth not\
     \ known and age cannot be estimated"
@@ -93,7 +98,7 @@ rules:
   expr: is.integer(APPTAGE)
   name: APPTAGE Number
 - description: APPTAGE nnn NHS Data Model and Dictionary
-  expr: grepl("^\d$", APPTAGE)
+  expr: grepl("^\\d$", APPTAGE)
   name: APPTAGE nnn
 - description: "nnn = Age in whole years from 1-119\n120 = 120 years or more\n7001\
     \ = Less than 1 day\n7002 = 1 to 6 days\n7003 = 7 to 28 days \n7004 = 29 to 90\
@@ -107,7 +112,7 @@ rules:
   expr: is.numeric(APPTAGE_CALC)
   name: APPTAGE_CALC Decimal
 - description: APPTAGE_CALC nnn.nnn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", APPTAGE_CALC)
+  expr: grepl("^\\d*\\.?\\d*$", APPTAGE_CALC)
   name: APPTAGE_CALC nnn.nnn
 - description: 'nnn.nnn = Age in whole years from 1.000 to 119.000
 
@@ -132,17 +137,17 @@ rules:
     '0.375', '0.625', '0.875', 'Null')
   name: APPTAGE_CALC values codes
 - description: Appointment Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", APPTDATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", APPTDATE)
   name: APPTDATE Date(YYYY-MM-DD)
 - description: APPTDATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     APPTDATE)
   name: APPTDATE YYYY-MM-DD
 - description: Area Team of GP Practice  is String(8)
   expr: is.character(AT_GP_PRACTICE) & nchar(AT_GP_PRACTICE) == 8
   name: AT_GP_PRACTICE String(8)
 - description: AT_GP_PRACTICE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", AT_GP_PRACTICE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_GP_PRACTICE)
   name: AT_GP_PRACTICE ann
 - description: "ann = Area Team of patient\u2019s GP practice\nY = Unknown"
   expr: AT_GP_PRACTICE %in% c('ann', 'Y')
@@ -151,7 +156,7 @@ rules:
   expr: is.character(AT_RESIDENCE) & nchar(AT_RESIDENCE) == 8
   name: AT_RESIDENCE String(8)
 - description: AT_RESIDENCE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", AT_RESIDENCE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_RESIDENCE)
   name: AT_RESIDENCE ann
 - description: 'ann = Area Team of residence
 
@@ -172,7 +177,7 @@ rules:
   expr: is.character(AT_TREATMENT) & nchar(AT_TREATMENT) == 8
   name: AT_TREATMENT String(8)
 - description: AT_TREATMENT ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", AT_TREATMENT)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_TREATMENT)
   name: AT_TREATMENT ann
 - description: 'ann = Area Team of treatment
 
@@ -287,7 +292,7 @@ rules:
   expr: is.integer(BOOKREFNO)
   name: BOOKREFNO Number
 - description: BOOKREFNO 12n NHS Data Model and Dictionary
-  expr: grepl("^\d$", BOOKREFNO)
+  expr: grepl("^\\d$", BOOKREFNO)
   name: BOOKREFNO 12n
 - description: Cancer Network Area of Residence is String(3)
   expr: is.character(CANNET) & nchar(CANNET) == 3
@@ -428,7 +433,7 @@ rules:
   expr: is.character(CR_GP_PRACTICE) & nchar(CR_GP_PRACTICE) == 3
   name: CR_GP_PRACTICE String(3)
 - description: CR_GP_PRACTICE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", CR_GP_PRACTICE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_GP_PRACTICE)
   name: CR_GP_PRACTICE ann
 - description: "ann = Commissioning Region of patient\u2019s GP practice\nQ99 = Wales\n\
     Y = Unknown"
@@ -438,7 +443,7 @@ rules:
   expr: is.character(CR_RESIDENCE) & nchar(CR_RESIDENCE) == 3
   name: CR_RESIDENCE String(3)
 - description: CR_RESIDENCE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", CR_RESIDENCE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_RESIDENCE)
   name: CR_RESIDENCE ann
 - description: 'ann = Commissioning Region of residence
 
@@ -459,7 +464,7 @@ rules:
   expr: is.character(CR_TREATMENT) & nchar(CR_TREATMENT) == 3
   name: CR_TREATMENT String(3)
 - description: CR_TREATMENT ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", CR_TREATMENT)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_TREATMENT)
   name: CR_TREATMENT ann
 - description: 'ann = Commissioning Region of treatment
 
@@ -556,7 +561,7 @@ rules:
   expr: is.integer(DIAG_COUNT)
   name: DIAG_COUNT Number
 - description: DIAG_COUNT 2n NHS Data Model and Dictionary
-  expr: grepl("^\d$", DIAG_COUNT)
+  expr: grepl("^\\d$", DIAG_COUNT)
   name: DIAG_COUNT 2n
 - description: Diagnosis Code is String(6)
   expr: is.character(DIAG_nn) & nchar(DIAG_nn) == 6
@@ -576,10 +581,10 @@ rules:
   expr: is.character(DIAGRAW) & nchar(DIAGRAW) == 6
   name: DIAGRAW String(6)
 - description: Last DNA or Patient Cancelled Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", DNADATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", DNADATE)
   name: DNADATE Date(YYYY-MM-DD)
 - description: DNADATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     DNADATE)
   name: DNADATE YYYY-MM-DD
 - description: 'YYYY-MM-DD = Last DNA date
@@ -590,10 +595,10 @@ rules:
   expr: DNADATE %in% c('YYYY-MM-DD', '1800-01-01', '1801-01-01')
   name: DNADATE values codes
 - description: Date of Birth is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", DOB)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", DOB)
   name: DOB Date(YYYY-MM-DD)
 - description: DOB YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     DOB)
   name: DOB YYYY-MM-DD
 - description: 'YYYY-MM-DD = DOB
@@ -607,10 +612,10 @@ rules:
   expr: is.integer(DUPLICATE_FLAG)
   name: DUPLICATE_FLAG Number
 - description: Earliest Reasonable Date Offered is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EARLDATOFF)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EARLDATOFF)
   name: EARLDATOFF Date(YYYY-MM-DD)
 - description: EARLDATOFF YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EARLDATOFF)
   name: EARLDATOFF YYYY-MM-DD
 - description: Ethnic Category is String(2)
@@ -664,7 +669,7 @@ rules:
   expr: is.character(FYEAR) & nchar(FYEAR) == 4
   name: FYEAR String(4)
 - description: FYEAR 4n NHS Data Model and Dictionary
-  expr: grepl("^\d$", FYEAR)
+  expr: grepl("^\\d$", FYEAR)
   name: FYEAR 4n
 - description: Government Office Region of Treatment is String(1)
   expr: is.character(GORTREAT) & nchar(GORTREAT) == 1
@@ -713,7 +718,7 @@ rules:
   expr: is.character(GPPRPCT) & nchar(GPPRPCT) == 8
   name: GPPRPCT String(8)
 - description: GPPRPCT 5nn NHS Data Model and Dictionary
-  expr: grepl("^\d$", GPPRPCT)
+  expr: grepl("^\\d$", GPPRPCT)
   name: GPPRPCT 5nn
 - description: "5nn = PCT \nTaa = Care Trust \n59898 = Not applicable (non-England)\
     \ \n59999 = Unknown"
@@ -734,7 +739,7 @@ rules:
   expr: is.character(GRIDLINK) & nchar(GRIDLINK) == 11
   name: GRIDLINK String(11)
 - description: GRIDLINK 9n NHS Data Model and Dictionary
-  expr: grepl("^\d$", GRIDLINK)
+  expr: grepl("^\\d$", GRIDLINK)
   name: GRIDLINK 9n
 - description: Health Authority of Treatment  is String(3)
   expr: is.character(HATREAT) & nchar(HATREAT) == 3
@@ -749,7 +754,7 @@ rules:
   expr: is.integer(HESID)
   name: HESID Number
 - description: HESID n NHS Data Model and Dictionary
-  expr: grepl("^\d$", HESID)
+  expr: grepl("^\\d$", HESID)
   name: HESID n
 - description: Postcode of Patient is String(8)
   expr: is.character(HOMEADD) & nchar(HOMEADD) == 8
@@ -781,7 +786,7 @@ rules:
   expr: is.numeric(IMD04)
   name: IMD04 Decimal
 - description: IMD04 nn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04)
   name: IMD04 nn.nn
 - description: IMD Decile Group is String(30)
   expr: is.character(IMD04_DECILE) & nchar(IMD04_DECILE) == 30
@@ -790,61 +795,61 @@ rules:
   expr: is.numeric(IMD04C)
   name: IMD04C Decimal
 - description: IMD04C n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04C)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04C)
   name: IMD04C n.nn
 - description: IMD Education Training and Skills Domain  is Decimal
   expr: is.numeric(IMD04ED)
   name: IMD04ED Decimal
 - description: IMD04ED nn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04ED)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04ED)
   name: IMD04ED nn.nn
 - description: IMD Employment Deprivation Domain is Decimal
   expr: is.numeric(IMD04EM)
   name: IMD04EM Decimal
 - description: IMD04EM n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04EM)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04EM)
   name: IMD04EM n.nn
 - description: IMD Health and Disability Domain  is Decimal
   expr: is.numeric(IMD04HD)
   name: IMD04HD Decimal
 - description: IMD04HD n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04HD)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04HD)
   name: IMD04HD n.nn
 - description: IMD Barriers to Housing and Services Domain  is Decimal
   expr: is.numeric(IMD04HS)
   name: IMD04HS Decimal
 - description: IMD04HS nn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04HS)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04HS)
   name: IMD04HS nn.nn
 - description: IMD Income Domain  is Decimal
   expr: is.numeric(IMD04I)
   name: IMD04I Decimal
 - description: IMD04I n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04I)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04I)
   name: IMD04I n.nn
 - description: IMD Income Affecting Adults Domain  is Decimal
   expr: is.numeric(IMD04IA)
   name: IMD04IA Decimal
 - description: IMD04IA n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04IA)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04IA)
   name: IMD04IA n.nn
 - description: IMD Income Affecting Children Domain  is Decimal
   expr: is.numeric(IMD04IC)
   name: IMD04IC Decimal
 - description: IMD04IC n.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04IC)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04IC)
   name: IMD04IC n.nn
 - description: IMD Living Environment Domain is Decimal
   expr: is.numeric(IMD04LE)
   name: IMD04LE Decimal
 - description: IMD04LE nn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", IMD04LE)
+  expr: grepl("^\\d*\\.?\\d*$", IMD04LE)
   name: IMD04LE nn.nn
 - description: IMD Overall Rank  is Number
   expr: is.integer(IMD04RK)
   name: IMD04RK Number
 - description: IMD04RK 5n NHS Data Model and Dictionary
-  expr: grepl("^\d$", IMD04RK)
+  expr: grepl("^\\d$", IMD04RK)
   name: IMD04RK 5n
 - description: Location Class is String(3)
   expr: is.character(LOCCLASS) & nchar(LOCCLASS) == 3
@@ -1029,7 +1034,7 @@ rules:
   expr: is.character(NER_GP_PRACTICE) & nchar(NER_GP_PRACTICE) == 8
   name: NER_GP_PRACTICE String(8)
 - description: NER_GP_PRACTICE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", NER_GP_PRACTICE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_GP_PRACTICE)
   name: NER_GP_PRACTICE ann
 - description: 'ann = ICB / STP / NER of GP practice
 
@@ -1046,7 +1051,7 @@ rules:
   expr: is.character(NER_RESIDENCE) & nchar(NER_RESIDENCE) == 8
   name: NER_RESIDENCE String(8)
 - description: NER_RESIDENCE ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", NER_RESIDENCE)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_RESIDENCE)
   name: NER_RESIDENCE ann
 - description: 'ann = ICB / STP / NER of residence
 
@@ -1071,7 +1076,7 @@ rules:
   expr: is.character(NER_TREATMENT) & nchar(NER_TREATMENT) == 3
   name: NER_TREATMENT String(3)
 - description: NER_TREATMENT ann NHS Data Model and Dictionary
-  expr: grepl("^[a-zA-Z]{1}\d{2}$", NER_TREATMENT)
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_TREATMENT)
   name: NER_TREATMENT ann
 - description: 'ann = ICB / STP / NER of treatment
 
@@ -1084,7 +1089,7 @@ rules:
   expr: is.character(NEWNHSNO) & nchar(NEWNHSNO) == 10
   name: NEWNHSNO String(10)
 - description: NEWNHSNO 10n NHS Data Model and Dictionary
-  expr: grepl("^\d$", NEWNHSNO)
+  expr: grepl("^\\d$", NEWNHSNO)
   name: NEWNHSNO 10n
 - description: NHS Number Check Flag is String(1)
   expr: is.character(NEWNHSNO_CHECK) & nchar(NEWNHSNO_CHECK) == 1
@@ -1111,13 +1116,13 @@ rules:
   expr: is.integer(NODIAGS)
   name: NODIAGS Number
 - description: NODIAGS 3n NHS Data Model and Dictionary
-  expr: grepl("^\d$", NODIAGS)
+  expr: grepl("^\\d$", NODIAGS)
   name: NODIAGS 3n
 - description: Number of Procedures is Number
   expr: is.integer(NOPROCS)
   name: NOPROCS Number
 - description: NOPROCS 3n NHS Data Model and Dictionary
-  expr: grepl("^\d$", NOPROCS)
+  expr: grepl("^\\d$", NOPROCS)
   name: NOPROCS 3n
 - description: Census Output Area 2001  is String(10)
   expr: is.character(OACODE01) & nchar(OACODE01) == 10
@@ -1213,7 +1218,7 @@ rules:
   expr: is.integer(OPERTN_COUNT)
   name: OPERTN_COUNT Number
 - description: OPERTN_COUNT 2n NHS Data Model and Dictionary
-  expr: grepl("^\d$", OPERTN_COUNT)
+  expr: grepl("^\\d$", OPERTN_COUNT)
   name: OPERTN_COUNT 2n
 - description: Procedure Code is String(4)
   expr: is.character(OPERTN_nn) & nchar(OPERTN_nn) == 4
@@ -1330,7 +1335,7 @@ rules:
   expr: is.character(PCTCODE) & nchar(PCTCODE) == 6
   name: PCTCODE String(6)
 - description: PCTCODE 5nn NHS Data Model and Dictionary
-  expr: grepl("^\d$", PCTCODE)
+  expr: grepl("^\\d$", PCTCODE)
   name: PCTCODE 5nn
 - description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
   expr: PCTCODE %in% c('5nn', 'Taa', '59898', '59999')
@@ -1339,7 +1344,7 @@ rules:
   expr: is.character(PCTCODE_HIS) & nchar(PCTCODE_HIS) == 8
   name: PCTCODE_HIS String(8)
 - description: PCTCODE_HIS 5nn NHS Data Model and Dictionary
-  expr: grepl("^\d$", PCTCODE_HIS)
+  expr: grepl("^\\d$", PCTCODE_HIS)
   name: PCTCODE_HIS 5nn
 - description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
   expr: PCTCODE_HIS %in% c('5nn', 'Taa', '59898', '59999')
@@ -1354,7 +1359,7 @@ rules:
   expr: is.character(PCTCODE06) & nchar(PCTCODE06) == 6
   name: PCTCODE06 String(6)
 - description: PCTCODE06 5nn NHS Data Model and Dictionary
-  expr: grepl("^\d$", PCTCODE06)
+  expr: grepl("^\\d$", PCTCODE06)
   name: PCTCODE06 5nn
 - description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
   expr: PCTCODE06 %in% c('5nn', 'Taa', '59898', '59999')
@@ -1412,10 +1417,10 @@ rules:
   expr: PCTTREAT %in% c('3an', '59898', '59999')
   name: PCTTREAT values codes
 - description: CDS Report Period End Date  is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PEREND)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", PEREND)
   name: PEREND Date(YYYY-MM-DD)
 - description: PEREND YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     PEREND)
   name: PEREND YYYY-MM-DD
 - description: Person Identifier (Clear) is String(10)
@@ -1425,10 +1430,10 @@ rules:
   expr: grepl("^[a-zA-Z0-9]{0,10}$", PERSON_ID)
   name: PERSON_ID max 10an
 - description: CDS Report Period Start Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PERSTART)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", PERSTART)
   name: PERSTART Date(YYYY-MM-DD)
 - description: PERSTART YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     PERSTART)
   name: PERSTART YYYY-MM-DD
 - description: Pseudonymised Code of GP Practice is String(16)
@@ -1530,7 +1535,7 @@ rules:
   expr: is.character(PROVDIST) & nchar(PROVDIST) == 15
   name: PROVDIST String(15)
 - description: PROVDIST nnn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", PROVDIST)
+  expr: grepl("^\\d*\\.?\\d*$", PROVDIST)
   name: PROVDIST nnn.nn
 - description: Derivation of PROVDIST is String(1)
   expr: is.character(PROVDIST_FLAG) & nchar(PROVDIST_FLAG) == 1
@@ -1637,10 +1642,10 @@ rules:
     (retired)', 'P9999981 (retired)', '&', '99')
   name: REGGMP values codes
 - description: Referral Request Received Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", REQDATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", REQDATE)
   name: REQDATE Date(YYYY-MM-DD)
 - description: REQDATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     REQDATE)
   name: REQDATE YYYY-MM-DD
 - description: 'YYYY-MM-DD = Referral request received date
@@ -1872,17 +1877,17 @@ rules:
   expr: ROTREAT %in% c('Y01', 'Y02', 'Y07', 'Y08', 'Y09', 'Y10', 'Y11', 'Y12', 'Y00')
   name: ROTREAT values codes
 - description: Referral to Treatment Period End Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", RTTPEREND)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", RTTPEREND)
   name: RTTPEREND Date(YYYY-MM-DD)
 - description: RTTPEREND YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     RTTPEREND)
   name: RTTPEREND YYYY-MM-DD
 - description: Referral to Treatment Period Start Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", RTTPERSTART)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", RTTPERSTART)
   name: RTTPERSTART Date(YYYY-MM-DD)
 - description: RTTPERSTART YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     RTTPERSTART)
   name: RTTPERSTART YYYY-MM-DD
 - description: Referral to Treatment Period Status is String(2)
@@ -1982,7 +1987,7 @@ rules:
   expr: is.character(SITEDIST) & nchar(SITEDIST) == 15
   name: SITEDIST String(15)
 - description: SITEDIST nnn.nn NHS Data Model and Dictionary
-  expr: grepl("^\d*\.?\d*$", SITEDIST)
+  expr: grepl("^\\d*\\.?\\d*$", SITEDIST)
   name: SITEDIST nnn.nn
 - description: Derivation of SITEDIST is String(1)
   expr: is.character(SITEDIST_FLAG) & nchar(SITEDIST_FLAG) == 1
@@ -2065,10 +2070,10 @@ rules:
   expr: is.character(STP_TREATMENT_ORIGIN) & nchar(STP_TREATMENT_ORIGIN) == 1
   name: STP_TREATMENT_ORIGIN String(1)
 - description: Submission Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", SUBDATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", SUBDATE)
   name: SUBDATE Date(YYYY-MM-DD)
 - description: SUBDATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     SUBDATE)
   name: SUBDATE YYYY-MM-DD
 - description: Healthcare Resource Group - SUS Generated  is String(5)
@@ -2092,17 +2097,17 @@ rules:
   expr: SUSHRGVERS %in% c('4.0', 'Null')
   name: SUSHRGVERS values codes
 - description: SUS Loaded Staging Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", SUSLDDATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", SUSLDDATE)
   name: SUSLDDATE Date(YYYY-MM-DD)
 - description: SUSLDDATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     SUSLDDATE)
   name: SUSLDDATE YYYY-MM-DD
 - description: SUS Record Identifier is Number
   expr: is.integer(SUSRECID)
   name: SUSRECID Number
 - description: SUSRECID 14n NHS Data Model and Dictionary
-  expr: grepl("^\d$", SUSRECID)
+  expr: grepl("^\\d$", SUSRECID)
   name: SUSRECID 14n
 - description: SUS Generated Spell Identifier is String(19)
   expr: is.character(SUSSPELLID) & nchar(SUSSPELLID) == 19
@@ -2268,7 +2273,7 @@ rules:
   expr: is.integer(WAITDAYS)
   name: WAITDAYS Number
 - description: WAITDAYS 4n NHS Data Model and Dictionary
-  expr: grepl("^\d$", WAITDAYS)
+  expr: grepl("^\\d$", WAITDAYS)
   name: WAITDAYS 4n
 - description: '4n = Waiting time in days from 1 to 8887
 
@@ -2279,7 +2284,7 @@ rules:
   expr: is.integer(WAITING)
   name: WAITING Number
 - description: WAITING 10n NHS Data Model and Dictionary
-  expr: grepl("^\d$", WAITING)
+  expr: grepl("^\\d$", WAITING)
   name: WAITING 10n
 - description: Waiting Time Measurement Type (Commissioning Data Set)  is String(2)
   expr: is.character(WAITING_TIME_MEASUREMENT_TYPE) & (nchar(WAITING_TIME_MEASUREMENT_TYPE)
@@ -2385,17 +2390,17 @@ rules:
   expr: is.character(DIAGNOSIS) & (6 <= nchar(DIAGNOSIS)) & (nchar(DIAGNOSIS) <= 4000)
   name: DIAGNOSIS String(6 - 4000)
 - description: Earliest Clinically Appropriate Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EARLIEST_APPROPRIATE_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EARLIEST_APPROPRIATE_DATE)
   name: EARLIEST_APPROPRIATE_DATE Date(YYYY-MM-DD)
 - description: EARLIEST_APPROPRIATE_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EARLIEST_APPROPRIATE_DATE)
   name: EARLIEST_APPROPRIATE_DATE YYYY-MM-DD
 - description: EMED3 Fit Note Assessment Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_FIT_NOTE_ASSESSMENT_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EMED3_FIT_NOTE_ASSESSMENT_DATE)
   name: EMED3_FIT_NOTE_ASSESSMENT_DATE Date(YYYY-MM-DD)
 - description: EMED3_FIT_NOTE_ASSESSMENT_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EMED3_FIT_NOTE_ASSESSMENT_DATE)
   name: EMED3_FIT_NOTE_ASSESSMENT_DATE YYYY-MM-DD
 - description: EMED3 Fit Note Condition (Snomed CT Expression) is String(6 - 4000)
@@ -2410,10 +2415,10 @@ rules:
   expr: is.character(EMED3_DURATION) & nchar(EMED3_DURATION) == 3
   name: EMED3_DURATION String(3)
 - description: EMED3 Fit Note End Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_FIT_END_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EMED3_FIT_END_DATE)
   name: EMED3_FIT_END_DATE Date(YYYY-MM-DD)
 - description: EMED3_FIT_END_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EMED3_FIT_END_DATE)
   name: EMED3_FIT_END_DATE YYYY-MM-DD
 - description: EMED3 Fit Note Follow Up Assessment Required Indicator is String(1)
@@ -2434,24 +2439,24 @@ rules:
   expr: grepl("^[a-zA-Z0-9]{2}$", EMED3_FIT_NOTE_ISSUER)
   name: EMED3_FIT_NOTE_ISSUER 2an
 - description: EMED3 Fit Note Recorded Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_RECORDED_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EMED3_RECORDED_DATE)
   name: EMED3_RECORDED_DATE Date(YYYY-MM-DD)
 - description: EMED3_RECORDED_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EMED3_RECORDED_DATE)
   name: EMED3_RECORDED_DATE YYYY-MM-DD
 - description: EMED3 Fit Note Start Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", EMED3_START_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", EMED3_START_DATE)
   name: EMED3_START_DATE Date(YYYY-MM-DD)
 - description: EMED3_START_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     EMED3_START_DATE)
   name: EMED3_START_DATE YYYY-MM-DD
 - description: End Date (Commissioner Assignment Period) is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", END_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", END_DATE)
   name: END_DATE Date(YYYY-MM-DD)
 - description: END_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     END_DATE)
   name: END_DATE YYYY-MM-DD
 - description: Ethnic Category 2021 is String(3)
@@ -2464,24 +2469,24 @@ rules:
   expr: is.character(FINDING) & (6 <= nchar(FINDING)) & (nchar(FINDING) <= 4000)
   name: FINDING String(6 - 4000)
 - description: Last Patient Cancelled Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", LAST_PATIENT_CANCELLED_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", LAST_PATIENT_CANCELLED_DATE)
   name: LAST_PATIENT_CANCELLED_DATE Date(YYYY-MM-DD)
 - description: LAST_PATIENT_CANCELLED_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     LAST_PATIENT_CANCELLED_DATE)
   name: LAST_PATIENT_CANCELLED_DATE YYYY-MM-DD
 - description: Last Patient Did Not Attend Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", LAST_PATIENT_DID_NOT_ATTEND_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", LAST_PATIENT_DID_NOT_ATTEND_DATE)
   name: LAST_PATIENT_DID_NOT_ATTEND_DATE Date(YYYY-MM-DD)
 - description: LAST_PATIENT_DID_NOT_ATTEND_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     LAST_PATIENT_DID_NOT_ATTEND_DATE)
   name: LAST_PATIENT_DID_NOT_ATTEND_DATE YYYY-MM-DD
 - description: Latest Clinically Appropriate Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", LATEST_APPROPRIATE_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", LATEST_APPROPRIATE_DATE)
   name: LATEST_APPROPRIATE_DATE Date(YYYY-MM-DD)
 - description: LATEST_APPROPRIATE_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     LATEST_APPROPRIATE_DATE)
   name: LATEST_APPROPRIATE_DATE YYYY-MM-DD
 - description: Organisation Identifier (Local Patient Identifier) is String(5)
@@ -2513,10 +2518,10 @@ rules:
   expr: grepl("^[a-zA-Z0-9]{10}$", OBSERVATION_VALUE)
   name: OBSERVATION_VALUE 10an
 - description: Overseas Visitor Charging Category Applicable From Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", OVERSEAS_VISITOR_APPLICABLE_FROM)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", OVERSEAS_VISITOR_APPLICABLE_FROM)
   name: OVERSEAS_VISITOR_APPLICABLE_FROM Date(YYYY-MM-DD)
 - description: OVERSEAS_VISITOR_APPLICABLE_FROM YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     OVERSEAS_VISITOR_APPLICABLE_FROM)
   name: OVERSEAS_VISITOR_APPLICABLE_FROM YYYY-MM-DD
 - description: Overseas Visitor Charging Category is String(1)
@@ -2540,10 +2545,10 @@ rules:
   expr: OVERSEAS_VISITOR_CATEGORY %in% c('A', 'B', 'C', 'D', 'F', 'P', '9')
   name: OVERSEAS_VISITOR_CATEGORY values codes
 - description: Overseas Visitor Charging Category Applicable End Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", OVERSEAS_VISITOR_CHARGING_END)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", OVERSEAS_VISITOR_CHARGING_END)
   name: OVERSEAS_VISITOR_CHARGING_END Date(YYYY-MM-DD)
 - description: OVERSEAS_VISITOR_CHARGING_END YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     OVERSEAS_VISITOR_CHARGING_END)
   name: OVERSEAS_VISITOR_CHARGING_END YYYY-MM-DD
 - description: Patient Family Name is String(35)
@@ -2631,29 +2636,29 @@ rules:
   expr: grepl("^[a-zA-Z0-9]{5}$", PERSON_SCORE)
   name: PERSON_SCORE 5an
 - description: Personalised Out-Patient Follow Up Pathway Expiry Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE)
   name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE Date(YYYY-MM-DD)
 - description: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE YYYY-MM-DD NHS
     Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE)
   name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE YYYY-MM-DD
 - description: Personalised Out-Patient Follow Up Pathway Review Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE)
   name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE Date(YYYY-MM-DD)
 - description: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE YYYY-MM-DD NHS
     Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE)
   name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE YYYY-MM-DD
 - description: Procedure (Snomed CT Expression) is String(6 - 4000)
   expr: is.character(PROCEDURE) & (6 <= nchar(PROCEDURE)) & (nchar(PROCEDURE) <= 4000)
   name: PROCEDURE String(6 - 4000)
 - description: Procedure Date is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", PROCEDURE_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", PROCEDURE_DATE)
   name: PROCEDURE_DATE Date(YYYY-MM-DD)
 - description: PROCEDURE_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     PROCEDURE_DATE)
   name: PROCEDURE_DATE YYYY-MM-DD
 - description: Professional Registration Entry Identifier is String(32)
@@ -2751,10 +2756,10 @@ rules:
   expr: grepl("^[a-zA-Z0-9]{25}$", SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP)
   name: SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP 25an
 - description: Start Date (Commissioner Assignment Period) is Date(YYYY-MM-DD)
-  expr: grepl("^\d4-([0]\d|1[0-2])-([0-2]\d|3[01])$", START_DATE)
+  expr: grepl("^\\d{4}-([0]\\|1[0-2])-([0-2]\\d|3[01])$", START_DATE)
   name: START_DATE Date(YYYY-MM-DD)
 - description: START_DATE YYYY-MM-DD NHS Data Model and Dictionary
-  expr: grepl("^((?:19|20)\d\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
     START_DATE)
   name: START_DATE YYYY-MM-DD
 - description: Rehabilitation Assessment Team Type is String(1)
@@ -2812,5 +2817,4 @@ rules:
     99 = Identity withheld but reasons not known'
   expr: WITHHELD_IDENTITY_REASON %in% c('01', '02', '03', '97', '99')
   name: WITHHELD_IDENTITY_REASON values codes
-
 ...
