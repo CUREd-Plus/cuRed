@@ -4,10 +4,12 @@
 \alias{get_query}
 \title{Get SQL query result using the \href{https://duckdb.org/docs/api/r.html}{DuckDB R API}}
 \usage{
-get_query(query)
+get_query(query, read_only = FALSE)
 }
 \arguments{
-\item{query}{String. SQL query.}
+\item{query}{character. SQL query}
+
+\item{read_only}{logical. If true, use READ_ONLY access mode}
 }
 \value{
 Data frame containing query results.

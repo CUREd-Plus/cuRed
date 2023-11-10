@@ -2,17 +2,22 @@
 % Please edit documentation in R/extdata_path.R
 \name{extdata_path}
 \alias{extdata_path}
-\title{Get absolute path for an extdata file in this package
-https://r-pkgs.org/data.html#sec-data-extdata}
+\title{Get the path of an external data file}
 \usage{
 extdata_path(path = "", mustWork = TRUE)
 }
 \arguments{
-\item{path}{String. Path.}
+\item{path}{Character. Path of file within inst/extdata}
 
-\item{mustWork}{Logical. Raise an error if the file is not found.}
+\item{mustWork}{Logical. Raise an error if the file is not found}
+}
+\value{
+The absolute file path of the file.
 }
 \description{
-Get absolute path for an extdata file in this package
-https://r-pkgs.org/data.html#sec-data-extdata
+Build the absolute path of an external data (\code{extdata}) file in this package.
+
+This files are to be found in the \code{inst/extdata} directory.
+
+See: \href{https://r-pkgs.org/data.html#sec-data-extdata}{external data}
 }

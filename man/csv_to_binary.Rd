@@ -2,38 +2,41 @@
 % Please edit documentation in R/csv_to_binary.R
 \name{csv_to_binary}
 \alias{csv_to_binary}
-\title{Use Duck DB to perform file format conversion.}
+\title{Convert CSV data into binary format}
 \usage{
-csv_to_binary(
-  raw_data_dir,
-  output_data_dir,
-  metadata,
-  data_set_id,
-  output_filename = NA
-)
+csv_to_binary(input_dir, output_path, metadata, data_set_id, glob = "*.csv")
 }
 \arguments{
-\item{raw_data_dir}{character Path. The directory that contains the raw data files.}
+\item{input_dir}{character. Path. The directory that contains the raw data files.}
 
-\item{output_data_dir}{character Path. The directory the output data file(s) should be written to.}
+\item{output_path}{character. Path of the output binary data file.}
 
 \item{metadata}{List. Dictionary containing the column definitions.}
 
-\item{data_set_id}{character Data set identifier e.g. "apc", "op"}
+\item{data_set_id}{character. Data set identifier e.g. "apc", "op"}
 
-\item{output_filename}{character,file name of the binary data file e.g. "apc_binary.parquet"}
+\item{glob}{character. \emph{(Optional)} Input file pattern e.g. "\emph{.csv" or "}_raw.csv"}
 }
 \value{
 String. Path. The path of the output data file.
 }
 \description{
-A JSON file must be specified that contains an object where the keys are the headers of the input CSV files in order
-and the values are the SQL data types (default to "VARCHAR"). The location of this file is \code{data_types_path}.
-}
-\details{
+The code uses DuckDB to perform file format conversion.
+
+By default, this function will read all the CSV files in the \code{input_dir} and convert them to
+\href{https://parquet.apache.org/}{Apache Parquet} format.
+
+The resultant binary data file will be written to \code{output_path}.
+
+A \href{https://www.json.org/json-en.html}{JSON} file must be specified that contains an object where the keys are the
+headers of the input CSV files in order and the values are the SQL data types (default to \code{"VARCHAR"}). The location
+of this file is stored in the \code{data_types_path} variable and defaults to
+\verb{inst/extdata/sql_data_types/\{data_set_id\}.json}.
+
 See:
 \itemize{
 \item \href{https://duckdb.org/docs/api/r}{DuckDB R API}
 \item \href{https://dbi.r-dbi.org/}{DBI documentation}
+\item DuckDB \href{https://duckdb.org/docs/data/csv/overview.html}{CSV Import}
 }
 }

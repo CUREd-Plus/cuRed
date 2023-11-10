@@ -1,6 +1,6 @@
 {
-  "token_person_id": "VARCHAR",
-  "yas_id": "VARCHAR",
-  "cured_id": "VARCHAR",
-  "study_id": "VARCHAR"
+  "token_person_id": "VARCHAR(18)",
+  "yas_id": "VARCHAR(36)",
+  "cured_id": "VARCHAR(36)",
+  "study_id": "VARCHAR(36)"
 }

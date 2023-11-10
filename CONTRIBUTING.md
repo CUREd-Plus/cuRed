@@ -1,6 +1,6 @@
-# Development and Contributing
+# Contributing
 
-This section describes how to contribute to the development of `cuRed`.
+This document describes how to contribute to the development of `cuRed`.
 
 # Workflow overview
 
@@ -16,8 +16,45 @@ These are the general steps required to contribute to this code:
 8. Commit your changes to your local branch
 9. [Push](https://git-scm.com/docs/git-push) the changes to GitHub
 10. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-11. Code review
+11. [Code review](https://code-review.tidyverse.org/reviewer/purpose.html) using the GitHub [PR review system](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review).
 12. Merge PR (and delete the branch)
+
+# Development in R
+
+* Online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
+
+## Documenting functions
+
+Please [document functions](https://r-pkgs.org/man.html) using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+
+You can view the documentation for a function using the [`help()` function](https://www.r-project.org/help.html), for example:
+
+```R
+help(csv_to_binary)
+```
+
+This will display the help page for that function, which is specified in the `roxygen2` markup for that function.
+
+## Logging
+
+We're using the [`cli`](https://cran.r-project.org/web/packages/cli/index.html) package to provide logging and print messages to inform the user what's happening. The [README](https://cran.r-project.org/web/packages/cli/readme/README.html) for this package is available online.
+
+Usage examples:
+
+```R
+cli::cli_alert_success("The file was converted successfully.")
+cli::cli_alert_info("Opened database connection")
+```
+
+# R environments
+
+See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
+
+Please read [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) including the section on [libraries and repositories](https://rstudio.github.io/renv/articles/renv.html#libraries-and-repositories) to understand how virtual environments work when developing in R.
+
+`renv` may be used from within the RStudio IDE. See: [RStudio User Guide - renv](https://docs.posit.co/ide/user/ide/guide/environments/r/renv.html).
+
+Also read the RStudio documentation for environements: [R Startup](https://docs.posit.co/ide/user/ide/guide/environments/r/managing-r.html).
 
 # Create an Issue
 
@@ -29,7 +66,7 @@ to see if anyone has reported the bug or requested the feature already
 and work is already in progress. If nothing exists then you should
 create a [new issue](https://github.com/CUREd-Plus/cuRed/issues/new).
 
-### Development/Contributing
+# Contributing
 
 If you wish to contribute to the development of the `cuRed` package by
 fixing bugs, adding to or extending documentation or extending
@@ -43,9 +80,9 @@ and [lintr](https://lintr.r-lib.org/).
 
 If you are unfamiliar working with Git and GitHub with R then you may
 find [Happy Git and GitHub for the useR](https://happygitwithr.com/) a
-useful resource.
+useful resource. There's also an online book called [Pro Git](https://git-scm.com/book/en/v2) which is a useful primer.
 
-#### Cloning the Repository
+## Cloning the Repository
 
 If you are a member of the the [CUREd-Plus
 Organisation](https://github.com/CUREd-Plus/) you can [clone the
@@ -63,7 +100,7 @@ git clone git@github.com:AFM-SPM/TopoStats.git
 git clone git@github.com:<YOUR_GITHUB_USERNAME>/TopoStats.git
 ```
 
-### Creating a branch
+## Creating a branch
 
 If you have cloned the repository directly you will now create a
 [branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
@@ -78,7 +115,7 @@ are shown below…
 |:-------------------------|:--------------------------------------|:--------------------------------------------------|:-----------------------------------------------------------------------------------|
 | `ns-rse/1-package-setup` | [`ns-rse`](https://github.com/ns-rse) | [1](https://github.com/CUREd-Plus/cuRed/issues/1) | `package-setup` short for the issue subject *Package setup, checking and linting*. |
 
-## Coding Standards
+# Coding Standards
 
 To make the codebase easier to maintain we ask that you follow the
 guidelines below on coding style, linting, typing, documentation and
@@ -152,20 +189,6 @@ Please refer to this documentation for authoring R packages:
 * [R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan.
 * [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham
 
-# README.md
-
-The `README.md` is automatically generated from the `README.Rmd` file, courtesy of 
-an additional pre-commit hook that is _not_ included in the `pre-commit` 
-configuration. In order to enable this hook locally you must use the  
-[usethis](https://usethis.r-lib.org/) function 
-[`user_redme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html) to install the 
-pre-commit hook  (it is added to the `.git/hooks/pre-commit` file). Once run updates to
-the `README.Rmd` will, on being committed, trigger the regeneration of the `README.md`.
-
-```R
-usethis::use_readme_rmd()
-```
-
 # Development environment
 
 See the chapter on [system setup](https://r-pkgs.org/setup.html) in the online book [R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan.
@@ -176,8 +199,22 @@ Unit tests are implemented using [testthat](https://testthat.r-lib.org/) as desc
 
 ## Add a new unit test
 
-To create a unit test for a function named `my_function()`, run:
+To create a unit test for a function named `my_function()`, run to creatae the file `tests/testtaht/test-my_function.R`:
 
 ```R
 usethis::use_test("my_function")
+```
+
+## Run tests
+
+See [run tests](https://r-pkgs.org/testing-basics.html#run-tests)
+
+The `stop_on_failure` option is useful when squashing one bug at a time.
+
+```R
+# Test current file
+devtools::test_active_file(stop_on_failure = TRUE)
+
+# Test all files
+devtools::test(stop_on_failure = TRUE)
 ```
