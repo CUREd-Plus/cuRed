@@ -57,6 +57,14 @@ class NHSFormat:
         return f'grepl("{self.regex}", {field})'
 
     @property
+    def length_regex(self) -> str:
+        # Up to x characters
+        if self.max:
+            return f"{{0,{self.length}}}"
+        # Fixed length
+        return f"{{{self.length}}}"
+
+    @property
     def regex(self):
 
         # Date
@@ -66,17 +74,12 @@ class NHSFormat:
         # Alphanumeric e.g. {'12an', 'an', '3an', 'max 20an'}
         elif self.match(r"^(max )?\d+a+n*$"):
             # Regular expression representing this field format
-            length_regex = f"{{{self.length}}}"  # Fixed length
-            if self.max:
-                length_regex = f"{{0,{self.length}}}"  # Up to x characters
             # '^[a-zA-Z0-9]{12}$' means 12an
-            return f"^[a-zA-Z0-9]{length_regex}$"
+            return f"^[a-zA-Z0-9]{self.length_regex}$"
 
         # Integer {'n', '2n', 'max 4n'}
         elif self.match(r"^(max )?\d*n+$"):
-            regex = r"\d"
-            if self.max:
-                pass
+            regex = rf"\d{self.length_regex}"
             return rf"^{regex}$"
 
         # Decimal

@@ -50,10 +50,12 @@ class Format:
     def nchar(self, field: str) -> str:
         """
         Build character length check logical expression in the R programming language.
+
+        String(2) means len("My string") <= 2
         """
         try:
             # Fixed length e.g. "nchar(MY_FIELD) == 2"
-            return f"nchar({field}) == {self.length}"
+            return f"nchar({field}) <= {self.length}"
 
         except ValueError:
             try:
@@ -62,15 +64,13 @@ class Format:
                 return f"({min_} <= nchar({field})) & (nchar({field}) <= {max_})"
             except ValueError:
                 # Handle wierd cases e.g.
-                """"String(12) (2013-14 to 2020-21)
+                """String(12) (2013-14 to 2020-21)
                 String(19) (2021-22 onwards)"""
 
                 # Grab all possible values
                 lengths = re.findall(r"String\((\d+)\)", self.format)
-                # nchar(FIELD) == 12 OR nchar(FIELD) == 19
-                nchar = ' | '.join((f"nchar({field}) == {n}" for n in lengths))
-                # Wrap logical expressions in brackets to form a single expression
-                return f"({nchar})"
+                # Get the longest possible length
+                return f"nchar({field}) <= {max(lengths)}"
 
     @property
     def range(self) -> tuple[int, int]:
