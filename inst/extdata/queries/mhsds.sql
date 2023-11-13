@@ -1,6 +1,8 @@
 /*
 Mental Health Services Data Set (MHSDS) denormalisation query.
 
+See: mhsds.md
+
 This is an SQL query that will convert the many tables in the MHSDS into a single table.
 
 The table and field names are determined by the MHSDS v5.0 Technical Output Specification (TOS).
@@ -9,44 +11,97 @@ For more information about the MHSDS, see:
 https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/mental-health-services-data-set
 
 */
-SELECT
+-- Vertically merge (append) Ward Stay and Care Contact using UNION.
+WITH (
   -- MHS502 Ward Stay
-   WardStay.WardStayId -- M502915 WARD STAY IDENTIFIER
-  ,WardStay.StartDateWardStay -- START DATE (WARD STAY)
-  ,WardStay.StartTimeWardStay
-  ,WardStay.EndDateMHTrialLeave
-  ,WardStay.EndDateWardStay
-  ,WardStay.EndTimeWardStay
-  ,WardStay.SiteIDOfTreat
-  ,WardStay.WardType
-  ,WardStay.WardAge
-  ,WardStay.WardSexTypeCode
-  ,WardStay.IntendClinCareIntenCodeMH
-  ,WardStay.WardSecLevel
-  ,WardStay.LockedWardInd
-  ,WardStay.HospitalBedTypeMH
-  ,WardStay.SpecialisedMHServiceCode
-  ,WardStay.WardCode
-
+  SELECT
+     WardStay.WardStayId -- M502915 WARD STAY IDENTIFIER
+    ,WardStay.StartDateWardStay -- START DATE (WARD STAY)
+    ,WardStay.StartTimeWardStay
+    ,WardStay.EndDateMHTrialLeave
+    ,WardStay.EndDateWardStay
+    ,WardStay.EndTimeWardStay
+    ,WardStay.SiteIDOfTreat
+    ,WardStay.WardType
+    ,WardStay.WardAge
+    ,WardStay.WardSexTypeCode
+    ,WardStay.IntendClinCareIntenCodeMH
+    ,WardStay.WardSecLevel
+    ,WardStay.LockedWardInd
+    ,WardStay.HospitalBedTypeMH
+    ,WardStay.SpecialisedMHServiceCode
+    ,WardStay.WardCode
+      
+    -- MHS501 Hospital Provider Spell
+    ,HospitalProviderSpell.HospProvSpellID -- HOSPITAL PROVIDER SPELL IDENTIFIER
+    ,HospitalProviderSpell.DecidedToAdmitDate
+    ,HospitalProviderSpell.DecidedToAdmitTime
+    ,HospitalProviderSpell.StartDateHospProvSpell
+    ,HospitalProviderSpell.StartTimeHospProvSpell
+    ,HospitalProviderSpell.SourceAdmMHHospProvSpell
+    ,HospitalProviderSpell.MethAdmMHHospProvSpell
+    ,HospitalProviderSpell.PostcodeMainVisitor
+    ,HospitalProviderSpell.EstimatedDischDateHospProvSpell
+    ,HospitalProviderSpell.PlannedDischDateHospProvSpell
+    ,HospitalProviderSpell.PlannedDestDisch
+    ,HospitalProviderSpell.DischDateHospProvSpell
+    ,HospitalProviderSpell.DischTimeHospProvSpell
+    ,HospitalProviderSpell.MethOfDischMHHospProvSpell
+    ,HospitalProviderSpell.DestOfDischHospProvSpell
+    ,HospitalProviderSpell.PostcodeDischDestHospProvSpell
+    ,HospitalProviderSpell.TransformingCareInd
+    ,HospitalProviderSpell.TransformingCareCategory
+    
+    -- Blank fields from Care Contact that aren't shared
+    ,NULL AS CareContactId
+    
+  FROM MHS502WardStay AS WardStay
   -- MHS501 Hospital Provider Spell
-  ,HospitalProviderSpell.HospProvSpellID -- HOSPITAL PROVIDER SPELL IDENTIFIER
-  ,HospitalProviderSpell.DecidedToAdmitDate
-  ,HospitalProviderSpell.DecidedToAdmitTime
-  ,HospitalProviderSpell.StartDateHospProvSpell
-  ,HospitalProviderSpell.StartTimeHospProvSpell
-  ,HospitalProviderSpell.SourceAdmMHHospProvSpell
-  ,HospitalProviderSpell.MethAdmMHHospProvSpell
-  ,HospitalProviderSpell.PostcodeMainVisitor
-  ,HospitalProviderSpell.EstimatedDischDateHospProvSpell
-  ,HospitalProviderSpell.PlannedDischDateHospProvSpell
-  ,HospitalProviderSpell.PlannedDestDisch
-  ,HospitalProviderSpell.DischDateHospProvSpell
-  ,HospitalProviderSpell.DischTimeHospProvSpell
-  ,HospitalProviderSpell.MethOfDischMHHospProvSpell
-  ,HospitalProviderSpell.DestOfDischHospProvSpell
-  ,HospitalProviderSpell.PostcodeDischDestHospProvSpell
-  ,HospitalProviderSpell.TransformingCareInd
-  ,HospitalProviderSpell.TransformingCareCategory
+  LEFT JOIN MHS501HospProvSpell AS HospitalProviderSpell
+    ON WardStay.HospProvSpellID = HospitalProviderSpell.HospProvSpellID
+) AS WardStayEpisode
+
+WITH (
+  -- MHS201 Care Contact
+  SELECT
+     MHS201CareContact.CareContactId
+    ,MHS201CareContact.ServiceRequestId
+    ,MHS201CareContact.CareProfTeamLocalId
+    ,MHS201CareContact.CareContDate
+    ,MHS201CareContact.CareContTime
+    ,MHS201CareContact.OrgIDComm
+    ,MHS201CareContact.AdminCatCode
+    ,MHS201CareContact.SpecialisedMHServiceCode
+    ,MHS201CareContact.ClinContDurOfCareCont
+    ,MHS201CareContact.ConsType
+    ,MHS201CareContact.CareContSubj
+    ,MHS201CareContact.ConsMechanismMH
+    ,MHS201CareContact.ActLocTypeCode
+    ,MHS201CareContact.PlaceOfSafetyInd
+    ,MHS201CareContact.SiteIDOfTreat
+    ,MHS201CareContact.ComPeriMHPartAssessOfferInd
+    ,MHS201CareContact.PlannedCareContIndicator
+    ,MHS201CareContact.CareContPatientTherMode
+    ,MHS201CareContact.AttendOrDNACode
+    ,MHS201CareContact.EarliestReasonOfferDate
+    ,MHS201CareContact.EarliestClinAppDate
+    ,MHS201CareContact.CareContCancelDate
+    ,MHS201CareContact.CareContCancelReas
+    ,MHS201CareContact.ReasonableAdjustmentMade
+  FROM MHS201CareContact
+) AS CareContactEpisode
+
+-- Create a merged episode record
+WITH (
+  SELECT * FROM WardStayEpisode
+  UNION
+  SELECT * FROM CareContactEpisode
+) AS Episode
+
+
+SELECT
+
+  -- TODO
   
   -- MHS101 Service or Team Referral
   ,Referral.ServiceRequestId -- SERVICE REQUEST IDENTIFIER
@@ -88,11 +143,7 @@ SELECT
   ,Patient.LanguageCodePreferred
   ,Patient.PersDeathDate
 
--- MHS502 Ward Stay
-FROM MHS502WardStay AS WardStay;
--- MHS501 Hospital Provider Spell
-LEFT INNER JOIN MHS501HospProvSpell AS HospitalProviderSpell
-  ON WardStay.HospProvSpellID = HospitalProviderSpell.HospProvSpellID
+FROM Episode;
 -- MHS101 Service or Team Referral
 LEFT INNER JOIN MHS101Referral AS Referral
   ON HospitalProviderSpell.ServiceRequestId = Referral.ServiceRequestId
