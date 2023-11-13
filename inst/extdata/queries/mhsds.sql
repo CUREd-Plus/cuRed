@@ -1,16 +1,9 @@
 /*
 Mental Health Services Data Set (MHSDS) denormalisation query.
 
-See: mhsds.md
-
-This is an SQL query that will convert the many tables in the MHSDS into a single table.
-
-The table and field names are determined by the MHSDS v5.0 Technical Output Specification (TOS).
-
-For more information about the MHSDS, see:
-https://digital.nhs.uk/data-and-information/data-collections-and-data-sets/data-sets/mental-health-services-data-set
-
+For documentation, please read mhsds.md
 */
+
 -- Vertically merge (append) Ward Stay and Care Contact using UNION.
 WITH (
   -- MHS502 Ward Stay
@@ -270,22 +263,58 @@ SELECT
   ,CareActivity.CodeObs
   ,CareActivity.ObsValue
   ,CareActivity.UnitMeasure
-  
+
+  -- MHS203 Other in Attendance
+  ,OtherInAttendance.OtherPersonInAttend
+  ,OtherInAttendance.ReasonPatientNoIMCA
+  ,OtherInAttendance.ReasonPatientNoIMHA
+
   -- MHS607 Coded Scored Assessment (Care Activity)
   ,CodedScoredAssessment.CodedAssToolType
   ,CodedScoredAssessment.PersScore
+  
+  -- MHS204 Indirect Activity
+  ,IndirectActivity.CareProfTeamLocalId
+  ,IndirectActivity.IndirectActDate
+  ,IndirectActivity.IndirectActTime
+  ,IndirectActivity.DurationIndirectAct
+  ,IndirectActivity.OrgIDComm
+  ,IndirectActivity.CareProfLocalId
+  ,IndirectActivity.CodeIndActProcAndProcStatus
+  ,IndirectActivity.FindSchemeInUse
+  ,IndirectActivity.CodeFind
+  
+  -- MHS107 Medication Prescription
+  ,MedicationPrescription.ServiceRequestId
+  ,MedicationPrescription.PrescriptionID
+  ,MedicationPrescription.PrescriptionDate
+  ,MedicationPrescription.PrescriptionTime
+  
+  -- MHS106 Discharge Plan Agreement
+  -- TODO
 
 FROM Episode
 -- MHS202 Care Activity
 LEFT JOIN MHS202CareActivity AS CareActivity
   ON Episode.CareContactId = CareActivity.CareContactId
+-- MHS203 Other in Attendance
+LEFT JOIN MHS203OtherAttend AS OtherInAttendance
+  ON Episode.CareContactId = OtherInAttendance.CareContactId
 -- MHS607 Coded Scored Assessment (Care Activity)
 LEFT JOIN MHS607CodedScoreAssessmentAct AS CodedScoredAssessment
-  ON CareActivity.
+  ON CareActivity.CareActId = CodedScoredAssessment.CareActId
 -- MHS101 Service or Team Referral
 LEFT JOIN MHS101Referral AS Referral
   ON HospitalProviderSpell.ServiceRequestId = Referral.ServiceRequestId
 -- MHS001 Master Patient Index
 LEFT JOIN MHS001MPI AS Patient
   Referral.LocalPatientId = Patient.LocalPatientId
+-- MHS204 Indirect Activity
+LEFT JOIN MHS204IndirectActivity AS IndirectActivity
+  ON Referral.ServiceRequestId = IndirectActivity.ServiceRequestId
+-- MHS107 Medication Prescription
+LEFT JOIN MHS107MedicationPrescription AS MedicationPrescription
+  ON Referral.ServiceRequestId = MedicationPrescription.ServiceRequestId
+-- MHS106 Discharge Plan Agreement
+-- TODO
 ;
