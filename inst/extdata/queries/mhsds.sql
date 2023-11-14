@@ -284,14 +284,48 @@ SELECT
   ,IndirectActivity.FindSchemeInUse
   ,IndirectActivity.CodeFind
   
+  -- MHS102 Service or Team Type Referred To
+  ,ServiceTypeReferredTo.CareProfTeamLocalId
+  ,ServiceTypeReferredTo.ServiceRequestId
+  ,ServiceTypeReferredTo.ServTeamTypeRefToMH
+  ,ServiceTypeReferredTo.ReferClosureDate
+  ,ServiceTypeReferredTo.ReferClosureTime
+  ,ServiceTypeReferredTo.ReferRejectionDate
+  ,ServiceTypeReferredTo.ReferRejectionTime
+  ,ServiceTypeReferredTo.ReferClosReason
+  ,ServiceTypeReferredTo.ReferRejectReason
+
+  -- MHS103 Other Reason For Referral
+  ,OtherReasonReferral.OtherReasonReferMH
+  
+  -- MHS104 Referral To Treatment (RTT)
+  ,ReferralToTreatment.PatPathId
+  ,ReferralToTreatment.OrgIDPatPathIdIssuer
+  ,ReferralToTreatment.WaitTimeMeasureType
+  ,ReferralToTreatment.ReferToTreatPeriodStartDate
+  ,ReferralToTreatment.ReferToTreatPeriodEndDate
+  ,ReferralToTreatment.ReferToTreatPeriodStatus
+
+  -- MHS105 Onward Referral
+  ,OnwardReferral.DecisionToReferDate
+  ,OnwardReferral.DecisionToReferTime
+  ,OnwardReferral.OnwardReferDate
+  ,OnwardReferral.OnwardReferTime
+  ,OnwardReferral.OnwardReferReason
+  ,OnwardReferral.OATReason
+  ,OnwardReferral.OrgIDReceiving
+  ,OnwardReferral.CodeRefProcAndProcStatus
+  
+  -- MHS106 Discharge Plan Agreement
+  ,DischargePlanAgreement.DischPlanContentAgreedBy
+  ,DischargePlanAgreement.DischPlanContentAgreedDate
+  ,DischargePlanAgreement.DischPlanContentAgreedTime
+
   -- MHS107 Medication Prescription
   ,MedicationPrescription.ServiceRequestId
   ,MedicationPrescription.PrescriptionID
   ,MedicationPrescription.PrescriptionDate
   ,MedicationPrescription.PrescriptionTime
-  
-  -- MHS106 Discharge Plan Agreement
-  -- TODO
 
 FROM Episode
 -- MHS202 Care Activity
@@ -312,9 +346,22 @@ LEFT JOIN MHS001MPI AS Patient
 -- MHS204 Indirect Activity
 LEFT JOIN MHS204IndirectActivity AS IndirectActivity
   ON Referral.ServiceRequestId = IndirectActivity.ServiceRequestId
+-- MHS102 Service or Team Type Referred To
+LEFT JOIN MHS102ServiceTypeReferredTo AS ServiceTypeReferredTo
+  ON Referral.ServiceRequestId = ServiceTypeReferredTo.ServiceRequestId
+-- MHS103 Other Reason For Referral
+LEFT JOIN MHS103OtherReasonReferral AS OtherReasonReferral
+  ON Referral.ServiceRequestId = OtherReasonReferral.ServiceRequestId
+-- MHS104 Referral To Treatment (RTT)
+LEFT JOIN MHS104RTT AS ReferralToTreatment
+  ON Referral.ServiceRequestId = ReferralToTreatment.ServiceRequestId
+-- MHS105 Onward Referral
+LEFT JOIN MHS105OnwardReferral AS OnwardReferral
+  ON Referral.ServiceRequestId = OnwardReferral.ServiceRequestId
+-- MHS106 Discharge Plan Agreement
+LEFT JOIN MHS106DischargePlanAgreement AS DischargePlanAgreement
+  ON Referral.ServiceRequestId = DischargePlanAgreement.ServiceRequestId
 -- MHS107 Medication Prescription
 LEFT JOIN MHS107MedicationPrescription AS MedicationPrescription
   ON Referral.ServiceRequestId = MedicationPrescription.ServiceRequestId
--- MHS106 Discharge Plan Agreement
--- TODO
 ;
