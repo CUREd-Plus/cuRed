@@ -252,6 +252,27 @@ SELECT
   ,Patient.EthnicCategory2021
   ,Patient.LanguageCodePreferred
   ,Patient.PersDeathDate
+  
+  -- MHS002 GP Practice Registration
+  ,MHS002GP.GMPCodeReg
+  ,MHS002GP.StartDateGMPRegistration
+  ,MHS002GP.EndDateGMPRegistration
+  ,MHS002GP.RecordNumber
+  ,MHS002GP.MHS002UniqID
+  ,MHS002GP.OrgIDProv
+  ,MHS002GP.Person_ID
+  ,MHS002GP.UniqSubmissionID
+  ,MHS002GP.OrgIDCCGGPPractice
+  ,MHS002GP.GPDistanceHome
+  ,MHS002GP.UniqMonthID
+  ,MHS002GP.RecordStartDate
+  ,MHS002GP.RecordEndDate
+  ,MHS002GP.EFFECTIVE_FROM
+  ,MHS002GP.LADistrictAuthGPPractice
+  ,MHS002GP.OrgIDICBGPPractice
+  ,MHS002GP.OrgIDSubICBLocGP
+  
+  -- MHS003 Accommodation Status
 
   -- MHS202 Care Activity
   ,CareActivity.CareActId
@@ -343,6 +364,10 @@ LEFT JOIN MHS101Referral AS Referral
 -- MHS001 Master Patient Index
 LEFT JOIN MHS001MPI AS Patient
   Referral.LocalPatientId = Patient.LocalPatientId
+-- MHS002 GP Practice Registration
+LEFT JOIN MHS002GP ON Patient.LocalPatientId = MHS002GP.LocalPatientId
+-- MHS003 Accommodation Status
+LEFT JOIN MHS002GP ON Patient.LocalPatientId = MHS002GP.LocalPatientId
 -- MHS204 Indirect Activity
 LEFT JOIN MHS204IndirectActivity AS IndirectActivity
   ON Referral.ServiceRequestId = IndirectActivity.ServiceRequestId
