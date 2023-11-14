@@ -4,6 +4,12 @@ Mental Health Services Data Set (MHSDS) denormalisation query.
 For documentation, please read mhsds.md
 */
 
+
+-- TODO historic queries
+
+-- TODO de-duplicate using window functions
+-- https://duckdb.org/docs/sql/window_functions
+
 -- Vertically merge (append) Ward Stay and Care Contact using UNION.
 WITH (
   -- MHS502 Ward Stay
@@ -141,7 +147,7 @@ WITH (
   FROM MHS201CareContact AS CareContact
 ) AS CareContactEpisode
 
--- Create a merged episode record
+-- Create a merged episode record by appending them together
 WITH (
   SELECT * FROM WardStayEpisode
   UNION
@@ -273,7 +279,37 @@ SELECT
   ,MHS002GP.OrgIDSubICBLocGP
   
   -- MHS003 Accommodation Status
-
+  ,MHS003AccommStatus.LocalPatientId
+  ,MHS003AccommStatus.AccommodationType
+  ,MHS003AccommStatus.SettledAccommodationInd
+  ,MHS003AccommStatus.AccommodationTypeDate
+  ,MHS003AccommStatus.SCHPlacementType
+  ,MHS003AccommStatus.AccommodationTypeStartDate
+  ,MHS003AccommStatus.AccommodationTypeEndDate
+  ,MHS003AccommStatus.RecordNumber
+  ,MHS003AccommStatus.MHS003UniqID
+  ,MHS003AccommStatus.OrgIDProv
+  ,MHS003AccommStatus.Person_ID
+  ,MHS003AccommStatus.UniqSubmissionID
+  ,MHS003AccommStatus.AgeAccomTypeDate
+  ,MHS003AccommStatus.UniqMonthID
+  ,MHS003AccommStatus.EFFECTIVE_FROM
+  
+  -- MHS004 Employment Status
+  ,MHS004EmpStatus.LocalPatientId
+  ,MHS004EmpStatus.EmployStatus
+  ,MHS004EmpStatus.EmployStatusStartDate
+  ,MHS004EmpStatus.EmployStatusEndDate
+  ,MHS004EmpStatus.EmployStatusRecDate
+  ,MHS004EmpStatus.WeekHoursWorked
+  ,MHS004EmpStatus.RecordNumber
+  ,MHS004EmpStatus.MHS004UniqID
+  ,MHS004EmpStatus.OrgIDProv
+  ,MHS004EmpStatus.Person_ID
+  ,MHS004EmpStatus.UniqSubmissionID
+  ,MHS004EmpStatus.UniqMonthID
+  ,MHS004EmpStatus.EFFECTIVE_FROM
+  
   -- MHS202 Care Activity
   ,CareActivity.CareActId
   ,CareActivity.CareProfLocalId
@@ -362,12 +398,16 @@ LEFT JOIN MHS607CodedScoreAssessmentAct AS CodedScoredAssessment
 LEFT JOIN MHS101Referral AS Referral
   ON HospitalProviderSpell.ServiceRequestId = Referral.ServiceRequestId
 -- MHS001 Master Patient Index
-LEFT JOIN MHS001MPI AS Patient
-  Referral.LocalPatientId = Patient.LocalPatientId
+LEFT JOIN MHS001MPI AS Patient ON Referral.LocalPatientId = Patient.LocalPatientId
 -- MHS002 GP Practice Registration
-LEFT JOIN MHS002GP ON Patient.LocalPatientId = MHS002GP.LocalPatientId
+LEFT JOIN MHS002GP
+  ON Patient.LocalPatientId = MHS002GP.LocalPatientId
+    -- TODO historic GP registration lookup
+    AND Episode.StartDate = MHS002GP.StartDate
 -- MHS003 Accommodation Status
-LEFT JOIN MHS002GP ON Patient.LocalPatientId = MHS002GP.LocalPatientId
+LEFT JOIN MHS003AccommStatus ON Patient.LocalPatientId = MHS003AccommStatus.LocalPatientId
+-- MHS004 Employment Status
+LEFT JOIN MHS004EmpStatus ON Todo.LocalPatientId = MHS004EmpStatus.LocalPatientId
 -- MHS204 Indirect Activity
 LEFT JOIN MHS204IndirectActivity AS IndirectActivity
   ON Referral.ServiceRequestId = IndirectActivity.ServiceRequestId
