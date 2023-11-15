@@ -4,13 +4,15 @@
 \alias{get_data_types}
 \title{Get data types}
 \usage{
-get_data_types(metadata)
+get_data_types(metadata, data_set_id)
 }
 \arguments{
 \item{metadata}{List of field objects.}
+
+\item{data_set_id}{Data set identifier}
 }
 \value{
-Dictionary. Map of field names to data types.
+Dictionary. Map of field names -> data types.
 }
 \description{
 Get the data type for each field from the metadata document.

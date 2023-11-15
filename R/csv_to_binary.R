@@ -51,7 +51,7 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
   # Update data types based on TOS spreadsheet
   # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
   # but only use the columns we've specified.
-  tos_data_types <- get_data_types(metadata)
+  tos_data_types <- get_data_types(metadata, data_set_id = data_set_id)
   for (key in names(data_types)) {
     value <- tos_data_types[[key]]
     if (!is.null(value)) {
@@ -88,13 +88,14 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
-#'
+#' 
 #' @export
 #'
 #' @param metadata List of field objects.
-#' @returns Dictionary. Map of field names to data types.
+#' @param data_set_id Data set identifier
+#' @returns Dictionary. Map of field names -> data types.
 #'
-get_data_types <- function(metadata) {
+get_data_types <- function(metadata, data_set_id) {
   # Initialise empty dictionary
   field_names <- list()
 
@@ -104,7 +105,16 @@ get_data_types <- function(metadata) {
     tos_format <- as.character(metadata$Format[i])
 
     # Build dictionary
-    field_names[field_name] <- format_to_data_type(tos_format)
+    # Decide what data type standard to use, based on the data set.
+    if (data_set_id %in% c("apc", "op", "ae")) {
+      sql_data_type <- format_to_data_type(tos_format)
+    } else if (startsWith(data_set_id, "yas")) {
+      sql_data_type <- yas_type_to_data_type(tos_format)
+    } else {
+      cli::cli_alert_danger("Unknown data type for '{data_set_id}' data set")
+      stop("Unknown data type format")
+    }
+    field_names[field_name] <- sql_data_type
   }
 
   return(field_names)
