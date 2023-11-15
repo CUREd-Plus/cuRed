@@ -144,9 +144,7 @@ convert_json_to_struct <- function(data) {
 #'
 #' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
 #'
-#' @export
-#'
-#' @param format_str String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
+#' @param format_str character. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
 #'
 #' @returns String. SQL data type.
 #'
@@ -186,4 +184,27 @@ format_to_data_type <- function(format_str) {
   }
 
   return(data_type)
+}
+
+#' Convert YAS data type to an SQL data type
+#' 
+#' @description
+#' 
+#' Decide what data type is appropriate to use to store this data type
+#' in an SQL database.
+#'
+#' @param format_str character. Data type e.g. "boolean", "categorical", "numerical"
+#'
+#' @returns character. [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
+#'
+yas_type_to_data_type <- function(format_str) {
+  if (format_str == "boolean") {
+    return("BOOLEAN")
+  } else if (format_str == "numeric") {
+    return("UBIGINT")
+  } else if (format_str == "time") {
+    return("TIME")
+  } else {
+    return("VARCHAR")
+  }
 }
