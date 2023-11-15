@@ -40,7 +40,9 @@ Imports:
     readxl (>= 1.4.0),
     readxl (< 1.5.0),
     dplyr (>= 1.1.0),
-    dplyr (< 1.2.0)
+    dplyr (< 1.2.0),
+    config (>= 0.3.0),
+    config (< 0.4.0)
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

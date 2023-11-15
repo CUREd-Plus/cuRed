@@ -1,0 +1,6 @@
+default:
+  id: apc
+  raw_data_dir: "C:/Users/Administrator/curedplus-raw-data/apc"
+  staging_dir: "C:/Users/Administrator/curedplus-staging/apc"
+  metadata_path: "C:/Users/Administrator/curedplus-raw-data/HES+TOS+V1.15.xlsx"
+  sheet: HES APC TOS

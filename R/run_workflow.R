@@ -65,4 +65,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   # Generate data quality report
 
   # Generate FHIR data model
+  
+  # Finish
+  cli::cli_alert_success("Completed workflow for '{data_set_id}' data set")
 }

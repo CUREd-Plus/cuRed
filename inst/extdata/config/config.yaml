@@ -1,0 +1,6 @@
+# CUREd+ data pipeline configuration file
+default:
+  # Patient ID bridge file path
+  patient_path: "C:/Users/Administrator/curedplus-raw-data/patient.csv"
+  # Patient demographics data file path
+  demographics_path: "C:/Users/Administrator/curedplus-raw-data/pd.parquet"
