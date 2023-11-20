@@ -9,7 +9,7 @@ repos:
       - id: check-yaml
 
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.3.2.9023
+    rev: v0.3.2.9025
     hooks:
     - id: use-tidy-description
     - id: no-browser-statement
