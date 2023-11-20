@@ -51,7 +51,7 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
   # Update data types based on TOS spreadsheet
   # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
   # but only use the columns we've specified.
-  tos_data_types <- get_data_types(metadata)
+  tos_data_types <- get_data_types(metadata, data_set_id = data_set_id)
   for (key in names(data_types)) {
     value <- tos_data_types[[key]]
     if (!is.null(value)) {
@@ -88,13 +88,14 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
-#'
+#' 
 #' @export
 #'
 #' @param metadata List of field objects.
-#' @returns Dictionary. Map of field names to data types.
+#' @param data_set_id Data set identifier
+#' @returns Dictionary. Map of field names -> data types.
 #'
-get_data_types <- function(metadata) {
+get_data_types <- function(metadata, data_set_id) {
   # Initialise empty dictionary
   field_names <- list()
 
@@ -104,7 +105,16 @@ get_data_types <- function(metadata) {
     tos_format <- as.character(metadata$Format[i])
 
     # Build dictionary
-    field_names[field_name] <- format_to_data_type(tos_format)
+    # Decide what data type standard to use, based on the data set.
+    if (data_set_id %in% c("apc", "op", "ae")) {
+      sql_data_type <- format_to_data_type(tos_format)
+    } else if (startsWith(data_set_id, "yas")) {
+      sql_data_type <- yas_type_to_data_type(tos_format)
+    } else {
+      cli::cli_alert_danger("Unknown data type for '{data_set_id}' data set")
+      stop("Unknown data type format")
+    }
+    field_names[field_name] <- sql_data_type
   }
 
   return(field_names)
@@ -135,55 +145,4 @@ convert_json_to_struct <- function(data) {
   items_char <- stringr::str_flatten_comma(items)
   struct <- stringr::str_glue("{{{items_char}}}", collapse = "", sep = "")
   return(struct)
-}
-
-#' Convert TOS format to an SQL data type
-#'
-#' See: NHS Digital "Constructing submission files" for the data formats from
-#' the NHS Data Model and Dictionary.
-#'
-#' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
-#'
-#' @export
-#'
-#' @param format_str String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
-#'
-#' @returns String. SQL data type.
-#'
-format_to_data_type <- function(format_str) {
-  format_str <- as.character(format_str)
-
-  if (is.na(format_str)) {
-    stop("Format string is null.")
-  }
-
-  # Map TOS format to SQL data type
-  # https://duckdb.org/docs/sql/data_types/overview.html
-
-  # Integer
-  if (format_str == "Number") {
-    # unsigned four-byte integer
-    data_type <- "UBIGINT"
-  } else if (startsWith(format_str, "String")) {
-    # DuckDB doesn't implement maximum string length
-    # i.e. VARCHAR(n) has no effect
-    # See: https://duckdb.org/docs/sql/data_types/text
-    data_type <- "VARCHAR"
-  } else if (format_str == "Date(YYYY-MM-DD)") {
-    data_type <- "DATE"
-  } else if (format_str == "Time(HH24:MI:ss)") {
-    data_type <- "TIME"
-  } else if (format_str == "Decimal") {
-    data_type <- "DOUBLE"
-    # The HES APC TOS field SOCIAL_AND_PERSONAL_CIRCUMSTANCE has format "?" because it's a
-    # SNOMED CT Expression, which is of alphanumeric "an" type (a structured object).
-    # https://www.datadictionary.nhs.uk/data_elements/snomed_ct_expression.html
-  } else if (format_str == "?") {
-    data_type <- "VARCHAR"
-  } else {
-    cli::cli_alert_danger("Unknown field format '{format_str}'")
-    stop("Unknown field format")
-  }
-
-  return(data_type)
 }
