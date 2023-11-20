@@ -61,7 +61,8 @@ WITH (FORMAT 'PARQUET');
       input_path = temp_input_path,
       output_path = output_path,
       patient_path = patient_path,
-      demographics_path = demographics_path
+      demographics_path = demographics_path,
+      patient_key = "token_person_id"
     )
   )
 
