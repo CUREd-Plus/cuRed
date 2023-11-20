@@ -1,4 +1,10 @@
-/* This is a query template loaded append_mock_ids() */
+/*
+This is a query template loaded by the
+function append_mock_ids() that takes a CSV file,
+appends some generated IDs, then writes the result
+to another CSV file.
+*/
+SELECT setseed(0.0);
 COPY (
   SELECT
     -- Replicate input data

@@ -11,15 +11,16 @@ library(stringr)
 #'
 #' @export
 #'
-#' @param data_set_id character Data set identifier e.g. "apc" or "op"
-#' @param raw_data_dir character The directory that contains the raw data for this data set.
-#' @param metadata_path character Path of the technical output specification (TOS) workbook file path.
-#' @param sheet character Name of the sheet (tab) in the TOS workbook
-#' @param staging_dir character The directory to store working data files.
-#' @param patient_path character Path of the patient identifier bridge data file.
-#' @param demographics_path character Path of the demographics file.
+#' @param data_set_id character. Data set identifier e.g. "apc" or "op"
+#' @param raw_data_dir character. The directory that contains the raw data for this data set.
+#' @param metadata_path character. Path of the technical output specification (TOS) workbook file path.
+#' @param sheet character. Name of the sheet (tab) in the TOS workbook
+#' @param staging_dir character. Path of the directory to store working data files.
+#' @param patient_path character. Path of the patient identifier bridge data file.
+#' @param demographics_path character. Path of the demographics file.
+#' @param address_path character. Path of the historic address data file.
 #'
-run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, demographics_path) {
+run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, demographics_path, address_path) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
 
@@ -29,6 +30,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
   binary_path <- file.path(staging_dir, stringr::str_glue("02-{data_set_id}_binary"))
   linked_path <- file.path(staging_dir, stringr::str_glue("03-{data_set_id}_linked.parquet"))
+  address_path <- file.path(staging_dir, stringr::str_glue("04-{data_set_id}_linked_address.parquet"))
 
   # Parse the TOS
   metadata <- parse_tos(metadata_path, sheet = sheet)
@@ -54,6 +56,13 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     output_path = linked_path,
     patient_path = patient_path,
     demographics_path = demographics_path
+  )
+  
+  # Historic address
+  historic_address(
+    input_path=linked_path,
+    address_path=address_path,
+    output_path=address_path
   )
 
   # Cleaning

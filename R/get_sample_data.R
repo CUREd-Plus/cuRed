@@ -55,6 +55,7 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 
 #' Append generated dummy data in CSV format.
 #'
+#' @description
 #' Append fake patient identifiers to the synthetic data.
 #'
 #' @param input_path character path of input CSV data file (or files, e.g. "*.csv")
@@ -67,9 +68,11 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
 append_mock_ids <- function(input_path, output_path) {
 
   # Build the SQL query using a template
-  query_template_path <- extdata_path("queries/append_mock_ids.sql")
+  query_template_path <- extdata_path("queries/synthetic/append_mock_ids.sql")
   query_template <- readr::read_file(query_template_path)
   query <- stringr::str_glue(query_template)
+  
+  # Save query to disk
   query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(x = query, file = query_path)
   cli::cli_alert_info("Wrote '{query_path}'")
@@ -78,5 +81,40 @@ append_mock_ids <- function(input_path, output_path) {
   run_query(query)
   cli::cli_alert_success("Wrote '{output_path}'")
 
+  return(output_path)
+}
+
+#' Generate synthetic data
+#'
+#' @description
+#' Use an SQL query to create some dummy data and save it to a file.
+#'
+#' @param query_template_path character. Path of a SQL file.
+#' @param output_path character. Path of target data file.
+#'
+#' @returns character. Path of destination data file.
+#'
+#' @export
+#'
+generate_synthetic_data <- function(query_template_path, output_path = NA) {
+  
+  # Default to random temporary file
+  if (is.na(output_path)) {
+    output_path = tempfile(tmpdir = temp_dir(), fileext = ".parquet")
+  }
+  
+  # Build the SQL query using a template
+  query_template <- readr::read_file(query_template_path)
+  query <- stringr::str_glue(query_template)
+  
+  # Save query to disk
+  query_path <- paste(output_path, ".sql", sep = "")
+  readr::write_file(x = query, file = query_path)
+  cli::cli_alert_info("Wrote '{query_path}'")
+  
+  # Run query to generate data
+  run_query(query)
+  cli::cli_alert_success("Wrote '{output_path}'")
+  
   return(output_path)
 }

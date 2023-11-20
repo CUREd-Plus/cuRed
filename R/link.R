@@ -48,7 +48,7 @@ link <- function(data_set_id, input_path, output_path, patient_path, demographic
   run_query(query)
 
   # Inform the user that the SQL query file has been written
-  cli::cli_alert_info("Wrote '{output_path}'")
+  cli::cli_alert_success("Wrote '{output_path}'")
 
   return(output_path)
 }

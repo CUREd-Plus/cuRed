@@ -11,23 +11,26 @@ run_workflow(
   sheet,
   staging_dir,
   patient_path,
-  demographics_path
+  demographics_path,
+  address_path
 )
 }
 \arguments{
-\item{data_set_id}{character Data set identifier e.g. "apc" or "op"}
+\item{data_set_id}{character. Data set identifier e.g. "apc" or "op"}
 
-\item{raw_data_dir}{character The directory that contains the raw data for this data set.}
+\item{raw_data_dir}{character. The directory that contains the raw data for this data set.}
 
-\item{metadata_path}{character Path of the technical output specification (TOS) workbook file path.}
+\item{metadata_path}{character. Path of the technical output specification (TOS) workbook file path.}
 
-\item{sheet}{character Name of the sheet (tab) in the TOS workbook}
+\item{sheet}{character. Name of the sheet (tab) in the TOS workbook}
 
-\item{staging_dir}{character The directory to store working data files.}
+\item{staging_dir}{character. Path of the directory to store working data files.}
 
-\item{patient_path}{character Path of the patient identifier bridge data file.}
+\item{patient_path}{character. Path of the patient identifier bridge data file.}
 
-\item{demographics_path}{character Path of the demographics file.}
+\item{demographics_path}{character. Path of the demographics file.}
+
+\item{address_path}{character. Path of the historic address data file.}
 }
 \description{
 \code{run_workflow} executes the data pipeline for a single data set.
