@@ -19,26 +19,14 @@ test_that("run_workflow", {
 
   # Download Technical Output Specification (TOS) spreadsheet
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
+  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.16.xlsx"
   tos_path <- file.path(staging_dir, basename(url))
   # We must specify mode = "wb" for this to work on Windows
   utils::download.file(url, method = "auto", destfile = tos_path, mode = "wb")
 
   # Generate mock patient demographics data
-  run_query(stringr::str_glue("
-COPY (
-  SELECT
-    uuid() AS study_id,
-    'SG13' AS derived_postcode_dist,
-    'F' AS gender,
-    '1970-01' AS dob_year_month
-  -- https://duckdb.org/docs/sql/functions/nested.html
-  FROM generate_series(1, 10)
-)
-TO '{demographics_path}'
-WITH (FORMAT 'PARQUET');
-"))
-
+  generate_demographics(demographics_path)
+  
   # Run the workflow
   expect_no_error(
     run_workflow(
@@ -49,7 +37,8 @@ WITH (FORMAT 'PARQUET');
       sheet = sheet,
       staging_dir = staging_dir,
       patient_path = patient_path,
-      demographics_path = demographics_path
+      demographics_path = demographics_path,
+      patient_key = "token_person_id"
     )
   )
 

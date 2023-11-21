@@ -11,6 +11,7 @@ run_workflow(
   sheet,
   staging_dir,
   patient_path,
+  patient_key,
   demographics_path
 )
 }
@@ -26,6 +27,8 @@ run_workflow(
 \item{staging_dir}{character The directory to store working data files.}
 
 \item{patient_path}{character Path of the patient identifier bridge data file.}
+
+\item{patient_key}{The column name of the foreign key to link to the patient ID bridge data set.}
 
 \item{demographics_path}{character Path of the demographics file.}
 }

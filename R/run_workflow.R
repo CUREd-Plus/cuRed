@@ -17,9 +17,10 @@ library(stringr)
 #' @param sheet character Name of the sheet (tab) in the TOS workbook
 #' @param staging_dir character The directory to store working data files.
 #' @param patient_path character Path of the patient identifier bridge data file.
+#' @param patient_key The column name of the foreign key to link to the patient ID bridge data set.
 #' @param demographics_path character Path of the demographics file.
 #'
-run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, demographics_path) {
+run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, patient_key, demographics_path) {
   # Cast parameters to the correct data type
   data_set_id <- as.character(data_set_id)
 
@@ -53,7 +54,8 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     input_path = binary_path,
     output_path = linked_path,
     patient_path = patient_path,
-    demographics_path = demographics_path
+    demographics_path = demographics_path,
+    patient_key = patient_key
   )
 
   # Cleaning

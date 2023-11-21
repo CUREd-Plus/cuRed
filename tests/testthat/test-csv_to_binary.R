@@ -15,7 +15,7 @@ test_that("csv_to_binary", {
   )
 
   # Get TOS
-  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
+  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.16.xlsx"
   tos_path <- file.path(tmpdir, basename(url))
   download_file(url, destfile = tos_path)
 
