@@ -20,8 +20,8 @@ COPY (
     
     -- Demographics
     ,demographics.derived_postcode_dist
-	  ,demographics.gender
-	  ,demographics.dob_year_month
+    ,demographics.gender
+    ,demographics.dob_year_month
     ,demographics.patient_care_extension
     ,demographics.death_notification_status
     ,demographics.derived_for_dodym
