@@ -19,7 +19,7 @@ test_that("run_workflow", {
 
   # Download Technical Output Specification (TOS) spreadsheet
   # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.15.xlsx"
+  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.16.xlsx"
   tos_path <- file.path(staging_dir, basename(url))
   # We must specify mode = "wb" for this to work on Windows
   utils::download.file(url, method = "auto", destfile = tos_path, mode = "wb")
