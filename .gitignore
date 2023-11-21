@@ -66,4 +66,5 @@ venv/
 # Notepad++ backup files
 *.bak
 
+# JetBrains PyCharm
 .idea
