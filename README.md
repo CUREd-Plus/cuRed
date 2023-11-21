@@ -26,7 +26,8 @@ devtools::install_github("CUREd-Plus/cuRed")
 The workflow is designed to run automatically by running the `main()` function.
 
 ```R
-cuRed::main()
+data_set_id <- "apc" # specify data set identifier
+cuRed::main(data_set_id)
 ```
 
 The configuration file that specifies the input raw data sources is included in the package by default, at `inst/extdata/data_sets.json`. You can manually specify this using the `data_sets_path` argument. For more information on using this function, view the documentation by running:
