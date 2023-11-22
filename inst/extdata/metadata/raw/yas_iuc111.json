@@ -8,8 +8,8 @@
   "dialect": {
     "header": true
   },
-  "id": "yas_epr",
-  "notes": "Yorkshire Ambulance Service (YAS) Electronic Patient Records (EPR) data set",
+  "id": "yas_iuc111",
+  "notes": "Yorkshire Ambulance Service (YAS) Integrated Urgent Care (IUC) NHS 111",
   "tables": [
     {
       "id": "Incident",

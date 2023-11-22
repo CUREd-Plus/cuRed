@@ -8,8 +8,8 @@
   "dialect": {
     "header": true
   },
-  "id": "ae",
-  "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
+  "id": "apc",
+  "notes": "Hospital Episide Statistics (HES) Admitted Patient Care (APC) data set",
   "tables": [
     {
       "tableSchema": {

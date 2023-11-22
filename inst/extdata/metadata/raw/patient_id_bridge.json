@@ -8,8 +8,8 @@
   "dialect": {
     "header": true
   },
-  "id": "ae",
-  "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
+  "id": "patient",
+  "notes": "CUREd+ patient identifier bridge",
   "tables": [
     {
       "tableSchema": {

@@ -8,8 +8,8 @@
   "dialect": {
     "header": true
   },
-  "id": "ae",
-  "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
+  "id": "op",
+  "notes": "Hospital Episide Statistics (HES) Outpatient (OP) data set",
   "tables": [
     {
       "tableSchema": {
