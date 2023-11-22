@@ -1,0 +1,41 @@
+{
+  "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
+  "id": "yas_epr",
+  "notes": "Yorkshire Ambulance Service (YAS) Electronic Patient Records (EPR) data set",
+  "tables": [{
+    "id": "Incident",
+    "url": "yas_epr/Incident.csv",
+    "notes": "One row per on-scene event record for one patient at each incident. (so there could be more than one EPR per CAD call, if there was e.g. a car crash with multiple patients)",
+    "tableSchema": {
+      "columns": [
+      {
+        "name": "incArriveDestination",
+        "datatype": "string"
+      },
+      {
+        "name": "incDCALeftScene",
+        "datatype": "string"
+      },
+      {
+        "name": "incDCAOnScene",
+        "datatype": "string"
+      },
+      {
+        "name": "incLocationType",
+        "datatype": "string"
+      },
+      {
+        "name": "incRRVOnScene",
+        "datatype": "string"
+      },
+      {
+        "name": "incTimePatSide",
+        "datatype": "string"
+      }
+      ]
+    }
+  }],
+  "dialect": {
+    "header": true
+  }
+}
