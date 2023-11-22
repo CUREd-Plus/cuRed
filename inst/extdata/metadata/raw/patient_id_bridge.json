@@ -1,0 +1,37 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "ae",
+  "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "datatype": "string",
+            "name": "token_person_id"
+          },
+          {
+            "datatype": "string",
+            "name": "yas_id"
+          },
+          {
+            "datatype": "string",
+            "name": "cured_id"
+          },
+          {
+            "datatype": "string",
+            "name": "study_id"
+          }
+        ]
+      }
+    }
+  ]
+}

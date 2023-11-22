@@ -24,7 +24,7 @@
           },
           {
             "datatype": "string",
-            "name": "PSEUDO_HESID"
+            "name": "EPIKEY"
           },
           {
             "datatype": "string",
@@ -32,39 +32,35 @@
           },
           {
             "datatype": "string",
-            "name": "AEKEY_FLAG"
+            "name": "PSEUDO_HESID"
           },
           {
             "datatype": "string",
-            "name": "AEARRIVALMODE"
+            "name": "ADMIDATE"
           },
           {
             "datatype": "string",
-            "name": "AEATTEND_EXC_PLANNED"
+            "name": "ADMIMETH"
           },
           {
             "datatype": "string",
-            "name": "AEATTENDCAT"
+            "name": "ADMINCAT"
           },
           {
             "datatype": "string",
-            "name": "AEATTENDDISP"
+            "name": "ADMINCATST"
           },
           {
             "datatype": "string",
-            "name": "AEDEPTTYPE"
+            "name": "ADMISORC"
           },
           {
             "datatype": "string",
-            "name": "AEINCLOCTYPE"
+            "name": "ALCDIAG_4"
           },
           {
             "datatype": "string",
-            "name": "AEPATGROUP"
-          },
-          {
-            "datatype": "string",
-            "name": "AEREFSOURCE"
+            "name": "ALCFRAC"
           },
           {
             "datatype": "string",
@@ -80,27 +76,19 @@
           },
           {
             "datatype": "string",
-            "name": "ARRIVALAGE"
-          },
-          {
-            "datatype": "string",
-            "name": "ARRIVALAGE_CALC"
-          },
-          {
-            "datatype": "string",
-            "name": "ARRIVALDATE"
-          },
-          {
-            "datatype": "string",
-            "name": "ARRIVALTIME"
-          },
-          {
-            "datatype": "string",
             "name": "CANNET"
           },
           {
             "datatype": "string",
             "name": "CANREG"
+          },
+          {
+            "datatype": "string",
+            "name": "CAUSE_3"
+          },
+          {
+            "datatype": "string",
+            "name": "CAUSE_4"
           },
           {
             "datatype": "string",
@@ -128,6 +116,10 @@
           },
           {
             "datatype": "string",
+            "name": "CLASSPAT"
+          },
+          {
+            "datatype": "string",
             "name": "CR_GP_PRACTICE"
           },
           {
@@ -140,215 +132,223 @@
           },
           {
             "datatype": "string",
-            "name": "CONCLDUR"
+            "name": "DIAG_3_01"
           },
           {
             "datatype": "string",
-            "name": "CONCLTIME"
+            "name": "DIAG_3_02"
           },
           {
             "datatype": "string",
-            "name": "DEPDUR"
+            "name": "DIAG_3_03"
           },
           {
             "datatype": "string",
-            "name": "DEPTIME"
+            "name": "DIAG_3_04"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_01"
+            "name": "DIAG_3_05"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_02"
+            "name": "DIAG_3_06"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_03"
+            "name": "DIAG_3_07"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_04"
+            "name": "DIAG_3_08"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_05"
+            "name": "DIAG_3_09"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_06"
+            "name": "DIAG_3_10"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_07"
+            "name": "DIAG_3_11"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_08"
+            "name": "DIAG_3_12"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_09"
+            "name": "DIAG_3_13"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_10"
+            "name": "DIAG_3_14"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_11"
+            "name": "DIAG_3_15"
           },
           {
             "datatype": "string",
-            "name": "DIAG2_12"
+            "name": "DIAG_3_16"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_01"
+            "name": "DIAG_3_17"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_02"
+            "name": "DIAG_3_18"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_03"
+            "name": "DIAG_3_19"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_04"
+            "name": "DIAG_3_20"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_05"
+            "name": "DIAG_3_CONCAT"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_06"
+            "name": "DIAG_4_01"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_07"
+            "name": "DIAG_4_02"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_08"
+            "name": "DIAG_4_03"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_09"
+            "name": "DIAG_4_04"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_10"
+            "name": "DIAG_4_05"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_11"
+            "name": "DIAG_4_06"
           },
           {
             "datatype": "string",
-            "name": "DIAG3_12"
+            "name": "DIAG_4_07"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_01"
+            "name": "DIAG_4_08"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_02"
+            "name": "DIAG_4_09"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_03"
+            "name": "DIAG_4_10"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_04"
+            "name": "DIAG_4_11"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_05"
+            "name": "DIAG_4_12"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_06"
+            "name": "DIAG_4_13"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_07"
+            "name": "DIAG_4_14"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_08"
+            "name": "DIAG_4_15"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_09"
+            "name": "DIAG_4_16"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_10"
+            "name": "DIAG_4_17"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_11"
+            "name": "DIAG_4_18"
           },
           {
             "datatype": "string",
-            "name": "DIAGA_12"
+            "name": "DIAG_4_19"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_01"
+            "name": "DIAG_4_20"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_02"
+            "name": "DIAG_4_CONCAT"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_03"
+            "name": "DIAG_COUNT"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_04"
+            "name": "DISDATE"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_05"
+            "name": "DISDEST"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_06"
+            "name": "DISMETH"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_07"
+            "name": "ELECDATE"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_08"
+            "name": "ELECDUR"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_09"
+            "name": "ELECDUR_CALC"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_10"
+            "name": "EPIDUR"
+          },
+          {
+            "datatype": "date",
+            "name": "EPIEND"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_11"
+            "name": "EPIORDER"
+          },
+          {
+            "datatype": "date",
+            "name": "EPISTART"
           },
           {
             "datatype": "string",
-            "name": "DIAGS_12"
+            "name": "EPISTAT"
           },
           {
             "datatype": "string",
-            "name": "DIAGSCHEME"
+            "name": "EPITYPE"
           },
           {
             "datatype": "string",
@@ -356,7 +356,19 @@
           },
           {
             "datatype": "string",
-            "name": "EPIKEY"
+            "name": "FAE"
+          },
+          {
+            "datatype": "string",
+            "name": "FAE_EMERGENCY"
+          },
+          {
+            "datatype": "string",
+            "name": "FCE"
+          },
+          {
+            "datatype": "string",
+            "name": "FDE"
           },
           {
             "datatype": "string",
@@ -368,63 +380,219 @@
           },
           {
             "datatype": "string",
-            "name": "INITDUR"
+            "name": "MAINSPEF"
           },
           {
             "datatype": "string",
-            "name": "INITTIME"
+            "name": "MYDOB"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_01"
+            "name": "NEODUR"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_02"
+            "name": "OPERTN_3_01"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_03"
+            "name": "OPERTN_3_02"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_04"
+            "name": "OPERTN_3_03"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_05"
+            "name": "OPERTN_3_04"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_06"
+            "name": "OPERTN_3_05"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_07"
+            "name": "OPERTN_3_06"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_08"
+            "name": "OPERTN_3_07"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_09"
+            "name": "OPERTN_3_08"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_10"
+            "name": "OPERTN_3_09"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_11"
+            "name": "OPERTN_3_10"
           },
           {
             "datatype": "string",
-            "name": "INVEST2_12"
+            "name": "OPERTN_3_11"
           },
           {
             "datatype": "string",
-            "name": "INVESTSCHEME"
+            "name": "OPERTN_3_12"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_13"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_14"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_15"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_16"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_17"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_18"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_19"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_20"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_21"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_22"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_23"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_24"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_01"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_02"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_03"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_04"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_05"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_06"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_07"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_08"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_09"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_10"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_11"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_12"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_13"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_14"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_15"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_16"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_17"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_18"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_19"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_20"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_21"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_22"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_23"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_24"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_COUNT"
           },
           {
             "datatype": "string",
@@ -457,10 +625,6 @@
           {
             "datatype": "string",
             "name": "PROCODET"
-          },
-          {
-            "datatype": "string",
-            "name": "PROCSCHEME"
           },
           {
             "datatype": "string",
@@ -508,11 +672,39 @@
           },
           {
             "datatype": "string",
+            "name": "SITETRET"
+          },
+          {
+            "datatype": "string",
             "name": "LSOA01"
           },
           {
             "datatype": "string",
             "name": "MSOA01"
+          },
+          {
+            "datatype": "string",
+            "name": "SPELBGIN"
+          },
+          {
+            "datatype": "string",
+            "name": "SPELDUR"
+          },
+          {
+            "datatype": "string",
+            "name": "SPELDUR_CALC"
+          },
+          {
+            "datatype": "string",
+            "name": "SPELEND"
+          },
+          {
+            "datatype": "string",
+            "name": "STARTAGE"
+          },
+          {
+            "datatype": "string",
+            "name": "STARTAGE_CALC"
           },
           {
             "datatype": "string",
@@ -524,115 +716,11 @@
           },
           {
             "datatype": "string",
-            "name": "SUSLDDATE_HIS"
+            "name": "SUSRECID"
           },
           {
             "datatype": "string",
-            "name": "TREAT2_01"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_02"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_03"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_04"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_05"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_06"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_07"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_08"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_09"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_10"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_11"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT2_12"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_01"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_02"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_03"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_04"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_05"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_06"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_07"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_08"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_09"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_10"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_11"
-          },
-          {
-            "datatype": "string",
-            "name": "TREAT3_12"
-          },
-          {
-            "datatype": "string",
-            "name": "TREATSCHEME"
-          },
-          {
-            "datatype": "string",
-            "name": "TRETDUR"
-          },
-          {
-            "datatype": "string",
-            "name": "TRETTIME"
+            "name": "TRETSPEF"
           },
           {
             "datatype": "string",
@@ -644,11 +732,47 @@
           },
           {
             "datatype": "string",
+            "name": "WAITLIST"
+          },
+          {
+            "datatype": "string",
+            "name": "ALCNRWFRAC"
+          },
+          {
+            "datatype": "string",
+            "name": "ALCNRWDIAG"
+          },
+          {
+            "datatype": "string",
+            "name": "ALCBRDFRAC"
+          },
+          {
+            "datatype": "string",
+            "name": "ALCBRDDIAG"
+          },
+          {
+            "datatype": "string",
+            "name": "SITEDIST"
+          },
+          {
+            "datatype": "string",
+            "name": "SITEDIST_FLAG"
+          },
+          {
+            "datatype": "string",
             "name": "PROVDIST"
           },
           {
             "datatype": "string",
             "name": "PROVDIST_FLAG"
+          },
+          {
+            "datatype": "string",
+            "name": "HRG40"
+          },
+          {
+            "datatype": "string",
+            "name": "HRGLATE35"
           },
           {
             "datatype": "string",
@@ -661,18 +785,6 @@
           {
             "datatype": "string",
             "name": "NER_TREATMENT"
-          },
-          {
-            "datatype": "string",
-            "name": "SITETRET"
-          },
-          {
-            "datatype": "string",
-            "name": "SITEDIST"
-          },
-          {
-            "datatype": "string",
-            "name": "SITEDIST_FLAG"
           }
         ]
       }
