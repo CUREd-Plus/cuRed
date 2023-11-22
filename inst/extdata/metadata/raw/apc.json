@@ -6,7 +6,9 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimiter": ",",
+    "encoding": "utf-8"
   },
   "id": "apc",
   "notes": "Hospital Episide Statistics (HES) Admitted Patient Care (APC) data set",
