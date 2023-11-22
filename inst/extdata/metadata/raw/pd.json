@@ -1,0 +1,97 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "pd",
+  "notes": "Patient demographics",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "patient_care_extension",
+            "datatype": "string"
+          },
+          {
+            "name": "address_line1",
+            "datatype": "string"
+          },
+          {
+            "name": "address_line2",
+            "datatype": "string"
+          },
+          {
+            "name": "address_line3",
+            "datatype": "string"
+          },
+          {
+            "name": "address_line4",
+            "datatype": "string"
+          },
+          {
+            "name": "address_line5",
+            "datatype": "string"
+          },
+          {
+            "name": "address_type",
+            "datatype": "string"
+          },
+          {
+            "name": "postcode",
+            "datatype": "string"
+          },
+          {
+            "name": "death_notification_status",
+            "datatype": "string"
+          },
+          {
+            "name": "derived_for_dodym",
+            "datatype": "string"
+          },
+          {
+            "name": "derived_inf_dodym",
+            "datatype": "string"
+          },
+          {
+            "name": "derived_postcode_dist",
+            "datatype": "string"
+          },
+          {
+            "name": "derived_rfr",
+            "datatype": "string"
+          },
+          {
+            "name": "dob_year_month",
+            "datatype": "string"
+          },
+          {
+            "name": "gender",
+            "datatype": "string"
+          },
+          {
+            "name": "gp_pds_bus_eff_from",
+            "datatype": "string"
+          },
+          {
+            "name": "nhais_pds_bus_eff_from",
+            "datatype": "string"
+          },
+          {
+            "name": "rfr_pds_bus_eff_from",
+            "datatype": "string"
+          },
+          {
+            "name": "study_id",
+            "datatype": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
