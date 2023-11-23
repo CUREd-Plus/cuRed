@@ -22,24 +22,24 @@ test_that("csv_to_binary", {
   # Get metadata from the TOS
   metadata <- parse_tos(tos_path, sheet = "HES APC TOS")
 
-  # Create a binary file at this location
-  output_path <- file.path(tmpdir, "output.parquet")
-
   # Run the function on test data
   expect_no_error(
-    csv_to_binary(
+    output_paths <- csv_to_binary(
       input_dir = tmpdir,
-      output_path = output_path,
+      output_dir = tmpdir,
       metadata = metadata,
       data_set_id = "apc"
     )
   )
 
-  # Check the output file
-  expect_no_error(
-    read_parquet(output_path)
-  )
-  expect_no_error(
-    parquet_metadata(output_path)
-  )
+  # Check the output files
+  for (i in seq_len(length(output_paths))) {
+    output_path <- output_paths[i]
+    expect_no_error(
+      read_parquet(output_path)
+    )
+    expect_no_error(
+      parquet_metadata(output_path)
+    )
+  }
 })

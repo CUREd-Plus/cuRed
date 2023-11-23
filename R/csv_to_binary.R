@@ -47,6 +47,8 @@ csv_to_binary <- function(input_dir, output_dir, metadata, data_set_id) {
   for (i in seq_len(length(csv_metadata$tables))) {
     csv_table <- csv_metadata$tables[i]
     table_id <- csv_table$id
+    cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
+    # TODO fix this line
     data_types <- csv_table$tableSchema$columns[[1]]
 
     # Convert to SQL data types
@@ -80,8 +82,12 @@ csv_to_binary <- function(input_dir, output_dir, metadata, data_set_id) {
     cli::cli_alert_info("Reading input data from '{input_glob}'...")
     run_query(query)
     cli::cli_alert_success("Wrote '{output_path}'")
+    
+    # Append to 
+    output_paths = append(output_paths, output_path)
   }
 
+  return(output_paths)
 }
 
 #' Get data types
