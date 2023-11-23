@@ -68,3 +68,5 @@ venv/
 
 # JetBrains PyCharm
 .idea
+__pycache__
+*.pyc
