@@ -1,0 +1,649 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "op",
+  "notes": "Hospital Episide Statistics (HES) Outpatient (OP) data set",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "datatype": "string",
+            "name": "FYEAR"
+          },
+          {
+            "datatype": "string",
+            "name": "PARTYEAR"
+          },
+          {
+            "datatype": "string",
+            "name": "PSEUDO_HESID"
+          },
+          {
+            "datatype": "string",
+            "name": "ATTENDKEY"
+          },
+          {
+            "datatype": "string",
+            "name": "ATTENDKEY_FLAG"
+          },
+          {
+            "datatype": "string",
+            "name": "ADMINCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "APPTAGE"
+          },
+          {
+            "datatype": "string",
+            "name": "APPTAGE_CALC"
+          },
+          {
+            "datatype": "string",
+            "name": "APPTDATE"
+          },
+          {
+            "datatype": "string",
+            "name": "ATENTYPE"
+          },
+          {
+            "datatype": "string",
+            "name": "ATTENDANCE"
+          },
+          {
+            "datatype": "string",
+            "name": "ATTENDED"
+          },
+          {
+            "datatype": "string",
+            "name": "ATTENDID"
+          },
+          {
+            "datatype": "string",
+            "name": "AT_GP_PRACTICE"
+          },
+          {
+            "datatype": "string",
+            "name": "AT_RESIDENCE"
+          },
+          {
+            "datatype": "string",
+            "name": "AT_TREATMENT"
+          },
+          {
+            "datatype": "string",
+            "name": "CANNET"
+          },
+          {
+            "datatype": "string",
+            "name": "CANREG"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_GP_PRACTICE"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_RESIDENCE"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_RESPONSIBILITY"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_RESPONSIBILITY_ORIGIN"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_TREATMENT"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG_TREATMENT_ORIGIN"
+          },
+          {
+            "datatype": "string",
+            "name": "CR_GP_PRACTICE"
+          },
+          {
+            "datatype": "string",
+            "name": "CR_RESIDENCE"
+          },
+          {
+            "datatype": "string",
+            "name": "CR_TREATMENT"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_01"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_02"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_03"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_04"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_05"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_06"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_07"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_08"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_09"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_10"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_11"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_12"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_3_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_01"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_02"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_03"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_04"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_05"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_06"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_07"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_08"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_09"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_10"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_11"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_12"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_4_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "DIAG_COUNT"
+          },
+          {
+            "datatype": "string",
+            "name": "DNADATE"
+          },
+          {
+            "datatype": "string",
+            "name": "ETHNOS"
+          },
+          {
+            "datatype": "string",
+            "name": "FIRSTATT"
+          },
+          {
+            "datatype": "string",
+            "name": "GORTREAT"
+          },
+          {
+            "datatype": "string",
+            "name": "GPPRAC"
+          },
+          {
+            "datatype": "string",
+            "name": "LOCCLASS"
+          },
+          {
+            "datatype": "string",
+            "name": "LOCTYPE"
+          },
+          {
+            "datatype": "string",
+            "name": "MAINSPEF"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_01"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_02"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_03"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_04"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_05"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_06"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_07"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_08"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_09"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_10"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_11"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_12"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_13"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_14"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_15"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_16"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_17"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_18"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_19"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_20"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_21"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_22"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_23"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_24"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_3_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_01"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_02"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_03"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_04"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_05"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_06"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_07"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_08"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_09"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_10"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_11"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_12"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_13"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_14"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_15"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_16"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_17"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_18"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_19"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_20"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_21"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_22"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_23"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_24"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_4_CONCAT"
+          },
+          {
+            "datatype": "string",
+            "name": "OPERTN_COUNT"
+          },
+          {
+            "datatype": "string",
+            "name": "OUTCOME"
+          },
+          {
+            "datatype": "string",
+            "name": "PCON"
+          },
+          {
+            "datatype": "string",
+            "name": "PCON_ONS"
+          },
+          {
+            "datatype": "string",
+            "name": "PCTCODE_HIS"
+          },
+          {
+            "datatype": "string",
+            "name": "PCTORIG_HIS"
+          },
+          {
+            "datatype": "string",
+            "name": "PCTTREAT"
+          },
+          {
+            "datatype": "string",
+            "name": "PREFERER"
+          },
+          {
+            "datatype": "string",
+            "name": "PRIORITY"
+          },
+          {
+            "datatype": "string",
+            "name": "PROCODE3"
+          },
+          {
+            "datatype": "string",
+            "name": "PROCODE5"
+          },
+          {
+            "datatype": "string",
+            "name": "PROCODET"
+          },
+          {
+            "datatype": "string",
+            "name": "PURCODE"
+          },
+          {
+            "datatype": "string",
+            "name": "REFERORG"
+          },
+          {
+            "datatype": "string",
+            "name": "REFSOURC"
+          },
+          {
+            "datatype": "string",
+            "name": "REQDATE"
+          },
+          {
+            "datatype": "string",
+            "name": "RESCTY"
+          },
+          {
+            "datatype": "string",
+            "name": "RESCTY_ONS"
+          },
+          {
+            "datatype": "string",
+            "name": "RESGOR"
+          },
+          {
+            "datatype": "string",
+            "name": "RESGOR_ONS"
+          },
+          {
+            "datatype": "string",
+            "name": "RESLADST"
+          },
+          {
+            "datatype": "string",
+            "name": "RESLADST_ONS"
+          },
+          {
+            "datatype": "string",
+            "name": "RESPCT_HIS"
+          },
+          {
+            "datatype": "string",
+            "name": "RESSTHA_HIS"
+          },
+          {
+            "datatype": "string",
+            "name": "SERVTYPE"
+          },
+          {
+            "datatype": "string",
+            "name": "SEX"
+          },
+          {
+            "datatype": "string",
+            "name": "SITETRET"
+          },
+          {
+            "datatype": "string",
+            "name": "LSOA01"
+          },
+          {
+            "datatype": "string",
+            "name": "MSOA01"
+          },
+          {
+            "datatype": "string",
+            "name": "STAFFTYP"
+          },
+          {
+            "datatype": "string",
+            "name": "STHATRET"
+          },
+          {
+            "datatype": "string",
+            "name": "SUSHRG"
+          },
+          {
+            "datatype": "string",
+            "name": "TRETSPEF"
+          },
+          {
+            "datatype": "string",
+            "name": "WAIT_IND"
+          },
+          {
+            "datatype": "string",
+            "name": "WAITDAYS"
+          },
+          {
+            "datatype": "string",
+            "name": "WAITING"
+          },
+          {
+            "datatype": "string",
+            "name": "LSOA11"
+          },
+          {
+            "datatype": "string",
+            "name": "MSOA11"
+          },
+          {
+            "datatype": "string",
+            "name": "SITEDIST"
+          },
+          {
+            "datatype": "string",
+            "name": "SITEDIST_FLAG"
+          },
+          {
+            "datatype": "string",
+            "name": "PROVDIST"
+          },
+          {
+            "datatype": "string",
+            "name": "PROVDIST_FLAG"
+          },
+          {
+            "datatype": "string",
+            "name": "NER_GP_PRACTICE"
+          },
+          {
+            "datatype": "string",
+            "name": "NER_RESIDENCE"
+          },
+          {
+            "datatype": "string",
+            "name": "NER_TREATMENT"
+          }
+        ]
+      }
+    }
+  ]
+}

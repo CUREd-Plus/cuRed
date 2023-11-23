@@ -1,4 +1,5 @@
 library(cli)
+library(dplyr)
 library(stringr)
 library(utils)
 
@@ -40,23 +41,27 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
   output_path <- normalizePath(output_path, mustWork = FALSE)
 
   # Load column order and default data types
-  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
-  data_types <- jsonlite::fromJSON(data_types_path)
+  csv_metadata_path <- extdata_path(stringr::str_glue("metadata/raw/{data_set_id}.json"))
+  csv_metadata <- jsonlite::fromJSON(csv_metadata_path)
+  cli::cli_alert_info("Loaded '{csv_metadata_path}'")
 
-  # Append patient ID fields
-  patient_id_data_types_path <- extdata_path("sql_data_types/patient_id_bridge.json")
-  patient_id_data_types <- jsonlite::fromJSON(patient_id_data_types_path)
-  data_types = utils::modifyList(data_types, patient_id_data_types)
+  # Iterate over tables
+  for (i in seq_len(length(csv_metadata$tables))) {
+    csv_table <- csv_metadata$tables[i]
+    data_types <- csv_table$tableSchema$columns[[1]]
 
-  # Update data types based on TOS spreadsheet
-  # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
-  # but only use the columns we've specified.
-  tos_data_types <- get_data_types(metadata, data_set_id = data_set_id)
-  for (key in names(data_types)) {
-    value <- tos_data_types[[key]]
-    if (!is.null(value)) {
-      data_types[key] <- value
-    }
+    # Convert to SQL data types
+    data_types = dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
+  }
+
+  # Get the SQL data types for the supplied metadata (TOS, data dictionary, etc.)
+  if (data_set_id %in% c("apc", "op", "ae")) {
+    metadata = dplyr::mutate(metadata, Format = format_to_data_type(Format))
+  } else if (startsWith(data_set_id, "yas")) {
+    metadata = dplyr::mutate(metadata, type = yas_type_to_data_type(type))
+  } else {
+    cli::cli_alert_danger("Unknown data type for '{data_set_id}' data set")
+    stop("Unknown data type format")
   }
 
   # Convert file format
@@ -88,7 +93,7 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
-#' 
+#'
 #' @export
 #'
 #' @param metadata List of field objects.

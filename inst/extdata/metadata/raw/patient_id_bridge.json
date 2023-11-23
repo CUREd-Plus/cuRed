@@ -1,0 +1,37 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "patient",
+  "notes": "CUREd+ patient identifier bridge",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "datatype": "string",
+            "name": "token_person_id"
+          },
+          {
+            "datatype": "string",
+            "name": "yas_id"
+          },
+          {
+            "datatype": "string",
+            "name": "cured_id"
+          },
+          {
+            "datatype": "string",
+            "name": "study_id"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "ecds",
+  "notes": "Emergency Care Data Set (ECDS)",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "classification_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "ethnic_category",
+            "datatype": "string"
+          },
+          {
+            "name": "expiry_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "expiry_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "start_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "start_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "accommodation_status",
+            "datatype": "string"
+          },
+          {
+            "name": "accommodation_status_valid",
+            "datatype": "string"
+          },
+          {
+            "name": "acuity",
+            "datatype": "string"
+          },
+          {
+            "name": "acuity_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "age_at_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "arrival_date",
+            "datatype": "string"
+          },
+          {
+            "name": "arrival_mode",
+            "datatype": "string"
+          },
+          {
+            "name": "arrival_mode_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "arrival_month",
+            "datatype": "string"
+          },
+          {
+            "name": "arrival_time",
+            "datatype": "string"
+          },
+          {
+            "name": "assessment_date",
+            "datatype": "string"
+          },
+          {
+            "name": "assessment_time",
+            "datatype": "string"
+          },
+          {
+            "name": "attendance_category",
+            "datatype": "string"
+          },
+          {
+            "name": "attendance_source",
+            "datatype": "string"
+          },
+          {
+            "name": "attendance_source_organisation",
+            "datatype": "string"
+          },
+          {
+            "name": "attendance_source_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "birth_month",
+            "datatype": "string"
+          },
+          {
+            "name": "birth_year",
+            "datatype": "string"
+          },
+          {
+            "name": "chief_complaint",
+            "datatype": "string"
+          },
+          {
+            "name": "chief_complaint_extended_code",
+            "datatype": "string"
+          },
+          {
+            "name": "chief_complaint_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "commissioner",
+            "datatype": "string"
+          },
+          {
+            "name": "commissioner_derived",
+            "datatype": "string"
+          },
+          {
+            "name": "comorbidities_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "comorbidities_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "conclusion_date",
+            "datatype": "string"
+          },
+          {
+            "name": "conclusion_time",
+            "datatype": "string"
+          },
+          {
+            "name": "conclusion_time_since_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "conveying_ambulance_trust",
+            "datatype": "string"
+          },
+          {
+            "name": "costing_period",
+            "datatype": "string"
+          },
+          {
+            "name": "country",
+            "datatype": "string"
+          },
+          {
+            "name": "decided_to_admit_date",
+            "datatype": "string"
+          },
+          {
+            "name": "decided_to_admit_time",
+            "datatype": "string"
+          },
+          {
+            "name": "decision_to_admit_time_since_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "department_type",
+            "datatype": "string"
+          },
+          {
+            "name": "departure_date",
+            "datatype": "string"
+          },
+          {
+            "name": "departure_time",
+            "datatype": "string"
+          },
+          {
+            "name": "departure_time_since_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "diagnosis_code_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "diagnosis_first_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "diagnosis_qualifier_is_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "diagnosis_qualifier_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "diagnosis_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_destination",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_destination_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_follow_up",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_follow_up_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_information_given",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_information_given_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_status",
+            "datatype": "string"
+          },
+          {
+            "name": "discharge_status_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "drug_alcohol_code_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "drug_alcohol_code_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "ed_county_code",
+            "datatype": "string"
+          },
+          {
+            "name": "ed_district_code",
+            "datatype": "string"
+          },
+          {
+            "name": "epikey",
+            "datatype": "string"
+          },
+          {
+            "name": "excluded",
+            "datatype": "string"
+          },
+          {
+            "name": "exclusion_reasons",
+            "datatype": "string"
+          },
+          {
+            "name": "final_price",
+            "datatype": "string"
+          },
+          {
+            "name": "fractional_age_at_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "grouper_version",
+            "datatype": "string"
+          },
+          {
+            "name": "health_resource_group",
+            "datatype": "string"
+          },
+          {
+            "name": "initial_assessment_time_since_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_activity_status",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_activity_status_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_activity_type",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_activity_type_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_date",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_intent",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_intent_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_mechanism",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_mechanism_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "injury_time",
+            "datatype": "string"
+          },
+          {
+            "name": "investigation_code_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "investigation_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "investigation_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "investigations_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "market_forces_adjustment",
+            "datatype": "string"
+          },
+          {
+            "name": "market_forces_factor",
+            "datatype": "string"
+          },
+          {
+            "name": "nhs_number_status_indicator_code",
+            "datatype": "string"
+          },
+          {
+            "name": "organisation_code_patient_pathway_identifier",
+            "datatype": "string"
+          },
+          {
+            "name": "overseas_visitor_charging_category",
+            "datatype": "string"
+          },
+          {
+            "name": "patient_postcode_district",
+            "datatype": "string"
+          },
+          {
+            "name": "patient_type",
+            "datatype": "string"
+          },
+          {
+            "name": "pds_general_practice",
+            "datatype": "string"
+          },
+          {
+            "name": "period_end_date",
+            "datatype": "string"
+          },
+          {
+            "name": "period_length",
+            "datatype": "string"
+          },
+          {
+            "name": "period_start_date",
+            "datatype": "string"
+          },
+          {
+            "name": "period_status",
+            "datatype": "string"
+          },
+          {
+            "name": "place_of_injury",
+            "datatype": "string"
+          },
+          {
+            "name": "place_of_injury_valid_approved",
+            "datatype": "string"
+          },
+          {
+            "name": "practice_code_patient_registration",
+            "datatype": "string"
+          },
+          {
+            "name": "preferred_spoken_language",
+            "datatype": "string"
+          },
+          {
+            "name": "preferred_spoken_language_valid",
+            "datatype": "string"
+          },
+          {
+            "name": "provider_code",
+            "datatype": "string"
+          },
+          {
+            "name": "provider_code_derived",
+            "datatype": "string"
+          },
+          {
+            "name": "provider_postcode_district",
+            "datatype": "string"
+          },
+          {
+            "name": "receiving_site",
+            "datatype": "string"
+          },
+          {
+            "name": "referral_assessment_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "referral_assessment_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "referred_to_service_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "referred_to_service_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "residence_ccg",
+            "datatype": "string"
+          },
+          {
+            "name": "residence_ccg_from_patient_postcode",
+            "datatype": "string"
+          },
+          {
+            "name": "seen_date",
+            "datatype": "string"
+          },
+          {
+            "name": "seen_for_treatment_time_since_arrival",
+            "datatype": "string"
+          },
+          {
+            "name": "seen_time",
+            "datatype": "string"
+          },
+          {
+            "name": "sequence_number_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "service_request_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "service_request_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "sha_provider",
+            "datatype": "string"
+          },
+          {
+            "name": "site",
+            "datatype": "string"
+          },
+          {
+            "name": "stated_gender",
+            "datatype": "string"
+          },
+          {
+            "name": "tariff",
+            "datatype": "string"
+          },
+          {
+            "name": "tariff_description",
+            "datatype": "string"
+          },
+          {
+            "name": "token_person_id",
+            "datatype": "string"
+          },
+          {
+            "name": "treatment_code_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "treatment_date_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "treatment_function_code",
+            "datatype": "string"
+          },
+          {
+            "name": "treatment_time_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "treatments_valid_approved_nn",
+            "datatype": "string"
+          },
+          {
+            "name": "waiting_time_measurement_type",
+            "datatype": "string"
+          },
+          {
+            "name": "lsoa",
+            "datatype": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
