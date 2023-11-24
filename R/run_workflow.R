@@ -30,14 +30,10 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   binary_path <- file.path(staging_dir, stringr::str_glue("02-{data_set_id}_binary"))
   linked_path <- file.path(staging_dir, stringr::str_glue("03-{data_set_id}_linked.parquet"))
 
-  # Parse the TOS
-  metadata <- parse_tos(metadata_path, sheet = sheet)
-
   # Convert to binary format
   binary_path <- csv_to_binary(
     input_dir = raw_data_dir,
     output_path = binary_path,
-    metadata = metadata,
     data_set_id = data_set_id
   )
 
