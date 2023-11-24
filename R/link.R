@@ -24,8 +24,10 @@ link <- function(data_set_id, input_path, output_path, patient_path, demographic
   demographics_path <- normalizePath(demographics_path, mustWork = TRUE)
 
   # Get the names of all fields in the input data set
-  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
-  data_types <- jsonlite::fromJSON(data_types_path)
+  # TODO
+  exit("TODO")
+
+  # Build SQL for "SELECT {fields_sql}"
   fields <- names(data_types)
   fields_sql <- paste(fields, collapse = "\n    ,")
 

@@ -11,7 +11,7 @@ test_that("csv_to_binary", {
   # Append dummy patient IDs to the artificial APC data
   input_path = file.path(extdata_path(""), "data/apc/*.csv")
   output_path = file.path(tmpdir, "artificial_hes_apc_appended.csv")
-  query <- stringr::str_glue("COPY (
+  query <- stringr::str_glue("SELECT setseed(0.0); COPY (
   SELECT
      uuid() AS token_person_id
     ,uuid() AS study_id

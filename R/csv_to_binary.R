@@ -43,16 +43,15 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
   cli::cli_alert_info("Loaded '{csv_metadata_path}'")
 
   # Iterate over tables (CSV files within this data set)
-  for (i in seq_len(nrow(csv_metadata$tables))) {
-    cli::cli_inform("table number {i}")
-    # Get metadata for this table
-    csv_table <- csv_metadata$tables[i,]
+  # https://w3c.github.io/csvw/syntax/#tables
+  for (csv_table in csvw_tables(csv_metadata)) {
+    # Get table identifier
     table_id <- csv_table$id
     if (is.na(table_id)) {
       stop("table_id is missing")
     }
     cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
-    columns <- csv_table$tableSchema$columns[[1]]
+    columns <- csvw_columns(csv_table)
 
     # Convert to SQL data types
     data_types <- data.frame(columns[, c("name", "datatype")])
