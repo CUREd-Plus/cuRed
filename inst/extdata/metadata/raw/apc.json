@@ -21,6 +21,14 @@
         "columns": [
           {
             "datatype": "string",
+            "name": "token_person_id"
+          },
+          {
+            "datatype": "string",
+            "name": "study_id"
+          },
+          {
+            "datatype": "string",
             "name": "FYEAR"
           },
           {

@@ -26,12 +26,11 @@ library(utils)
 #'
 #' @param input_dir character. Path. The directory that contains the raw data files.
 #' @param output_dir Character. Path of the directory in which to write the output binary data files.
-#' @param metadata List. Dictionary containing the column definitions.
 #' @param data_set_id character. Data set identifier e.g. "apc", "op"
 #'
 #' @returns List of paths of the new output files.
 #' @export
-csv_to_binary <- function(input_dir, output_dir, metadata, data_set_id) {
+csv_to_binary <- function(input_dir, output_dir, data_set_id) {
 
   # Define the absolute paths
   input_dir <- normalizePath(input_dir, mustWork = TRUE)
@@ -44,47 +43,53 @@ csv_to_binary <- function(input_dir, output_dir, metadata, data_set_id) {
   cli::cli_alert_info("Loaded '{csv_metadata_path}'")
 
   # Iterate over tables (CSV files within this data set)
-  for (i in seq_len(length(csv_metadata$tables))) {
+  for (i in seq_len(nrow(csv_metadata$tables))) {
+    cli::cli_inform("table number {i}")
     # Get metadata for this table
     csv_table <- csv_metadata$tables[i,]
     table_id <- csv_table$id
+    if (is.na(table_id)) {
+      stop("table_id is missing")
+    }
     cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
     columns <- csv_table$tableSchema$columns[[1]]
 
     # Convert to SQL data types
     data_types <- data.frame(columns[, c("name", "datatype")])
-    data_types = dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
-    
+    data_types <- dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
+
     # TODO update data types based on TOS or data dictionary
-    
+
     # Convert file format
     # Load the CSV file and save to Apache Parquet format.
-    
+
     # Define where the data will be read from
     input_glob <- file.path(input_dir, csv_table$url)
-    output_path <- file.path(output_dir, table_id)
-    
+    # ...and written to
+    output_filename <- stringr::str_glue("{table_id}.parquet")
+    output_path <- file.path(output_dir, output_filename)
+
     # Build the SQL query that will be used to perform the conversion
     data_types_dict <- dataframe_to_dictionary(data_types, "name", "datatype")
     data_types_struct <- dictionary_to_struct(data_types_dict)
     query_path <- extdata_path("queries/csv_to_binary.sql")
     query_template <- readr::read_file(query_path)
     query <- stringr::str_glue(query_template)
-    
+
     # Ensure output directory exists
     dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
-    
+
     # Write SQL query to text file
     sql_query_file_path <- paste(output_path, ".sql", sep = "")
     readr::write_file(query, sql_query_file_path)
     cli::cli_alert_info("Wrote '{sql_query_file_path}'")
-    
+
     # Execute the query
     cli::cli_alert_info("Reading input data from '{input_glob}'...")
     run_query(query)
     cli::cli_alert_success("Wrote '{output_path}'")
-    
-    # Append to 
+
+    # Append to
     output_paths = append(output_paths, output_path)
   }
 
