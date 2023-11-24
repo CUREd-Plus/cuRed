@@ -45,13 +45,14 @@ csv_to_binary <- function(input_dir, output_dir, metadata, data_set_id) {
 
   # Iterate over tables (CSV files within this data set)
   for (i in seq_len(length(csv_metadata$tables))) {
-    csv_table <- csv_metadata$tables[i]
+    # Get metadata for this table
+    csv_table <- csv_metadata$tables[i,]
     table_id <- csv_table$id
     cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
-    # TODO fix this line
-    data_types <- csv_table$tableSchema$columns[[1]]
+    columns <- csv_table$tableSchema$columns[[1]]
 
     # Convert to SQL data types
+    data_types <- data.frame(columns[, c("name", "datatype")])
     data_types = dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
     
     # TODO update data types based on TOS or data dictionary
