@@ -17,7 +17,7 @@ dataframe_to_dictionary <- function(data_frame, key_col, value_col) {
 
   dictionary <- list()
 
-  for (i in seq_len(nrow(data))) {
+  for (i in seq_len(nrow(data_frame))) {
     key <- data_frame[key_col][i,]
     value <- data_frame[value_col][i,]
 
@@ -26,5 +26,4 @@ dataframe_to_dictionary <- function(data_frame, key_col, value_col) {
   }
 
   return(dictionary)
-
 }

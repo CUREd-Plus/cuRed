@@ -12,14 +12,14 @@ test_that("run_workflow", {
   demographics_path <- file.path(staging_dir, "demographics.parquet")
 
   # Generate dummy data
-  input_path = file.path(extdata_path("data/apc/raw", mustWork = TRUE), "*.csv"),
-  output_path = file.path(staging_dir, stringr::str_glue("{data_set_id}_raw_appended.csv"))
+  raw_data_glob = file.path(extdata_path("data/apc/raw", mustWork = TRUE), "*.csv")
+  output_path = file.path(staging_dir, stringr::str_glue("artificial_hes_apc_appended.csv"))
   query <- stringr::str_glue("SELECT setseed(0.0); COPY (
   SELECT
      uuid() AS token_person_id
     ,uuid() AS study_id
     ,artificial_apc.*
-  FROM read_csv_auto('{input_path}') AS artificial_apc
+  FROM read_csv_auto('{raw_data_glob}') AS artificial_apc
 )
 TO '{output_path}'
 WITH (FORMAT 'CSV', HEADER);
@@ -40,7 +40,6 @@ WITH (FORMAT 'CSV', HEADER);
   expect_no_error(
     run_workflow(
       data_set_id = data_set_id,
-      # Load all CSV files in this directory
       raw_data_dir = staging_dir,
       metadata_path = tos_path,
       sheet = sheet,
