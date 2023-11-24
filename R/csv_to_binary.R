@@ -1,4 +1,5 @@
 library(cli)
+library(coro)
 library(dplyr)
 library(stringr)
 library(utils)
@@ -37,21 +38,20 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
   output_dir <- normalizePath(output_dir, mustWork = FALSE)
   output_paths <- list()
 
-  # Load column order and default data types
+  # Load data set metadata
   csv_metadata_path <- extdata_path(stringr::str_glue("metadata/raw/{data_set_id}.json"))
-  csv_metadata <- jsonlite::fromJSON(csv_metadata_path)
-  cli::cli_alert_info("Loaded '{csv_metadata_path}'")
+  csv_metadata <- read.csvw(csv_metadata_path)
 
   # Iterate over tables (CSV files within this data set)
   # https://w3c.github.io/csvw/syntax/#tables
-  for (csv_table in csvw_tables(csv_metadata)) {
+  coro::loop(for (csv_table in csvw.tables(csv_metadata)) {
     # Get table identifier
     table_id <- csv_table$id
     if (is.na(table_id)) {
       stop("table_id is missing")
     }
     cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
-    columns <- csvw_columns(csv_table)
+    columns <- csvw.columns(csv_table)
 
     # Convert to SQL data types
     data_types <- data.frame(columns[, c("name", "datatype")])
@@ -90,7 +90,7 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
 
     # Append to
     output_paths = append(output_paths, output_path)
-  }
+  })
 
   return(output_paths)
 }

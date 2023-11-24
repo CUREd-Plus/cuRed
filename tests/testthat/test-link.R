@@ -18,8 +18,7 @@ test_that("linkage works", {
 
   # Generate dummy data
   # Append fake patient ID to the HES synthetic data
-  # We'll append some fake data to this file,
-  # and use this as the input to the data linkage code.
+  # We'll append some fake data to this file, and use this as the input to the data linkage code.
   input_path <- file.path(test_dir, "artificial_hes_apc_0102_truncated_appended.parquet")
   run_query(stringr::str_glue("SELECT setseed(0.0);
 COPY (
