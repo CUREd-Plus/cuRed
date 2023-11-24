@@ -4,14 +4,12 @@
 \alias{csv_to_binary}
 \title{Convert CSV data into binary format}
 \usage{
-csv_to_binary(input_dir, output_dir, metadata, data_set_id)
+csv_to_binary(input_dir, output_dir, data_set_id)
 }
 \arguments{
 \item{input_dir}{character. Path. The directory that contains the raw data files.}
 
 \item{output_dir}{Character. Path of the directory in which to write the output binary data files.}
-
-\item{metadata}{List. Dictionary containing the column definitions.}
 
 \item{data_set_id}{character. Data set identifier e.g. "apc", "op"}
 }
