@@ -1,3 +1,5 @@
+library(cli)
+library(stringr)
 library(utils)
 
 # Automatically test the entire workflow for a single data set

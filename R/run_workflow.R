@@ -38,7 +38,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
 
   # Get the first binary file
   # TODO implement validation for data sets that contain multiple tables
-  cli::cli_warn("multi-table validation not implemented - ignoring files")
+  cli::cli_inform("multi-table validation not implemented - ignoring files")
   binary_path <- binary_paths[[1]]
 
   # Validate
