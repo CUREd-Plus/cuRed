@@ -12,6 +12,7 @@ library(readxl)
 #' @returns data.frame TOS metadata
 #'
 parse_tos <- function(xls_file, sheet) {
+  cli::cli_alert_info("Reading '{xls_file}' sheet '{sheet}'...")
   # Use the readxl package
   # https://readxl.tidyverse.org/reference/read_excel.html
   myCols <- as.character(readxl::read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))

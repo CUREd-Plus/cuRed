@@ -1,92 +1,4 @@
----
-# APC data validation rules
-
-# This file is written using YAML format.
-# https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML
-
-# The data types codes, such as "10n" are used by the NHS Data Model and Dictionary
-# https://www.datadictionary.nhs.uk/
-
 rules:
-# 🔑 EPIKEY (HES Record Identifier) 
-- name: EPIKEY is required
-# In YAML, we need to use quotes for special characters
-# https://stackoverflow.com/a/22235064/15368268
-  expr: '!is.na(EPIKEY)'
-  meta:
-    severity: error
-  
-- name: EPIKEY is unique
-  expr: is_unique(EPIKEY)
-  meta:
-    severity: error
-
-# SUSSPELLID SUS-generated spell identifier
-- name: SUSSPELLID 19n
-  description: SUSSPELLID has 19 integers
-  expr: grepl("^\\d{19}$", SUSSPELLID)
-
-- name: SUSSPELLID 10n
-  description: SUSSPELLID has 10 integers (until 2016-17)
-  expr: grepl("^\\d{10}$", SUSSPELLID)
-
-- name: SUSSPELLID missing values
-  description: SUSSPELLID is Null or -1
-  # Null = Records that have excluded from PbR in SUS as the activity is outside the scope of PbR
-  # -1 = Unspellable episodes
-  expr: SUSSPELLID %in% c("Null", "-1")
-
-# SUSRECID SUS Record Identifier
-# SUS (Secondary Uses Service)-generated record identifier
-- name: SUSRECID 14n
-  description: SUSRECID is a number with 14 integers (2007-08 onwards)
-  expr: grepl("^\\d{14}$", SUSRECID)
-
-# TOKEN_PERSON_ID
-- name: TOKEN_PERSON_ID is required
-  expr: '!is.na(TOKEN_PERSON_ID)'
-  meta:
-    severity: error
-    
-- name: TOKEN_PERSON_ID 32an
-  description: TOKEN_PERSON_ID is alphanumeric with length 32
-  expr: grepl("^[a-zA-Z0-9]{32}$", TOKEN_PERSON_ID)
-  meta:
-    severity: error
-
-# STUDY_ID person cohort identifier
-- name: STUDY_ID is required
-  expr: '!is.na(STUDY_ID)'
-  meta:
-    severity: error
-
-# ADMIDATE Date of admission
-# ADMIDATE is recorded on all episodes within the spell.
-- name: ADMIDATE is date
-  description: Date(YYYY-MM-DD)
-  expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", ADMIDATE)
-  meta:
-    severity: error
-  
-- name: ADMIDATE is required
-  expr: '!is.na(ADMIDATE)'
-  meta:
-    severity: error
-    
-# EPISTART Episode Start Date
-# 1800-01-01 = Null date submitted
-# 1801-01-01 = invalid date submitted
-- name: EPISTART is date
-  description: Date(YYYY-MM-DD)
-  expr: grepl("^\\d{4}-([0]\\d|1[0-2])-([0-2]\\d|3[01])$", EPISTART)
-  meta:
-    severity: error
-
-#######################################
-# Automatically generated rules below #
-# using scripts/tos/__main__.py       #
-#######################################
-
 - description: Number of Valid Augmented Care Period Groups is Number
   expr: is.integer(A_NUMACP)
   name: A_NUMACP Number
@@ -1015,13 +927,9 @@ rules:
 
     M99999999 = Isle of Man
 
-    U = No fixed abode
-
-    X = Foreign
-
     Y = Not known'
   expr: CURRWARD_ONS %in% c('Ennnnnnnn', 'Wnnnnnnnn', 'Snnnnnnnn', 'E99999999', 'W99999999',
-    'S99999999', 'N99999999', 'L99999999', 'M99999999', 'U', 'X', 'Y')
+    'S99999999', 'N99999999', 'L99999999', 'M99999999', 'Y')
   name: CURRWARD_ONS values codes
 - description: Delivery Place Change Reason is String(1)
   expr: is.character(DELCHANG) & nchar(DELCHANG) <= 1
@@ -1553,9 +1461,9 @@ rules:
     \ census (until 2016-17)\n5 = Other delivery event \n6 = Other birth event"
   expr: EPITYPE %in% c('1', '2', '3', '4', '5', '6')
   name: EPITYPE values codes
-- description: Ethnic Category is String(2)
-  expr: is.character(ETHNOS) & nchar(ETHNOS) <= 2
-  name: ETHNOS String(2)
+- description: Ethnic Category is String(1)
+  expr: is.character(ETHNOS) & nchar(ETHNOS) <= 1
+  name: ETHNOS String(1)
 - description: "From 2001-02 onwards:\nA = British (White) \nB = Irish (White) \n\
     C = Any other White background \nD = White and Black Caribbean (Mixed) \nE = White\
     \ and Black African (Mixed) \nF = White and Asian (Mixed) \nG = Any other Mixed\
@@ -1707,9 +1615,9 @@ rules:
 - description: Ordnance Survey Grid Reference is String(11)
   expr: is.character(GRIDLINK) & nchar(GRIDLINK) <= 11
   name: GRIDLINK String(11)
-- description: GRIDLINK 10n NHS Data Model and Dictionary
-  expr: grepl("^\\d{10}$", GRIDLINK)
-  name: GRIDLINK 10n
+- description: GRIDLINK 9n NHS Data Model and Dictionary
+  expr: grepl("^\\d{9}$", GRIDLINK)
+  name: GRIDLINK 9n
 - description: Health Authority of Treatment  is String(3)
   expr: is.character(HATREAT) & nchar(HATREAT) <= 3
   name: HATREAT String(3)
@@ -3564,10 +3472,10 @@ rules:
 - description: Derivation of SITEDIST is String(1)
   expr: is.character(SITEDIST_FLAG) & nchar(SITEDIST_FLAG) <= 1
   name: SITEDIST_FLAG String(1)
-- description: '3 = SITEDIST was calculated from the first 3-characters of SITETRET
+- description: '5 = SITEDIST was calculated from the first 3-characters of SITETRET
 
-    5 = SITEDIST was calculated from the full 5-character SITETRET code'
-  expr: SITEDIST_FLAG %in% c('3', '5')
+    3 = SITEDIST was calculated from the full 5-character SITETRET code'
+  expr: SITEDIST_FLAG %in% c('5', '3')
   name: SITEDIST_FLAG values codes
 - description: Organisation Site Identifier (of Treatment) (at Start of Episode) is
     String(5-9)
@@ -4810,4 +4718,3 @@ rules:
   expr: is.integer(YEAR)
   name: YEAR Number
 
-...

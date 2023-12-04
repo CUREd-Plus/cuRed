@@ -102,6 +102,19 @@ lsoa_format <- function(x) {
 }
 
 
+#' Test if an object is a Date
+#'
+#' @param x The object to check
+#'
+#' @return logical
+#' @export
+#'
+is_date <- function(x) {
+  # https://stackoverflow.com/a/37062951/15368268
+  return(inherits(x, 'Date'))
+}
+
+
 #' Save results summary to a CSV file
 #'
 #' @description
@@ -131,6 +144,7 @@ serialise_validation <- function(results, path = NA) {
   cli::cli_inform("Wrote '{path}'")
 }
 
+  
 #' Visualise results
 #'
 #' @description
