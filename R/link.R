@@ -12,12 +12,13 @@ library(readr)
 #' @param output_path character. Path of the merged data file.
 #' @param patient_path character. Path of the patient ID bridge file.
 #' @param demographics_path character. Path of the demographics data file.
+#' @param patient_key character. Foreign key column name that links the data set to the patient ID bridge, e.g. "token_person_id"
 #'
 #' @return character. Path of output file.
 #'
 #' @export
 #'
-link <- function(data_set_id, input_path, output_path, patient_path, demographics_path) {
+link <- function(data_set_id, input_path, output_path, patient_path, demographics_path, patient_key) {
   # Get file paths
   input_path <- normalizePath(input_path, mustWork = TRUE)
   output_path <- normalizePath(output_path, mustWork = FALSE)

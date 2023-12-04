@@ -4,7 +4,14 @@
 \alias{link}
 \title{Link the data set to the reference data.}
 \usage{
-link(data_set_id, input_path, output_path, patient_path, demographics_path)
+link(
+  data_set_id,
+  input_path,
+  output_path,
+  patient_path,
+  demographics_path,
+  patient_key
+)
 }
 \arguments{
 \item{data_set_id}{character. Data set identifier e.g. "apc", "ae", "op"}
@@ -16,6 +23,8 @@ link(data_set_id, input_path, output_path, patient_path, demographics_path)
 \item{patient_path}{character. Path of the patient ID bridge file.}
 
 \item{demographics_path}{character. Path of the demographics data file.}
+
+\item{patient_key}{character. Foreign key column name that links the data set to the patient ID bridge, e.g. "token_person_id"}
 }
 \value{
 character. Path of output file.

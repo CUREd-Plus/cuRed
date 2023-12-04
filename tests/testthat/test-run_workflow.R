@@ -47,7 +47,8 @@ WITH (FORMAT 'CSV', HEADER);
       sheet = sheet,
       staging_dir = staging_dir,
       patient_path = patient_path,
-      demographics_path = demographics_path
+      demographics_path = demographics_path,
+      patient_key = "token_person_id"
     )
   )
 
