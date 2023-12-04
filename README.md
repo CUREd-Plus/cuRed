@@ -23,14 +23,16 @@ devtools::install_github("CUREd-Plus/cuRed")
 
 # Usage
 
-The workflow is designed to run automatically by running the `main()` function.
+The workflow is designed to run automatically by running the `main()` function, where the only argument is the data set identifier.
 
 ```R
-data_set_id <- "apc" # specify data set identifier
-cuRed::main(data_set_id)
+# Run the workflow
+main("apc")  # Specify data set identifier
 ```
 
-The configuration file that specifies the input raw data sources is included in the package by default, at `inst/extdata/data_sets.json`. You can manually specify this using the `data_sets_path` argument. For more information on using this function, view the documentation by running:
+The configuration file that specifies the input raw data sources is included in the package by default, at `inst/extdata/config/<data_set_id>.yaml`. For example, if you run `main("apc")` then the code will load the following configuration file `extdata/config/apc.yaml`.
+
+For more information on using this function, view the documentation by running:
 
 ```R
 help(cuRed::main)
