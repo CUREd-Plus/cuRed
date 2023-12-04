@@ -8,7 +8,7 @@
 
 # cuRed
 
-This respository contains an R package for working with CUREd+ data. This package handles the ingress of data and linking between the different data sources. Each directory in this respository should contain `README` files that explain the purpose of that part of the code. There should also be documentation of each function.
+This respository contains an R package for working with the [CUREd+ research database](https://www.sheffield.ac.uk/cure/database). This package handles the ingress of data and linking between the different data sources. Each directory in this respository should contain `README` files that explain the purpose of that part of the code. There should also be documentation of each function.
 
 This package specifies a workflow, or data pipeline, that is used to process the raw data and produce an integrated database that's ready for research use. The package also contains many useful functions for working with NHS Digital data sets.
 
@@ -37,6 +37,8 @@ For more information on using this function, view the documentation by running:
 ```R
 help(cuRed::main)
 ```
+
+The R code in this package is in the [R directory](./R/) and an overview is available in [R/README.md](R/README.md). Each function has documentation to describe how it works.
 
 # Development
 
