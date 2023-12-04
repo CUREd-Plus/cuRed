@@ -4,6 +4,7 @@ library(readr)
 
 #' Link the data set to the reference data.
 #'
+#' @description
 #' See `R/link.md` for more information about this function.
 #'
 #' @param data_set_id character. Data set identifier e.g. "apc", "ae", "op"
@@ -24,16 +25,17 @@ link <- function(data_set_id, input_path, output_path, patient_path, demographic
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   demographics_path <- normalizePath(demographics_path, mustWork = TRUE)
 
+  # Build SQL for "SELECT {fields_sql}"
   # Get the names of all fields in the input data set
-  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
-  data_types <- jsonlite::fromJSON(data_types_path)
-  fields <- names(data_types)
+  fields <- parquet_metadata(input_path)$path_in_schema
+  fields <- paste(data_set_id, ".", fields, sep = "")
   fields_sql <- paste(fields, collapse = "\n    ,")
 
   # Build the linkage SQL query
   # Load the query template
   query_template_path <- extdata_path(stringr::str_glue("queries/linkage/{data_set_id}.sql"), mustWork = FALSE)
   if (!file.exists(query_template_path)) {
+    # Default SQL query (may or may not work for all data sets)
     query_template_path = extdata_path(stringr::str_glue("queries/linkage/linkage.sql"))
   }
   query_template <- readr::read_file(query_template_path)

@@ -2,18 +2,16 @@
 % Please edit documentation in R/read_parquet.R
 \name{parquet_metadata}
 \alias{parquet_metadata}
-\title{Read Parquet metadata
-https://duckdb.org/docs/data/parquet/metadata.html}
+\title{Read \href{https://duckdb.org/docs/data/parquet/metadata.html}{Parquet metadata}}
 \usage{
-parquet_metadata(file_path)
+parquet_metadata(path)
 }
 \arguments{
-\item{file_path}{String. Input data file path.}
+\item{path}{Character Input data file path.}
 }
 \value{
-Table of column descriptions from the input data file.
+data.frame. Column descriptions for the input data file.
 }
 \description{
-Read Parquet metadata
-https://duckdb.org/docs/data/parquet/metadata.html
+Read \href{https://duckdb.org/docs/data/parquet/metadata.html}{Parquet metadata}
 }

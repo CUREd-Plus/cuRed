@@ -31,13 +31,13 @@ COPY (
     ,demographics.nhais_pds_bus_eff_from
     ,demographics.rfr_pds_bus_eff_from
 
-  FROM read_parquet('{input_path}') AS data_set
+  FROM read_parquet('{input_path}') AS {data_set_id}
   -- Merge with patient ID bridge
   LEFT JOIN read_csv_auto('{patient_path}', header=true, all_varchar=true) AS patient
     ON data_set.{patient_key} = patient.{patient_key}
   -- Merge with patient demographics
   LEFT JOIN read_parquet('{demographics_path}') AS demographics
-    ON data_set.study_id = demographics.study_id
+    ON {data_set_id}.study_id = demographics.study_id
 )
 TO '{output_path}'
 WITH (FORMAT 'PARQUET');

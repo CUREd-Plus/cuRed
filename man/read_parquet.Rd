@@ -4,14 +4,15 @@
 \alias{read_parquet}
 \title{Load an Apache Parquet file into an R data frame.}
 \usage{
-read_parquet(file_path)
+read_parquet(path)
 }
 \arguments{
-\item{file_path}{String. Source data file path.}
+\item{path}{Character. Source data file}
 }
 \value{
 data.frame Data file contents.
 }
 \description{
-https://duckdb.org/docs/data/parquet/overview#read_parquet-function
+This function uses the DuckDB \href{https://duckdb.org/docs/data/parquet/overview#read_parquet-function}{read_parquet()}
+function.
 }

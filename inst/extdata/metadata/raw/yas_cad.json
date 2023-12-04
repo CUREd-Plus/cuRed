@@ -1,0 +1,177 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "yas_cad",
+  "notes": "Yorkshire Ambulance Service (YAS) Computer-aided Dispatch",
+  "tables": [
+    {
+      "tableSchema": {
+        "columns": [
+          {
+            "datatype": "string",
+            "name": "AuthorisingDoctor"
+          },
+          {
+            "datatype": "string",
+            "name": "AuthorisingPractice"
+          },
+          {
+            "datatype": "string",
+            "name": "CallNumber"
+          },
+          {
+            "datatype": "string",
+            "name": "CCG"
+          },
+          {
+            "datatype": "string",
+            "name": "ChiefComplaint"
+          },
+          {
+            "datatype": "time",
+            "name": "Date_Time_forPerf"
+          },
+          {
+            "datatype": "string",
+            "name": "DespatchCode"
+          },
+          {
+            "datatype": "boolean",
+            "name": "HCPEmergency"
+          },
+          {
+            "datatype": "double",
+            "name": "HCPResponseMinutes"
+          },
+          {
+            "datatype": "string",
+            "name": "HospitalAttended"
+          },
+          {
+            "datatype": "string",
+            "name": "JourneyType"
+          },
+          {
+            "datatype": "string",
+            "name": "MainPatientAge"
+          },
+          {
+            "datatype": "string",
+            "name": "MainPatientMobility"
+          },
+          {
+            "datatype": "string",
+            "name": "MainPatientSex"
+          },
+          {
+            "datatype": "string",
+            "name": "MethodOfCall"
+          },
+          {
+            "datatype": "double",
+            "name": "PatientsThisResource"
+          },
+          {
+            "datatype": "string",
+            "name": "PerfBestConvResp"
+          },
+          {
+            "datatype": "string",
+            "name": "PerfBestLatePatSide"
+          },
+          {
+            "datatype": "string",
+            "name": "PerfBestResp"
+          },
+          {
+            "datatype": "string",
+            "name": "PickupLocationType"
+          },
+          {
+            "datatype": "string",
+            "name": "PostCode_From"
+          },
+          {
+            "datatype": "string",
+            "name": "Priority"
+          },
+          {
+            "datatype": "string",
+            "name": "ResourceType"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeAllocated"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeAtDest"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeAtScene"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeAVLMove"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeClear"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeHandover"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeLeftScene"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeMobile"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeOnMDT"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeStampT0"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeStampT1"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeStampT2"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeStampT3"
+          },
+          {
+            "datatype": "time",
+            "name": "TimeStampT4"
+          },
+          {
+            "datatype": "string",
+            "name": "TypeOfCall"
+          },
+          {
+            "datatype": "string",
+            "name": "YAS_ID"
+          }
+        ]
+      }
+    }
+  ]
+}

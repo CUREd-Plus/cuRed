@@ -65,3 +65,8 @@ rsconnect/
 venv/
 # Notepad++ backup files
 *.bak
+
+# JetBrains PyCharm
+.idea
+.ipynb_checkpoints/
+__pycache__/

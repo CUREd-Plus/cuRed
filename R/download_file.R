@@ -7,8 +7,8 @@ library(cli)
 #' that has sensible default parameters that make it easier to use in the context of this package.
 #'
 #' @param url a character string naming the URL of a resource to be downloaded.
-#' @param mode Method to be used for downloading files. See [utils::download.file](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file)
 #' @param destfile a character string with the name where the downloaded file is saved.
+#' @param mode Method to be used for downloading files. See [utils::download.file](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file)
 #' @param method Method to be used for downloading files. See [utils::download.file](https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file)
 #' @param ... Arguments to be passed to utils::download.file(...)
 #'
@@ -16,7 +16,7 @@ library(cli)
 #'
 #' @export
 #'
-download_file <- function(url, mode="wb", destfile=NA, method="auto", ...) {
+download_file <- function(url, destfile=NA, mode="wb", method="auto", ...) {
 
   # If file name isn't specified, write to a temporary directory
   if (is.na(destfile)) {

@@ -32,21 +32,22 @@ validate_data <- function(data_path, rules_path, output_dir=NA) {
   # Run the data validation checks
   results <- validate::confront(dat = data, x = data_validator)
 
-  # Save summary to a CSV file
-  # results_summary_path <- file.path(output_dir, 'results_summary.csv')
-  # write.csv(summary(results), file = results_summary_path)
-  # cli::cli_inform("Wrote '{results_summary_path}'")
+  # Log errors
+  validation_errors <- validate::errors(results)
+  for (key in names(validation_errors)) {
+    value <- validation_errors[[key]]
+    cli::cli_alert_danger("Validation error in rule '{key}': {value}")
+  }
 
-  # Visualise results
-  # https://davzim.github.io/dataverifyr/reference/plot_res.html
-  # plot_path <- file.path(output_dir, "results.pdf")
-  # pdf(plot_path)
-  # plot(
-  #   results,
-  #   main = paste(data_path, rules_path, sep = "\n"),
-  # )
-  # dev.off()
-  # cli::cli_inform("Wrote '{plot_path}'")
+  # Save summary to a CSV file
+  filename <- paste(basename(data_path), ".validation.csv", sep = "")
+  results_summary_path <- file.path(output_dir, filename)
+  serialise_validation(results, path = results_summary_path)
+
+  # Save summary plot to PDF file
+  filename <- paste(basename(data_path), ".validation.pdf", sep = "")
+  plot_path <- file.path(output_dir, filename)
+  #serialise_validation_plot(results, path = plot_path)
 
   return(results)
 }
@@ -98,4 +99,60 @@ date_format <- function(x) {
 lsoa_format <- function(x) {
   # Length 9 alphanumeric (upper-case)
   return(grepl("^[A-Z0-9]{9}$", x))
+}
+
+
+#' Save results summary to a CSV file
+#'
+#' @description
+#' See [the example](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#11_A_quick_example)
+#' in the The Data Validation Cookbook.
+#'
+#' @param results The output of validate::confront
+#' @param path character, file path of output CSV file.
+#'
+#' @export
+#'
+serialise_validation <- function(results, path = NA) {
+  # Get output file path
+  if (is.na(path)) {
+    path <- tempfile(fileext = ".csv", tmpdir = temp_dir())
+  } else {
+    path <- normalizePath(path, mustWork = FALSE)
+  }
+
+  # Get validation summary
+  results_summary <- validate::summary(results)
+  # Sort by name
+  results_summary <- results_summary[order(results_summary$name),]
+
+  # Save to disk
+  utils::write.csv(results_summary, file = path)
+  cli::cli_inform("Wrote '{path}'")
+}
+
+#' Visualise results
+#'
+#' @description
+#' See the [Data Validation Cookbook](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#11_A_quick_example)
+#'
+#' @param results The output of validate::confront
+#' @param path character, file path of output CSV file.
+#' @param ... Arguments for plot(...)
+#'
+#' @export
+#'
+serialise_validation_plot <- function(results, path = NA, ...) {
+  # Get output file path
+  if (is.na(path)) {
+    # Create temporary file with a random file name
+    path <- tempfile(fileext = ".pdf", tmpdir = temp_dir())
+  } else {
+    path <- normalizePath(path, mustWork = FALSE)
+  }
+
+  pdf(path)
+  plot(results, ...)
+  dev.off()
+  cli::cli_inform("Wrote '{path}'")
 }

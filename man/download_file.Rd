@@ -4,14 +4,14 @@
 \alias{download_file}
 \title{Download a file}
 \usage{
-download_file(url, mode = "wb", destfile = NA, method = "auto", ...)
+download_file(url, destfile = NA, mode = "wb", method = "auto", ...)
 }
 \arguments{
 \item{url}{a character string naming the URL of a resource to be downloaded.}
 
-\item{mode}{Method to be used for downloading files. See \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file}{utils::download.file}}
-
 \item{destfile}{a character string with the name where the downloaded file is saved.}
+
+\item{mode}{Method to be used for downloading files. See \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file}{utils::download.file}}
 
 \item{method}{Method to be used for downloading files. See \href{https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file}{utils::download.file}}
 
