@@ -7,11 +7,11 @@ test_that("run_workflow", {
   data_set_id <- "apc"
   sheet <- "HES APC TOS"
   patient_path <- extdata_path("patient_id_bridge.csv", mustWork = TRUE)
+
   # Create temporary working directory
   staging_dir <- temp_dir()
   # Tidy up on exit/failure
   on.exit(unlink(staging_dir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
-  demographics_path <- file.path(staging_dir, "demographics.parquet")
 
   # Generate dummy data
   raw_data_glob = file.path(extdata_path("data/apc/raw", mustWork = TRUE), "*.csv")
@@ -30,20 +30,15 @@ WITH (FORMAT 'CSV', HEADER);
   cli::cli_inform("Wrote '{output_path}'")
 
   # Generate mock patient demographics data
+  demographics_path <- file.path(staging_dir, "demographics.parquet")
   generate_demographics(demographics_path)
-
-  # Download Technical Output Specification (TOS) spreadsheet
-  # See: https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hospital-episode-statistics-data-dictionary
-  url <- "https://digital.nhs.uk/binaries/content/assets/website-assets/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics/hes-data-dictionary/hes-tos-v1.16.xlsx"
-  tos_path <- file.path(staging_dir, basename(url))
-  download_file(url, destfile = tos_path)
 
   # Run the workflow
   expect_no_error(
     run_workflow(
       data_set_id = data_set_id,
       raw_data_dir = staging_dir,
-      metadata_path = tos_path,
+      metadata_path = "",
       sheet = sheet,
       staging_dir = staging_dir,
       patient_path = patient_path,

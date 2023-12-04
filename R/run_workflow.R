@@ -40,7 +40,10 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   # Iterate over the binary file paths
   for (i in seq_len(length(binary_paths))) {
     binary_path <- binary_paths[[i]]
-    table_id <- tools::file_path_sans_ext(binary_path)
+    # Assume the table identifier is the file name without the file extension
+    # e.g. "C:\Users\Administrator\raw\yas_epr\incident.parquet" -> "incident"
+    table_id <- tools::file_path_sans_ext(basename(binary_path))
+    cli::cli_inform("Processing table '{table_id}' from data set '{data_set_id}'")
 
     # Validate
     rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}/{table_id}.yaml"))
