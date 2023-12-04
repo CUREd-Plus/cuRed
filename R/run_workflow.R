@@ -37,37 +37,44 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     data_set_id = data_set_id
   )
 
-  # Get the first binary file
-  # TODO implement validation for data sets that contain multiple tables
-  cli::cli_inform("multi-table validation not implemented - ignoring files")
-  binary_path <- binary_paths[[1]]
+  # Iterate over the binary file paths
+  for (i in seq_len(length(binary_paths))) {
+    binary_path <- binary_paths[[i]]
+    table_id <- tools::file_path_sans_ext("ABCD.csv")
 
-  # Validate
-  rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}.yaml"))
-  validate_data(data_path = binary_path, rules_path = rules_path)
+    # Validate
+    rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}/{table_id}.yaml"))
+    validate_data(data_path = binary_path, rules_path = rules_path)
 
-  # Generate summary report
+    # Generate summary report
+    # TODO
 
-  # Data linkage
-  link(
-    data_set_id = data_set_id,
-    input_path = binary_path,
-    output_path = linked_path,
-    patient_path = patient_path,
-    demographics_path = demographics_path,
-    patient_key = patient_key
-  )
+    # Data linkage
+    link(
+      data_set_id = data_set_id,
+      input_path = binary_path,
+      output_path = linked_path,
+      patient_path = patient_path,
+      demographics_path = demographics_path,
+      patient_key = patient_key
+    )
 
-  # Cleaning
+    # Cleaning
+    # TODO
 
-  # Generate metadata (column names, data types, descriptions)
+    # Generate metadata (column names, data types, descriptions)
+    # TODO
 
-  # Data quality rules (Flag "bad" records)
+    # Data quality rules (Flag "bad" records)
+    # TODO
 
-  # Generate data quality report
+    # Generate data quality report
+    # TODO
 
-  # Generate FHIR data model
-  
+    # Generate FHIR data model
+    # TODO
+  }
+
   # Finish
   cli::cli_alert_success("Completed workflow for '{data_set_id}' data set")
 }

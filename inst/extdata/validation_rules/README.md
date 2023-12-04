@@ -4,7 +4,21 @@ We're using the [validate](https://cran.r-project.org/web/packages/validate/inde
 
 ## Defining rules
 
-The files in this directory are used to define these sets of rules to be applied to check that data are valid. The files are [written in YAML format](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML), which is loaded by the data pipeline. There is one file per data set, e.g. `apc.yaml`, `op.yaml`, `ae.yaml`, etc. where the filename is the data set identifier.
+The files in this directory are used to define these sets of rules to be applied to check that data are valid. The files are [written in YAML format](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#82_Metadata_in_text_files:_YAML), which is loaded by the data pipeline. There is one file per table in each data set, so the file path will have the following structure `<data_set_id>/<table_id>.yaml` for example:
+
+```
+├── validation_rules
+│   ├── apc
+│   │   └── apc.yaml
+│   ├── op
+│   │   └── op.yaml
+│   ├── yas_epr
+│   │   ├── incident.yaml
+│   │   ├── observation.yaml
+│   │   └── patient.yaml
+```
+
+This structure allows us to define different data validation rules for each table in a data set.
 
 This is an example rule for validating the `ATTENDKEY` column in the outpatient (OP) data set.
 
