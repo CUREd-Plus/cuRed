@@ -1,32 +1,33 @@
+library(cli)
+library(stringr)
+
+
 #' Load an Apache Parquet file into an R data frame.
 #'
-#' https://duckdb.org/docs/data/parquet/overview#read_parquet-function
+#' @description
+#' This function uses the DuckDB [read_parquet()](https://duckdb.org/docs/data/parquet/overview#read_parquet-function)
+#' function.
 #'
-#' @param file_path String. Source data file path.
-#' @export
+#' @param path Character. Source data file
+#'
 #' @returns data.frame Data file contents.
-read_parquet <- function(file_path) {
-  # Check file exists
-  file_path <- normalizePath(file.path(file_path), mustWork = TRUE)
-
-  # Parse Parquet file
-  query <- stringr::str_glue("SELECT * FROM read_parquet('{file_path}')")
+#' @export
+read_parquet <- function(path) {
+  query <- stringr::str_glue("SELECT * FROM read_parquet('{path}')")
   data <- get_query(query)
+  cli::cli_inform("Loaded '{path}'")
 
   return(data)
 }
 
-#' Read Parquet metadata
-#' https://duckdb.org/docs/data/parquet/metadata.html
+#' Read [Parquet metadata](https://duckdb.org/docs/data/parquet/metadata.html)
 #'
-#' @param file_path String. Input data file path.
+#' @param path Character Input data file path.
 #'
-#' @returns Table of column descriptions from the input data file.
-#'
+#' @returns data.frame. Column descriptions for the input data file.
 #' @export
-#'
-parquet_metadata <- function(file_path) {
-  query <- stringr::str_glue("SELECT * FROM parquet_metadata('{file_path}')")
+parquet_metadata <- function(path) {
+  query <- stringr::str_glue("SELECT * FROM parquet_metadata('{path}')")
   metadata <- get_query(query)
   return(metadata)
 }

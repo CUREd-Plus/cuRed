@@ -127,7 +127,7 @@ serialise_validation <- function(results, path = NA) {
   results_summary <- results_summary[order(results_summary$name),]
 
   # Save to disk
-  write.csv(results_summary, file = path)
+  utils::write.csv(results_summary, file = path)
   cli::cli_inform("Wrote '{path}'")
 }
 

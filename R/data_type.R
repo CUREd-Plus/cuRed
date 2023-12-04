@@ -12,14 +12,14 @@
 #'
 format_to_data_type <- function(format_str) {
   format_str <- as.character(format_str)
-  
+
   if (is.na(format_str)) {
     stop("Format string is null.")
   }
-  
+
   # Map TOS format to SQL data type
   # https://duckdb.org/docs/sql/data_types/overview.html
-  
+
   # Integer
   if (format_str == "Number") {
     # unsigned four-byte integer
@@ -44,14 +44,14 @@ format_to_data_type <- function(format_str) {
     cli::cli_alert_danger("Unknown field format '{format_str}'")
     stop("Unknown field format")
   }
-  
+
   return(data_type)
 }
 
 #' Convert YAS data type to an SQL data type
-#' 
+#'
 #' @description
-#' 
+#'
 #' Decide what data type is appropriate to use to store this data type
 #' in an SQL database.
 #'
@@ -69,4 +69,31 @@ yas_type_to_data_type <- function(format_str) {
   } else {
     return("VARCHAR")
   }
+}
+
+
+#' @title Convert XML schema data type to an SQL data type
+#' @description
+#' Converts an XML data type to a SQL data type.
+#'
+#' See:
+#'  - [XML Schema data types](https://w3c.github.io/csvw/syntax/#dfn-datatype)
+#'  - [DuckDB SQL data types](https://duckdb.org/docs/sql/data_types/overview)
+#'
+#' @param xml_data_type The XML data type to convert.
+#'
+#' @return The SQL data type.
+#' @export
+xml_schema_to_sql_data_type <- function(xml_data_type) {
+  # Create dictionary
+  data_type_map <- c(
+    "string" = "VARCHAR",
+    "date" = "DATE",
+    "time" = "TIME",
+    "float" = "FLOAT",
+    "double" = "DOUBLE"
+  )
+  sql_data_type <- data_type_map[xml_data_type]
+
+  return(sql_data_type)
 }
