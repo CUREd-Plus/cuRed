@@ -40,7 +40,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   # Iterate over the binary file paths
   for (i in seq_len(length(binary_paths))) {
     binary_path <- binary_paths[[i]]
-    table_id <- tools::file_path_sans_ext("ABCD.csv")
+    table_id <- tools::file_path_sans_ext(binary_path)
 
     # Validate
     rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}/{table_id}.yaml"))
