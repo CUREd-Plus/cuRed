@@ -2,8 +2,6 @@
 
 The `inst/extdata` directory contains data files that may be used to support this code e.g. configuration files, queries, mock data used for automated testing, etc.
 
-The documentation for these files is contained in `R/extdata.R`.
-
 This is a summary of the contents of this directory:
 
 - `config/` contains a configuration file for each input data set that will be processed by the pipeline.
@@ -13,7 +11,9 @@ This is a summary of the contents of this directory:
 - `validation_rules/` contains metadata definitions used to verify the contents of input data sets
 - `patient_id_bridge.csv` is a sample, synthetic patient identifier bridge, to be used for code testing.
 
-See:
+The documentation for these data files is contained in [R/extdata.R](../../R/extdata.R).
+
+# References
 
 - R manual [Documenting data sets](https://cran.r-project.org/doc/manuals/R-exts.html#Documenting-data-sets)
 - Wickham, R Packages (2e) [Raw data file](https://r-pkgs.org/data.html#sec-data-extdata)
