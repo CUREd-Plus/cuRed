@@ -29,7 +29,7 @@ main <- function(data_set_id) {
   run_workflow(
     data_set_id = config$id,
     raw_data_dir = config$raw_data_dir,
-    metadata_path = onfig$metadata_path,
+    metadata_path = config$metadata_path,
     sheet = config$sheet,
     staging_dir = config$staging_dir,
     patient_path = config$patient_path,
