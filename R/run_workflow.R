@@ -27,19 +27,19 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
-  binary_path <- file.path(staging_dir, stringr::str_glue("02-{data_set_id}_binary"))
   linked_path <- file.path(staging_dir, stringr::str_glue("03-{data_set_id}_linked.parquet"))
 
-  # Parse the TOS
-  metadata <- parse_tos(metadata_path, sheet = sheet)
-
-  # Convert to binary format
-  binary_path <- csv_to_binary(
+  # Convert files to binary format
+  binary_paths <- csv_to_binary(
     input_dir = raw_data_dir,
-    output_path = binary_path,
-    metadata = metadata,
+    output_dir = staging_dir,
     data_set_id = data_set_id
   )
+
+  # Get the first binary file
+  # TODO implement validation for data sets that contain multiple tables
+  cli::cli_inform("multi-table validation not implemented - ignoring files")
+  binary_path <- binary_paths[[1]]
 
   # Validate
   rules_path <- extdata_path(stringr::str_glue("validation_rules/{data_set_id}.yaml"))

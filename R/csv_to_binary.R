@@ -1,4 +1,6 @@
 library(cli)
+library(coro)
+library(dplyr)
 library(stringr)
 library(utils)
 
@@ -10,7 +12,7 @@ library(utils)
 #' By default, this function will read all the CSV files in the `input_dir` and convert them to
 #' [Apache Parquet](https://parquet.apache.org/) format.
 #'
-#' The resultant binary data file will be written to `output_path`.
+#' The resultant binary data files will be written to `output_dir`.
 #'
 #' A [JSON](https://www.json.org/json-en.html) file must be specified that contains an object where the keys are the
 #' headers of the input CSV files in order and the values are the SQL data types (default to `"VARCHAR"`). The location
@@ -23,72 +25,81 @@ library(utils)
 #' - [DBI documentation](https://dbi.r-dbi.org/)
 #' - DuckDB [CSV Import](https://duckdb.org/docs/data/csv/overview.html)
 #'
-#' @export
-#'
 #' @param input_dir character. Path. The directory that contains the raw data files.
-#' @param output_path character. Path of the output binary data file.
-#' @param metadata List. Dictionary containing the column definitions.
+#' @param output_dir Character. Path of the directory in which to write the output binary data files.
 #' @param data_set_id character. Data set identifier e.g. "apc", "op"
-#' @param glob character. *(Optional)* Input file pattern e.g. "*.csv" or "*_raw.csv"
 #'
-#' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*.csv") {
+#' @returns List of paths of the new output files.
+#' @export
+csv_to_binary <- function(input_dir, output_dir, data_set_id) {
 
   # Define the absolute paths
   input_dir <- normalizePath(input_dir, mustWork = TRUE)
-  input_glob <- file.path(input_dir, glob)
-  output_path <- normalizePath(output_path, mustWork = FALSE)
+  output_dir <- normalizePath(output_dir, mustWork = FALSE)
+  output_paths <- list()
 
-  # Load column order and default data types
-  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
-  data_types <- jsonlite::fromJSON(data_types_path)
+  # Load data set metadata
+  csv_metadata_path <- extdata_path(stringr::str_glue("metadata/raw/{data_set_id}.json"))
+  csv_metadata <- read.csvw(csv_metadata_path)
 
-  # Append patient ID fields
-  patient_id_data_types_path <- extdata_path("sql_data_types/patient_id_bridge.json")
-  patient_id_data_types <- jsonlite::fromJSON(patient_id_data_types_path)
-  data_types = utils::modifyList(data_types, patient_id_data_types)
-
-  # Update data types based on TOS spreadsheet
-  # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
-  # but only use the columns we've specified.
-  tos_data_types <- get_data_types(metadata, data_set_id = data_set_id)
-  for (key in names(data_types)) {
-    value <- tos_data_types[[key]]
-    if (!is.null(value)) {
-      data_types[key] <- value
+  # Iterate over tables (CSV files within this data set)
+  # https://w3c.github.io/csvw/syntax/#tables
+  coro::loop(for (csv_table in csvw.tables(csv_metadata)) {
+    # Get table identifier
+    table_id <- csv_table$id
+    if (is.na(table_id)) {
+      stop("table_id is missing")
     }
-  }
+    cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
+    columns <- csvw.columns(csv_table)
 
-  # Convert file format
-  # Load the CSV file and save to Apache Parquet format.
+    # Convert to SQL data types
+    data_types <- data.frame(columns[, c("name", "datatype")])
+    data_types <- dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
 
-  # Build SQL query
-  data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
-  query_path <- extdata_path("queries/csv_to_binary.sql")
-  query_template <- readr::read_file(query_path)
-  query <- stringr::str_glue(query_template)
+    # TODO update data types based on TOS or data dictionary
 
-  # Ensure output directory exists
-  dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+    # Convert file format
+    # Load the CSV file and save to Apache Parquet format.
 
-  # Write SQL query to text file
-  sql_query_file_path <- paste(output_path, ".sql", sep = "")
-  readr::write_file(query, sql_query_file_path)
-  cli::cli_alert_info("Wrote '{sql_query_file_path}'")
+    # Define where the data will be read from
+    input_glob <- file.path(input_dir, csv_table$url)
+    # ...and written to
+    output_filename <- stringr::str_glue("{table_id}.parquet")
+    output_path <- file.path(output_dir, output_filename)
 
-  # Execute the query
-  cli::cli_alert_info("Reading input data from '{input_glob}'...")
-  run_query(query)
-  cli::cli_alert_info("Wrote '{output_path}'")
+    # Build the SQL query that will be used to perform the conversion
+    data_types_dict <- dataframe_to_dictionary(data_types, "name", "datatype")
+    data_types_struct <- dictionary_to_struct(data_types_dict)
+    query_path <- extdata_path("queries/csv_to_binary.sql")
+    query_template <- readr::read_file(query_path)
+    query <- stringr::str_glue(query_template)
 
-  return(output_path)
+    # Ensure output directory exists
+    dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+
+    # Write SQL query to text file
+    sql_query_file_path <- paste(output_path, ".sql", sep = "")
+    readr::write_file(query, sql_query_file_path)
+    cli::cli_alert_info("Wrote '{sql_query_file_path}'")
+
+    # Execute the query
+    cli::cli_alert_info("Reading input data from '{input_glob}'...")
+    run_query(query)
+    cli::cli_alert_success("Wrote '{output_path}'")
+
+    # Append to
+    output_paths = append(output_paths, output_path)
+  })
+
+  return(output_paths)
 }
 
 #' Get data types
 #'
 #' @description
 #' Get the data type for each field from the metadata document.
-#' 
+#'
 #' @export
 #'
 #' @param metadata List of field objects.
@@ -118,31 +129,4 @@ get_data_types <- function(metadata, data_set_id) {
   }
 
   return(field_names)
-}
-
-#' Convert JSON object to an SQL struct
-#'
-#' @export
-#'
-#' @param data String. JSON data. The data structure is assumed to be an
-#' object (dictionary).
-convert_json_to_struct <- function(data) {
-  object <- jsonlite::fromJSON(data)
-
-  # Convert from JSON to DuckDB struct for use in  SQL queries
-  # https://duckdb.org/docs/sql/data_types/struct.html
-
-  items <- vector()
-
-  # Iterate over the key-value pairs of the dictionary
-  for (key in names(object)) {
-    value <- object[[key]]
-
-    item <- stringr::str_glue("'{key}': '{value}'")
-    items <- c(items, item)
-  }
-
-  items_char <- stringr::str_flatten_comma(items)
-  struct <- stringr::str_glue("{{{items_char}}}", collapse = "", sep = "")
-  return(struct)
 }

@@ -1,0 +1,2806 @@
+---
+# Outpatient (OP) data validation rules
+
+rules:
+# 🔑 ATTENDKEY HES Record Identifier (primary key)
+- name: ATTENDKEY is required
+  expr: '!is.na(ATTENDKEY)'
+  meta:
+    severity: error
+  
+- name: ATTENDKEY is unique
+  expr: is_unique(ATTENDKEY)
+  meta:
+    severity: error
+
+# TOKEN_PERSON_ID
+- name: TOKEN_PERSON_ID is required
+  expr: '!is.na(TOKEN_PERSON_ID)'
+  meta:
+    severity: error
+
+# STUDY_ID person cohort identifier
+- name: STUDY_ID is required
+  expr: '!is.na(STUDY_ID)'
+  meta:
+    severity: error
+
+#######################################
+# Automatically generated rules below #
+# using scripts/tos/__main__.py       #
+#######################################
+
+- description: Age at Activity Date is String(3)
+  expr: is.character(ACTIVAGE) & nchar(ACTIVAGE) <= 3
+  name: ACTIVAGE String(3)
+- description: "nnn = Age at activity date \n999 = Not known, i.e. date of birth not\
+    \ known and age cannot be estimated"
+  expr: ACTIVAGE %in% c('nnn', '999')
+  name: ACTIVAGE values codes
+- description: Administrative Category Code is String(2)
+  expr: is.character(ADMINCAT) & nchar(ADMINCAT) <= 2
+  name: ADMINCAT String(2)
+- description: "01 = NHS patient, including overseas visitors charged under the  National\
+    \ Health Service (Overseas Visitors Hospital Charging Regulations)\n02 = Private\
+    \ patient, one who uses accommodation or services authorised under the National\
+    \ Health Service Act 2006  \n03 = Amenity patient, one who pays for the use of\
+    \ a single room or small ward in accordance with the National Health Service Act\
+    \ 2006  \n04 = Category II patient, one for whom work is undertaken by hospital\
+    \ medical or dental staff within category II as defined in paragraph 37 of the\
+    \ Terms and Conditions of Service of Hospital Medical and Dental Staff\n98 = Not\
+    \ applicable\n99 = Not known (to 2022-23) Administrative Category Code not known\
+    \ (V6.3 2022-23 onwards)"
+  expr: ADMINCAT %in% c('01', '02', '03', '04', '98', '99')
+  name: ADMINCAT values codes
+- description: Appointment Time is String(5)
+  expr: is.character(APPOINTMENT_TIME) & nchar(APPOINTMENT_TIME) <= 5
+  name: APPOINTMENT_TIME String(5)
+- description: Age on Day of Appointment is Number
+  expr: is.integer(APPTAGE)
+  name: APPTAGE Number
+- description: "nnn = Age in whole years from 1-119\n120 = 120 years or more\n7001\
+    \ = Less than 1 day\n7002 = 1 to 6 days\n7003 = 7 to 28 days \n7004 = 29 to 90\
+    \ days (under 3 months) \n7005 = 91 to 181 days (approximately 3 months to under\
+    \ 6 months) \n7006 = 182 to 272 days (approximately 6 months to under 9 months)\n\
+    7007 = 273 to <1 year (approximately 9 months to 1 year)\nNull = Not known"
+  expr: APPTAGE %in% c('nnn', '120', '7001', '7002', '7003', '7004', '7005', '7006',
+    '7007', 'Null')
+  name: APPTAGE values codes
+- description: Age on Day of Appointment (Decimalised) is Decimal
+  expr: is.numeric(APPTAGE_CALC)
+  name: APPTAGE_CALC Decimal
+- description: APPTAGE_CALC nnn.nnn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", APPTAGE_CALC)
+  name: APPTAGE_CALC nnn.nnn
+- description: 'nnn.nnn = Age in whole years from 1.000 to 119.000
+
+    120.000 = 120 years or more
+
+    0.002 = Less than 1 day
+
+    0.010 = 1 to 6 days
+
+    0.048 = 7 to 28 days
+
+    0.167 = 29 to 90 days (under 3 months)
+
+    0.375 = 91 to 181 days (approximately 3 months to under 6 months)
+
+    0.625 = 182 to 272 days (approximately 6 months to under 9 months)
+
+    0.875 = 273 to <1 year (approximately 9 months to 1 year)
+
+    Null = Not known'
+  expr: APPTAGE_CALC %in% c('nnn.nnn', '120.000', '0.002', '0.010', '0.048', '0.167',
+    '0.375', '0.625', '0.875', 'Null')
+  name: APPTAGE_CALC values codes
+- description: Appointment Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    APPTDATE)
+  name: APPTDATE Date(YYYY-MM-DD)
+- description: APPTDATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    APPTDATE)
+  name: APPTDATE YYYY-MM-DD
+- description: Area Team of GP Practice  is String(8)
+  expr: is.character(AT_GP_PRACTICE) & nchar(AT_GP_PRACTICE) <= 8
+  name: AT_GP_PRACTICE String(8)
+- description: AT_GP_PRACTICE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_GP_PRACTICE)
+  name: AT_GP_PRACTICE ann
+- description: "ann = Area Team of patient\u2019s GP practice\nY = Unknown"
+  expr: AT_GP_PRACTICE %in% c('ann', 'Y')
+  name: AT_GP_PRACTICE values codes
+- description: Area Team of Residence  is String(8)
+  expr: is.character(AT_RESIDENCE) & nchar(AT_RESIDENCE) <= 8
+  name: AT_RESIDENCE String(8)
+- description: AT_RESIDENCE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_RESIDENCE)
+  name: AT_RESIDENCE ann
+- description: 'ann = Area Team of residence
+
+    S = Scotland
+
+    U = England (not otherwise specified)
+
+    W = Wales
+
+    X = Foreign
+
+    Y = Not known
+
+    Z = Northern Ireland'
+  expr: AT_RESIDENCE %in% c('ann', 'S', 'U', 'W', 'X', 'Y', 'Z')
+  name: AT_RESIDENCE values codes
+- description: Area Team of Treatment  is String(8)
+  expr: is.character(AT_TREATMENT) & nchar(AT_TREATMENT) <= 8
+  name: AT_TREATMENT String(8)
+- description: AT_TREATMENT ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", AT_TREATMENT)
+  name: AT_TREATMENT ann
+- description: 'ann = Area Team of treatment
+
+    Y = Unknown
+
+    '
+  expr: AT_TREATMENT %in% c('ann', 'Y')
+  name: AT_TREATMENT values codes
+- description: Attendance Type is String(2)
+  expr: is.character(ATENTYPE) & nchar(ATENTYPE) <= 2
+  name: ATENTYPE String(2)
+- description: '1 = Attended first appointment
+
+    2 = Attended subsequent appointment
+
+    3 = Attended but first/subsequent/tele unknown
+
+    4 = Did not attend first appointment
+
+    5 = Did not attend subsequent appointment
+
+    6 = Did not attend but first/subsequent/tele unknown
+
+    7 = Patient cancelled first appointment
+
+    8 = Patient cancelled subsequent appointment
+
+    9 = Patient cancelled but first/subsequent/tele unknown
+
+    10 = Hospital postponed/cancelled first appointment
+
+    11 = Hospital postponed/cancelled subsequent appointment
+
+    12 = Hospital postponed/cancelled but first/subsequent unknown
+
+    13 = Not known
+
+    21 = Attended first tele consultation (from 2008-09)
+
+    22 = Attended subsequent tele consultation (from 2008-09)
+
+    24 = Did not attend first tele consultation (from 2008-09)
+
+    25 = Did not attend subsequent tele consultation (from 2008-09)
+
+    27 = Patient cancelled first tele consultation (from 2008-09)
+
+    28 = Patient cancelled subsequent tele consultation (from 2008-09)
+
+    30 = Hospital postponed/cancelled first tele consultation (from 2008-09)
+
+    31 = Hospital postponed/cancelled subsequent tele consultation (from 2008-09)
+
+    '
+  expr: ATENTYPE %in% c('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
+    '13', '21', '22', '24', '25', '27', '28', '30', '31')
+  name: ATENTYPE values codes
+- description: Attendance Flag is Number
+  expr: is.integer(ATTENDANCE)
+  name: ATTENDANCE Number
+- description: '1 = Appointment was attended
+
+    0 = Other (appointment was not attended or not known)'
+  expr: ATTENDANCE %in% c('1', '0')
+  name: ATTENDANCE values codes
+- description: Attendance Status  is String(1)
+  expr: is.character(ATTENDED) & nchar(ATTENDED) <= 1
+  name: ATTENDED String(1)
+- description: "2 = Appointment cancelled by, or on behalf of, the patient\n3 = Did\
+    \ not attend - no advance warning given \n4 = Appointment cancelled or postponed\
+    \ by the Health Care Provider \n5 = Seen, having attended on time or, if late,\
+    \ before the relevant care professional was ready to see the patient \n6 = Arrived\
+    \ late, after the relevant care professional was ready to see the patient, but\
+    \ was seen \n7 = Did not attend - patient arrived late and could not be seen \n\
+    9 = Not known"
+  expr: ATTENDED %in% c('2', '3', '4', '5', '6', '7', '9')
+  name: ATTENDED values codes
+- description: 'Outpatient Attendance Identifier  is String(12) (to 2022-23)
+
+    String(20) (2022-23 onwards)'
+  expr: is.character(ATTENDID) & nchar(ATTENDID) <= 20
+  name: 'ATTENDID String(12) (to 2022-23)
+
+    String(20) (2022-23 onwards)'
+- description: ATTENDID 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", ATTENDID)
+  name: ATTENDID 20an
+- description: 'HES Record Identifier is String(12) (2003-04 to 2020-21)
+
+    String(19) (2021-22 onwards)'
+  expr: is.character(ATTENDKEY) & nchar(ATTENDKEY) <= 19
+  name: 'ATTENDKEY String(12) (2003-04 to 2020-21)
+
+    String(19) (2021-22 onwards)'
+- description: Attendance Key Flag is Number
+  expr: is.integer(ATTENDKEY_FLAG)
+  name: ATTENDKEY_FLAG Number
+- description: '1 = ATTENDKEY present
+
+    null = Not applicable (not an outpatient record)'
+  expr: ATTENDKEY_FLAG %in% c('1', 'null')
+  name: ATTENDKEY_FLAG values codes
+- description: Age of Baby is Number
+  expr: is.integer(BABYAGE)
+  name: BABYAGE Number
+- description: '0 to 28 = Age of baby in days
+
+    Null =  The patient is over 28 days old or not known'
+  expr: BABYAGE %in% c('0 to 28', 'Null')
+  name: BABYAGE values codes
+- description: Unique Booking Reference Number is Number
+  expr: is.integer(BOOKREFNO)
+  name: BOOKREFNO Number
+- description: BOOKREFNO 12n NHS Data Model and Dictionary
+  expr: grepl("^\\d{12}$", BOOKREFNO)
+  name: BOOKREFNO 12n
+- description: Cancer Network Area of Residence is String(3)
+  expr: is.character(CANNET) & nchar(CANNET) <= 3
+  name: CANNET String(3)
+- description: "N01-N98 = Cancer Registry in England/Wales/Isle of Man \nZ99 = Scotland/Northern\
+    \ Ireland/Channel Islands (pseudo) \nNull = No information available"
+  expr: CANNET %in% c('N01-N98', 'Z99', 'Null')
+  name: CANNET values codes
+- description: Cancer Registry Area of Residence is String(5)
+  expr: is.character(CANREG) & nchar(CANREG) <= 5
+  name: CANREG String(5)
+- description: 'Y0201-Y1701 = Cancer Registry in England/Wales
+
+    Z9999 = Scotland/Northern Ireland/Channel Islands/Isle of Man (pseudo)
+
+    Null = No information available'
+  expr: CANREG %in% c('Y0201-Y1701', 'Z9999', 'Null')
+  name: CANREG values codes
+- description: Carer Support Indicator is String(2)
+  expr: is.character(CARERSI) & nchar(CARERSI) <= 2
+  name: CARERSI String(2)
+- description: '01 = Yes - carer support is available
+
+    02 = No - carer support is not available
+
+    99 = Not known'
+  expr: CARERSI %in% c('01', '02', '99')
+  name: CARERSI values codes
+- description: "Sub Integrated Care Board of GP Practice (July 2022 onwards)\nClinical\
+    \ Commissioning Group of GP Practice (until June 2022)\n is String(5)"
+  expr: is.character(CCG_GP_PRACTICE) & nchar(CCG_GP_PRACTICE) <= 5
+  name: CCG_GP_PRACTICE String(5)
+- description: "3an or 5an = Sub ICB / CCG area of patient\u2019s GP practice\n59999\
+    \ = Unknown"
+  expr: CCG_GP_PRACTICE %in% c('3an or 5an', '59999')
+  name: CCG_GP_PRACTICE values codes
+- description: "Sub Integrated Care Board of Residence  (July 2022 onwards)\nClinical\
+    \ Commissioning Group of Residence (until June 2022)\n is String(3-5)"
+  expr: is.character(CCG_RESIDENCE) & (3 <= nchar(CCG_RESIDENCE)) & (nchar(CCG_RESIDENCE)
+    <= 5)
+  name: CCG_RESIDENCE String(3-5)
+- description: "3an or 5an = Sub ICB / CCG of patient\u2019s residence\n59898 = Not\
+    \ applicable\n59999 = Unknown"
+  expr: CCG_RESIDENCE %in% c('3an or 5an', '59898', '59999')
+  name: CCG_RESIDENCE values codes
+- description: 'Sub Integrated Care Board of Responsibility (July 2022 onwards)
+
+    Clinical Commissioning Group of Responsibility (until June 2022) is String(5)'
+  expr: is.character(CCG_RESPONSIBILITY) & nchar(CCG_RESPONSIBILITY) <= 5
+  name: CCG_RESPONSIBILITY String(5)
+- description: '3an or 5an = Sub ICB / CCG of responsibility
+
+    59999 = Unknown'
+  expr: CCG_RESPONSIBILITY %in% c('3an or 5an', '59999')
+  name: CCG_RESPONSIBILITY values codes
+- description: Origin of CCG_Responsibility is String(1)
+  expr: is.character(CCG_RESPONSIBILITY_ORIGIN) & nchar(CCG_RESPONSIBILITY_ORIGIN)
+    <= 1
+  name: CCG_RESPONSIBILITY_ORIGIN String(1)
+- description: "1 = Derived from GPPRAC\n2 = Derived from HOMEADD\n3 = Derived from\
+    \ postcode of SITETRET \n4 = Derived from postcode of provider\n9 = Unknown"
+  expr: CCG_RESPONSIBILITY_ORIGIN %in% c('1', '2', '3', '4', '9')
+  name: CCG_RESPONSIBILITY_ORIGIN values codes
+- description: "Sub Integrated Care Board of Treatment (July 2022 onwards) \nClinical\
+    \ Commissioning Group of Treatment (until June 2022)\n is String(5)"
+  expr: is.character(CCG_TREATMENT) & nchar(CCG_TREATMENT) <= 5
+  name: CCG_TREATMENT String(5)
+- description: '3an or 5an = Sub ICB / CCG of treatment
+
+    59999 = Unknown'
+  expr: CCG_TREATMENT %in% c('3an or 5an', '59999')
+  name: CCG_TREATMENT values codes
+- description: Origin of CCG_Treatment is String(1)
+  expr: is.character(CCG_TREATMENT_ORIGIN) & nchar(CCG_TREATMENT_ORIGIN) <= 1
+  name: CCG_TREATMENT_ORIGIN String(1)
+- description: "1 = Derived from postcode of SITETRET \n2 = Derived from postcode\
+    \ of PROCODET\n9 = Unknown"
+  expr: CCG_TREATMENT_ORIGIN %in% c('1', '2', '9')
+  name: CCG_TREATMENT_ORIGIN values codes
+- description: 'Consultant Code
+
+    Professional Registration Entry Identifier is String(8) to 2022
+
+    String(32) from 2023'
+  expr: is.character(CONSULT) & nchar(CONSULT) <= 8
+  name: 'CONSULT String(8) to 2022
+
+    String(32) from 2023'
+- description: CONSULT 8an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{8}$", CONSULT)
+  name: CONSULT 8an
+- description: '8an = Consultant code:
+
+    Cnnnnnnn = Consultant
+
+    Dnnnnnnn = Dentist
+
+    CDnnnnnn = Dental consultant
+
+    H9999998 = Other healthcare professional
+
+    M9999998 = Midwife
+
+    N9999998 = Nurse
+
+    C9999998 = Consultant not known
+
+    D9999998 = Dentist not known
+
+    CD999998 = Dental consultant not known
+
+    & = Not known (null)
+
+    99 = Invalid (the format of the submitted code is not valid. Note that the number
+    is not verified, only the format of the code)'
+  expr: CONSULT %in% c('8an', 'Cnnnnnnn', 'Dnnnnnnn', 'CDnnnnnn', 'H9999998', 'M9999998',
+    'N9999998', 'C9999998', 'D9999998', 'CD999998', '&', '99')
+  name: CONSULT values codes
+- description: Confidentiality Category is String(1)
+  expr: is.character(CONFIDENTIALITY_CATEGORY) & nchar(CONFIDENTIALITY_CATEGORY) <=
+    1
+  name: CONFIDENTIALITY_CATEGORY String(1)
+- description: "Consultation Mechanism (new name)\nConsultation Medium Used (previous\
+    \ name)\n is String(2)"
+  expr: is.character(CONSULTATION_MEDIUM_USED) & nchar(CONSULTATION_MEDIUM_USED) <=
+    2
+  name: CONSULTATION_MEDIUM_USED String(2)
+- description: "From 2022-23 onwards:\n01 = Face to face \n02 = Telephone\n03 = Telemedicine\n\
+    04 = Talk type for a person unable to speak\n05 = Email\n09 = Text message (Asynchronous)\n\
+    10 = Instant messaging (Synchronous)\n11 = Video Consultation\n12 = Message Board\
+    \ (Asynchronous)\n13 = Chat Room (Synchronous)\n98 = Other (not listed)\n\nUntil\
+    \ 2022-23:\n01 = Face to face communication\n02 = Telephone\n03 = Telemedicine\n\
+    04 = Talk type for a person unable to speak\n"
+  expr: CONSULTATION_MEDIUM_USED %in% c('01', '02', '03', '04', '05', '09', '10',
+    '11', '12', '13', '98')
+  name: CONSULTATION_MEDIUM_USED values codes
+- description: Commissioning Region of GP Practice  is String(3)
+  expr: is.character(CR_GP_PRACTICE) & nchar(CR_GP_PRACTICE) <= 3
+  name: CR_GP_PRACTICE String(3)
+- description: CR_GP_PRACTICE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_GP_PRACTICE)
+  name: CR_GP_PRACTICE ann
+- description: "ann = Commissioning Region of patient\u2019s GP practice\nQ99 = Wales\n\
+    Y = Unknown"
+  expr: CR_GP_PRACTICE %in% c('ann', 'Q99', 'Y')
+  name: CR_GP_PRACTICE values codes
+- description: Commissioning Region of Residence  is String(3)
+  expr: is.character(CR_RESIDENCE) & nchar(CR_RESIDENCE) <= 3
+  name: CR_RESIDENCE String(3)
+- description: CR_RESIDENCE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_RESIDENCE)
+  name: CR_RESIDENCE ann
+- description: 'ann = Commissioning Region of residence
+
+    Q99 = Wales
+
+    S = Scotland
+
+    U = No Fixed Abode
+
+    X = Isle of Man, Channel Islands or Foreign
+
+    Z = Northern Ireland
+
+    Y = Unknown'
+  expr: CR_RESIDENCE %in% c('ann', 'Q99', 'S', 'U', 'X', 'Z', 'Y')
+  name: CR_RESIDENCE values codes
+- description: Commissioning Region of Treatment  is String(3)
+  expr: is.character(CR_TREATMENT) & nchar(CR_TREATMENT) <= 3
+  name: CR_TREATMENT String(3)
+- description: CR_TREATMENT ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", CR_TREATMENT)
+  name: CR_TREATMENT ann
+- description: 'ann = Commissioning Region of treatment
+
+    Q99 = Wales
+
+    Y = Unknown'
+  expr: CR_TREATMENT %in% c('ann', 'Q99', 'Y')
+  name: CR_TREATMENT values codes
+- description: 'Commissioning Serial Number
+
+    NHS Service Agreement Identifier is String(6) to 2022
+
+    String(20) from 2023'
+  expr: is.character(CSNUM) & nchar(CSNUM) <= 6
+  name: 'CSNUM String(6) to 2022
+
+    String(20) from 2023'
+- description: CSNUM 6an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{6}$", CSNUM)
+  name: CSNUM 6an
+- description: Current Electoral Ward is String(4)
+  expr: is.character(CURRWARD) & nchar(CURRWARD) <= 4
+  name: CURRWARD String(4)
+- description: CURRWARD 2a NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{2}$", CURRWARD)
+  name: CURRWARD 2a
+- description: '2a = Electoral ward
+
+    Y = Not known'
+  expr: CURRWARD %in% c('2a', 'Y')
+  name: CURRWARD values codes
+- description: Current Electoral Ward (ONS) is String(9)
+  expr: is.character(CURRWARD_ONS) & nchar(CURRWARD_ONS) <= 9
+  name: CURRWARD_ONS String(9)
+- description: 'Ennnnnnnn = England
+
+    Wnnnnnnnn = Wales
+
+    Snnnnnnnn = Scotland
+
+    Northern Ireland start with 95 followed by a letter, then space, then 2 digits
+    (e.g. 95B 24)
+
+
+    E99999999 = England (not otherwise stated)
+
+    W99999999 = Wales (not otherwise stated)
+
+    S99999999 = Scotland (not otherwise stated)
+
+    N99999999 = Northern Ireland (not otherwise stated)
+
+    L99999999 = Channel Islands
+
+    M99999999 = Isle of Man
+
+    U = No fixed abode
+
+    X = Foreign
+
+    Y = Not known'
+  expr: CURRWARD_ONS %in% c('Ennnnnnnn', 'Wnnnnnnnn', 'Snnnnnnnn', 'E99999999', 'W99999999',
+    'S99999999', 'N99999999', 'L99999999', 'M99999999', 'U', 'X', 'Y')
+  name: CURRWARD_ONS values codes
+- description: Concatenated Diagnosis Codes - 3 Character is String(100)
+  expr: is.character(DIAG_3_CONCAT) & nchar(DIAG_3_CONCAT) <= 100
+  name: DIAG_3_CONCAT String(100)
+- description: Diagnosis Code - 3 Character is String(3)
+  expr: is.character(DIAG_3_nn) & nchar(DIAG_3_nn) <= 3
+  name: DIAG_3_nn String(3)
+- description: DIAG_3_nn 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", DIAG_3_nn)
+  name: DIAG_3_nn 3an
+- description: '3an = A valid ICD-10 diagnosis code
+
+    Null = Not applicable
+
+    R69 = Not known, invalid or null'
+  expr: DIAG_3_nn %in% c('3an', 'Null', 'R69')
+  name: DIAG_3_nn values codes
+- description: Concatenated Diagnosis Codes - 4 Character is String(120)
+  expr: is.character(DIAG_4_CONCAT) & nchar(DIAG_4_CONCAT) <= 120
+  name: DIAG_4_CONCAT String(120)
+- description: Diagnosis Code - 4 Character is String(4)
+  expr: is.character(DIAG_4_nn) & nchar(DIAG_4_nn) <= 4
+  name: DIAG_4_nn String(4)
+- description: DIAG_4_nn 4an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{4}$", DIAG_4_nn)
+  name: DIAG_4_nn 4an
+- description: '4an = A valid ICD-10 diagnosis code
+
+    Null = Not applicable
+
+    R69X = Not known, invalid or null'
+  expr: DIAG_4_nn %in% c('4an', 'Null', 'R69X')
+  name: DIAG_4_nn values codes
+- description: Count of Diagnoses is Number
+  expr: is.integer(DIAG_COUNT)
+  name: DIAG_COUNT Number
+- description: DIAG_COUNT 2n NHS Data Model and Dictionary
+  expr: grepl("^\\d{2}$", DIAG_COUNT)
+  name: DIAG_COUNT 2n
+- description: Diagnosis Code is String(6)
+  expr: is.character(DIAG_nn) & nchar(DIAG_nn) <= 6
+  name: DIAG_nn String(6)
+- description: '4an to 6an = A valid ICD-10 diagnosis code
+
+    R96X = Not known
+
+    R69X6 = Null (primary diagnosis only)
+
+    R69X8 = Invalid code submitted
+
+    Null = Not applicable'
+  expr: DIAG_nn %in% c('4an to 6an', 'R96X', 'R69X6', 'R69X8', 'Null')
+  name: DIAG_nn values codes
+- description: Diagnosis Code (Raw) is String(6)
+  expr: is.character(DIAGRAW) & nchar(DIAGRAW) <= 6
+  name: DIAGRAW String(6)
+- description: Last DNA or Patient Cancelled Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    DNADATE)
+  name: DNADATE Date(YYYY-MM-DD)
+- description: DNADATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    DNADATE)
+  name: DNADATE YYYY-MM-DD
+- description: 'YYYY-MM-DD = Last DNA date
+
+    1800-01-01 = Null
+
+    1801-01-01 = Invalid date submitted'
+  expr: DNADATE %in% c('YYYY-MM-DD', '1800-01-01', '1801-01-01')
+  name: DNADATE values codes
+- description: Date of Birth is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    DOB)
+  name: DOB Date(YYYY-MM-DD)
+- description: DOB YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    DOB)
+  name: DOB YYYY-MM-DD
+- description: 'YYYY-MM-DD = DOB
+
+    1800-01-01 = Null
+
+    1801-01-01 = Invalid date submitted'
+  expr: DOB %in% c('YYYY-MM-DD', '1800-01-01', '1801-01-01')
+  name: DOB values codes
+- description: Duplicate Flag  is Number
+  expr: is.integer(DUPLICATE_FLAG)
+  name: DUPLICATE_FLAG Number
+- description: Earliest Reasonable Date Offered is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EARLDATOFF)
+  name: EARLDATOFF Date(YYYY-MM-DD)
+- description: EARLDATOFF YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EARLDATOFF)
+  name: EARLDATOFF YYYY-MM-DD
+- description: Ethnic Category is String(2)
+  expr: is.character(ETHNOS) & nchar(ETHNOS) <= 2
+  name: ETHNOS String(2)
+- description: "A = British (White) \nB = Irish (White) \nC = Any other White background\
+    \ \nD = White and Black Caribbean (Mixed) \nE = White and Black African (Mixed)\
+    \ \nF = White and Asian (Mixed) \nG = Any other Mixed background \nH = Indian\
+    \ (Asian or Asian British) \nJ = Pakistani (Asian or Asian British)\nK = Bangladeshi\
+    \ (Asian or Asian British) \nL = Any other Asian background \nM = Caribbean (Black\
+    \ or Black British) \nN = African (Black or Black British) \nP = Any other Black\
+    \ background \nR = Chinese (other ethnic group) \nS = Any other ethnic group \n\
+    Z = Not stated\nX = Not known (prior to 2013)\n99 = Not known (2013 onwards)"
+  expr: ETHNOS %in% c('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M',
+    'N', 'P', 'R', 'S', 'Z', 'X', '99')
+  name: ETHNOS values codes
+- description: Ethnic Category (Raw) is String(1)
+  expr: is.character(ETHRAW) & nchar(ETHRAW) <= 1
+  name: ETHRAW String(1)
+- description: "A = British (White) \nB = Irish (White) \nC = Any other white background\
+    \ \nD = White and Black Caribbean (Mixed) \nE = White and Black African (Mixed)\
+    \ \nF = White and Asian (Mixed) \nG = Any other mixed background \nH = Indian\
+    \ (Asian or Asian British) \nJ = Pakistani \nK = Bangladeshi (Asian or Asian British)\
+    \ \nL = Any other Asian background ; \nM = Caribbean (Black or Black British)\
+    \ \nN = African (Black or Black British) \nP = Any other Black background \nR\
+    \ = Chinese (other ethnic group) \nS = Any other ethnic group \nX = Not known\
+    \ \nZ = Not stated"
+  expr: ETHRAW %in% c('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M',
+    'N', 'P', 'R', 'S', 'X', 'Z')
+  name: ETHRAW values codes
+- description: Ethnic Category (Local Code)  is String(1)
+  expr: is.character(ETHRAWL) & nchar(ETHRAWL) <= 1
+  name: ETHRAWL String(1)
+- description: ETHRAWL 1an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{1}$", ETHRAWL)
+  name: ETHRAWL 1an
+- description: Expected Duration of Appointment is String(3)
+  expr: is.character(EXPECTED_DURATION_APPOINTMENT) & nchar(EXPECTED_DURATION_APPOINTMENT)
+    <= 3
+  name: EXPECTED_DURATION_APPOINTMENT String(3)
+- description: First Attendance is String(1)
+  expr: is.character(FIRSTATT) & nchar(FIRSTATT) <= 1
+  name: FIRSTATT String(1)
+- description: "1 = First attendance face to face\n2 = Follow-up attendance face to\
+    \ face\n3 = First telephone or telemedicine consultation\n4 = Follow-up telephone\
+    \ or telemedicine consultation \nX = Not known  (from 2008/09)\n9 = Not known\
+    \ (prior to 2008/09)"
+  expr: FIRSTATT %in% c('1', '2', '3', '4', 'X', '9')
+  name: FIRSTATT values codes
+- description: Financial Year is String(4)
+  expr: is.character(FYEAR) & nchar(FYEAR) <= 4
+  name: FYEAR String(4)
+- description: FYEAR 4n NHS Data Model and Dictionary
+  expr: grepl("^\\d{4}$", FYEAR)
+  name: FYEAR 4n
+- description: Government Office Region of Treatment is String(1)
+  expr: is.character(GORTREAT) & nchar(GORTREAT) <= 1
+  name: GORTREAT String(1)
+- description: "A = North East \nB = North West \nD = Yorkshire and The Humber \n\
+    E = East Midlands \nF = West Midlands \nG = East of England \nH = London \nJ =\
+    \ South East \nK = South West \nY = Not known"
+  expr: GORTREAT %in% c('A', 'B', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'Y')
+  name: GORTREAT values codes
+- description: 'General Medical Practice (Patient Registration) is String(12) (to
+    2022-23)
+
+    String (6-8) (2022-23 onwards)'
+  expr: is.character(GPPRAC) & nchar(GPPRAC) <= 12
+  name: 'GPPRAC String(12) (to 2022-23)
+
+    String (6-8) (2022-23 onwards)'
+- description: "6an - 8an = GP practice code (English GP's with codes commencing A-P\
+    \ only)  \nV81997 = Patient not currently registered at a GP practice, but is\
+    \ eligible to be registered should they wish to\nV81998 = Not applicable \nV81999\
+    \ = Not known (submitted value) - where it is not possible to determine a patient's\
+    \ registered GP practice but it is known that they should have one, or where it\
+    \ is impossible to determine whether the patient should or should not have a registered\
+    \ practice (e.g. the patient cannot communicate and is unidentified)\n& = Not\
+    \ known (derived in HES where no code was submitted)"
+  expr: GPPRAC %in% c('6an - 8an', 'V81997', 'V81998', 'V81999', '&')
+  name: GPPRAC values codes
+- description: Health Authority of GP Practice is String(8)
+  expr: is.character(GPPRACHA) & nchar(GPPRACHA) <= 8
+  name: GPPRACHA String(8)
+- description: 'aaa or aan = Health Authority of GP practice
+
+    Y = Unknown'
+  expr: GPPRACHA %in% c('aaa or aan', 'Y')
+  name: GPPRACHA values codes
+- description: Regional Office of GP Practice is String(8)
+  expr: is.character(GPPRACRO) & nchar(GPPRACRO) <= 8
+  name: GPPRACRO String(8)
+- description: "Y01 = Northern and Yorkshire Regional Office \nY02 = Trent Regional\
+    \ Office \nY07 = West Midlands Regional Office \nY08 = North West Regional Office\
+    \ \nY09 = Eastern Regional Office \nY10 = London Regional Office \nY11 = South\
+    \ East Regional Office \nY12 = South West Regional Office \nY00 = Unknown"
+  expr: GPPRACRO %in% c('Y01', 'Y02', 'Y07', 'Y08', 'Y09', 'Y10', 'Y11', 'Y12', 'Y00')
+  name: GPPRACRO values codes
+- description: Primary Care Trust of GP Practice is String(8)
+  expr: is.character(GPPRPCT) & nchar(GPPRPCT) <= 8
+  name: GPPRPCT String(8)
+- description: GPPRPCT 5nn NHS Data Model and Dictionary
+  expr: grepl("^\\d{5}$", GPPRPCT)
+  name: GPPRPCT 5nn
+- description: "5nn = PCT \nTaa = Care Trust \n59898 = Not applicable (non-England)\
+    \ \n59999 = Unknown"
+  expr: GPPRPCT %in% c('5nn', 'Taa', '59898', '59999')
+  name: GPPRPCT values codes
+- description: Strategic Health Authority of GP Practice is String(8)
+  expr: is.character(GPPRSTHA) & nchar(GPPRSTHA) <= 8
+  name: GPPRSTHA String(8)
+- description: GPPRSTHA 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", GPPRSTHA)
+  name: GPPRSTHA 3an
+- description: "3an = Strategic Health Authority  \nS = Scotland   \nU = England -\
+    \ not otherwise specified  \nW = Wales  \nX = Foreign (including Isle of Man and\
+    \ Channel Islands)  \nY = Unknown  \nZ = Northern Ireland"
+  expr: GPPRSTHA %in% c('3an', 'S', 'U', 'W', 'X', 'Y', 'Z')
+  name: GPPRSTHA values codes
+- description: Ordnance Survey Grid Reference is String(11)
+  expr: is.character(GRIDLINK) & nchar(GRIDLINK) <= 11
+  name: GRIDLINK String(11)
+- description: GRIDLINK 10n NHS Data Model and Dictionary
+  expr: grepl("^\\d{10}$", GRIDLINK)
+  name: GRIDLINK 10n
+- description: Health Authority of Treatment  is String(3)
+  expr: is.character(HATREAT) & nchar(HATREAT) <= 3
+  name: HATREAT String(3)
+- description: HATREAT 3a NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", HATREAT)
+  name: HATREAT 3a
+- description: "3a = Health Authority area of treatment  \nY = Unknown"
+  expr: HATREAT %in% c('3a', 'Y')
+  name: HATREAT values codes
+- description: Patient identifier - HES generated  is Number
+  expr: is.integer(HESID)
+  name: HESID Number
+- description: Postcode of Patient is String(8)
+  expr: is.character(HOMEADD) & nchar(HOMEADD) <= 8
+  name: HOMEADD String(8)
+- description: HOMEADD 8an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{8}$", HOMEADD)
+  name: HOMEADD 8an
+- description: "8an = Postcode  \nZZ99 3CZ = England, GB, UK (not otherwise stated)\
+    \  \nZZ99 3VZ = No fixed abode  \nZZ99 3WZ = Not known + sundry categories  \n\
+    ZZ99 2WZ = Northern Ireland  \nZZ99 1WZ = Scotland  \nZZ99 3GZ = Wales  \nZZ99\
+    \ NNN = Other pseudo codes used for patients normally resident abroad (where NNN\
+    \ is the country code listed in the NHS postcode directory)"
+  expr: HOMEADD %in% c('8an', 'ZZ99 3CZ', 'ZZ99 3VZ', 'ZZ99 3WZ', 'ZZ99 2WZ', 'ZZ99
+    1WZ', 'ZZ99 3GZ', 'ZZ99 NNN')
+  name: HOMEADD values codes
+- description: Healthcare Resource Group - Provider Derived is String(3)
+  expr: is.character(HRGNHS) & nchar(HRGNHS) <= 3
+  name: HRGNHS String(3)
+- description: HRGNHS 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", HRGNHS)
+  name: HRGNHS 3an
+- description: Version Number of HRGNHS is String(3)
+  expr: is.character(HRGNHSVN) & nchar(HRGNHSVN) <= 3
+  name: HRGNHSVN String(3)
+- description: HRGNHSVN 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", HRGNHSVN)
+  name: HRGNHSVN 3an
+- description: IMD Index of Multiple Deprivation is Decimal
+  expr: is.numeric(IMD04)
+  name: IMD04 Decimal
+- description: IMD04 nn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04)
+  name: IMD04 nn.nn
+- description: IMD Decile Group is String(30)
+  expr: is.character(IMD04_DECILE) & nchar(IMD04_DECILE) <= 30
+  name: IMD04_DECILE String(30)
+- description: IMD Crime Domain is Decimal
+  expr: is.numeric(IMD04C)
+  name: IMD04C Decimal
+- description: IMD04C n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04C)
+  name: IMD04C n.nn
+- description: IMD Education Training and Skills Domain  is Decimal
+  expr: is.numeric(IMD04ED)
+  name: IMD04ED Decimal
+- description: IMD04ED nn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04ED)
+  name: IMD04ED nn.nn
+- description: IMD Employment Deprivation Domain is Decimal
+  expr: is.numeric(IMD04EM)
+  name: IMD04EM Decimal
+- description: IMD04EM n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04EM)
+  name: IMD04EM n.nn
+- description: IMD Health and Disability Domain  is Decimal
+  expr: is.numeric(IMD04HD)
+  name: IMD04HD Decimal
+- description: IMD04HD n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04HD)
+  name: IMD04HD n.nn
+- description: IMD Barriers to Housing and Services Domain  is Decimal
+  expr: is.numeric(IMD04HS)
+  name: IMD04HS Decimal
+- description: IMD04HS nn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04HS)
+  name: IMD04HS nn.nn
+- description: IMD Income Domain  is Decimal
+  expr: is.numeric(IMD04I)
+  name: IMD04I Decimal
+- description: IMD04I n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04I)
+  name: IMD04I n.nn
+- description: IMD Income Affecting Adults Domain  is Decimal
+  expr: is.numeric(IMD04IA)
+  name: IMD04IA Decimal
+- description: IMD04IA n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04IA)
+  name: IMD04IA n.nn
+- description: IMD Income Affecting Children Domain  is Decimal
+  expr: is.numeric(IMD04IC)
+  name: IMD04IC Decimal
+- description: IMD04IC n.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04IC)
+  name: IMD04IC n.nn
+- description: IMD Living Environment Domain is Decimal
+  expr: is.numeric(IMD04LE)
+  name: IMD04LE Decimal
+- description: IMD04LE nn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", IMD04LE)
+  name: IMD04LE nn.nn
+- description: IMD Overall Rank  is Number
+  expr: is.integer(IMD04RK)
+  name: IMD04RK Number
+- description: IMD04RK 5n NHS Data Model and Dictionary
+  expr: grepl("^\\d{5}$", IMD04RK)
+  name: IMD04RK 5n
+- description: Location Class is String(3)
+  expr: is.character(LOCCLASS) & nchar(LOCCLASS) <= 3
+  name: LOCCLASS String(3)
+- description: "01 = Health Site (General Occurrence)  \n02 = Home  \n03 = Delivery\
+    \ Place  \n04 = Health site at the start of Health Care Activity  \n05 = Health\
+    \ site at the end of Health Care Activity  \n99 = Not known"
+  expr: LOCCLASS %in% c('01', '02', '03', '04', '05', '99')
+  name: LOCCLASS values codes
+- description: Location Type is String(2)
+  expr: is.character(LOCTYPE) & nchar(LOCTYPE) <= 2
+  name: LOCTYPE String(2)
+- description: "From 2022-23: \nFor current list of ACTIVITY LOCATION TYPE CODEs,\
+    \ see: https://datadictionary.nhs.uk/data_elements/activity_location_type_code.html\n\
+    \nUntil 2022-23:\n001 = Client's or Patient's Home  \n002 = Health Centre  \n\
+    003 = GP Practice premises other than Health Centre  \n004 = Ward on NHS Hospital\
+    \ Site  \n006 = Hospice  \n007 = Other Voluntary or Private Hospital or Nursing\
+    \ Home  \n008 = Group Home managed by the NHS  \n009 = Group Home managed by Local\
+    \ Authority  \n010 = Group Home managed by Voluntary or Private Agents  \n011\
+    \ = Other Residential Care Homes managed by Local Authority  \n012 = Other Residential\
+    \ Care Homes managed by Voluntary or Private Agents  \n013 = NHS Day Care Facility\
+    \ on NHS Hospital Site  \n014 = NHS Day Care Facility on Other Sites  \n015 =\
+    \ Day Centre managed by Local Authority  016 = Day Centre managed by Voluntary\
+    \ or Private Agents  \n017 = NHS Consultant Clinic Premises on a NHS Hospital\
+    \ site  \n018 = NHS Consultant Clinic Premises off a NHS Hospital site  \n019\
+    \ = Health Clinic managed by the NHS  \n020 = Health Clinic managed by Voluntary\
+    \ or Private Agents  \n021 = Resource Centre on NHS Hospital Site  \n022 = Resource\
+    \ Centre managed by the NHS off NHS Hospital Site  \n023 = Resource Centre managed\
+    \ by Local Authority  \n024 = Resource Centre managed by Voluntary or Private\
+    \ Agents  \n025 = Professional Staff Group Department on NHS Hospital Site  \n\
+    026 = Professional Staff Group Department managed by the NHS off NHS Hospital\
+    \ Site  \n027 = Professional Staff Group Department managed by Local Authority\
+    \  \n028 = Professional Staff Group Department managed by Voluntary or Private\
+    \ Agents  \n029 = Educational Establishment Premises managed by Local Authority\
+    \ or Grant Maintained  \n030 = Educational Establishment Premises managed by Voluntary\
+    \ or Private Agents  \n031 = Other Health or Local Authority Facility on NHS Hospital\
+    \ Site  \n032 = Other Health or Local Authority Site managed by the NHS off NHS\
+    \ Hospital Site  \n033 = Other Health or Local Authority Site managed by Local\
+    \ Authority  \n034 = Other Health or Local Authority Site managed by Voluntary\
+    \ or Private Agents  \n035 = Prison Department Establishments  \n036 = Public\
+    \ Place or Street, or Police Station  \n037 = Other locations not classified elsewhere\
+    \  \n038 = NHS Nursing Home  \n039 = Other Residential Care Homes managed by the\
+    \ NHS\n"
+  expr: LOCTYPE %in% c('001', '002', '003', '004', '006', '007', '008', '009', '010',
+    '011', '012', '013', '014', '015', '017', '018', '019', '020', '021', '022', '023',
+    '024', '025', '026', '027', '028', '029', '030', '031', '032', '033', '034', '035',
+    '036', '037', '038', '039')
+  name: LOCTYPE values codes
+- description: 'Local Patient Identifier (Extended)  is String(10) (to 2022-23)
+
+    String(20) (2022-23 onwards)'
+  expr: is.character(LOPATID) & nchar(LOPATID) <= 20
+  name: 'LOPATID String(10) (to 2022-23)
+
+    String(20) (2022-23 onwards)'
+- description: LOPATID 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", LOPATID)
+  name: LOPATID 20an
+- description: Lower Super Output Area of Residence 2001 is String(9)
+  expr: is.character(LSOA01) & nchar(LSOA01) <= 9
+  name: LSOA01 String(9)
+- description: LSOA01 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA01)
+  name: LSOA01 9an
+- description: "9an = 2001 Lower Super Output Area  \nE01000001 - E01032482 = England\n\
+    W01000001- W01001896 = Wales\nS01000001- S01006505 = Scotland\n95AA01S1 - 95ZZ16S2\
+    \ = Northern Ireland\nL99999999 (pseudo) = Channel Islands\nM99999999 (pseudo)\
+    \ = Isle of Man\nZ99999999 = Not known\nE99999999 = England Unknown\nN99999999\
+    \ = N. Ireland Unknown\n"
+  expr: LSOA01 %in% c('9an', 'E01000001 - E01032482', 'W01000001- W01001896', 'S01000001-
+    S01006505', '95AA01S1 - 95ZZ16S2', 'L99999999 (pseudo)', 'M99999999 (pseudo)',
+    'Z99999999', 'E99999999', 'N99999999')
+  name: LSOA01 values codes
+- description: Lower Super Output Area of Residence 2011 is String(9)
+  expr: is.character(LSOA11) & nchar(LSOA11) <= 9
+  name: LSOA11 String(9)
+- description: LSOA11 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", LSOA11)
+  name: LSOA11 9an
+- description: "9an = 2011 Lower Super Output Area \nE01000001- E01033768 = England\n\
+    W01000001- W01001958 = Wales\nS01006506 - S01013481 = Scotland\n95AA01S1 - 95ZZ16S2\
+    \ = Northern Ireland\nL99999999 (pseudo) = Channel Islands\nM99999999 (pseudo)\
+    \ = Isle of Man\nZ99999999 = Not known\nE99999999 = England Unknown\nN99999999\
+    \ = N. Ireland Unknown"
+  expr: LSOA11 %in% c('9an', 'E01000001- E01033768', 'W01000001- W01001958', 'S01006506
+    - S01013481', '95AA01S1 - 95ZZ16S2', 'L99999999 (pseudo)', 'M99999999 (pseudo)',
+    'Z99999999', 'E99999999', 'N99999999')
+  name: LSOA11 values codes
+- description: Main Specialty is String(3)
+  expr: is.character(MAINSPEF) & nchar(MAINSPEF) <= 3
+  name: MAINSPEF String(3)
+- description: "From 2022-23: \nFor current list of CARE PROFESSIONAL MAIN SPECIALTY\
+    \ CODEs, see https://datadictionary.nhs.uk/data_elements/care_professional_main_specialty_code.html\n\
+    \nUntil 2022-23:\n100 = General Surgery\n101 = Urology\n107 = Vascular Surgery\
+    \ (Introduced 1 April 2021)\n110 = Trauma and Orthopaedics\n120 = Ear Nose and\
+    \ Throat\n130 = Ophthalmology\n140 = Oral Surgery\n141 = Restorative Dentistry\n\
+    142 = Paediatric Dentistry\n143 = Orthodontics\n145 = Oral and Maxillofacial Surgery\n\
+    146 = Endodontics\n147 = Periodontics\n148 = Prosthodontics\n149 = Surgical Dentistry\n\
+    150 = Neurosurgery\n160 = Plastic Surgery\n170 = Cardiothoracic Surgery\n171 =\
+    \ Paediatric Surgery\n191 = Pain Management (Retired 1 April 2004)\n180 = Emergency\
+    \ Medicine\n190 = Anaesthetics\n192 = Intensive Care Medicine\n200 = Aviation\
+    \ and Space Medicine (Introduced 1 April 2021)\n300 = General Internal Medicine\n\
+    301 = Gastroenterology\n302 = Endocrinology and Diabetes\n303 = Clinical Haematology\n\
+    304 = Clinical Physiology\n305 = Clinical Pharmacology\n310 = Audio Vestibular\
+    \ Medicine\n311 = Clinical Genetics\n312 = Clinical Cytogenetics and Molecular\
+    \ Genetics (Retired 1 April 2010). National Code 312 is retained for consultants\
+    \ qualified in this Main Specialty prior to 1 April 2010\n313 = Clinical Immunology\n\
+    314 = Rehabilitation Medicine\n315 = Palliative Medicine\n317 = Allergy (Introduced\
+    \ 1 April 2021)\n320 = Cardiology\n321 = Paediatric Cardiology\n325 = Sport and\
+    \ Exercise Medicine\n326 = Acute Internal Medicine\n330 = Dermatology\n340 = Respiratory\
+    \ Medicine\n350 = Infectious Diseases\n352 = Tropical Medicine\n360 = Genitourinary\
+    \ Medicine\n361 = Renal Medicine\n370 = Medical Oncology\n371 = Nuclear Medicine\n\
+    400 = Neurology\n401 = Clinical Neurophysiology\n410 = Rheumatology\n420 = Paediatrics\n\
+    421 = Paediatric Neurology\n430 = Geriatric Medicine\n450 = Dental Medicine\n\
+    451 = Special Care Dentistry\n501 = Obstetrics\n502 = Gynaecology\n504 = Community\
+    \ Sexual and Reproductive Health\n510 = Antenatal Clinic (Retired 1 April 2004)\n\
+    520 = Postnatal Clinic (Retired 1 April 2004)\n560 = Midwifery\n600 = General\
+    \ Medical Practice\n601 = General Dental Practice\n610 = Maternity Function (Retired\
+    \ 1 April 2004)\n620 = Other than Maternity (Retired 1 April 2004)\n700 = Learning\
+    \ Disability\n710 = Adult Mental Illness\n711 = Child and Adolescent Psychiatry\n\
+    712 = Forensic Psychiatry\n713 = Medical Psychotherapy\n715 = Old Age Psychiatry\n\
+    800 = Clinical Oncology\n810 = Radiology\n820 = General Pathology\n821 = Blood\
+    \ Transfusion\n822 = Chemical Pathology\n823 = Haematology\n824 = Histopathology\n\
+    830 = Immunopathology\n831 = Medical Microbiology and Virology\n832 = Neuropathology\
+    \ (Retired 1 April 2004)\n833 = Medical Microbiology\n834 = Medical Virology\n\
+    900 = Community Medicine\n901 = Occupational Medicine\n902 = Community Health\
+    \ Services Dental\n903 = Public Health Medicine\n904 = Public Health Dental\n\
+    950 = Nursing\n960 = Allied Health Professional\n990 = Joint Consultant Clinics\
+    \ (Retired 1 April 2004)\n199 = Non-UK Provider - Specialty Function Not Known,\
+    \ Treatment Mainly Surgical\n460 = Medical Ophthalmology\n499 = Non-UK Provider\
+    \ - Specialty Function Not Known, Treatment Mainly Medical\nNull  = Other Maternity\
+    \ Event\n&  = Not Known"
+  expr: MAINSPEF %in% c('100', '101', '107', '110', '120', '130', '140', '141', '142',
+    '143', '145', '146', '147', '148', '149', '150', '160', '170', '171', '191', '180',
+    '190', '192', '200', '300', '301', '302', '303', '304', '305', '310', '311', '312',
+    '313', '314', '315', '317', '320', '321', '325', '326', '330', '340', '350', '352',
+    '360', '361', '370', '371', '400', '401', '410', '420', '421', '430', '450', '451',
+    '501', '502', '504', '510', '520', '560', '600', '601', '610', '620', '700', '710',
+    '711', '712', '713', '715', '800', '810', '820', '821', '822', '823', '824', '830',
+    '831', '832', '833', '834', '900', '901', '902', '903', '904', '950', '960', '990',
+    '199', '460', '499', 'Null', '&')
+  name: MAINSPEF values codes
+- description: Middle Super Output Area of Residence 2001 is String(9)
+  expr: is.character(MSOA01) & nchar(MSOA01) <= 9
+  name: MSOA01 String(9)
+- description: MSOA01 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", MSOA01)
+  name: MSOA01 9an
+- description: "9an = Middle Super Output Area  \nE02000001- E02006781 = England\n\
+    W02000001- W02000413 = Wales\nS02000001 - S02001235 = Scotland\nN99999999 (pseudo)\
+    \ = Northern Ireland\nL99999999 (pseudo) = Channel Islands\nM99999999 (pseudo)\
+    \ = Isle of Man\nZ99999999 = Not known\nE99999999 = England Unknown\nN99999999\
+    \ = N. Ireland Unknown"
+  expr: MSOA01 %in% c('9an', 'E02000001- E02006781', 'W02000001- W02000413', 'S02000001
+    - S02001235', 'N99999999 (pseudo)', 'L99999999 (pseudo)', 'M99999999 (pseudo)',
+    'Z99999999', 'E99999999', 'N99999999')
+  name: MSOA01 values codes
+- description: Middle Super Output Area of Residence 2011 is String(9)
+  expr: is.character(MSOA11) & nchar(MSOA11) <= 9
+  name: MSOA11 String(9)
+- description: MSOA11 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", MSOA11)
+  name: MSOA11 9an
+- description: "9an = Middle Super Output Area  \nE02000001- E02006934 = England\n\
+    W02000001- W02000423 = Wales\nS02001236 - S02002514 = Scotland\nN99999999 (pseudo)\
+    \ = Northern Ireland\nL99999999 (pseudo) = Channel Islands\nM99999999 (pseudo)\
+    \ = Isle of Man\nZ99999999 = Not known\nE99999999 = England Unknown\nN99999999\
+    \ = N. Ireland Unknown"
+  expr: MSOA11 %in% c('9an', 'E02000001- E02006934', 'W02000001- W02000423', 'S02001236
+    - S02002514', 'N99999999 (pseudo)', 'L99999999 (pseudo)', 'M99999999 (pseudo)',
+    'Z99999999', 'E99999999', 'N99999999')
+  name: MSOA11 values codes
+- description: Date of Birth - Month and Year is String(6)
+  expr: is.character(MYDOB) & nchar(MYDOB) <= 6
+  name: MYDOB String(6)
+- description: 'Integrated Care Board of GP Practice  (July 2022 onwards)
+
+    Sustainability and Transformation Partnership of GP Practice (2020 until June
+    2022)
+
+    NHS England Region of GP Practice (until 2020) is String(8)'
+  expr: is.character(NER_GP_PRACTICE) & nchar(NER_GP_PRACTICE) <= 8
+  name: NER_GP_PRACTICE String(8)
+- description: NER_GP_PRACTICE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_GP_PRACTICE)
+  name: NER_GP_PRACTICE ann
+- description: 'ann = ICB / STP / NER of GP practice
+
+    Q99 = Wales
+
+    Y = Not known'
+  expr: NER_GP_PRACTICE %in% c('ann', 'Q99', 'Y')
+  name: NER_GP_PRACTICE values codes
+- description: 'Integrated Care Board of Residence  (July 2022 onwards)
+
+    Sustainability and Transformation Partnership of Residence (2020 until June 2022)
+
+    NHS England Region of Residence (until 2020) is String(8)'
+  expr: is.character(NER_RESIDENCE) & nchar(NER_RESIDENCE) <= 8
+  name: NER_RESIDENCE String(8)
+- description: NER_RESIDENCE ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_RESIDENCE)
+  name: NER_RESIDENCE ann
+- description: 'ann = ICB / STP / NER of residence
+
+    Q99 = Wales
+
+    S = Scotland
+
+    U = no fixed abode
+
+    X = Foreign, Isle of Man or Channel Islands
+
+    Y = Not known
+
+    Z = Northern Ireland'
+  expr: NER_RESIDENCE %in% c('ann', 'Q99', 'S', 'U', 'X', 'Y', 'Z')
+  name: NER_RESIDENCE values codes
+- description: 'Integrated Care Board of Treatment  (July 2022 onwards)
+
+    Sustainability and Transformation Partnership of Treatment (2020 until June 2022)
+
+    NHS England Region of Treatment (until 2020) is String(3)'
+  expr: is.character(NER_TREATMENT) & nchar(NER_TREATMENT) <= 3
+  name: NER_TREATMENT String(3)
+- description: NER_TREATMENT ann NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z]{1}\\d{2}$", NER_TREATMENT)
+  name: NER_TREATMENT ann
+- description: 'ann = ICB / STP / NER of treatment
+
+    Q99 = Wales
+
+    Y = Not known'
+  expr: NER_TREATMENT %in% c('ann', 'Q99', 'Y')
+  name: NER_TREATMENT values codes
+- description: NHS Number is String(10)
+  expr: is.character(NEWNHSNO) & nchar(NEWNHSNO) <= 10
+  name: NEWNHSNO String(10)
+- description: NEWNHSNO 10n NHS Data Model and Dictionary
+  expr: grepl("^\\d{10}$", NEWNHSNO)
+  name: NEWNHSNO 10n
+- description: NHS Number Check Flag is String(1)
+  expr: is.character(NEWNHSNO_CHECK) & nchar(NEWNHSNO_CHECK) <= 1
+  name: NEWNHSNO_CHECK String(1)
+- description: 'Y = The format of the NEWNHSNO is valid
+
+    N = The format of the NEWNHSNO is not valid
+
+    Null = NEWNHSNO is null'
+  expr: NEWNHSNO_CHECK %in% c('Y', 'N', 'Null')
+  name: NEWNHSNO_CHECK values codes
+- description: NHS Number Status Indicator is String(2)
+  expr: is.character(NHSNOIND) & nchar(NHSNOIND) <= 2
+  name: NHSNOIND String(2)
+- description: "01 = Number present and verified \n02 = Number present but not traced\
+    \ \n03 = Trace required\n04 = Trace attempted - No match or multiple match found\
+    \ \n05 = Trace needs to be resolved - (New NHS number or patient detail conflict)\
+    \ \n06 = Trace in progress \n07 = Number not present and trace not required \n\
+    08 = Trace postponed (baby under six weeks old)\n91 = Anonymised or pseudonymised\
+    \ by SUS"
+  expr: NHSNOIND %in% c('01', '02', '03', '04', '05', '06', '07', '08', '91')
+  name: NHSNOIND values codes
+- description: Number of Diagnoses is Number
+  expr: is.integer(NODIAGS)
+  name: NODIAGS Number
+- description: NODIAGS 3n NHS Data Model and Dictionary
+  expr: grepl("^\\d{3}$", NODIAGS)
+  name: NODIAGS 3n
+- description: Number of Procedures is Number
+  expr: is.integer(NOPROCS)
+  name: NOPROCS Number
+- description: NOPROCS 3n NHS Data Model and Dictionary
+  expr: grepl("^\\d{3}$", NOPROCS)
+  name: NOPROCS 3n
+- description: Census Output Area 2001  is String(10)
+  expr: is.character(OACODE01) & nchar(OACODE01) <= 10
+  name: OACODE01 String(10)
+- description: OACODE01 10an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{10}$", OACODE01)
+  name: OACODE01 10an
+- description: '10an = 2001 census output area
+
+    Y = Not known'
+  expr: OACODE01 %in% c('10an', 'Y')
+  name: OACODE01 values codes
+- description: Census Output Area 2011  is String(10)
+  expr: is.character(OACODE11) & nchar(OACODE11) <= 10
+  name: OACODE11 String(10)
+- description: OACODE11 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", OACODE11)
+  name: OACODE11 9an
+- description: '9an = 2011 census output area
+
+    E00000001 - E00176774 = England;
+
+    W00000001 - W00010265 = Wales;
+
+    S00088956 - S00135306 = Scotland;
+
+    N00000001 - N00004537 = Northern Ireland;
+
+    L99999999 (pseudo) = Channel Islands;
+
+    M99999999 (pseudo) = Isle of Man;
+
+    Y = Not known'
+  expr: OACODE11 %in% c('9an', 'E00000001 - E00176774', 'W00000001 - W00010265', 'S00088956
+    - S00135306', 'N00000001 - N00004537', 'L99999999 (pseudo)', 'M99999999 (pseudo)',
+    'Y')
+  name: OACODE11 values codes
+- description: Census Output Area 2001 (Ward Identifier) is String(6)
+  expr: is.character(OACODE6) & nchar(OACODE6) <= 6
+  name: OACODE6 String(6)
+- description: OACODE6 6an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{6}$", OACODE6)
+  name: OACODE6 6an
+- description: '6an = 2001 census output area ward identifier code
+
+    Y = Not known'
+  expr: OACODE6 %in% c('6an', 'Y')
+  name: OACODE6 values codes
+- description: Operation Code (Raw) is String(4)
+  expr: is.character(OPERRAW) & nchar(OPERRAW) <= 4
+  name: OPERRAW String(4)
+- description: Operation Status Code is String(1)
+  expr: is.character(OPERSTAT) & nchar(OPERSTAT) <= 1
+  name: OPERSTAT String(1)
+- description: '1 = One or more operative procedures carried out
+
+    8 = No operative procedures performed or intended
+
+    9 = Not known, i.e. finished episode but no data entered or the episode is unfinished
+    and no data needs to be present (this would only be a validation error for a finished
+    episode).'
+  expr: OPERSTAT %in% c('1', '8', '9')
+  name: OPERSTAT values codes
+- description: Concatenated Procedure Codes - 3 Character is String(100)
+  expr: is.character(OPERTN_3_CONCAT) & nchar(OPERTN_3_CONCAT) <= 100
+  name: OPERTN_3_CONCAT String(100)
+- description: Procedure Code - 3 Character is String(3)
+  expr: is.character(OPERTN_3_nn) & nchar(OPERTN_3_nn) <= 3
+  name: OPERTN_3_nn String(3)
+- description: OPERTN_3_nn 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", OPERTN_3_nn)
+  name: OPERTN_3_nn 3an
+- description: "3an = Procedure code  \n- = No operation performed  \n& = Not known"
+  expr: OPERTN_3_nn %in% c('3an', '-', '&')
+  name: OPERTN_3_nn values codes
+- description: Concatenated Procedure Codes - 4 Character is String(130)
+  expr: is.character(OPERTN_4_CONCAT) & nchar(OPERTN_4_CONCAT) <= 130
+  name: OPERTN_4_CONCAT String(130)
+- description: Procedure Code - 4 Character is String(4)
+  expr: is.character(OPERTN_4_nn) & nchar(OPERTN_4_nn) <= 4
+  name: OPERTN_4_nn String(4)
+- description: OPERTN_4_nn 4an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{4}$", OPERTN_4_nn)
+  name: OPERTN_4_nn 4an
+- description: '4an = Procedure code
+
+    - = No operation performed
+
+    & = Not known'
+  expr: OPERTN_4_nn %in% c('4an', '-', '&')
+  name: OPERTN_4_nn values codes
+- description: Count of Procedures is Number
+  expr: is.integer(OPERTN_COUNT)
+  name: OPERTN_COUNT Number
+- description: OPERTN_COUNT 2n NHS Data Model and Dictionary
+  expr: grepl("^\\d{2}$", OPERTN_COUNT)
+  name: OPERTN_COUNT 2n
+- description: Procedure Code is String(4)
+  expr: is.character(OPERTN_nn) & nchar(OPERTN_nn) <= 4
+  name: OPERTN_nn String(4)
+- description: OPERTN_nn 4an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{4}$", OPERTN_nn)
+  name: OPERTN_nn 4an
+- description: "4an = Procedure code  \n- = No procedure performed (derived in HES)\n\
+    & = Not known (derived in HES)\nX998 = Procedure carried out but no appropriate\
+    \ OPCS-4 code available (submitted code)\nX999 = No procedure carried out  (submitted\
+    \ code)\nX997 = Not known (submitted code)"
+  expr: OPERTN_nn %in% c('4an', '-', '&', 'X998', 'X999', 'X997')
+  name: OPERTN_nn values codes
+- description: 'Organisation Identifier (Patient Pathway Identifier Issuer)  is String(12)
+    (to 2022-23)
+
+    String min(3-5) (V6.3 2022-23 onwards)'
+  expr: is.character(ORGPPPID) & nchar(ORGPPPID) <= 12
+  name: 'ORGPPPID String(12) (to 2022-23)
+
+    String min(3-5) (V6.3 2022-23 onwards)'
+- description: Out-patient Attendance Outcome is String(1)
+  expr: is.character(OUTCOME) & nchar(OUTCOME) <= 1
+  name: OUTCOME String(1)
+- description: "From 2022-23 onwards: \n1 = PATIENT\_discharged from the care of the\_\
+    CARE PROFESSIONAL\_without\_Personalised Out-Patient Follow Up \n2 = PATIENT\_\
+    given a\_Timed Out-Patient Follow Up Appointment\_while at the out-patient attendance\
+    \ without Personalised Out-Patient Follow Up \n3 = PATIENT\_to be given a\_Timed\
+    \ Out-Patient Follow Up Appointment\_at a later date without Personalised Out-Patient\
+    \ Follow Up \n4 = PATIENT\_moved to a\_Personalised Out-Patient Follow Up Pathway\n\
+    5 = PATIENT\_discharged to a\_Personalised Out-Patient Follow Up Pathway\n9 =\
+    \ Not known\n\nUntil 2022-23:\n1 = Discharged from consultant's care (last attendance)\
+    \ (to 2022-23) \n2 = Another appointment given  \n3 = Appointment to be made at\
+    \ a later date  \n9 = Not known\n\n"
+  expr: OUTCOME %in% c('1', '2', '3', '4', '5', '9')
+  name: OUTCOME values codes
+- description: HES Extract Year and Number is Number
+  expr: is.integer(PARTYEAR)
+  name: PARTYEAR Number
+- description: Patient Pathway Identifier  is String(20)
+  expr: is.character(PATPATHID) & nchar(PATPATHID) <= 20
+  name: PATPATHID String(20)
+- description: PATPATHID 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", PATPATHID)
+  name: PATPATHID 20an
+- description: Postcode Found Flag is String(1)
+  expr: is.character(PCFOUND) & nchar(PCFOUND) <= 1
+  name: PCFOUND String(1)
+- description: 'Y = Valid
+
+    N = Invalid or null'
+  expr: PCFOUND %in% c('Y', 'N')
+  name: PCFOUND values codes
+- description: Westminster Parliamentary Constituency of Residence is String(12)
+  expr: is.character(PCON) & nchar(PCON) <= 12
+  name: PCON String(12)
+- description: PCON 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", PCON)
+  name: PCON 3an
+- description: '3an = English Westminster Parliamentary Constituency
+
+    S = Scotland
+
+    U = no fixed abode
+
+    W = Wales
+
+    X = Foreign (includes Channel Islands and Isle of Man)
+
+    Y = Not known
+
+    Z = Northern Ireland'
+  expr: PCON %in% c('3an', 'S', 'U', 'W', 'X', 'Y', 'Z')
+  name: PCON values codes
+- description: Westminster Parliamentary Constituency of Residence (ONS) is String(12)
+  expr: is.character(PCON_ONS) & nchar(PCON_ONS) <= 12
+  name: PCON_ONS String(12)
+- description: PCON_ONS 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", PCON_ONS)
+  name: PCON_ONS 9an
+- description: '9an = English Westminster Parliamentary Constituency
+
+    E99999999 = England (not specified)
+
+    L99999999 = Channel Islands
+
+    M99999999 = Isle of Man
+
+    N99999999 = Northern Ireland
+
+    S99999999 = Scotland
+
+    W99999999 = Wales
+
+    U = No fixed abode
+
+    X = Foreign
+
+    Y = Not known'
+  expr: PCON_ONS %in% c('9an', 'E99999999', 'L99999999', 'M99999999', 'N99999999',
+    'S99999999', 'W99999999', 'U', 'X', 'Y')
+  name: PCON_ONS values codes
+- description: Consultant Code (Pseudonymised) is String(16)
+  expr: is.character(PCONSULT) & nchar(PCONSULT) <= 16
+  name: PCONSULT String(16)
+- description: PCONSULT 16an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{16}$", PCONSULT)
+  name: PCONSULT 16an
+- description: "16an = Pseudonymised consultant code  \n& = Consultant code is null\n\
+    99 = Consultant code is invalid"
+  expr: PCONSULT %in% c('16an', '&', '99')
+  name: PCONSULT values codes
+- description: Primary Care Trust of Responsibility   is String(6)
+  expr: is.character(PCTCODE) & nchar(PCTCODE) <= 6
+  name: PCTCODE String(6)
+- description: PCTCODE 5nn NHS Data Model and Dictionary
+  expr: grepl("^\\d{5}$", PCTCODE)
+  name: PCTCODE 5nn
+- description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
+  expr: PCTCODE %in% c('5nn', 'Taa', '59898', '59999')
+  name: PCTCODE values codes
+- description: Primary Care Trust of Responsibility is String(8)
+  expr: is.character(PCTCODE_HIS) & nchar(PCTCODE_HIS) <= 8
+  name: PCTCODE_HIS String(8)
+- description: PCTCODE_HIS 5nn NHS Data Model and Dictionary
+  expr: grepl("^\\d{5}$", PCTCODE_HIS)
+  name: PCTCODE_HIS 5nn
+- description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
+  expr: PCTCODE_HIS %in% c('5nn', 'Taa', '59898', '59999')
+  name: PCTCODE_HIS values codes
+- description: Primary Care Trust of Responsibility 2002 is String(8)
+  expr: is.character(PCTCODE02) & nchar(PCTCODE02) <= 8
+  name: PCTCODE02 String(8)
+- description: "nan, naa or aaa = PCT\n59898 = Not applicable  \n59999 = Unknown"
+  expr: PCTCODE02 %in% c('nan, naa or aaa', '59898', '59999')
+  name: PCTCODE02 values codes
+- description: Primary Care Trust of Responsibility 2006 is String(6)
+  expr: is.character(PCTCODE06) & nchar(PCTCODE06) <= 6
+  name: PCTCODE06 String(6)
+- description: PCTCODE06 5nn NHS Data Model and Dictionary
+  expr: grepl("^\\d{5}$", PCTCODE06)
+  name: PCTCODE06 5nn
+- description: "5nn = PCT \nTaa = Care trust \n59898 = Not applicable\n59999 = Unknown"
+  expr: PCTCODE06 %in% c('5nn', 'Taa', '59898', '59999')
+  name: PCTCODE06 values codes
+- description: 'Organisation Identifier (Residence Responsibility)  is String(5) (to
+    2022-23)
+
+    String(3-5) (V6.3 2022-23 onwards)'
+  expr: is.character(PCTNHS) & nchar(PCTNHS) <= 5
+  name: 'PCTNHS String(5) (to 2022-23)
+
+    String(3-5) (V6.3 2022-23 onwards)'
+- description: "3an - 5an = Organisation code \nQ99 = Not known\nX98 = Not applicable\
+    \ (overseas visitors)"
+  expr: PCTNHS %in% c('3an - 5an', 'Q99', 'X98')
+  name: PCTNHS values codes
+- description: Origin of PCTCODE_HIS  is String(8)
+  expr: is.character(PCTORIG_HIS) & nchar(PCTORIG_HIS) <= 8
+  name: PCTORIG_HIS String(8)
+- description: "1 = GPPRAC was used to derive the code  \n2 = REGGMP was used to derive\
+    \ the code  \n3 = PURCODE was used to derive the code  \n4 = POSTCODE was used\
+    \ to derive the code  \n5 = POSTCODE allocated code, PCT code was blank  \n6 =\
+    \ POSTCODE allocated code, PCT code was 59998  \n9 = PCT code not known"
+  expr: PCTORIG_HIS %in% c('1', '2', '3', '4', '5', '6', '9')
+  name: PCTORIG_HIS values codes
+- description: Origin of PCTCODE02 is String(8)
+  expr: is.character(PCTORIG02) & nchar(PCTORIG02) <= 8
+  name: PCTORIG02 String(8)
+- description: "1 = GPPRAC was used to derive the code  \n2 = REGGMP was used to derive\
+    \ the code  \n3 = PURCODE was used to derive the code  \n4 = POSTCODE was used\
+    \ to derive the code  \n5 = POSTCODE allocated code, PCT code was blank  \n6 =\
+    \ POSTCODE allocated code, PCT code was 59998  \n9 = PCT code not known"
+  expr: PCTORIG02 %in% c('1', '2', '3', '4', '5', '6', '9')
+  name: PCTORIG02 values codes
+- description: Origin of PCTCODE06 is String(6)
+  expr: is.character(PCTORIG06) & nchar(PCTORIG06) <= 6
+  name: PCTORIG06 String(6)
+- description: "1 = GPPRAC was used to derive the code  \n2 = REGGMP was used to derive\
+    \ the code  \n3 = PURCODE was used to derive the code  \n4 = POSTCODE was used\
+    \ to derive the code  \n5 = POSTCODE allocated code, PCT code was blank  \n6 =\
+    \ POSTCODE allocated code, PCT code was 59998  \n9 = PCT code not known"
+  expr: PCTORIG06 %in% c('1', '2', '3', '4', '5', '6', '9')
+  name: PCTORIG06 values codes
+- description: Primary Care Trust of Provider  is String(3)
+  expr: is.character(PCTTREAT) & nchar(PCTTREAT) <= 3
+  name: PCTTREAT String(3)
+- description: PCTTREAT 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", PCTTREAT)
+  name: PCTTREAT 3an
+- description: '3an = PCT of provider
+
+    59898 = Not applicable
+
+    59999 = Unknown'
+  expr: PCTTREAT %in% c('3an', '59898', '59999')
+  name: PCTTREAT values codes
+- description: CDS Report Period End Date  is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PEREND)
+  name: PEREND Date(YYYY-MM-DD)
+- description: PEREND YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PEREND)
+  name: PEREND YYYY-MM-DD
+- description: Person Identifier (Clear) is String(10)
+  expr: is.character(PERSON_ID) & nchar(PERSON_ID) <= 10
+  name: PERSON_ID String(10)
+- description: PERSON_ID max 10an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{0,10}$", PERSON_ID)
+  name: PERSON_ID max 10an
+- description: CDS Report Period Start Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSTART)
+  name: PERSTART Date(YYYY-MM-DD)
+- description: PERSTART YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSTART)
+  name: PERSTART YYYY-MM-DD
+- description: Pseudonymised Code of GP Practice is String(16)
+  expr: is.character(PGPPRAC) & nchar(PGPPRAC) <= 16
+  name: PGPPRAC String(16)
+- description: PGPPRAC 16an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{16}$", PGPPRAC)
+  name: PGPPRAC 16an
+- description: '16an = Pseudonymised GP practice code
+
+    & = Unknown'
+  expr: PGPPRAC %in% c('16an', '&')
+  name: PGPPRAC values codes
+- description: Postcode District is String(4)
+  expr: is.character(POSTDIST) & nchar(POSTDIST) <= 4
+  name: POSTDIST String(4)
+- description: "an, aan, ann, or aann = Postcode district \nZZ99 = Unavailable / not\
+    \ applicable"
+  expr: POSTDIST %in% c('an, aan, ann, or aann', 'ZZ99')
+  name: POSTDIST values codes
+- description: Referrer Code (Pseudonymised) is String(16)
+  expr: is.character(PREFERER) & nchar(PREFERER) <= 16
+  name: PREFERER String(16)
+- description: PREFERER 16an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{16}$", PREFERER)
+  name: PREFERER 16an
+- description: "16an = Pseudonymised referrer code  \n& = Referrer code is null\n\
+    99 = Referrer code is invalid"
+  expr: PREFERER %in% c('16an', '&', '99')
+  name: PREFERER values codes
+- description: Registered or Referring GP (Pseudonymised) is String(16)
+  expr: is.character(PREGGMP) & nchar(PREGGMP) <= 16
+  name: PREGGMP String(16)
+- description: PREGGMP 16an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{16}$", PREGGMP)
+  name: PREGGMP 16an
+- description: "16an = pseudonymised registered or referring GP code \n& = registered\
+    \ or referring GP code is null\n99 = registered or referring GP code is invalid"
+  expr: PREGGMP %in% c('16an', '&', '99')
+  name: PREGGMP values codes
+- description: CDS Prime Recipient Identity is String(12)
+  expr: is.character(PRIMERECP) & nchar(PRIMERECP) <= 12
+  name: PRIMERECP String(12)
+- description: Priority Type is Number
+  expr: is.integer(PRIORITY)
+  name: PRIORITY Number
+- description: '1 = Routine
+
+    2 = Urgent
+
+    3 = Two week wait
+
+    9 = Not known'
+  expr: PRIORITY %in% c('1', '2', '3', '9')
+  name: PRIORITY values codes
+- description: Organisation Identifier (Code of Provider)  is Number
+  expr: is.integer(PROCODE)
+  name: PROCODE Number
+- description: "3an or 5an = Provider code \n89997 = Non-UK provider where no organisation\
+    \ identifier has been issued  \n89999 = Non-NHS UK provider where no organisation\
+    \ identifier has been issued"
+  expr: PROCODE %in% c('3an or 5an', '89997', '89999')
+  name: PROCODE values codes
+- description: Organisation Identifier (Code of Provider)  is String(5)
+  expr: is.character(PROCODE3) & nchar(PROCODE3) <= 5
+  name: PROCODE3 String(5)
+- description: Organisation Identifier (Code of Provider) (5 character) is String(5)
+  expr: is.character(PROCODE5) & nchar(PROCODE5) <= 5
+  name: PROCODE5 String(5)
+- description: PROCODE5 5an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{5}$", PROCODE5)
+  name: PROCODE5 5an
+- description: "5an = Provider code to 5 characters\n89997 = Non-UK provider where\
+    \ no organisation identifier has been issued  \n89999 = Non-NHS UK provider where\
+    \ no organisation identifier has been issued"
+  expr: PROCODE5 %in% c('5an', '89997', '89999')
+  name: PROCODE5 values codes
+- description: Organisation Identifier (Code of Provider) (Original) is String(5)
+  expr: is.character(PROCODEO) & nchar(PROCODEO) <= 5
+  name: PROCODEO String(5)
+- description: Provider Code of Treatment is String(5)
+  expr: is.character(PROCODET) & nchar(PROCODET) <= 5
+  name: PROCODET String(5)
+- description: PROCODET 5an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{5}$", PROCODET)
+  name: PROCODET 5an
+- description: Provider Type  is String(20)
+  expr: is.character(PROTYPE) & nchar(PROTYPE) <= 20
+  name: PROTYPE String(20)
+- description: "CARETRUST = Care trust  \nCCG = Clinical Commissioning Group\nFOUNDATION\
+    \ = NHS foundation trust  \nIND = Independent sector provider  \nINDSITE = Independent\
+    \ sector provider site \nINDSITETC = Treatment centre at independent sector provider\
+    \ site  \nOTHERPROV = Other provider organisation  \nPCT = Primary care trust\
+    \  \nTRUST = NHS trust  \nTRUSTSITETC = Treatment centre at NHS trust site"
+  expr: PROTYPE %in% c('CARETRUST', 'CCG', 'FOUNDATION', 'IND', 'INDSITE', 'INDSITETC',
+    'OTHERPROV', 'PCT', 'TRUST', 'TRUSTSITETC')
+  name: PROTYPE values codes
+- description: Distance Between LSOA11 and Provider is String(15)
+  expr: is.character(PROVDIST) & nchar(PROVDIST) <= 15
+  name: PROVDIST String(15)
+- description: PROVDIST nnn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", PROVDIST)
+  name: PROVDIST nnn.nn
+- description: Derivation of PROVDIST is String(1)
+  expr: is.character(PROVDIST_FLAG) & nchar(PROVDIST_FLAG) <= 1
+  name: PROVDIST_FLAG String(1)
+- description: '5 = PROVDIST was calculated from PROCODE5
+
+    3 = PROVDIST was calculated from PROCODE3'
+  expr: PROVDIST_FLAG %in% c('5', '3')
+  name: PROVDIST_FLAG values codes
+- description: Pseudonymised Patient identifier - HES generated is String(32)
+  expr: is.character(PSEUDO_HESID) & nchar(PSEUDO_HESID) <= 32
+  name: PSEUDO_HESID String(32)
+- description: PSEUDO_HESID 32an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{32}$", PSEUDO_HESID)
+  name: PSEUDO_HESID 32an
+- description: Organisation Identifer (Code of Commissioner) is String(12)
+  expr: is.character(PURCODE) & nchar(PURCODE) <= 12
+  name: PURCODE String(12)
+- description: '3an - 5an = Organisation Identifier (Commissioning Organisation)
+
+    VPP00 = Private patients / overseas visitor liable for charge
+
+    XMD00 = Commissioner code for Ministry of Defence (MoD) healthcare
+
+    YDD82 = Episodes funded directly by the National Commissioning Group for England
+    (retired September 2018)'
+  expr: PURCODE %in% c('3an - 5an', 'VPP00', 'XMD00', 'YDD82')
+  name: PURCODE values codes
+- description: Strategic Health Authority of Commissioner is String(8)
+  expr: is.character(PURSTHA) & nchar(PURSTHA) <= 8
+  name: PURSTHA String(8)
+- description: PURSTHA 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", PURSTHA)
+  name: PURSTHA 3an
+- description: "3an = SHA area of commissioner\nS = Scotland  \nX = Foreign (including\
+    \ Isle of Man and Channel Islands)  \nY = Unknown  \nZ = Northern Ireland"
+  expr: PURSTHA %in% c('3an', 'S', 'X', 'Y', 'Z')
+  name: PURSTHA values codes
+- description: Commissioner Code Status  is String(1)
+  expr: is.character(PURVAL) & nchar(PURVAL) <= 1
+  name: PURVAL String(1)
+- description: "0 = Purchaser code is not recognised throughout the NHS  \n1 = Purchaser\
+    \ code is recognised throughout the NHS"
+  expr: PURVAL %in% c('0', '1')
+  name: PURVAL values codes
+- description: 'Organisation Identifier (Referring Organisation  is String(8) (to
+    2022-23)
+
+    String(3-8) (V6.3 2022-23 onwards)'
+  expr: is.character(REFERORG) & nchar(REFERORG) <= 8
+  name: 'REFERORG String(8) (to 2022-23)
+
+    String(3-8) (V6.3 2022-23 onwards)'
+- description: "3an - 8an = Referring organisation code  \nX99998 = Not applicable\
+    \ \nX99999 = Not known"
+  expr: REFERORG %in% c('3an - 8an', 'X99998', 'X99999')
+  name: REFERORG values codes
+- description: Referrer Code is String(8)
+  expr: is.character(REFERRER) & nchar(REFERRER) <= 8
+  name: REFERRER String(8)
+- description: "an8 = Referrer code\nA9999998 = Ministry of Defence Doctor\nC9999998\
+    \ = Consultant, General Medical Council (GMC) number not known  \nD9999998 = Dentist,\
+    \ General Dental Practitioner Code (GDC) not known\nCD999998 = Dental consultant:\
+    \ GMC / GDC number not known  \nR9999981 = Referrer other than GP, general dental\
+    \ practitioner or consultant  \nX9999998 = Not applicable, e.g. patient has self-presented\
+    \ or not known  \n& = Referrer code not recorded\n99 = Referrer code invalid"
+  expr: REFERRER %in% c('an8', 'A9999998', 'C9999998', 'D9999998', 'CD999998', 'R9999981',
+    'X9999998', '&', '99')
+  name: REFERRER values codes
+- description: Source of Referral is String(2)
+  expr: is.character(REFSOURC) & nchar(REFSOURC) <= 2
+  name: REFSOURC String(2)
+- description: "Initiated by the consultant responsible for the outpatient attendance:\
+    \ \n01 = Following an emergency admission  \n02 = Following a domiciliary visit\
+    \  \n10 = Following an Accident and Emergency Attendance  \n11 = Other  \nNot\
+    \ initiated by the consultant responsible for the outpatient attendance: \n03\
+    \ = Referral from a general medical practitioner  \n04 = Referral from an accident\
+    \ and emergency department  \n05 = Referral from a consultant, other than in an\
+    \ accident and emergency department  \n06 = Self Referral  \n07 = Referral from\
+    \ prosthetist  \n12 = Referral from GP with special interest  \n13 = Referral\
+    \ from a specialist nurse (secondary care)  \n14 = Referral from an allied health\
+    \ professional  \n15 = Referral from an optometrist  \n16 = Referral from a orthoptist\
+    \  \n17 = Referral from a national screening programme  \n92 = General dental\
+    \ practitioner  \n93 = Community dental service  \n08 = Other source of Referral\
+    \  \n97 = Other \u2013 not initiated by the consultant responsible for the consultant\
+    \ outpatient episode  \n99 = Not known"
+  expr: REFSOURC %in% c('01', '02', '10', '11', '03', '04', '05', '06', '07', '12',
+    '13', '14', '15', '16', '17', '92', '93', '08', '97', '99')
+  name: REFSOURC values codes
+- description: Registered or Referring GP is String(8)
+  expr: is.character(REGGMP) & nchar(REGGMP) <= 8
+  name: REGGMP String(8)
+- description: REGGMP 8an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{8}$", REGGMP)
+  name: REGGMP 8an
+- description: "8an = GP code\nG followed by up to 7 digits (GP England and Wales)\n\
+    S followed by up to 7 digits (GP Scotland)\n[Z as 1st character] [E, N, S or W\
+    \ as 2nd character] followed by up to 6 digits (GP N. Ireland)\nG9999998 = GP\
+    \ code is unknown  \nG9999981 = No registered GP  \nR9999981 (retired) = referrer\
+    \ other than General Medical Practitioner, General Dental\nPractitioner or Consultant\
+    \  \nA9999998 (retired) = Ministry of Defence doctor  \nP9999981 (retired) = Prison\
+    \ doctor\n& = Registered GP not recorded\n99 = Registered GP code invalid"
+  expr: REGGMP %in% c('8an', 'G9999998', 'G9999981', 'R9999981 (retired)', 'A9999998
+    (retired)', 'P9999981 (retired)', '&', '99')
+  name: REGGMP values codes
+- description: Referral Request Received Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    REQDATE)
+  name: REQDATE Date(YYYY-MM-DD)
+- description: REQDATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    REQDATE)
+  name: REQDATE YYYY-MM-DD
+- description: 'YYYY-MM-DD = Referral request received date
+
+    1800-01-01 = Null
+
+    1801-01-01=  Invalid date submitted'
+  expr: REQDATE %in% c('YYYY-MM-DD', '1800-01-01', '1801-01-01')
+  name: REQDATE values codes
+- description: County of Residence is String(2)
+  expr: is.character(RESCTY) & nchar(RESCTY) <= 2
+  name: RESCTY String(2)
+- description: "00 = Unitary authority  \n09 = Bedfordshire  \n00 = Not available\
+    \ (patient was resident within a Unitary Authority)\n11 = Buckinghamshire  \n\
+    12 = Cambridgeshire  \n16 = Cumbria  \n17 = Derbyshire  \n18 = Devon  \n19 = Dorset\
+    \  \n21 = East Sussex  \n22 = Essex  \n23 = Gloucestershire  \n24 = Hampshire\
+    \  \n26 = Hertfordshire  \n29 = Kent  \n30 = Lancashire  \n31 = Leicestershire\
+    \  \n32 = Lincolnshire  \n33 = Norfolk \n34 = Northamptonshire  \n36 = North Yorkshire\
+    \  \n37 = Nottinghamshire  \n38 = Oxfordshire  \n40 = Somerset  \n41 = Staffordshire\
+    \  \n42 = Suffolk  \n43 = Surrey  \n44 = Warwickshire  \n45 = West Sussex  \n\
+    47 = Worcestershire  \nS = Scotland  \nU = No fixed abode\nW = Wales  \nX = Foreign\
+    \ (from 1990-91 onwards)  \nY = Not known  \nZ = Northern Ireland "
+  expr: RESCTY %in% c('00', '09', '11', '12', '16', '17', '18', '19', '21', '22',
+    '23', '24', '26', '29', '30', '31', '32', '33', '34', '36', '37', '38', '40',
+    '41', '42', '43', '44', '45', '47', 'S', 'U', 'W', 'X', 'Y', 'Z')
+  name: RESCTY values codes
+- description: County of Residence (ONS) is String(12)
+  expr: is.character(RESCTY_ONS) & nchar(RESCTY_ONS) <= 12
+  name: RESCTY_ONS String(12)
+- description: "E10000002 - E10000034 = county of residence (England)\nE99999999 =\
+    \ Unitary Authority (England)\nW99999999 = Wales\nS99999999 = Scotland\nN99999999\
+    \ = Northern Ireland\nL99999999 = Channel Islands\nM99999999 = Isle of Man\nU\
+    \ = No fixed abode\nX = Foreign   \nY = Not known "
+  expr: RESCTY_ONS %in% c('E10000002 - E10000034', 'E99999999', 'W99999999', 'S99999999',
+    'N99999999', 'L99999999', 'M99999999', 'U', 'X', 'Y')
+  name: RESCTY_ONS values codes
+- description: Government Office Region of Residence is String(1)
+  expr: is.character(RESGOR) & nchar(RESGOR) <= 1
+  name: RESGOR String(1)
+- description: 'A = North East
+
+    B = North West
+
+    D = Yorkshire and Humber
+
+    E = East Midlands
+
+    F = West Midlands
+
+    G = East of England
+
+    H = London
+
+    J = South East
+
+    K = South West
+
+    S = Scotland
+
+    U = No fixed abode
+
+    W = Wales
+
+    X = Foreign (including Isle of Man and Channel Islands)
+
+    Y = Unknown
+
+    Z = Northern Ireland'
+  expr: RESGOR %in% c('A', 'B', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'S', 'U', 'W',
+    'X', 'Y', 'Z')
+  name: RESGOR values codes
+- description: Government Office Region of Residence (ONS) is String(9)
+  expr: is.character(RESGOR_ONS) & nchar(RESGOR_ONS) <= 9
+  name: RESGOR_ONS String(9)
+- description: 'E12000001  =North East
+
+    E12000002 = North West
+
+    E12000003 = Yorkshire and Humber
+
+    E12000004 = East Midlands
+
+    E12000005 = West Midlands
+
+    E12000006 = East of England
+
+    E12000007 = London
+
+    E12000008 = South East
+
+    E12000009 = South West
+
+    E99999999 = England (not otherwise stated)
+
+    L99999999 = Channel Islands
+
+    M99999999 = Isle of Man
+
+    N99999999 = Northern Ireland
+
+    S99999999 = Scotland
+
+    W99999999 = Wales
+
+    U = No fixed abode
+
+    X = Foreign
+
+    Y = Unknown'
+  expr: RESGOR_ONS %in% c('E12000001', 'E12000002', 'E12000003', 'E12000004', 'E12000005',
+    'E12000006', 'E12000007', 'E12000008', 'E12000009', 'E99999999', 'L99999999',
+    'M99999999', 'N99999999', 'S99999999', 'W99999999', 'U', 'X', 'Y')
+  name: RESGOR_ONS values codes
+- description: Health Authority of Residence  is String(3)
+  expr: is.character(RESHA) & nchar(RESHA) <= 3
+  name: RESHA String(3)
+- description: RESHA 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", RESHA)
+  name: RESHA 3an
+- description: "3an = Health authority of residence \nS = Scotland \nU = no fixed\
+    \ abode\nW = Wales \nX = Foreign (including Isle of Man and Channel Islands) \n\
+    Y = Unknown \nZ = Northern Ireland"
+  expr: RESHA %in% c('3an', 'S', 'U', 'W', 'X', 'Y', 'Z')
+  name: RESHA values codes
+- description: Local Authority District of Residence is String(9)
+  expr: is.character(RESLADST) & nchar(RESLADST) <= 9
+  name: RESLADST String(9)
+- description: RESLADST 4an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{4}$", RESLADST)
+  name: RESLADST 4an
+- description: "4an = Local authority district code \nS = Scotland \nU = no fixed\
+    \ abode\nW = Wales \nY = Not known \nZ = Northern Ireland \nX = Foreign (includes\
+    \ Isle of Man)"
+  expr: RESLADST %in% c('4an', 'S', 'U', 'W', 'Y', 'Z', 'X')
+  name: RESLADST values codes
+- description: Local Authority District of Residence (ONS) is String(9)
+  expr: is.character(RESLADST_ONS) & nchar(RESLADST_ONS) <= 9
+  name: RESLADST_ONS String(9)
+- description: RESLADST_ONS 9an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{9}$", RESLADST_ONS)
+  name: RESLADST_ONS 9an
+- description: '9an = Local authority district code
+
+    E99999999 = England (not otherwise stated)
+
+    L99999999 = Channel Islands
+
+    M99999999 = Isle of Man
+
+    N99999999 = Northern Ireland
+
+    S99999999 = Scotland
+
+    W99999999 = Wales
+
+    U = No fixed abode
+
+    X = Foreign
+
+    Y = Not known'
+  expr: RESLADST_ONS %in% c('9an', 'E99999999', 'L99999999', 'M99999999', 'N99999999',
+    'S99999999', 'W99999999', 'U', 'X', 'Y')
+  name: RESLADST_ONS values codes
+- description: Primary Care Trust of Residence is String(8)
+  expr: is.character(RESPCT_HIS) & nchar(RESPCT_HIS) <= 8
+  name: RESPCT_HIS String(8)
+- description: "5** = PCT \nTaa = Care trust \n6** = Wales \nS** = Scotland \nY**\
+    \ = Manx and Channel Islands \nZ** = Northern Ireland \n59898 = Other not applicable\
+    \ (non-England) \n59999 = Unknown PCT"
+  expr: RESPCT_HIS %in% c('5**', 'Taa', '6**', 'S**', 'Y**', 'Z**', '59898', '59999')
+  name: RESPCT_HIS values codes
+- description: Primary Care Trust of Residence 2002 is String(8)
+  expr: is.character(RESPCT02) & nchar(RESPCT02) <= 8
+  name: RESPCT02 String(8)
+- description: "5** = PCT \nTaa = Care trust \n6** = Wales \nS** = Scotland \nY**\
+    \ = Manx and Channel Islands \nZ** = Northern Ireland \n59898 = Other not applicable\
+    \ (non-England) \n59999 = Unknown PCT"
+  expr: RESPCT02 %in% c('5**', 'Taa', '6**', 'S**', 'Y**', 'Z**', '59898', '59999')
+  name: RESPCT02 values codes
+- description: Primary Care Trust of Residence 2006 is String(9)
+  expr: is.character(RESPCT06) & nchar(RESPCT06) <= 9
+  name: RESPCT06 String(9)
+- description: "5** = PCT \nTaa = Care trust \n6** = Wales \nS** = Scotland \nY**\
+    \ = Manx and Channel Islands \nZ** = Northern Ireland \n59898 = Other not applicable\
+    \ (non-England) \n59999 = Unknown PCT"
+  expr: RESPCT06 %in% c('5**', 'Taa', '6**', 'S**', 'Y**', 'Z**', '59898', '59999')
+  name: RESPCT06 values codes
+- description: Regional Office of Residence  is String(3)
+  expr: is.character(RESRO) & nchar(RESRO) <= 3
+  name: RESRO String(3)
+- description: "Y01 = Northern and Yorkshire  \nY02 = Trent  \nY07 = West Midlands\
+    \  \nY08 = North West  \nY09 = Eastern  \nY10 = London  \nY11 = South East  \n\
+    Y12 = South West  \nW00 = Wales  \nS00 = Scotland  \nZ00 = Northern Ireland  \n\
+    U00 = No fixed abode\nY00 = Unknown  \nX00 = Foreign (includes Channel Islands\
+    \ and the Isle of Man)"
+  expr: RESRO %in% c('Y01', 'Y02', 'Y07', 'Y08', 'Y09', 'Y10', 'Y11', 'Y12', 'W00',
+    'S00', 'Z00', 'U00', 'Y00', 'X00')
+  name: RESRO values codes
+- description: Strategic Health Authority of Residence is String(8)
+  expr: is.character(RESSTHA_HIS) & nchar(RESSTHA_HIS) <= 8
+  name: RESSTHA_HIS String(8)
+- description: "an3 = Strategic Health Authority of residence\nS = Scotland \nU =\
+    \ no fixed abode\nW or Q99 = Wales \nX = Foreign (includes Channel Islands and\
+    \ the Isle of Man)\nY = Unknown \nZ = Northern Ireland"
+  expr: RESSTHA_HIS %in% c('an3', 'S', 'U', 'W or Q99', 'X', 'Y', 'Z')
+  name: RESSTHA_HIS values codes
+- description: Strategic Health Authority of Residence 2002 is String(8)
+  expr: is.character(RESSTHA02) & nchar(RESSTHA02) <= 8
+  name: RESSTHA02 String(8)
+- description: "an3 = Strategic Health Authority of residence 2002\nS = Scotland \n\
+    U = no fixed abode\nW or Q99 = Wales \nX = Foreign (includes Channel Islands and\
+    \ the Isle of Man)\nY = Unknown \nZ = Northern Ireland"
+  expr: RESSTHA02 %in% c('an3', 'S', 'U', 'W or Q99', 'X', 'Y', 'Z')
+  name: RESSTHA02 values codes
+- description: Strategic Health Authority of Residence 2006 is String(9)
+  expr: is.character(RESSTHA06) & nchar(RESSTHA06) <= 9
+  name: RESSTHA06 String(9)
+- description: "an3 = Strategic Health Authority of residence 2006\nS = Scotland \n\
+    U = no fixed abode\nW or Q99 = Wales \nX = Foreign (includes Channel Islands and\
+    \ the Isle of Man)\nY = Unknown \nZ = Northern Ireland"
+  expr: RESSTHA06 %in% c('an3', 'S', 'U', 'W or Q99', 'X', 'Y', 'Z')
+  name: RESSTHA06 values codes
+- description: Regional Office of Treatment is String(3)
+  expr: is.character(ROTREAT) & nchar(ROTREAT) <= 3
+  name: ROTREAT String(3)
+- description: "Y01 = Northern and Yorkshire  \nY02 = Trent  \nY07 = West Midlands\
+    \  \nY08 = North West  \nY09 = Eastern  \nY10 = London  \nY11 = South East  \n\
+    Y12 = South West  \nY00 = Unknown"
+  expr: ROTREAT %in% c('Y01', 'Y02', 'Y07', 'Y08', 'Y09', 'Y10', 'Y11', 'Y12', 'Y00')
+  name: ROTREAT values codes
+- description: Referral to Treatment Period End Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    RTTPEREND)
+  name: RTTPEREND Date(YYYY-MM-DD)
+- description: RTTPEREND YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    RTTPEREND)
+  name: RTTPEREND YYYY-MM-DD
+- description: Referral to Treatment Period Start Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    RTTPERSTART)
+  name: RTTPERSTART Date(YYYY-MM-DD)
+- description: RTTPERSTART YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    RTTPERSTART)
+  name: RTTPERSTART YYYY-MM-DD
+- description: Referral to Treatment Period Status is String(2)
+  expr: is.character(RTTPERSTAT) & nchar(RTTPERSTAT) <= 2
+  name: RTTPERSTAT String(2)
+- description: "The first activity in a referral to treatment period where the first\
+    \ definitive treatment will be a subsequent activity:\n10 = First activity in\
+    \ a referral to treatment period\n11 = First activity at the start of a new referral\
+    \ to treatment period following active monitoring\n12 = First activity at the\
+    \ start of a new referral to treatment period following a decision to refer directly\
+    \ to the consultant or NHS allied health professional service (referral to treatment\
+    \ measurement) for a separate condition\n\nSubsequent activity during a referral\
+    \ to treatment period:\n20 = Subsequent activity during a referral to treatment\
+    \ period - further activities anticipated \n21 = Subsequent activity by another\
+    \ health care provider following a transfer to another health care provider during\
+    \ a referral to treatment period anticipated\n\nActivity that ends the referral\
+    \ to treatment period:\n30 = Start of first definitive treatment\n31 = Start of\
+    \ active monitoring initiated by the patient\n32 = Start of active monitoring\
+    \ initiated by the care professional\n33 = Did not attend - the patient did not\
+    \ attend the first care activity after the referral1 \n34 = Decision not to treat\
+    \ - decision not to treat made or no further contact required2\n35 = Patient declined\
+    \ offered treatment\n36 = Patient died before treatment\n\nActivity that is not\
+    \ part of a referral to treatment period:\n90 = After treatment - first definitive\
+    \ treatment occurred previously (e.g. admitted as an emergency from A&E or the\
+    \ activity is after the start of treatment)\n91 = Care activity during active\
+    \ monitoring\n92 = Not yet referred for treatment, undergoing diagnostic tests\
+    \ by general practitioner before referral\n98 = Not applicable - activity not\
+    \ applicable to referral to treatment periods\n\nActivity where the referral to\
+    \ treatment period status is not yet known:\n99 = Not yet known\n\nWhere the Referral\
+    \ to treatment period status is National Code 99 - \"not yet known\", the status\
+    \ is treated as if the activity is a subsequent activity during a referral to\
+    \ treatment period. In this case the referral to treatment period status should\
+    \ be corrected once it is possible to determine the correct value.\n\n1Patients\
+    \ who do not attend an appointment:\nNational code 33 - \"Did not attend - the\
+    \ patient did not attend the first care activity after the referral\" may only\
+    \ be used where\n\u2022 The patient did not attend their first appointment following\
+    \ the referral request that started the referral to treatment period, provided\
+    \ that the health care provider can demonstrate that the appointment was clearly\
+    \ communicated to the patient.\nReferral to treatment periods with referral to\
+    \ treatment period status of national code 33 are excluded from the measurement\
+    \ of the 18 weeks referral to treatment period included in referral to treatment\
+    \ consultant-led waiting times measurement and the count of allied health professional\
+    \ referral to treatment measurement referral to treatment periods\n\n2Decision\
+    \ not to treat:\nNational Code 34 - \"decision not to treat - decision not to\
+    \ treat made or no further contact required\" includes\n\u2022 a discharge after\
+    \ patient did not attend the second or a subsequent care activity after the referral.\n\
+    \u2022 a change resulting in care no longer being commissioned by the English\
+    \ NHS.\n\u2022 a referral to a consultant led service during a referral to treatment\
+    \ period excluded from target for the same condition, disease or injury. A new\
+    \ referral to treatment period will start."
+  expr: RTTPERSTAT %in% c('10', '11', '12', '20', '21', '30', '31', '32', '33', '34',
+    '35', '36', '90', '91', '92', '98', '99')
+  name: RTTPERSTAT values codes
+- description: Rural / Urban Indicator is String(9)
+  expr: is.character(RURURB_IND) & nchar(RURURB_IND) <= 9
+  name: RURURB_IND String(9)
+- description: "1 = Urban =>10K - sparse: Output Area falls within Urban settlements\
+    \ with a population of 10,000 or more and the wider surrounding area is sparsely\
+    \ populated.  \n2 = Town and Fringe - sparse. Output Area falls within the Small\
+    \ Town and Fringe areas category and the wider surrounding area is sparsely populated.\
+    \  \n3 = Village - sparse. Output Area falls within the Village category and the\
+    \ wider surrounding area is sparsely populated. \n4 = Hamlet and Isolated dwelling\
+    \ - sparse. Output Area falls within the Hamlet & Isolated Dwelling category and\
+    \ the wider surrounding area is sparsely populated.  \n5 = Urban =>10K - less\
+    \ sparse. Output Area falls within Urban settlements with a population of 10,000\
+    \ or more and the wider surrounding area is less sparsely populated.  \n6 = Town\
+    \ and Fringe - less sparse. Output Area falls within the Small Town and Fringe\
+    \ areas category and the wider surrounding area is less sparsely populated.  \n\
+    7 = Village - less sparse. Output Area falls within the Village category and the\
+    \ wider surrounding area is less sparsely populated.  \n8 = Hamlet and Isolated\
+    \ Dwelling - less sparse. Output Area falls within the Hamlet & Isolated Dwelling\
+    \ category and the wider surrounding area is less sparsely populated.  \n9 = Postcode\
+    \ in Scotland/NI/Channel Islands/Isle of Man/pseudo postcodes  \nSpace = No information\
+    \ available"
+  expr: RURURB_IND %in% c('1', '2', '3', '4', '5', '6', '7', '8', '9', 'Space')
+  name: RURURB_IND values codes
+- description: CDS Sender Identity is String(12)
+  expr: is.character(SENDER) & nchar(SENDER) <= 12
+  name: SENDER String(12)
+- description: Service Type Requested is Number
+  expr: is.integer(SERVTYPE)
+  name: SERVTYPE Number
+- description: "1 = Advice / consultation  \n2 = Specific procedure  \n3 = Other \
+    \ \n9 = Not known"
+  expr: SERVTYPE %in% c('1', '2', '3', '9')
+  name: SERVTYPE values codes
+- description: Person Stated Gender Code  is String(1)
+  expr: is.character(SEX) & nchar(SEX) <= 1
+  name: SEX String(1)
+- description: "From 2022-23 onwards: \n1 = Male\n2 = Female\n9 = Indeterminate (unable\
+    \ to be classified as either male or female)\nX = Not Known (Person stated gender\
+    \ code not recorded)\n\nUntil 2022-23: \n1 = Male\n2 = Female\n9 = Not Specified\n\
+    0 = Not Known"
+  expr: SEX %in% c('1', '2', '9', 'X', '0')
+  name: SEX values codes
+- description: Distance Between LSOA11 and Site Code of Treatment is String(15)
+  expr: is.character(SITEDIST) & nchar(SITEDIST) <= 15
+  name: SITEDIST String(15)
+- description: SITEDIST nnn.nn NHS Data Model and Dictionary
+  expr: grepl("^\\d*\\.?\\d*$", SITEDIST)
+  name: SITEDIST nnn.nn
+- description: Derivation of SITEDIST is String(1)
+  expr: is.character(SITEDIST_FLAG) & nchar(SITEDIST_FLAG) <= 1
+  name: SITEDIST_FLAG String(1)
+- description: '3 = SITEDIST was calculated from the first 3-characters of SITETRET
+
+    5 = SITEDIST was calculated from the full 5-character SITETRET code'
+  expr: SITEDIST_FLAG %in% c('3', '5')
+  name: SITEDIST_FLAG values codes
+- description: Organisation Site Identifier (Of Treatment) is String(12)
+  expr: is.character(SITETRET) & nchar(SITETRET) <= 12
+  name: SITETRET String(12)
+- description: SITETRET 5an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{5}$", SITETRET)
+  name: SITETRET 5an
+- description: "5an = Site code \n89999 = Non-NHS UK provider where no organisation\
+    \ site code has been issued  \n89997 = Non-UK provider where no organisation site\
+    \ code has been issued\nR9998 = Not a hospital site"
+  expr: SITETRET %in% c('5an', '89999', '89997', 'R9998')
+  name: SITETRET values codes
+- description: Medical Staff Type is String(2)
+  expr: is.character(STAFFTYP) & nchar(STAFFTYP) <= 2
+  name: STAFFTYP String(2)
+- description: "01 = Consultant (Retired 1 April 2005)  \n02 = Member of Consultant\
+    \ firm (Retired 1 April 2005)  \n03 = Lead Care Professional (From 1 April 2005)\
+    \  \n04 = Member of Care Professional team (From 1 April 2005)  \n08 = Not applicable\
+    \  \n09 = Not known  \n99 = Not known : a validation error"
+  expr: STAFFTYP %in% c('01', '02', '03', '04', '08', '09', '99')
+  name: STAFFTYP values codes
+- description: Strategic Health Authority of Treatment is String(3)
+  expr: is.character(STHATRET) & nchar(STHATRET) <= 3
+  name: STHATRET String(3)
+- description: STHATRET 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", STHATRET)
+  name: STHATRET 3an
+- description: "3an = Strategic Health Authority area of treatment  \nY = Not known"
+  expr: STHATRET %in% c('3an', 'Y')
+  name: STHATRET values codes
+- description: "Integrated Care Board of GP Practice (July 2022 onwards)\nSustainability\
+    \ and Transformation Partnership of GP Practice (until June 2022)\n is String(9)"
+  expr: is.character(STP_GP_PRACTICE) & nchar(STP_GP_PRACTICE) <= 9
+  name: STP_GP_PRACTICE String(9)
+- description: 'an9 = ICB / STP code of GP practice
+
+    null = Not known, or GP practice is outside of England'
+  expr: STP_GP_PRACTICE %in% c('an9', 'null')
+  name: STP_GP_PRACTICE values codes
+- description: "Integrated Care Board of Residence (July 2022 onwards)\nSustainability\
+    \ and Transformation Partnership of Residence (until June 2022 onwards)\n is String(9)"
+  expr: is.character(STP_RESIDENCE) & nchar(STP_RESIDENCE) <= 9
+  name: STP_RESIDENCE String(9)
+- description: 'an9 = ICB / STP code of residence
+
+    null = Not known, or patient''s postcode is outside of England'
+  expr: STP_RESIDENCE %in% c('an9', 'null')
+  name: STP_RESIDENCE values codes
+- description: "Integrated Care Board of Responsibility (July 2022 onwards)\nSustainability\
+    \ and Transformation Partnership of Responsibility (until June 2022)\n is String(9)"
+  expr: is.character(STP_RESPONSIBILITY) & nchar(STP_RESPONSIBILITY) <= 9
+  name: STP_RESPONSIBILITY String(9)
+- description: 'an9 = ICB / STP code of responsibility
+
+    null = Not known'
+  expr: STP_RESPONSIBILITY %in% c('an9', 'null')
+  name: STP_RESPONSIBILITY values codes
+- description: Origin of STP_RESPONSIBILITY  is String(1)
+  expr: is.character(STP_RESPONSIBILITY_ORIGIN) & nchar(STP_RESPONSIBILITY_ORIGIN)
+    <= 1
+  name: STP_RESPONSIBILITY_ORIGIN String(1)
+- description: "Integrated Care Board of Treatment (July 2022 onwards)\nSustainability\
+    \ and Transformation Partnership of Treatment\_(until June 2022) is String(9)"
+  expr: is.character(STP_TREATMENT) & nchar(STP_TREATMENT) <= 9
+  name: STP_TREATMENT String(9)
+- description: 'an9 = ICB / STP code of treatment
+
+    null = Not known'
+  expr: STP_TREATMENT %in% c('an9', 'null')
+  name: STP_TREATMENT values codes
+- description: Origin of STP_TREATMENT  is String(1)
+  expr: is.character(STP_TREATMENT_ORIGIN) & nchar(STP_TREATMENT_ORIGIN) <= 1
+  name: STP_TREATMENT_ORIGIN String(1)
+- description: Submission Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    SUBDATE)
+  name: SUBDATE Date(YYYY-MM-DD)
+- description: SUBDATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    SUBDATE)
+  name: SUBDATE YYYY-MM-DD
+- description: Healthcare Resource Group - SUS Generated  is String(5)
+  expr: is.character(SUSHRG) & nchar(SUSHRG) <= 5
+  name: SUSHRG String(5)
+- description: SUSHRG 5an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{5}$", SUSHRG)
+  name: SUSHRG 5an
+- description: '5an = SUS generated HRG
+
+    Null = Records that have excluded from PbR in SUS as the activity is outside the
+    scope of PbR'
+  expr: SUSHRG %in% c('5an', 'Null')
+  name: SUSHRG values codes
+- description: Healthcare Resource Group Version Number - SUS Generated is String(3)
+  expr: is.character(SUSHRGVERS) & nchar(SUSHRGVERS) <= 3
+  name: SUSHRGVERS String(3)
+- description: '4.0 = HRG4
+
+    Null = Not applicable'
+  expr: SUSHRGVERS %in% c('4.0', 'Null')
+  name: SUSHRGVERS values codes
+- description: SUS Loaded Staging Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    SUSLDDATE)
+  name: SUSLDDATE Date(YYYY-MM-DD)
+- description: SUSLDDATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    SUSLDDATE)
+  name: SUSLDDATE YYYY-MM-DD
+- description: SUS Record Identifier is Number
+  expr: is.integer(SUSRECID)
+  name: SUSRECID Number
+- description: SUSRECID 14n NHS Data Model and Dictionary
+  expr: grepl("^\\d{14}$", SUSRECID)
+  name: SUSRECID 14n
+- description: SUS Generated Spell Identifier is String(19)
+  expr: is.character(SUSSPELLID) & nchar(SUSSPELLID) <= 19
+  name: SUSSPELLID String(19)
+- description: "19n (10n until 2016-17) = SUS spell identifier \nNull = Records that\
+    \ have excluded from PbR in SUS as the activity is outside the scope of PbR\n\
+    -1 = Unspellable episodes"
+  expr: SUSSPELLID %in% c('19n (10n until 2016-17)', 'Null', '-1')
+  name: SUSSPELLID values codes
+- description: Person Identifier (Tokenised) is String(32)
+  expr: is.character(TOKEN_PERSON_ID) & nchar(TOKEN_PERSON_ID) <= 32
+  name: TOKEN_PERSON_ID String(32)
+- description: TOKEN_PERSON_ID 32an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{32}$", TOKEN_PERSON_ID)
+  name: TOKEN_PERSON_ID 32an
+- description: Treatment Specialty is String(3)
+  expr: is.character(TRETSPEF) & nchar(TRETSPEF) <= 3
+  name: TRETSPEF String(3)
+- description: "From 2022-23: \nFor current list of ACTIVITY TREATMENT FUNCTION CODEs,\
+    \ see https://datadictionary.nhs.uk/data_elements/activity_treatment_function_code.html\n\
+    \nUntil 2022-23:\n100 =  General Surgery Service\n101 =  Urology Service\n102\
+    \ =  Transplant Surgery Service (From 1 April 2004)\n103 =  Breast Surgery Service\
+    \ (From 1 April 2004)\n104 =  Colorectal Surgery Service (From 1 April 2004)\n\
+    105 =  Hepatobiliary and Pancreatic Surgery Service (From 1 April 2004)\n106 =\
+    \  Upper Gastrointestinal Surgery Service (From 1 April 2004)\n107 =  Vascular\
+    \ Surgery Service (From 1 April 2004)\n108 =  Spinal Surgery Service (From April\
+    \ 2013)\n109 =  Bariatric Surgery Service (From 1 April 2021)\n110 =  Trauma and\
+    \ Orthopaedic Service\n111 =  Orthopaedic Service (From 1 April 2021)\n113 = \
+    \ Endocrine Surgery Service (From 1 April 2021)\n115 =  Trauma Surgery Service\
+    \ (From 1 April 2021)\n120 =  Ear Nose and Throat Service\n130 =  Ophthalmology\
+    \ Service\n140 =  Oral Surgery Service\n141 =  Restorative Dentistry Service\n\
+    142 =  Paediatric Dentistry Service (From 1999-2000)\n143 =  Orthodontic Service\n\
+    144 =  Maxillofacial Surgery Service (From 1 April 2004)\n145 =  Oral and Maxillofacial\
+    \ Surgery Service (From 1 April 2021)\n150 =  Neurosurgical Service\n160 =  Plastic\
+    \ Surgery Service\n161 =  Burns Care Service (From 1 April 2004)\n170 =  Cardiothoracic\
+    \ Surgery Service\n171 =  Paediatric Surgery Service\n172 =  Cardiac Surgery Service\
+    \ (From 1 April 2004)\n173 =  Thoracic Surgery Service (From 1 April 2004)\n174\
+    \ =  Cardiothoracic Transplantation Service (From 1 April 2004)\n180 =  Emergency\
+    \ Medicine Service\n190 =  Anaesthetic Service\n191 =  Pain Management Service\
+    \ (From 1998-99)\n192 =  Intensive Care Medicine Service (From 1 April 2004)\n\
+    200 =  Aviation and Space Medicine Service (From 1 April 2021)\n211 =  Paediatric\
+    \ Urology Service (From 2006-07)\n212 =  Paediatric Transplantation Surgery Service\
+    \ (From 2006-07)\n213 =  Paediatric Gastrointestinal Surgery Service (From 2006-07)\n\
+    214 =  Paediatric Trauma and Orthopaedic Service (From 2006-07)\n215 =  Paediatric\
+    \ Ear Nose and Throat Service (From 2006-07)\n216 =  Paediatric Ophthalmology\
+    \ Service (From 2006-07)\n217 =  Paediatric Oral and Maxillofacial Surgery Service\
+    \ (From 2006-07)\n218 =  Paediatric Neurosurgery Service (From 2006-07)\n219 =\
+    \  Paediatric Plastic Surgery Service (From 2006-07)\n220 =  Paediatric Burns\
+    \ Care Service (From 2006-07)\n221 =  Paediatric Cardiac Surgery Service (From\
+    \ 2006-07)\n222 =  Paediatric Thoracic Surgery Service (From 2006-07)\n223 = \
+    \ Paediatric Epilepsy Service (From April 2013)\n230 =  Paediatric Clinical Pharmacology\
+    \ Service (From 1 April 2021)\n240 =  Paediatric Palliative Medicine Service (From\
+    \ 1 April 2021)\n241 =  Paediatric Pain Management Service (From 2006-07)\n242\
+    \ =  Paediatric Intensive Care Service (From 2006-07)\n250 =  Paediatric Hepatology\
+    \ Service (From 1 April 2021)\n251 =  Paediatric Gastroenterology Service (From\
+    \ 2006-07)\n252 =  Paediatric Endocrinology Service (From 2006-07)\n253 =  Paediatric\
+    \ Clinical Haematology Service (From 2006-07)\n254 =  Paediatric Audio Vestibular\
+    \ Medicine Service (From 2006-07)\n255 =  Paediatric Clinical Immunology and Allergy\
+    \ Service (From 2006-07)\n256 =  Paediatric Infectious Diseases Service (From\
+    \ 2006-07)\n257 =  Paediatric Dermatology Service (From 2006-07)\n258 =  Paediatric\
+    \ Respiratory Medicine Service (From 2006-07)\n259 =  Paediatric Nephrology Service\
+    \ (From 2006-07)\n260 =  Paediatric Medical Oncology Service (From 2006-07)\n\
+    261 =  Paediatric Inherited Metabolic Medicine Service (From 2006-07)\n262 = \
+    \ Paediatric Rheumatology Service (From 2006-07)\n263 =  Paediatric Diabetes Service\
+    \ (From 1 April 2004)\n264 =  Paediatric Cystic Fibrosis Service (From 1 April\
+    \ 2004)\n270 =  Paediatric Emergency Medicine Service (From 1 April 2021)\n280\
+    \ =  Paediatric Interventional Radiology Service (From 2006-07)\n290 =  Community\
+    \ Paediatric Service (From 2006-07)\n291 =  Paediatric Neurodisability Service\
+    \ (From 2006-07)\n300 =  General Internal Medicine Service\n301 =  Gastroenterology\
+    \ Service\n302 =  Endocrinology Service\n303 =  Clinical Haematology Service\n\
+    304 =  Clinical Physiology Service (From 2008-09)\n305 =  Clinical Pharmacology\
+    \ Service\n306 =  Hepatology Service (From 1 April 2004)\n307 =  Diabetes Service\
+    \ (From 1 April 2004)\n308 =  Blood and Marrow Transplantation Service (From 1\
+    \ April 2004)\n309 =  Haemophilia Service (From 1 April 2004)\n310 =  Audio Vestibular\
+    \ Medicine Service\n311 =  Clinical Genetics Service\n313 =  Clinical Immunology\
+    \ and Allergy Service (From 1991-92)\n314 =  Rehabilitation Medicine Service (From\
+    \ 1991-92)\n315 =  Palliative Medicine Service\n316 =  Clinical Immunology Service\
+    \ (From 1 April 2004)\n317 =  Allergy Service (From 1 April 2004)\n318 =  Intermediate\
+    \ Care Service (From 1 April 2004)\n319 =  Respite Care Service (From 1 April\
+    \ 2004)\n320 =  Cardiology Service\n321 =  Paediatric Cardiology Service (From\
+    \ 1 April 2004)\n322 =  Clinical Microbiology Service (From 1 April 2004)\n323\
+    \ =  Spinal Injuries Service (From 2006-07)\n324 =  Anticoagulant Service (From\
+    \ 1 April 2004)\n325 =  Sport and Exercise Medicine Service (From 1 April 2004)\n\
+    326 =  Acute Internal Medicine Service (From 1 April 2021)\n327 =  Cardiac Rehabilitation\
+    \ Service (From 1 April 2004)\n328 =  Stroke Medicine Service (From 1 April 2004)\n\
+    329 =  Transient Ischaemic Attack Service (From 1 April 2004)\n330 =  Dermatology\
+    \ Service\n331 =  Congenital Heart Disease Service (From April 2013)\n333 =  Rare\
+    \ Disease Service (From 1 April 2021)\n335 =  Inherited Metabolic Medicine Service\
+    \ (From 1 April 2021)\n340 =  Respiratory Medicine Service\n341 =  Respiratory\
+    \ Physiology Service (From 1 April 2004)\n342 =  Pulmonary Rehabilitation Service\
+    \ (From 1 April 2004)\n343 =  Adult Cystic Fibrosis Service (From 1 April 2004)\n\
+    344 =  Complex Specialised Rehabilitation Service (From April 2013)\n345 =  Specialist\
+    \ Rehabilitation Service (From April 2013)\n346 =  Local Specialist Rehabilitation\
+    \ Service (From April 2013)\n347 =  Sleep Medicine Service (From 1 April 2021)\n\
+    348 =  Post-COVID-19 Syndrome Service (From 1 April 2021)\n350 =  Infectious Diseases\
+    \ Service\n352 =  Tropical Medicine Service (From 1 April 2004)\n360 =  Genitourinary\
+    \ Medicine Service\n361 =  Renal Medicine Service\n370 =  Medical Oncology Service\n\
+    371 =  Nuclear Medicine Service (From 2008-09)\n400 =  Neurology Service\n401\
+    \ =  Clinical Neurophysiology Service (From 2008-09)\n410 =  Rheumatology Service\n\
+    420 =  Paediatric Service\n421 =  Paediatric Neurology Service\n422 =  Neonatal\
+    \ Critical Care Service (From 1 April 2004)\n424 =  Well Baby Service (From 1\
+    \ April 2004)\n430 =  Elderly Medicine Service\n431 =  Orthogeriatric Medicine\
+    \ Service (From 1 April 2021)\n450 =  Dental Medicine Service (From 1990-91)\n\
+    451 =  Special Care Dentistry Service (From 1 April 2021)\n460 =  Medical Ophthalmology\
+    \ Service (From 1993-94)\n461 =  Ophthalmic and Vision Science Service (From 1\
+    \ April 2021)\n501 =  Obstetrics Service\n502 =  Gynaecology Service\n503 =  Gynaecological\
+    \ Oncology Service (From 1 April 2004)\n504 =  Community Sexual and Reproductive\
+    \ Health Service (From 1 April 2021)\n505 =  Fetal Medicine Service (From 1 April\
+    \ 2021)\n560 =  Midwifery Service (From October 1995)\n650 =  Physiotherapy Service\
+    \ (From 2006-07)\n651 =  Occupational Therapy Service (From 2006-07)\n652 =  Speech\
+    \ and Language Therapy Service (From 2006-07)\n653 =  Podiatry Service (From 2006-07)\n\
+    654 =  Dietetics Service (From 2006-07)\n655 =  Orthoptics Service (From 2006-07)\n\
+    656 =  Clinical Psychology Service (From 2006-07)\n657 =  Prosthetics Service\
+    \ (From 1 April 2004)\n658 =  Orthotics Service (From 1 April 2004)\n659 =  Dramatherapy\
+    \ Service (From 1 April 2004)\n660 =  Art Therapy Service (From 1 April 2004)\n\
+    661 =  Music Therapy Service (From 1 April 2004)\n662 =  Optometry Service (From\
+    \ 1 April 2004)\n663 =  Podiatric Surgery Service (From April 2013)\n670 =  Urological\
+    \ Physiology Service (From 1 April 2021)\n673 =  Vascular Physiology Service (From\
+    \ 1 April 2021)\n675 =  Cardiac Physiology Service (From 1 April 2021)\n677 =\
+    \  Gastrointestinal Physiology Service (From 1 April 2021)\n700 =  Learning Disability\
+    \ Service\n710 =  Adult Mental Health Service\n711 =  Child and Adolescent Psychiatry\
+    \ Service\n712 =  Forensic Psychiatry Service\n713 =  Medical Psychotherapy Service\n\
+    715 =  Old Age Psychiatry Service (From 1990-91)\n720 =  Eating Disorders Service\
+    \ (From 2006-07)\n721 =  Addiction Service (From 2006-07)\n722 =  Liaison Psychiatry\
+    \ Service (From 2006-07)\n723 =  Psychiatric Intensive Care Service (From 2006-07)\n\
+    724 =  Perinatal Mental Health Service (From 2006-07)\n725 =  Mental Health Recovery\
+    \ and Rehabilitation Service (From April 2013)\n726 =  Mental Health Dual Diagnosis\
+    \ Service (From April 2013)\n727 =  Dementia Assessment Service (From April 2013)\n\
+    730 =  Neuropsychiatry Service (From 1 April 2021)\n800 =  Clinical Oncology Service\n\
+    811 =  Interventional Radiology Service (From 1 April 2004)\n812 =  Diagnostic\
+    \ Imaging Service (From 2008-09)\n822 =  Chemical Pathology Service\n834 =  Medical\
+    \ Virology Service (From 1 April 2004)\n840 =  Audiology Service (From 2008-09)\n\
+    920 =  Diabetic Education Service (From April 2013)\nNull = Other Maternity Event\n\
+    & = Not known"
+  expr: TRETSPEF %in% c('100', '101', '102', '103', '104', '105', '106', '107', '108',
+    '109', '110', '111', '113', '115', '120', '130', '140', '141', '142', '143', '144',
+    '145', '150', '160', '161', '170', '171', '172', '173', '174', '180', '190', '191',
+    '192', '200', '211', '212', '213', '214', '215', '216', '217', '218', '219', '220',
+    '221', '222', '223', '230', '240', '241', '242', '250', '251', '252', '253', '254',
+    '255', '256', '257', '258', '259', '260', '261', '262', '263', '264', '270', '280',
+    '290', '291', '300', '301', '302', '303', '304', '305', '306', '307', '308', '309',
+    '310', '311', '313', '314', '315', '316', '317', '318', '319', '320', '321', '322',
+    '323', '324', '325', '326', '327', '328', '329', '330', '331', '333', '335', '340',
+    '341', '342', '343', '344', '345', '346', '347', '348', '350', '352', '360', '361',
+    '370', '371', '400', '401', '410', '420', '421', '422', '424', '430', '431', '450',
+    '451', '460', '461', '501', '502', '503', '504', '505', '560', '650', '651', '652',
+    '653', '654', '655', '656', '657', '658', '659', '660', '661', '662', '663', '670',
+    '673', '675', '677', '700', '710', '711', '712', '713', '715', '720', '721', '722',
+    '723', '724', '725', '726', '727', '730', '800', '811', '812', '822', '834', '840',
+    '920', 'Null', '&')
+  name: TRETSPEF values codes
+- description: Waiting Calculation Indicator is Number
+  expr: is.integer(WAIT_IND)
+  name: WAIT_IND Number
+- description: "0 = Days Waiting (WAITING) has been calculated  \n1 = Referral Request\
+    \ Received Date (REQDATE) is null, WAITING has not been calculated\n2 = REQDATE\
+    \ is < 1/1/1970, WAITING has not been calculated \n3 = REQDATE > Appointment Date,\
+    \ WAITING has not been calculated\n4 = DNA Date is present but invalid, WAITING\
+    \ has not been calculated\n5 = REQDATE is invalid, WAITING has not been calculated"
+  expr: WAIT_IND %in% c('0', '1', '2', '3', '4', '5')
+  name: WAIT_IND values codes
+- description: Duration of Wait (Referral to Treatment Period) is Number
+  expr: is.integer(WAITDAYS)
+  name: WAITDAYS Number
+- description: WAITDAYS 4n NHS Data Model and Dictionary
+  expr: grepl("^\\d{4}$", WAITDAYS)
+  name: WAITDAYS 4n
+- description: '4n = Waiting time in days from 1 to 8887
+
+    null = Not applicable / not known'
+  expr: WAITDAYS %in% c('4n', 'null')
+  name: WAITDAYS values codes
+- description: Days Waiting is Number
+  expr: is.integer(WAITING)
+  name: WAITING Number
+- description: WAITING 10n NHS Data Model and Dictionary
+  expr: grepl("^\\d{10}$", WAITING)
+  name: WAITING 10n
+- description: Waiting Time Measurement Type (Commissioning Data Set)  is String(2)
+  expr: is.character(WAITING_TIME_MEASUREMENT_TYPE) & nchar(WAITING_TIME_MEASUREMENT_TYPE)
+    <= 2
+  name: WAITING_TIME_MEASUREMENT_TYPE String(2)
+- description: '01 = Referral to Treatment period included in Referral to Treatment
+    consultant-led waiting times measurement
+
+    02 = Allied Health Professional Referral to Treatment measurement
+
+    03 = Improving Access to Psychological Therapies Referral to Treatment measurement
+    (retired 1 April 2020)
+
+    04 = Early Intervention in Psychosis waiting time measurement (retired 1 April
+    2020)
+
+    09 = Other Referral to Treatment measurement type (not listed)'
+  expr: WAITING_TIME_MEASUREMENT_TYPE %in% c('01', '02', '03', '04', '09')
+  name: WAITING_TIME_MEASUREMENT_TYPE values codes
+- description: Electoral Ward 1991 is String(9)
+  expr: is.character(WARD91) & nchar(WARD91) <= 9
+  name: WARD91 String(9)
+- description: WARD91 6a NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{6}$", WARD91)
+  name: WARD91 6a
+- description: '6a = Electoral ward
+
+    Y = Not known'
+  expr: WARD91 %in% c('6a', 'Y')
+  name: WARD91 values codes
+- description: Appointment Booked Reason is String(1)
+  expr: is.character(APPOINTMENT_BOOKED_REASON) & nchar(APPOINTMENT_BOOKED_REASON)
+    <= 1
+  name: APPOINTMENT_BOOKED_REASON String(1)
+- description: '1 = Timed Out-Patient Follow Up Appointment
+
+    2 = Patient Initiated Out-Patient Follow Up Appointment
+
+    3 = Remote Monitoring Triggered Out-Patient Follow Up Appointment'
+  expr: APPOINTMENT_BOOKED_REASON %in% c('1', '2', '3')
+  name: APPOINTMENT_BOOKED_REASON values codes
+- description: Assessment Tool (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(ASSESSMENT_TOOL) & (6 <= nchar(ASSESSMENT_TOOL)) & (nchar(ASSESSMENT_TOOL)
+    <= 4000)
+  name: ASSESSMENT_TOOL String(6 - 4000)
+- description: Assessment Tool Completion Timestamp is String(25)
+  expr: is.character(ASSESSMENT_TOOL_COMPLETION_TIMESTAMP) & nchar(ASSESSMENT_TOOL_COMPLETION_TIMESTAMP)
+    <= 25
+  name: ASSESSMENT_TOOL_COMPLETION_TIMESTAMP String(25)
+- description: ASSESSMENT_TOOL_COMPLETION_TIMESTAMP 25an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", ASSESSMENT_TOOL_COMPLETION_TIMESTAMP)
+  name: ASSESSMENT_TOOL_COMPLETION_TIMESTAMP 25an
+- description: Coded Clinical Entry is String(5)
+  expr: is.character(CODED_CLINICAL_ENTRY) & nchar(CODED_CLINICAL_ENTRY) <= 5
+  name: CODED_CLINICAL_ENTRY String(5)
+- description: Coded Diagnosis Timestamp is String(25)
+  expr: is.character(CODED_DIAGNOSIS_TIMESTAMP) & nchar(CODED_DIAGNOSIS_TIMESTAMP)
+    <= 25
+  name: CODED_DIAGNOSIS_TIMESTAMP String(25)
+- description: CODED_DIAGNOSIS_TIMESTAMP 25an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", CODED_DIAGNOSIS_TIMESTAMP)
+  name: CODED_DIAGNOSIS_TIMESTAMP 25an
+- description: Coded Finding Timestamp is String(25)
+  expr: is.character(CODED_FINDING_TIMESTAMP) & nchar(CODED_FINDING_TIMESTAMP) <=
+    25
+  name: CODED_FINDING_TIMESTAMP String(25)
+- description: CODED_FINDING_TIMESTAMP 25an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", CODED_FINDING_TIMESTAMP)
+  name: CODED_FINDING_TIMESTAMP 25an
+- description: Coded Observation Timestamp is String(25)
+  expr: is.character(CODED_OBSERVATION_TIMESTAMP) & nchar(CODED_OBSERVATION_TIMESTAMP)
+    <= 25
+  name: CODED_OBSERVATION_TIMESTAMP String(25)
+- description: CODED_OBSERVATION_TIMESTAMP 25an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", CODED_OBSERVATION_TIMESTAMP)
+  name: CODED_OBSERVATION_TIMESTAMP 25an
+- description: Coded Procedure Timestamp is String(25)
+  expr: is.character(CODED_PROCEDURE_TIMESTAMP) & nchar(CODED_PROCEDURE_TIMESTAMP)
+    <= 25
+  name: CODED_PROCEDURE_TIMESTAMP String(25)
+- description: CODED_PROCEDURE_TIMESTAMP 25an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", CODED_PROCEDURE_TIMESTAMP)
+  name: CODED_PROCEDURE_TIMESTAMP 25an
+- description: Comorbidity (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(COMORBIDITY) & (6 <= nchar(COMORBIDITY)) & (nchar(COMORBIDITY)
+    <= 4000)
+  name: COMORBIDITY String(6 - 4000)
+- description: Consultation Type is String(2)
+  expr: is.character(CONSULTATION_TYPE) & nchar(CONSULTATION_TYPE) <= 2
+  name: CONSULTATION_TYPE String(2)
+- description: '01 = Initial Consultation
+
+    02 = Follow-up Consultation'
+  expr: CONSULTATION_TYPE %in% c('01', '02')
+  name: CONSULTATION_TYPE values codes
+- description: Data Absent Reason (FHIR R4) is String(20)
+  expr: is.character(DATA_ABSENT_REASON) & nchar(DATA_ABSENT_REASON) <= 20
+  name: DATA_ABSENT_REASON String(20)
+- description: DATA_ABSENT_REASON 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", DATA_ABSENT_REASON)
+  name: DATA_ABSENT_REASON 20an
+- description: Diagnosis (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(DIAGNOSIS) & (6 <= nchar(DIAGNOSIS)) & (nchar(DIAGNOSIS) <= 4000)
+  name: DIAGNOSIS String(6 - 4000)
+- description: Earliest Clinically Appropriate Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EARLIEST_APPROPRIATE_DATE)
+  name: EARLIEST_APPROPRIATE_DATE Date(YYYY-MM-DD)
+- description: EARLIEST_APPROPRIATE_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EARLIEST_APPROPRIATE_DATE)
+  name: EARLIEST_APPROPRIATE_DATE YYYY-MM-DD
+- description: EMED3 Fit Note Assessment Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_FIT_NOTE_ASSESSMENT_DATE)
+  name: EMED3_FIT_NOTE_ASSESSMENT_DATE Date(YYYY-MM-DD)
+- description: EMED3_FIT_NOTE_ASSESSMENT_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_FIT_NOTE_ASSESSMENT_DATE)
+  name: EMED3_FIT_NOTE_ASSESSMENT_DATE YYYY-MM-DD
+- description: EMED3 Fit Note Condition (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(EMED3_CONDITION) & (6 <= nchar(EMED3_CONDITION)) & (nchar(EMED3_CONDITION)
+    <= 4000)
+  name: EMED3_CONDITION String(6 - 4000)
+- description: EMED3 Fit Note Diagnosis (ICD) is String(4 - 6)
+  expr: is.character(EMED3_DIAGNOSIS) & (4 <= nchar(EMED3_DIAGNOSIS)) & (nchar(EMED3_DIAGNOSIS)
+    <= 6)
+  name: EMED3_DIAGNOSIS String(4 - 6)
+- description: EMED3 Fit Note Duration is String(3)
+  expr: is.character(EMED3_DURATION) & nchar(EMED3_DURATION) <= 3
+  name: EMED3_DURATION String(3)
+- description: EMED3 Fit Note End Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_FIT_END_DATE)
+  name: EMED3_FIT_END_DATE Date(YYYY-MM-DD)
+- description: EMED3_FIT_END_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_FIT_END_DATE)
+  name: EMED3_FIT_END_DATE YYYY-MM-DD
+- description: EMED3 Fit Note Follow Up Assessment Required Indicator is String(1)
+  expr: is.character(EMED_ASSESSMENT_REQUIRED) & nchar(EMED_ASSESSMENT_REQUIRED) <=
+    1
+  name: EMED_ASSESSMENT_REQUIRED String(1)
+- description: 'Y = Yes - A Follow Up Care Contact is required at the end of the Emed3
+    Fit Note Applicable Period
+
+    N = No - A Follow Up Care Contact is not required at the end of the Emed3 Fit
+    Note Applicable Period'
+  expr: EMED_ASSESSMENT_REQUIRED %in% c('Y', 'N')
+  name: EMED_ASSESSMENT_REQUIRED values codes
+- description: EMED3 Fit Note Issuer is String(2)
+  expr: is.character(EMED3_FIT_NOTE_ISSUER) & nchar(EMED3_FIT_NOTE_ISSUER) <= 2
+  name: EMED3_FIT_NOTE_ISSUER String(2)
+- description: EMED3_FIT_NOTE_ISSUER 2an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{2}$", EMED3_FIT_NOTE_ISSUER)
+  name: EMED3_FIT_NOTE_ISSUER 2an
+- description: EMED3 Fit Note Recorded Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_RECORDED_DATE)
+  name: EMED3_RECORDED_DATE Date(YYYY-MM-DD)
+- description: EMED3_RECORDED_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_RECORDED_DATE)
+  name: EMED3_RECORDED_DATE YYYY-MM-DD
+- description: EMED3 Fit Note Start Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_START_DATE)
+  name: EMED3_START_DATE Date(YYYY-MM-DD)
+- description: EMED3_START_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    EMED3_START_DATE)
+  name: EMED3_START_DATE YYYY-MM-DD
+- description: End Date (Commissioner Assignment Period) is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    END_DATE)
+  name: END_DATE Date(YYYY-MM-DD)
+- description: END_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    END_DATE)
+  name: END_DATE YYYY-MM-DD
+- description: Ethnic Category 2021 is String(3)
+  expr: is.character(ETHNIC_CATEGORY_2021) & nchar(ETHNIC_CATEGORY_2021) <= 3
+  name: ETHNIC_CATEGORY_2021 String(3)
+- description: ETHNIC_CATEGORY_2021 3an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{3}$", ETHNIC_CATEGORY_2021)
+  name: ETHNIC_CATEGORY_2021 3an
+- description: Finding (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(FINDING) & (6 <= nchar(FINDING)) & (nchar(FINDING) <= 4000)
+  name: FINDING String(6 - 4000)
+- description: Last Patient Cancelled Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LAST_PATIENT_CANCELLED_DATE)
+  name: LAST_PATIENT_CANCELLED_DATE Date(YYYY-MM-DD)
+- description: LAST_PATIENT_CANCELLED_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LAST_PATIENT_CANCELLED_DATE)
+  name: LAST_PATIENT_CANCELLED_DATE YYYY-MM-DD
+- description: Last Patient Did Not Attend Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LAST_PATIENT_DID_NOT_ATTEND_DATE)
+  name: LAST_PATIENT_DID_NOT_ATTEND_DATE Date(YYYY-MM-DD)
+- description: LAST_PATIENT_DID_NOT_ATTEND_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LAST_PATIENT_DID_NOT_ATTEND_DATE)
+  name: LAST_PATIENT_DID_NOT_ATTEND_DATE YYYY-MM-DD
+- description: Latest Clinically Appropriate Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LATEST_APPROPRIATE_DATE)
+  name: LATEST_APPROPRIATE_DATE Date(YYYY-MM-DD)
+- description: LATEST_APPROPRIATE_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    LATEST_APPROPRIATE_DATE)
+  name: LATEST_APPROPRIATE_DATE YYYY-MM-DD
+- description: Organisation Identifier (Local Patient Identifier) is String(5)
+  expr: is.character(ORGANISATION_LOCAL_PATIENT_IDENTIFIER) & nchar(ORGANISATION_LOCAL_PATIENT_IDENTIFIER)
+    <= 5
+  name: ORGANISATION_LOCAL_PATIENT_IDENTIFIER String(5)
+- description: NHS Service Agreement Identifier is String(20)
+  expr: is.character(NHS_SERVICE_AGREEMENT_IDENTIFIER) & nchar(NHS_SERVICE_AGREEMENT_IDENTIFIER)
+    <= 20
+  name: NHS_SERVICE_AGREEMENT_IDENTIFIER String(20)
+- description: NHS_SERVICE_AGREEMENT_IDENTIFIER 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", NHS_SERVICE_AGREEMENT_IDENTIFIER)
+  name: NHS_SERVICE_AGREEMENT_IDENTIFIER 20an
+- description: NHS Service Agreement Line Identifier is String(20)
+  expr: is.character(NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER) & nchar(NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER)
+    <= 20
+  name: NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER String(20)
+- description: NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER max 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{0,20}$", NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER)
+  name: NHS_SERVICE_AGREEMENT_LINE_IDENTIFIER max 20an
+- description: Observation (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(OBSERVATION) & (6 <= nchar(OBSERVATION)) & (nchar(OBSERVATION)
+    <= 4000)
+  name: OBSERVATION String(6 - 4000)
+- description: Observation Value is String(10)
+  expr: is.character(OBSERVATION_VALUE) & nchar(OBSERVATION_VALUE) <= 10
+  name: OBSERVATION_VALUE String(10)
+- description: OBSERVATION_VALUE 10an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{10}$", OBSERVATION_VALUE)
+  name: OBSERVATION_VALUE 10an
+- description: Overseas Visitor Charging Category Applicable From Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    OVERSEAS_VISITOR_APPLICABLE_FROM)
+  name: OVERSEAS_VISITOR_APPLICABLE_FROM Date(YYYY-MM-DD)
+- description: OVERSEAS_VISITOR_APPLICABLE_FROM YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    OVERSEAS_VISITOR_APPLICABLE_FROM)
+  name: OVERSEAS_VISITOR_APPLICABLE_FROM YYYY-MM-DD
+- description: Overseas Visitor Charging Category is String(1)
+  expr: is.character(OVERSEAS_VISITOR_CATEGORY) & nchar(OVERSEAS_VISITOR_CATEGORY)
+    <= 1
+  name: OVERSEAS_VISITOR_CATEGORY String(1)
+- description: 'A = Standard NHS-funded PATIENT
+
+    B = Immigration Health Surcharge payee
+
+    C = Charge-exempt Overseas Visitor (European Economic Area)
+
+    D = Chargeable European Economic Area PATIENT = Charge-exempt Overseas Visitor
+    (non-European Economic Area)
+
+    F = Chargeable non-European Economic Area PATIENT
+
+    P = Decision Pending on OVERSEAS VISITOR CHARGING CATEGORY
+
+    9 = Not Known (Not Recorded)'
+  expr: OVERSEAS_VISITOR_CATEGORY %in% c('A', 'B', 'C', 'D', 'F', 'P', '9')
+  name: OVERSEAS_VISITOR_CATEGORY values codes
+- description: Overseas Visitor Charging Category Applicable End Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    OVERSEAS_VISITOR_CHARGING_END)
+  name: OVERSEAS_VISITOR_CHARGING_END Date(YYYY-MM-DD)
+- description: OVERSEAS_VISITOR_CHARGING_END YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    OVERSEAS_VISITOR_CHARGING_END)
+  name: OVERSEAS_VISITOR_CHARGING_END YYYY-MM-DD
+- description: Patient Family Name is String(35)
+  expr: is.character(PATIENT_FAMILY_NAME) & nchar(PATIENT_FAMILY_NAME) <= 35
+  name: PATIENT_FAMILY_NAME String(35)
+- description: PATIENT_FAMILY_NAME 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_FAMILY_NAME)
+  name: PATIENT_FAMILY_NAME 35an
+- description: Patient Full Name is String(70)
+  expr: is.character(PATIENT_FULL_NAME) & nchar(PATIENT_FULL_NAME) <= 70
+  name: PATIENT_FULL_NAME String(70)
+- description: PATIENT_FULL_NAME 70an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{70}$", PATIENT_FULL_NAME)
+  name: PATIENT_FULL_NAME 70an
+- description: Patient Given Name is String(35)
+  expr: is.character(PATIENT_GIVEN_NAME) & nchar(PATIENT_GIVEN_NAME) <= 35
+  name: PATIENT_GIVEN_NAME String(35)
+- description: PATIENT_GIVEN_NAME 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_GIVEN_NAME)
+  name: PATIENT_GIVEN_NAME 35an
+- description: Patient Initials is String(35)
+  expr: is.character(PATIENT_INITIALS) & nchar(PATIENT_INITIALS) <= 35
+  name: PATIENT_INITIALS String(35)
+- description: PATIENT_INITIALS 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_INITIALS)
+  name: PATIENT_INITIALS 35an
+- description: Patient Name Suffix is String(35)
+  expr: is.character(PATIENT_NAME_SUFFIX) & nchar(PATIENT_NAME_SUFFIX) <= 35
+  name: PATIENT_NAME_SUFFIX String(35)
+- description: PATIENT_NAME_SUFFIX 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_NAME_SUFFIX)
+  name: PATIENT_NAME_SUFFIX 35an
+- description: Patient On Patient Initiated Out-Patient Follow Up Pathway Indicator
+    At Cds Activity Date is String(1)
+  expr: is.character(PATIENT_ON_PATIENT_INITIATED_OUT-PATIENT_FOLLOW_UP_PATHWAY_INDICATOR_AT_CDS_ACTIVITY_DATE)
+    & nchar(PATIENT_ON_PATIENT_INITIATED_OUT-PATIENT_FOLLOW_UP_PATHWAY_INDICATOR_AT_CDS_ACTIVITY_DATE)
+    <= 1
+  name: PATIENT_ON_PATIENT_INITIATED_OUT-PATIENT_FOLLOW_UP_PATHWAY_INDICATOR_AT_CDS_ACTIVITY_DATE
+    String(1)
+- description: 'Y = Yes - PATIENT is on a Patient Initiated Out-Patient Follow-Up
+    Pathway
+
+    N = No - PATIENT is not on a Patient Initiated Out-Patient Follow-Up Pathway'
+  expr: PATIENT_ON_PATIENT_INITIATED_OUT-PATIENT_FOLLOW_UP_PATHWAY_INDICATOR_AT_CDS_ACTIVITY_DATE
+    %in% c('Y', 'N')
+  name: PATIENT_ON_PATIENT_INITIATED_OUT-PATIENT_FOLLOW_UP_PATHWAY_INDICATOR_AT_CDS_ACTIVITY_DATE
+    values codes
+- description: Patient Subject To Remote Monitoring Indicator At Cds Activity Date
+    is String(1)
+  expr: is.character(PATIENT_SUBJECT_TO_REMOTE_MONITORING_INDICATOR_AT_CDS_ACTIVITY_DATE)
+    & nchar(PATIENT_SUBJECT_TO_REMOTE_MONITORING_INDICATOR_AT_CDS_ACTIVITY_DATE) <=
+    1
+  name: PATIENT_SUBJECT_TO_REMOTE_MONITORING_INDICATOR_AT_CDS_ACTIVITY_DATE String(1)
+- description: 'Y = Yes - PATIENT is subject to Remote Monitoring
+
+    N = No - PATIENT is not subject to Remote Monitoring'
+  expr: PATIENT_SUBJECT_TO_REMOTE_MONITORING_INDICATOR_AT_CDS_ACTIVITY_DATE %in% c('Y',
+    'N')
+  name: PATIENT_SUBJECT_TO_REMOTE_MONITORING_INDICATOR_AT_CDS_ACTIVITY_DATE values
+    codes
+- description: Patient Title is String(35)
+  expr: is.character(PATIENT_TITLE) & nchar(PATIENT_TITLE) <= 35
+  name: PATIENT_TITLE String(35)
+- description: PATIENT_TITLE 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_TITLE)
+  name: PATIENT_TITLE 35an
+- description: Patient Usual Address (Structured) is String(35)
+  expr: is.character(PATIENT_USUAL_ADDRESS_STRUCTURED) & nchar(PATIENT_USUAL_ADDRESS_STRUCTURED)
+    <= 35
+  name: PATIENT_USUAL_ADDRESS_STRUCTURED String(35)
+- description: PATIENT_USUAL_ADDRESS_STRUCTURED 35an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{35}$", PATIENT_USUAL_ADDRESS_STRUCTURED)
+  name: PATIENT_USUAL_ADDRESS_STRUCTURED 35an
+- description: Patient Usual Address (Unstructured) is String(175)
+  expr: is.character(PATIENT_USUAL_ADDRESS_UNSTRUCTURED) & nchar(PATIENT_USUAL_ADDRESS_UNSTRUCTURED)
+    <= 175
+  name: PATIENT_USUAL_ADDRESS_UNSTRUCTURED String(175)
+- description: PATIENT_USUAL_ADDRESS_UNSTRUCTURED 175an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{175}$", PATIENT_USUAL_ADDRESS_UNSTRUCTURED)
+  name: PATIENT_USUAL_ADDRESS_UNSTRUCTURED 175an
+- description: Person Score is String(5)
+  expr: is.character(PERSON_SCORE) & nchar(PERSON_SCORE) <= 5
+  name: PERSON_SCORE String(5)
+- description: PERSON_SCORE 5an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{5}$", PERSON_SCORE)
+  name: PERSON_SCORE 5an
+- description: Personalised Out-Patient Follow Up Pathway Expiry Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE)
+  name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE Date(YYYY-MM-DD)
+- description: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE YYYY-MM-DD NHS
+    Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE)
+  name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_EXPIRY_DATE YYYY-MM-DD
+- description: Personalised Out-Patient Follow Up Pathway Review Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE)
+  name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE Date(YYYY-MM-DD)
+- description: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE YYYY-MM-DD NHS
+    Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE)
+  name: PERSONALISED_OUT-PATIENT_FOLLOW_UP_PATHWAY_REVIEW_DATE YYYY-MM-DD
+- description: Procedure (Snomed CT Expression) is String(6 - 4000)
+  expr: is.character(PROCEDURE) & (6 <= nchar(PROCEDURE)) & (nchar(PROCEDURE) <= 4000)
+  name: PROCEDURE String(6 - 4000)
+- description: Procedure Date is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PROCEDURE_DATE)
+  name: PROCEDURE_DATE Date(YYYY-MM-DD)
+- description: PROCEDURE_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    PROCEDURE_DATE)
+  name: PROCEDURE_DATE YYYY-MM-DD
+- description: Professional Registration Entry Identifier is String(32)
+  expr: is.character(PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER) & nchar(PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER)
+    <= 32
+  name: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER String(32)
+- description: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER 32an NHS Data Model and
+    Dictionary
+  expr: grepl("^[a-zA-Z0-9]{32}$", PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER)
+  name: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER 32an
+- description: Professional Registration Entry Identifier (Responsible Anaesthetist)
+    is String(32)
+  expr: is.character(PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST) & nchar(PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST)
+    <= 32
+  name: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST String(32)
+- description: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST 32an NHS Data
+    Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{32}$", PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST)
+  name: PROFESSIONAL_REGISTRATION_ENTRY_IDENTIFIER_ANAESTHETIST 32an
+- description: Professional Registration Entry Identifier (Main Operating Care Professional)
+    is String(32)
+  expr: is.character(REGISTRATION_ENTRY_IDENTIFIER) & nchar(REGISTRATION_ENTRY_IDENTIFIER)
+    <= 32
+  name: REGISTRATION_ENTRY_IDENTIFIER String(32)
+- description: REGISTRATION_ENTRY_IDENTIFIER 32an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{32}$", REGISTRATION_ENTRY_IDENTIFIER)
+  name: REGISTRATION_ENTRY_IDENTIFIER 32an
+- description: Professional Registration Issuer Code is String(2)
+  expr: is.character(REGISTRATION_ISSUER_CODE) & nchar(REGISTRATION_ISSUER_CODE) <=
+    2
+  name: REGISTRATION_ISSUER_CODE String(2)
+- description: '02 = General Dental Council
+
+    03 = General Medical Council
+
+    04 = General Optical Council - available from 2022-23
+
+    08 = Health and Care Professions Council
+
+    09 = Nursing and Midwifery Council
+
+    16 = General Pharmaceutical Council - available from 2022-23'
+  expr: REGISTRATION_ISSUER_CODE %in% c('02', '03', '04', '08', '09', '16')
+  name: REGISTRATION_ISSUER_CODE values codes
+- description: Direct Access Referral Indicator is String(1)
+  expr: is.character(REFERRAL_INDICATOR) & nchar(REFERRAL_INDICATOR) <= 1
+  name: REFERRAL_INDICATOR String(1)
+- description: 'Y = Referred toa Direct Access Service
+
+    N = Not Referred toa Direct Access Service
+
+    9 = Not Known Whether The Patient Was Referred to a Direct Access Service'
+  expr: REFERRAL_INDICATOR %in% c('Y', 'N', '9')
+  name: REFERRAL_INDICATOR values codes
+- description: Referred By First Contact Practitioner Indicator is String(1)
+  expr: is.character(REFERRED_BY_FIRST_CONTACT_PRACTITIONER_INDICATOR) & nchar(REFERRED_BY_FIRST_CONTACT_PRACTITIONER_INDICATOR)
+    <= 1
+  name: REFERRED_BY_FIRST_CONTACT_PRACTITIONER_INDICATOR String(1)
+- description: 'Y = Yes - PATIENT referred by a First Contact Practitioner
+
+    N = No - PATIENT not referred by a First Contact Practitioner
+
+    9 = Not Known whether PATIENT referred by a First Contact Practitioner'
+  expr: REFERRED_BY_FIRST_CONTACT_PRACTITIONER_INDICATOR %in% c('Y', 'N', '9')
+  name: REFERRED_BY_FIRST_CONTACT_PRACTITIONER_INDICATOR values codes
+- description: Responsible Care Professional Indicator is String(1)
+  expr: is.character(RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR) & nchar(RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR)
+    <= 1
+  name: RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR String(1)
+- description: "Y = Yes - the\_CARE PROFESSIONAL\_has overall clinical responsibility\
+    \ for the\_PATIENT\nN = No - the\_CARE PROFESSIONAL\_does not have overall clinical\
+    \ responsibility for the\_PATIENT"
+  expr: RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR %in% c('Y', 'N')
+  name: RESPONSIBLE_CARE_PROFESSIONAL_INDICATOR values codes
+- description: Service Code is String(12)
+  expr: is.character(SERVICE_CODE) & nchar(SERVICE_CODE) <= 12
+  name: SERVICE_CODE String(12)
+- description: Service Request Identifier is String(20)
+  expr: is.character(SERVICE_REQUEST_IDENTIFIER) & nchar(SERVICE_REQUEST_IDENTIFIER)
+    <= 20
+  name: SERVICE_REQUEST_IDENTIFIER String(20)
+- description: SERVICE_REQUEST_IDENTIFIER 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{20}$", SERVICE_REQUEST_IDENTIFIER)
+  name: SERVICE_REQUEST_IDENTIFIER 20an
+- description: Social And Personal Circumstance (Snomed CT Expression) is String(6-40000)
+  expr: is.character(SOCIAL_AND_PERSONAL_CIRCUMSTANCE) & (6 <= nchar(SOCIAL_AND_PERSONAL_CIRCUMSTANCE))
+    & (nchar(SOCIAL_AND_PERSONAL_CIRCUMSTANCE) <= 40000)
+  name: SOCIAL_AND_PERSONAL_CIRCUMSTANCE String(6-40000)
+- description: Social And Personal Circumstance Recorded Timestamp is String(25)
+  expr: is.character(SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP) & nchar(SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP)
+    <= 25
+  name: SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP String(25)
+- description: SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP 25an NHS Data Model
+    and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{25}$", SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP)
+  name: SOCIAL_AND_PERSONAL_CIRCUMSTANCE_RECORDED_TIMESTAMP 25an
+- description: Start Date (Commissioner Assignment Period) is Date(YYYY-MM-DD)
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    START_DATE)
+  name: START_DATE Date(YYYY-MM-DD)
+- description: START_DATE YYYY-MM-DD NHS Data Model and Dictionary
+  expr: grepl("^((?:19|20)\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$",
+    START_DATE)
+  name: START_DATE YYYY-MM-DD
+- description: Rehabilitation Assessment Team Type is String(1)
+  expr: is.character(TEAM_TYPE) & nchar(TEAM_TYPE) <= 1
+  name: TEAM_TYPE String(1)
+- description: "1 = Specialised Rehabilitation Team\n2 = Non-specialised Rehabilitation\
+    \ Team\n8 = Not applicable - Activity is not Rehabilitation Assessment \n9 = Rehabilitation\
+    \ Assessment Team Type not known"
+  expr: TEAM_TYPE %in% c('1', '2', '8', '9')
+  name: TEAM_TYPE values codes
+- description: UCUM Unit Of Measurement is String(10)
+  expr: is.character(UCUM_UNIT_OF_MEASUREMENT) & nchar(UCUM_UNIT_OF_MEASUREMENT) <=
+    10
+  name: UCUM_UNIT_OF_MEASUREMENT String(10)
+- description: UCUM_UNIT_OF_MEASUREMENT 10an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{10}$", UCUM_UNIT_OF_MEASUREMENT)
+  name: UCUM_UNIT_OF_MEASUREMENT 10an
+- description: Diagnosis Scheme In Use  is String(2)
+  expr: is.character(DIAGNOSIS_SCHEME_IN_USE_) & nchar(DIAGNOSIS_SCHEME_IN_USE_) <=
+    2
+  name: DIAGNOSIS_SCHEME_IN_USE_ String(2)
+- description: Provider Reference Identifier is String(20)
+  expr: is.character(PROVIDER_REFERENCE_IDENTIFIER) & nchar(PROVIDER_REFERENCE_IDENTIFIER)
+    <= 20
+  name: PROVIDER_REFERENCE_IDENTIFIER String(20)
+- description: PROVIDER_REFERENCE_IDENTIFIER max 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{0,20}$", PROVIDER_REFERENCE_IDENTIFIER)
+  name: PROVIDER_REFERENCE_IDENTIFIER max 20an
+- description: Commissioner Reference Identifier is String(20)
+  expr: is.character(COMMISSIONER_REFERENCE) & nchar(COMMISSIONER_REFERENCE) <= 20
+  name: COMMISSIONER_REFERENCE String(20)
+- description: COMMISSIONER_REFERENCE max 20an NHS Data Model and Dictionary
+  expr: grepl("^[a-zA-Z0-9]{0,20}$", COMMISSIONER_REFERENCE)
+  name: COMMISSIONER_REFERENCE max 20an
+- description: Local Sub-Specialty Code is String(8)
+  expr: is.character(LOCAL_SUB-SPECIALTY_CODE) & nchar(LOCAL_SUB-SPECIALTY_CODE) <=
+    8
+  name: LOCAL_SUB-SPECIALTY_CODE String(8)
+- description: Activity Location Type Code is String(3)
+  expr: is.character(ACTIVITY_LOCATION_TYPE_CODE) & nchar(ACTIVITY_LOCATION_TYPE_CODE)
+    <= 3
+  name: ACTIVITY_LOCATION_TYPE_CODE String(3)
+- description: Withheld Identity Reason  is String(2)
+  expr: is.character(WITHHELD_IDENTITY_REASON) & nchar(WITHHELD_IDENTITY_REASON) <=
+    2
+  name: WITHHELD_IDENTITY_REASON String(2)
+- description: '01 = Record anonymised for legal/statutory reasons
+
+    02 = Record anonymised at request of Caldicott Guardian
+
+    03 = Record anonymised at request of PATIENT
+
+    97 = Record anonymised for other reasons
+
+    99 = Identity withheld but reasons not known'
+  expr: WITHHELD_IDENTITY_REASON %in% c('01', '02', '03', '97', '99')
+  name: WITHHELD_IDENTITY_REASON values codes
+
+...

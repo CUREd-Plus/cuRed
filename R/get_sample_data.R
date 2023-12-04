@@ -80,3 +80,23 @@ append_mock_ids <- function(input_path, output_path) {
 
   return(output_path)
 }
+
+
+#' Generate synthetic demographics data and write it to a specified file.
+#'
+#' @description
+#' This function generates synthetic demographics data by executing a SQL query
+#' template read from a file. The generated data is then written to the specified
+#' output file path.
+#'
+#' @param output_path The path to the file where the generated data will be written.
+#' @param n_rows The number of rows to generate in the synthetic demographics data (default is 1000).
+#'
+generate_demographics <- function(output_path, n_rows = 1000) {
+  query_template_path <- extdata_path("queries/synthetic/pd.sql")
+  query_template <- readr::read_file(query_template_path)
+  query <- stringr::str_glue(query_template)
+  run_query(query)
+  cli::cli_alert_success("Wrote '{output_path}'")
+  return(output_path)
+}

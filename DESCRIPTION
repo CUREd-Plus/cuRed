@@ -1,6 +1,6 @@
 Package: cuRed
-Title: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide
-Version: 0.0.1
+Title: CUREd+: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide
+Version: 1.0.0
 URL: https://github.com/CUREd-Plus/cuRed
 BugReports: https://github.com/CUREd-Plus/cuRed/issues
 Authors@R: c(
@@ -43,6 +43,10 @@ Imports:
     dplyr (< 1.2.0),
     config (>= 0.3.0),
     config (< 0.4.0)
+    coro (>= 1.0.0),
+    coro (< 1.1.0),
+    rlang (>= 1.1.0),
+    rlang (< 1.2.0)
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

@@ -26,7 +26,7 @@ test_that("get_sample_data", {
   expect_equal(n_rows, number_of_rows)
 
   # Append patient ID
-  filename <- paste(basename(path), ".appended.csv")
+  filename <- paste(basename(path), ".appended.csv", sep = "")
   output_path <- file.path(dirname(path), filename)
   expect_no_error(
     appended_path <- append_mock_ids(

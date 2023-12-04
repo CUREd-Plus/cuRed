@@ -1,0 +1,188 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "dialect": {
+    "header": true
+  },
+  "id": "yas_iuc111",
+  "notes": "Yorkshire Ambulance Service (YAS) Integrated Urgent Care (IUC) NHS 111",
+  "tables": [
+    {
+      "id": "Incident",
+      "notes": "One row per on-scene event record for one patient at each incident. (so there could be more than one EPR per CAD call, if there was e.g. a car crash with multiple patients)",
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "YAS_ID",
+            "datatype": "string"
+          },
+          {
+            "name": "999 CAD Number",
+            "datatype": "string"
+          },
+          {
+            "name": "Call Handler 1 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Call Handler 2 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Call Handler 3 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "CallBackRequired",
+            "datatype": "boolean"
+          },
+          {
+            "name": "Called Back",
+            "datatype": "boolean"
+          },
+          {
+            "name": "Case Type",
+            "datatype": "string"
+          },
+          {
+            "name": "CaseRef",
+            "datatype": "string"
+          },
+          {
+            "name": "CCG Name",
+            "datatype": "string"
+          },
+          {
+            "name": "Clinical Advisor 1 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Clinical Advisor 2 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Clinical Advisor 3 - Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Clinical Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Clinical Dx Description",
+            "datatype": "string"
+          },
+          {
+            "name": "Direct Booking Service",
+            "datatype": "string"
+          },
+          {
+            "name": "Direct Booking",
+            "datatype": "boolean"
+          },
+          {
+            "name": "Final Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Final Dx Description",
+            "datatype": "string"
+          },
+          {
+            "name": "Final Symptom Discriminator",
+            "datatype": "string"
+          },
+          {
+            "name": "Final Symptom Group",
+            "datatype": "string"
+          },
+          {
+            "name": "First Party Caller",
+            "datatype": "string"
+          },
+          {
+            "name": "First Pathway Selected",
+            "datatype": "string"
+          },
+          {
+            "name": "GP Surgery ID",
+            "datatype": "string"
+          },
+          {
+            "name": "GP Surgery",
+            "datatype": "string"
+          },
+          {
+            "name": "Highest Skillset",
+            "datatype": "string"
+          },
+          {
+            "name": "IUC ADC - Clinical Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "IUC ADC - Final Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "IUC ADC - Non-Clinical Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "NHS England MDS - Clinical Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "NHS England MDS - Final Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "NHS England MDS - Non-Clinical Dx Group",
+            "datatype": "string"
+          },
+          {
+            "name": "Non-Clinical Dx Code",
+            "datatype": "string"
+          },
+          {
+            "name": "Non-Clinical Dx Description",
+            "datatype": "string"
+          },
+          {
+            "name": "Receiving Call Centre",
+            "datatype": "string"
+          },
+          {
+            "name": "Referral Service Type",
+            "datatype": "string"
+          },
+          {
+            "name": "Referral Service",
+            "datatype": "string"
+          },
+          {
+            "name": "Rejected Service Reason",
+            "datatype": "string"
+          },
+          {
+            "name": "Rejected Service",
+            "datatype": "string"
+          },
+          {
+            "name": "Secure Information Transfer (ITK or E-Mail)",
+            "datatype": "boolean"
+          },
+          {
+            "name": "Sex",
+            "datatype": "string"
+          }
+        ]
+      },
+      "url": "yas_epr/Incident.csv"
+    }
+  ]
+}
