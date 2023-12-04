@@ -5,8 +5,8 @@ The `inst/extdata` directory contains data files that may be used to support thi
 This is a summary of the contents of this directory:
 
 - `config/` contains a configuration file for each input data set that will be processed by the pipeline.
-- `metadata/` contains the metadata that describes the data sets.
 - `data/` contains raw sythetic sample data, to be used for code testing.
+- `metadata/` contains the metadata that describes the data sets.
 - `queries/` contains SQL queries used to process data as part of the pipeline.
 - `validation_rules/` contains metadata definitions used to verify the contents of input data sets
 - `patient_id_bridge.csv` is a sample, synthetic patient identifier bridge, to be used for code testing.
