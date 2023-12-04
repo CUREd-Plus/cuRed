@@ -48,7 +48,7 @@ rules:
   meta:
     severity: error
     
-- name: TOKEN_PERSON_ID is VARCHAR(32)
+- name: TOKEN_PERSON_ID 32an
   description: TOKEN_PERSON_ID is alphanumeric with length 32
   expr: grepl("^[a-zA-Z0-9]{32}$", TOKEN_PERSON_ID)
   meta:
