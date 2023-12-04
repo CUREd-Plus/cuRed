@@ -29,8 +29,8 @@ DEFAULT_FIELD_FORMAT_OVERRIDES_PATH = Path('./field_format_overrides.json').abso
 def get_args():
     parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
     parser.add_argument('tos_path', type=Path, help='TOS Excel workbook file path',
-                        default=os.getenv('TOS_PATH', DEFAULT_TOS_PATH))
-    parser.add_argument('-s', '--sheet_name', help='Tab in the TOS')
+                        default=os.getenv('TOS_PATH', DEFAUL_TOS_PATH))
+    parser.add_argument('-s', '--sheet_name', help='Tab in the TOS', required=True)
     parser.add_argument('-l', '--log_level', default='INFO')
     parser.add_argument('--index_col', default='Field')
     parser.add_argument('--skiprows', default=1, help='Ignore top rows in spreadsheet')

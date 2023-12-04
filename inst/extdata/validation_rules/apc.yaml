@@ -1015,9 +1015,13 @@ rules:
 
     M99999999 = Isle of Man
 
+    U = No fixed abode
+
+    X = Foreign
+
     Y = Not known'
   expr: CURRWARD_ONS %in% c('Ennnnnnnn', 'Wnnnnnnnn', 'Snnnnnnnn', 'E99999999', 'W99999999',
-    'S99999999', 'N99999999', 'L99999999', 'M99999999', 'Y')
+    'S99999999', 'N99999999', 'L99999999', 'M99999999', 'U', 'X', 'Y')
   name: CURRWARD_ONS values codes
 - description: Delivery Place Change Reason is String(1)
   expr: is.character(DELCHANG) & nchar(DELCHANG) <= 1
@@ -1549,9 +1553,9 @@ rules:
     \ census (until 2016-17)\n5 = Other delivery event \n6 = Other birth event"
   expr: EPITYPE %in% c('1', '2', '3', '4', '5', '6')
   name: EPITYPE values codes
-- description: Ethnic Category is String(1)
-  expr: is.character(ETHNOS) & nchar(ETHNOS) <= 1
-  name: ETHNOS String(1)
+- description: Ethnic Category is String(2)
+  expr: is.character(ETHNOS) & nchar(ETHNOS) <= 2
+  name: ETHNOS String(2)
 - description: "From 2001-02 onwards:\nA = British (White) \nB = Irish (White) \n\
     C = Any other White background \nD = White and Black Caribbean (Mixed) \nE = White\
     \ and Black African (Mixed) \nF = White and Asian (Mixed) \nG = Any other Mixed\
@@ -1703,9 +1707,9 @@ rules:
 - description: Ordnance Survey Grid Reference is String(11)
   expr: is.character(GRIDLINK) & nchar(GRIDLINK) <= 11
   name: GRIDLINK String(11)
-- description: GRIDLINK 9n NHS Data Model and Dictionary
-  expr: grepl("^\\d{9}$", GRIDLINK)
-  name: GRIDLINK 9n
+- description: GRIDLINK 10n NHS Data Model and Dictionary
+  expr: grepl("^\\d{10}$", GRIDLINK)
+  name: GRIDLINK 10n
 - description: Health Authority of Treatment  is String(3)
   expr: is.character(HATREAT) & nchar(HATREAT) <= 3
   name: HATREAT String(3)
@@ -3560,10 +3564,10 @@ rules:
 - description: Derivation of SITEDIST is String(1)
   expr: is.character(SITEDIST_FLAG) & nchar(SITEDIST_FLAG) <= 1
   name: SITEDIST_FLAG String(1)
-- description: '5 = SITEDIST was calculated from the first 3-characters of SITETRET
+- description: '3 = SITEDIST was calculated from the first 3-characters of SITETRET
 
-    3 = SITEDIST was calculated from the full 5-character SITETRET code'
-  expr: SITEDIST_FLAG %in% c('5', '3')
+    5 = SITEDIST was calculated from the full 5-character SITETRET code'
+  expr: SITEDIST_FLAG %in% c('3', '5')
   name: SITEDIST_FLAG values codes
 - description: Organisation Site Identifier (of Treatment) (at Start of Episode) is
     String(5-9)
@@ -4805,4 +4809,5 @@ rules:
 - description: HES Extract Year is Number
   expr: is.integer(YEAR)
   name: YEAR Number
+
 ...
