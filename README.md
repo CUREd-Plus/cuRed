@@ -40,6 +40,10 @@ help(cuRed::main)
 
 The R code in this package is in the [R directory](./R/) and an overview is available in [R/README.md](R/README.md). Each function has documentation to describe how it works.
 
+## Configuration
+
+The configuration files for this workflow are contained in the [inst/extdata](./inst/extdata/) directory.
+
 # Development
 
 To work on this code, please read the [contributing guide](CONTRIBUTING.md).
