@@ -34,7 +34,7 @@ COPY (
   FROM read_parquet('{input_path}') AS {data_set_id}
   -- Merge with patient ID bridge
   LEFT JOIN read_csv_auto('{patient_path}', header=true, all_varchar=true) AS patient
-    ON data_set.{patient_key} = patient.{patient_key}
+    ON {data_set_id}.{patient_key} = patient.{patient_key}
   -- Merge with patient demographics
   LEFT JOIN read_parquet('{demographics_path}') AS demographics
     ON {data_set_id}.study_id = demographics.study_id
