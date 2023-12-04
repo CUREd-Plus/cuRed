@@ -62,7 +62,9 @@ rsconnect/
 *~
 \#*
 
+# Python virtual environment
 venv/
+
 # Notepad++ backup files
 *.bak
 
@@ -72,4 +74,8 @@ venv/
 # Python temporary files
 __pycache__/
 *.pyc
-.idea/
+
+# JetBrains PyCharm
+.idea
+.ipynb_checkpoints/
+__pycache__/

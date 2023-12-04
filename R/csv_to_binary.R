@@ -1,4 +1,6 @@
 library(cli)
+library(coro)
+library(dplyr)
 library(stringr)
 library(utils)
 
@@ -10,7 +12,7 @@ library(utils)
 #' By default, this function will read all the CSV files in the `input_dir` and convert them to
 #' [Apache Parquet](https://parquet.apache.org/) format.
 #'
-#' The resultant binary data file will be written to `output_path`.
+#' The resultant binary data files will be written to `output_dir`.
 #'
 #' A [JSON](https://www.json.org/json-en.html) file must be specified that contains an object where the keys are the
 #' headers of the input CSV files in order and the values are the SQL data types (default to `"VARCHAR"`). The location
@@ -23,65 +25,74 @@ library(utils)
 #' - [DBI documentation](https://dbi.r-dbi.org/)
 #' - DuckDB [CSV Import](https://duckdb.org/docs/data/csv/overview.html)
 #'
-#' @export
-#'
 #' @param input_dir character. Path. The directory that contains the raw data files.
-#' @param output_path character. Path of the output binary data file.
-#' @param metadata List. Dictionary containing the column definitions.
+#' @param output_dir Character. Path of the directory in which to write the output binary data files.
 #' @param data_set_id character. Data set identifier e.g. "apc", "op"
-#' @param glob character. *(Optional)* Input file pattern e.g. "*.csv" or "*_raw.csv"
 #'
-#' @returns String. Path. The path of the output data file.
-csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*.csv") {
+#' @returns List of paths of the new output files.
+#' @export
+csv_to_binary <- function(input_dir, output_dir, data_set_id) {
 
   # Define the absolute paths
   input_dir <- normalizePath(input_dir, mustWork = TRUE)
-  input_glob <- file.path(input_dir, glob)
-  output_path <- normalizePath(output_path, mustWork = FALSE)
+  output_dir <- normalizePath(output_dir, mustWork = FALSE)
+  output_paths <- list()
 
-  # Load column order and default data types
-  data_types_path <- extdata_path(stringr::str_glue("sql_data_types/{data_set_id}.json"))
-  data_types <- jsonlite::fromJSON(data_types_path)
+  # Load data set metadata
+  csv_metadata_path <- extdata_path(stringr::str_glue("metadata/raw/{data_set_id}.json"))
+  csv_metadata <- read.csvw(csv_metadata_path)
 
-  # Append patient ID fields
-  patient_id_data_types_path <- extdata_path("sql_data_types/patient_id_bridge.json")
-  patient_id_data_types <- jsonlite::fromJSON(patient_id_data_types_path)
-  data_types = utils::modifyList(data_types, patient_id_data_types)
-
-  # Update data types based on TOS spreadsheet
-  # I'm not using utils::modifyList because we don't want to include all the fields in the TOS,
-  # but only use the columns we've specified.
-  tos_data_types <- get_data_types(metadata)
-  for (key in names(data_types)) {
-    value <- tos_data_types[[key]]
-    if (!is.null(value)) {
-      data_types[key] <- value
+  # Iterate over tables (CSV files within this data set)
+  # https://w3c.github.io/csvw/syntax/#tables
+  coro::loop(for (csv_table in csvw.tables(csv_metadata)) {
+    # Get table identifier
+    table_id <- csv_table$id
+    if (is.na(table_id)) {
+      stop("table_id is missing")
     }
-  }
+    cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
+    columns <- csvw.columns(csv_table)
 
-  # Convert file format
-  # Load the CSV file and save to Apache Parquet format.
+    # Convert to SQL data types
+    data_types <- data.frame(columns[, c("name", "datatype")])
+    data_types <- dplyr::mutate(data_types, datatype = xml_schema_to_sql_data_type(datatype))
 
-  # Build SQL query
-  data_types_struct <- convert_json_to_struct(jsonlite::toJSON(data_types))
-  query_path <- extdata_path("queries/csv_to_binary.sql")
-  query_template <- readr::read_file(query_path)
-  query <- stringr::str_glue(query_template)
+    # TODO update data types based on TOS or data dictionary
 
-  # Ensure output directory exists
-  dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+    # Convert file format
+    # Load the CSV file and save to Apache Parquet format.
 
-  # Write SQL query to text file
-  sql_query_file_path <- paste(output_path, ".sql", sep = "")
-  readr::write_file(query, sql_query_file_path)
-  cli::cli_alert_info("Wrote '{sql_query_file_path}'")
+    # Define where the data will be read from
+    input_glob <- file.path(input_dir, csv_table$url)
+    # ...and written to
+    output_filename <- stringr::str_glue("{table_id}.parquet")
+    output_path <- file.path(output_dir, output_filename)
 
-  # Execute the query
-  cli::cli_alert_info("Reading input data from '{input_glob}'...")
-  run_query(query)
-  cli::cli_alert_info("Wrote '{output_path}'")
+    # Build the SQL query that will be used to perform the conversion
+    data_types_dict <- dataframe_to_dictionary(data_types, "name", "datatype")
+    data_types_struct <- dictionary_to_struct(data_types_dict)
+    query_path <- extdata_path("queries/csv_to_binary.sql")
+    query_template <- readr::read_file(query_path)
+    query <- stringr::str_glue(query_template)
 
-  return(output_path)
+    # Ensure output directory exists
+    dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+
+    # Write SQL query to text file
+    sql_query_file_path <- paste(output_path, ".sql", sep = "")
+    readr::write_file(query, sql_query_file_path)
+    cli::cli_alert_info("Wrote '{sql_query_file_path}'")
+
+    # Execute the query
+    cli::cli_alert_info("Reading input data from '{input_glob}'...")
+    run_query(query)
+    cli::cli_alert_success("Wrote '{output_path}'")
+
+    # Append to
+    output_paths = append(output_paths, output_path)
+  })
+
+  return(output_paths)
 }
 
 #' Get data types
@@ -92,9 +103,10 @@ csv_to_binary <- function(input_dir, output_path, metadata, data_set_id, glob="*
 #' @export
 #'
 #' @param metadata List of field objects.
-#' @returns Dictionary. Map of field names to data types.
+#' @param data_set_id Data set identifier
+#' @returns Dictionary. Map of field names -> data types.
 #'
-get_data_types <- function(metadata) {
+get_data_types <- function(metadata, data_set_id) {
   # Initialise empty dictionary
   field_names <- list()
 
@@ -104,86 +116,17 @@ get_data_types <- function(metadata) {
     tos_format <- as.character(metadata$Format[i])
 
     # Build dictionary
-    field_names[field_name] <- format_to_data_type(tos_format)
+    # Decide what data type standard to use, based on the data set.
+    if (data_set_id %in% c("apc", "op", "ae")) {
+      sql_data_type <- format_to_data_type(tos_format)
+    } else if (startsWith(data_set_id, "yas")) {
+      sql_data_type <- yas_type_to_data_type(tos_format)
+    } else {
+      cli::cli_alert_danger("Unknown data type for '{data_set_id}' data set")
+      stop("Unknown data type format")
+    }
+    field_names[field_name] <- sql_data_type
   }
 
   return(field_names)
-}
-
-#' Convert JSON object to an SQL struct
-#'
-#' @export
-#'
-#' @param data String. JSON data. The data structure is assumed to be an
-#' object (dictionary).
-convert_json_to_struct <- function(data) {
-  object <- jsonlite::fromJSON(data)
-
-  # Convert from JSON to DuckDB struct for use in  SQL queries
-  # https://duckdb.org/docs/sql/data_types/struct.html
-
-  items <- vector()
-
-  # Iterate over the key-value pairs of the dictionary
-  for (key in names(object)) {
-    value <- object[[key]]
-
-    item <- stringr::str_glue("'{key}': '{value}'")
-    items <- c(items, item)
-  }
-
-  items_char <- stringr::str_flatten_comma(items)
-  struct <- stringr::str_glue("{{{items_char}}}", collapse = "", sep = "")
-  return(struct)
-}
-
-#' Convert TOS format to an SQL data type
-#'
-#' See: NHS Digital "Constructing submission files" for the data formats from
-#' the NHS Data Model and Dictionary.
-#'
-#' [DuckDB data types](https://duckdb.org/docs/sql/data_types/overview.html)
-#'
-#' @export
-#'
-#' @param format_str String. TOS format string e.g. "Date(YYYY-MM-DD)" or "Number"
-#'
-#' @returns String. SQL data type.
-#'
-format_to_data_type <- function(format_str) {
-  format_str <- as.character(format_str)
-
-  if (is.na(format_str)) {
-    stop("Format string is null.")
-  }
-
-  # Map TOS format to SQL data type
-  # https://duckdb.org/docs/sql/data_types/overview.html
-
-  # Integer
-  if (format_str == "Number") {
-    # unsigned four-byte integer
-    data_type <- "UBIGINT"
-  } else if (startsWith(format_str, "String")) {
-    # DuckDB doesn't implement maximum string length
-    # i.e. VARCHAR(n) has no effect
-    # See: https://duckdb.org/docs/sql/data_types/text
-    data_type <- "VARCHAR"
-  } else if (format_str == "Date(YYYY-MM-DD)") {
-    data_type <- "DATE"
-  } else if (format_str == "Time(HH24:MI:ss)") {
-    data_type <- "TIME"
-  } else if (format_str == "Decimal") {
-    data_type <- "DOUBLE"
-    # The HES APC TOS field SOCIAL_AND_PERSONAL_CIRCUMSTANCE has format "?" because it's a
-    # SNOMED CT Expression, which is of alphanumeric "an" type (a structured object).
-    # https://www.datadictionary.nhs.uk/data_elements/snomed_ct_expression.html
-  } else if (format_str == "?") {
-    data_type <- "VARCHAR"
-  } else {
-    cli::cli_alert_danger("Unknown field format '{format_str}'")
-    stop("Unknown field format")
-  }
-
-  return(data_type)
 }

@@ -82,45 +82,21 @@ append_mock_ids <- function(input_path, output_path) {
 }
 
 
-#' Generate synthetic patient demographics data
+#' Generate synthetic demographics data and write it to a specified file.
 #'
-#' @param path character. Output data file path.
-#' @param n_rows integer number of rows to generate
+#' @description
+#' This function generates synthetic demographics data by executing a SQL query
+#' template read from a file. The generated data is then written to the specified
+#' output file path.
 #'
-#' @return character. Output data file path.
-#' @export
+#' @param output_path The path to the file where the generated data will be written.
+#' @param n_rows The number of rows to generate in the synthetic demographics data (default is 1000).
 #'
-generate_mock_demographics_data <- function(path, n_rows = 100) {
-  run_query(stringr::str_glue("
-COPY (
-  SELECT
-     'TODO' AS PATIENT_CARE_EXTENSION
-    ,'TODO' AS ADDRESS_LINE1
-    ,'TODO' AS ADDRESS_LINE2
-    ,'TODO' AS ADDRESS_LINE3
-    ,'TODO' AS ADDRESS_LINE4
-    ,'TODO' AS ADDRESS_LINE5
-    ,'TODO' AS ADDRESS_TYPE
-    ,'TODO' AS POSTCODE
-    ,'TODO' AS DEATH_NOTIFICATION_STATUS
-    ,'TODO' AS DERIVED_FOR_DODYM
-    ,'TODO' AS DERIVED_INF_DODYM
-    ,'TODO' AS DERIVED_POSTCODE_DIST
-    ,'TODO' AS DERIVED_RFR
-    ,'TODO' AS DOB_YEAR_MONTH
-    ,'TODO' AS GENDER
-    ,'TODO' AS GP_PDS_BUS_EFF_FROM
-    ,'TODO' AS NHAIS_PDS_BUS_EFF_FROM
-    ,'TODO' AS RFR_PDS_BUS_EFF_FROM
-    ,uuid() AS STUDY_ID
-
-  -- https://duckdb.org/docs/sql/functions/nested.html
-  FROM generate_series(1, {n_rows})
-)
-TO '{path}'
-WITH (FORMAT 'PARQUET');
-"))
-  cli::cli_alert_info("Wrote '{path}'")
-
-  return(path)
+generate_demographics <- function(output_path, n_rows = 1000) {
+  query_template_path <- extdata_path("queries/synthetic/pd.sql")
+  query_template <- readr::read_file(query_template_path)
+  query <- stringr::str_glue(query_template)
+  run_query(query)
+  cli::cli_alert_success("Wrote '{output_path}'")
+  return(output_path)
 }

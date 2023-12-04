@@ -4,21 +4,17 @@
 \alias{csv_to_binary}
 \title{Convert CSV data into binary format}
 \usage{
-csv_to_binary(input_dir, output_path, metadata, data_set_id, glob = "*.csv")
+csv_to_binary(input_dir, output_dir, data_set_id)
 }
 \arguments{
 \item{input_dir}{character. Path. The directory that contains the raw data files.}
 
-\item{output_path}{character. Path of the output binary data file.}
-
-\item{metadata}{List. Dictionary containing the column definitions.}
+\item{output_dir}{Character. Path of the directory in which to write the output binary data files.}
 
 \item{data_set_id}{character. Data set identifier e.g. "apc", "op"}
-
-\item{glob}{character. \emph{(Optional)} Input file pattern e.g. "\emph{.csv" or "}_raw.csv"}
 }
 \value{
-String. Path. The path of the output data file.
+List of paths of the new output files.
 }
 \description{
 The code uses DuckDB to perform file format conversion.
@@ -26,7 +22,7 @@ The code uses DuckDB to perform file format conversion.
 By default, this function will read all the CSV files in the \code{input_dir} and convert them to
 \href{https://parquet.apache.org/}{Apache Parquet} format.
 
-The resultant binary data file will be written to \code{output_path}.
+The resultant binary data files will be written to \code{output_dir}.
 
 A \href{https://www.json.org/json-en.html}{JSON} file must be specified that contains an object where the keys are the
 headers of the input CSV files in order and the values are the SQL data types (default to \code{"VARCHAR"}). The location

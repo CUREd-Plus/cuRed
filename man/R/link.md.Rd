@@ -23,3 +23,8 @@ character. Path of output file.
 \description{
 See \code{R/link.md} for more information about this function.
 }
+\section{Functions}{
+\itemize{
+\item \code{link()}: description
+
+}}
