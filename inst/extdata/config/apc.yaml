@@ -4,3 +4,4 @@ default:
   staging_dir: "C:/Users/Administrator/curedplus-staging/apc"
   metadata_path: "C:/Users/Administrator/curedplus-raw-data/HES+TOS+V1.15.xlsx"
   sheet: HES APC TOS
+  patient_key: token_person_id

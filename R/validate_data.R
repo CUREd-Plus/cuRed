@@ -22,12 +22,12 @@ validate_data <- function(data_path, rules_path, output_dir=NA) {
   }
 
   # Load rule set from a YAML file
+  cli::cli_inform("Loadeding rules from '{rules_path}'")
   data_validator <- validate::validator(.file = rules_path)
-  cli::cli_inform("Loaded rules from '{rules_path}'")
 
   # Load data
+  cli::cli_inform("Loading data from '{data_path}'")
   data <- read_parquet(data_path)
-  cli::cli_inform("Loaded data from '{data_path}'")
 
   # Run the data validation checks
   results <- validate::confront(dat = data, x = data_validator)
@@ -144,7 +144,7 @@ serialise_validation <- function(results, path = NA) {
   cli::cli_inform("Wrote '{path}'")
 }
 
-  
+
 #' Visualise results
 #'
 #' @description

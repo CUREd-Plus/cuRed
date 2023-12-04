@@ -8,7 +8,7 @@ test_that("Validate APC", {
 
   # Use the dummy data
   data_path <- extdata_path("data/apc/artificial_hes_apc_0102_truncated.parquet")
-  rules_path <- extdata_path("validation_rules/apc.yaml")
+  rules_path <- extdata_path("validation_rules/apc/apc.yaml")
 
   # Run the data validation task
   expect_no_error(
