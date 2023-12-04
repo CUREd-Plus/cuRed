@@ -1,0 +1,6 @@
+default:
+  id: op
+  raw_data_dir: "C:/Users/Administrator/curedplus-raw-data/op"
+  staging_dir: "C:/Users/Administrator/curedplus-staging/op"
+  metadata_path: "C:/Users/Administrator/curedplus-raw-data/HES+TOS+V1.15.xlsx"
+  sheet: HES OP TOS

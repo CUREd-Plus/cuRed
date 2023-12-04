@@ -3,51 +3,36 @@ library(cli)
 #' Run workflow
 #'
 #' @description
-#' The function executes the entire data pipeline for all data sets.
-#'
-#' It will iterate over the data sets and execute `run_workflow()` for each one.
+#' The function executes the entire data pipeline for the specified data set.
+#' 
+#' @param data_set_id character. Data set identifier e.g. "apc", "yas_epr", "op"
 #'
 #' @export
 #'
-#' @param data_sets_path character Path of the configuration file. Defaults to the one included in the library at `inst/extdata/data_sets.json`
-#' @param patient_path character Path of the patient ID bridge file.
-#' @param demographics_path character Path of the demographics file.
-#'
-main <- function(data_sets_path = NA, patient_path, demographics_path) {
-  # Set the file path of the configuration file
-  if (is.na(data_sets_path)) {
-    data_sets_path = extdata_path("data_sets.json")
-  } else {
-    # Check that the specified file exists
-    data_sets_path = normalizePath(data_sets_path, mustWork = TRUE)
-  }
+main <- function(data_set_id) {
+  
+  # Load global options
+  # https://rstudio.github.io/config/reference/
+  config_file_path <- extdata_path("config/config.yaml")
+  cli::cli_alert_info("Loading '{config_file_path}'")
+  config <- config::get(file = config_file_path, use_parent = FALSE)
+  
+  # Load data set options
+  data_set_config_file_path <- extdata_path(stringr::str_glue("config/{data_set_id}.yaml"))
+  cli::cli_alert_info("Loading '{data_set_config_file_path}'")
+  config = config::merge(config, config::get(file = data_set_config_file_path))
 
-  # Load the configuration file
-  # This is a list of objects, each represents a data set
-  data_sets <- as.data.frame(jsonlite::fromJSON(data_sets_path))
+  # Inform user what's happening
+  cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
 
-  # Iterate over data sets
-  for (i in seq_len(nrow(data_sets))) {
-    # Get the details of this data set
-    data_set_id <- as.character(data_sets$id[i])
-    raw_data_dir <- normalizePath(data_sets$raw_data_dir[i], mustWork = TRUE)
-    metadata_path <- normalizePath(data_sets$metadata_path[i], mustWork = TRUE)
-    sheet <- as.character(data_sets$sheet[i])
-    staging_dir <- normalizePath(data_sets$staging_dir[i], mustWork = FALSE)
-
-    # Inform user what's happening
-    cli::cli_alert_info("Running workflow for data set '{data_set_id}'")
-    cli::cli_alert_info("Raw data directory '{raw_data_dir}'")
-
-    # Run the workflow for this data set
-    run_workflow(
-      data_set_id = data_set_id,
-      raw_data_dir = raw_data_dir,
-      metadata_path = metadata_path,
-      sheet = sheet,
-      staging_dir = staging_dir,
-      patient_path = patient_path,
-      demographics_path = demographics_path
-    )
-  }
+  # Run the workflow for this data set
+  run_workflow(
+    data_set_id = config$id,
+    raw_data_dir = config$raw_data_dir,
+    metadata_path = onfig$metadata_path,
+    sheet = config$sheet,
+    staging_dir = config$staging_dir,
+    patient_path = config$patient_path,
+    demographics_path = config$demographics_path
+  )
 }

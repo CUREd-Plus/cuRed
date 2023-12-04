@@ -1,50 +1,56 @@
 Package: cuRed
-Title: CUREd+: Linking Urgent and Emergency Care Data in Yorkshire and Humber Region and Nationwide
+Title: CUREd+: Linking Urgent and Emergency Care Data in Yorkshire and
+    Humber Region and Nationwide
 Version: 1.0.0
+Authors@R: c(
+    person("Neil", "Shephard", , "n.shephard@sheffield.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8301-6857")),
+    person("Tony", "Stone", , "tony.stone@sheffield.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0002-0167-3800")),
+    person("Annabel", "Crum", , "a.crum@sheffield.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0001-9310-8536")),
+    person("Richard", "Campbell", , "r.j.campbell@sheffield.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0002-0975-9270")),
+    person("Joe", "Heffer", , "j.heffer@sheffield.ac.uk", role = "aut",
+           comment = c(ORCID = "0000-0001-8733-1117")),
+    person("Grace", "Accad", , "g.accad", role = "aut"),
+    person("Madina", "Hasan", , "m.hasan@sheffield.ac.uk", role = "aut")
+  )
+Description: Package for cleaning and linking Urgent and Emergency Care
+    (UEC) service data, provisioned by NHS Digital and Yorkshire Ambulance
+    Service, along with data on demographics, deaths, and medicines
+    dispensed in primary care.
+License: MIT + file LICENSE
 URL: https://github.com/CUREd-Plus/cuRed
 BugReports: https://github.com/CUREd-Plus/cuRed/issues
-Authors@R: c(
-    person(given="Neil", family="Shephard", email="n.shephard@sheffield.ac.uk", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-8301-6857")),
-    person(given="Tony", family="Stone", email="tony.stone@sheffield.ac.uk", role = c("aut"),
-           comment = c(ORCID = "0000-0002-0167-3800")),
-    person(given="Annabel", family="Crum", email="a.crum@sheffield.ac.uk", role = c("aut"),
-           comment = c(ORCID = "0000-0001-9310-8536")),
-    person(given="Richard", family="Campbell", email="r.j.campbell@sheffield.ac.uk", role = c("aut"),
-           comment = c(ORCID = "0000-0002-0975-9270")),
-    person(given="Joe", family="Heffer", email="j.heffer@sheffield.ac.uk", role = c("aut"),
-           comment = c(ORCID = "0000-0001-8733-1117")),
-    person(given="Grace", family="Accad", email="g.accad", role = c("aut")),
-    person(given="Madina", family="Hasan", email="m.hasan@sheffield.ac.uk", role = c("aut"))
-  )
-Description: Package for cleaning and linking Urgent and Emergency Care (UEC) service data, provisioned by NHS Digital and Yorkshire Ambulance Service, along with data on demographics, deaths, and medicines dispensed in primary care.
-License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
 Imports:
-    cli (>= 3.6.0),
-    cli (< 3.7.0),
-    stringr (>= 1.5.0),
-    stringr (< 1.6.0),
-    jsonlite (>= 1.8.0),
-    jsonlite (< 1.9.0),
-    DBI (>= 1.1.0),
     DBI (< 1.2.0),
-    duckdb (>= 0.9.0),
-    duckdb (< 1.0.0),
-    validate (>= 1.1.0),
-    validate (< 1.2.0),
-    readr (>= 2.1.0),
-    readr (< 2.2.0),
-    readxl (>= 1.4.0),
-    readxl (< 1.5.0),
-    dplyr (>= 1.1.0),
+    DBI (>= 1.1.0),
+    cli (< 3.7.0),
+    cli (>= 3.6.0),
     dplyr (< 1.2.0),
+    dplyr (>= 1.1.0),
+    duckdb (< 1.0.0),
+    duckdb (>= 0.9.0),
+    jsonlite (< 1.9.0),
+    jsonlite (>= 1.8.0),
+    readr (< 2.2.0),
+    readr (>= 2.1.0),
+    readxl (< 1.5.0),
+    readxl (>= 1.4.0),
+    config (>= 0.3.0),
+    config (< 0.4.0),
     coro (>= 1.0.0),
     coro (< 1.1.0),
+    rlang (< 1.2.0),
     rlang (>= 1.1.0),
-    rlang (< 1.2.0)
+    stringr (< 1.6.0),
+    stringr (>= 1.5.0),
+    validate (< 1.2.0),
+    validate (>= 1.1.0)
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

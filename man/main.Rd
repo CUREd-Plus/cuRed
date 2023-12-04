@@ -4,17 +4,11 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(data_sets_path = NA, patient_path, demographics_path)
+main(data_set_id)
 }
 \arguments{
-\item{data_sets_path}{character Path of the configuration file. Defaults to the one included in the library at \code{inst/extdata/data_sets.json}}
-
-\item{patient_path}{character Path of the patient ID bridge file.}
-
-\item{demographics_path}{character Path of the demographics file.}
+\item{data_set_id}{character. Data set identifier e.g. "apc", "yas_epr", "op"}
 }
 \description{
-The function executes the entire data pipeline for all data sets.
-
-It will iterate over the data sets and execute \code{run_workflow()} for each one.
+The function executes the entire data pipeline for the specified data set.
 }
