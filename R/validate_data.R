@@ -112,6 +112,7 @@ lsoa_format <- function(x) {
 is_date <- function(x) {
   # https://stackoverflow.com/a/37062951/15368268
   return(inherits(x, 'Date'))
+}
 
 
 #' Save results summary to a CSV file
