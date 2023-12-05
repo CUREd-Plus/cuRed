@@ -41,7 +41,7 @@ format_to_data_type <- function(format_str) {
   } else if (format_str == "?") {
     data_type <- "VARCHAR"
   } else {
-    logger::log_warn("Unknown field format '{format_str}'")
+    logger::log_error("Unknown field format '{format_str}'")
     stop("Unknown field format")
   }
 

@@ -122,7 +122,7 @@ get_data_types <- function(metadata, data_set_id) {
     } else if (startsWith(data_set_id, "yas")) {
       sql_data_type <- yas_type_to_data_type(tos_format)
     } else {
-      logger::log_warn("Unknown data type for '{data_set_id}' data set")
+      logger::log_error("Unknown data type for '{data_set_id}' data set")
       stop("Unknown data type format")
     }
     field_names[field_name] <- sql_data_type
