@@ -4,10 +4,12 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(data_set_id)
+main(data_set_id, config_active = "default")
 }
 \arguments{
-\item{data_set_id}{character. Data set identifier e.g. "apc", "yas_epr", "op"}
+\item{data_set_id}{Character. Data set identifier e.g. "apc", "yas_epr", "op"}
+
+\item{config_active}{Character. The specific \href{https://rstudio.github.io/config/articles/config.html}{configuration} to use.}
 }
 \description{
 The function executes the entire data pipeline for the specified data set.

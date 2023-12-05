@@ -4,3 +4,12 @@ default:
   patient_path: "C:/Users/Administrator/curedplus-raw-data/patient.csv"
   # Patient demographics data file path
   demographics_path: "C:/Users/Administrator/curedplus-raw-data/pd.parquet"
+  # Log level https://daroczig.github.io/logger/reference/log_levels.html
+  log_threshold: INFO
+  log_dir: "C:/Users/Administrator/curedplus-logs/"
+
+# Alternative options for development
+development:
+  patient_path: "C:/temp/curedplus/patient.csv"
+  demographics_path: "C:/temp/curedplus/pd.parquet"
+  log_dir: "C:/temp/curedplus/logs"
