@@ -1,0 +1,5 @@
+default:
+  id: yas_epr
+  raw_data_dir: "C:/Users/Administrator/curedplus-raw-data/yas_epr"
+  staging_dir: "C:/Users/Administrator/curedplus-staging/yas_epr"
+  patient_key: patient_id
