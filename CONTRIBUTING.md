@@ -46,6 +46,8 @@ logger::log_info("Loaded the file")
 logger::log_success("File written OK")
 ```
 
+For more information, please read the [Introduction to logger](https://daroczig.github.io/logger/articles/Intro.html).
+
 # R environments
 
 See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
