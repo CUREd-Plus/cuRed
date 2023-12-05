@@ -61,9 +61,6 @@ main <- function(data_set_id, config_active = NA) {
 #' @param log_threshold The minimum log level to be recorded. Valid values are "TRACE", "DEBUG", "INFO", "WARN", "ERROR", and "FATAL". The default is "INFO".
 #' @param log_dir The directory where the log file will be stored. If not provided, the log file will be stored in the temporary directory.
 #'
-#' @examples
-#' configure_logging(log_threshold = "DEBUG")
-#' configure_logging(log_dir = "C:/Users/Administrator/logs")
 configure_logging <- function(log_threshold = "INFO", log_dir = NA) {
 
   # Default log file location

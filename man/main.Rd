@@ -4,7 +4,7 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(data_set_id, config_active = "default")
+main(data_set_id, config_active = NA)
 }
 \arguments{
 \item{data_set_id}{Character. Data set identifier e.g. "apc", "yas_epr", "op"}

@@ -14,7 +14,3 @@ configure_logging(log_threshold = "INFO", log_dir = NA)
 \description{
 Configure logging using the \href{https://daroczig.github.io/logger/}{logger} package.
 }
-\examples{
-configure_logging(log_threshold = "DEBUG")
-configure_logging(log_dir = "C:/Users/Administrator/logs")
-}
