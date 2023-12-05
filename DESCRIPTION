@@ -26,8 +26,8 @@ BugReports: https://github.com/CUREd-Plus/cuRed/issues
 Imports:
     DBI (< 1.2.0),
     DBI (>= 1.1.0),
-    cli (< 3.7.0),
-    cli (>= 3.6.0),
+    logger (< 0.3.0),
+    logger (>= 0.2.0),
     dplyr (< 1.2.0),
     dplyr (>= 1.1.0),
     duckdb (< 1.0.0),

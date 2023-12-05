@@ -9,10 +9,10 @@ library(jsonlite)
 #' @returns Dictionary. CSVW metadata
 read.csvw <- function(path) {
   path <- normalizePath(path, mustWork = TRUE)
-  cli::cli_inform("Loading '{path}'")
+  logger::log_info("Loading '{path}'")
   csvw <- jsonlite::fromJSON(path)
 
-  cli::cli_inform("Data set '{csvw$id}', notes '{csvw$notes}'")
+  logger::log_info("Data set '{csvw$id}', notes '{csvw$notes}'")
 
   return(csvw)
 }

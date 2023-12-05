@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(validate)
 
 #' Validate a data set
@@ -22,11 +22,11 @@ validate_data <- function(data_path, rules_path, output_dir=NA) {
   }
 
   # Load rule set from a YAML file
-  cli::cli_inform("Loadeding rules from '{rules_path}'")
+  logger::log_info("Loadeding rules from '{rules_path}'")
   data_validator <- validate::validator(.file = rules_path)
 
   # Load data
-  cli::cli_inform("Loading data from '{data_path}'")
+  logger::log_info("Loading data from '{data_path}'")
   data <- read_parquet(data_path)
 
   # Run the data validation checks
@@ -36,7 +36,7 @@ validate_data <- function(data_path, rules_path, output_dir=NA) {
   validation_errors <- validate::errors(results)
   for (key in names(validation_errors)) {
     value <- validation_errors[[key]]
-    cli::cli_alert_danger("Validation error in rule '{key}': {value}")
+    logger::log_warn("Validation error in rule '{key}': {value}")
   }
 
   # Save summary to a CSV file
@@ -141,7 +141,7 @@ serialise_validation <- function(results, path = NA) {
 
   # Save to disk
   utils::write.csv(results_summary, file = path)
-  cli::cli_inform("Wrote '{path}'")
+  logger::log_info("Wrote '{path}'")
 }
 
 
@@ -168,5 +168,5 @@ serialise_validation_plot <- function(results, path = NA, ...) {
   pdf(path)
   plot(results, ...)
   dev.off()
-  cli::cli_inform("Wrote '{path}'")
+  logger::log_info("Wrote '{path}'")
 }

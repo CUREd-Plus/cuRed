@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(stringr)
 library(utils)
 
@@ -27,7 +27,7 @@ TO '{output_path}'
 WITH (FORMAT 'CSV', HEADER);
 ")
   run_query(query)
-  cli::cli_inform("Wrote '{output_path}'")
+  logger::log_info("Wrote '{output_path}'")
 
   # Generate mock patient demographics data
   demographics_path <- file.path(staging_dir, "demographics.parquet")

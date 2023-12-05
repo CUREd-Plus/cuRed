@@ -31,7 +31,7 @@ temp_dir <- function(check = FALSE) {
   # Make the directory
   dir.create(path, showWarnings = FALSE, recursive = TRUE)
 
-  cli::cli_alert_success("Created temporary directory '{path}'")
+  logger::log_success("Created temporary directory '{path}'")
 
   return(path)
 }

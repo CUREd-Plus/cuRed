@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(stringr)
 library(readr)
 
@@ -45,13 +45,13 @@ link <- function(data_set_id, input_path, output_path, patient_path, demographic
   # Write SQL query to text file
   query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(query, query_path)
-  cli::cli_alert_info("Wrote '{query_path}'")
+  logger::log_info("Wrote '{query_path}'")
 
   # Execute the data operation
   run_query(query)
 
   # Inform the user that the SQL query file has been written
-  cli::cli_alert_info("Wrote '{output_path}'")
+  logger::log_info("Wrote '{output_path}'")
 
   return(output_path)
 }
