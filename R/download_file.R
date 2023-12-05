@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 
 #' Download a file
 #'
@@ -33,7 +33,7 @@ download_file <- function(url, destfile=NA, mode="wb", method="auto", ...) {
     stop("utils::download.file error code: {result}")
   }
 
-  cli::cli_alert_success("Wrote '{destfile}'")
+  logger::log_success("Wrote '{destfile}'")
 
   return(destfile)
 }

@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(utils)
 
 #' Download a sample data file
@@ -27,7 +27,7 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
   # Download sample data (ZIP archive of CSVs)
   path <- file.path(tmpdir, filename)
   utils::download.file(url, method = "auto", destfile = path, mode = "wb", quiet = TRUE)
-  cli::cli_alert_info("Downloaded '{path}'")
+  logger::log_info("Downloaded '{path}'")
 
   # Show archive contents
   zipped_files <- utils::unzip(path, list = TRUE)$Name
@@ -48,7 +48,7 @@ get_sample_data <- function(url, number_of_rows = NA, output_path = NA) {
   }
 
   # Inform user what happened
-  cli::cli_alert_success("Wrote {number_of_rows} rows to '{output_path}'")
+  logger::log_success("Wrote {number_of_rows} rows to '{output_path}'")
 
   return(output_path)
 }
@@ -72,11 +72,11 @@ append_mock_ids <- function(input_path, output_path) {
   query <- stringr::str_glue(query_template)
   query_path <- paste(output_path, ".sql", sep = "")
   readr::write_file(x = query, file = query_path)
-  cli::cli_alert_info("Wrote '{query_path}'")
+  logger::log_info("Wrote '{query_path}'")
 
   # Run query to generate data
   run_query(query)
-  cli::cli_alert_success("Wrote '{output_path}'")
+  logger::log_success("Wrote '{output_path}'")
 
   return(output_path)
 }
@@ -97,6 +97,6 @@ generate_demographics <- function(output_path, n_rows = 1000) {
   query_template <- readr::read_file(query_template_path)
   query <- stringr::str_glue(query_template)
   run_query(query)
-  cli::cli_alert_success("Wrote '{output_path}'")
+  logger::log_success("Wrote '{output_path}'")
   return(output_path)
 }

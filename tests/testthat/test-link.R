@@ -28,7 +28,7 @@ COPY (
 )
 TO '{input_path}' WITH (FORMAT 'PARQUET');
 "))
-  cli::cli_inform("Wrote '{input_path}'")
+  logger::log_info("Wrote '{input_path}'")
 
   # Generate mock patient demographics data
   demographics_path <- file.path(test_dir, "demographics.parquet")

@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(DBI)
 library(duckdb)
 library(readr)
@@ -20,7 +20,7 @@ run_query <- function(query) {
   # Execute the query
   # https://dbi.r-dbi.org/reference/dbexecute
   affected_rows_count <- DBI::dbExecute(con, query)
-  cli::cli_alert_info("{affected_rows_count} rows affected")
+  logger::log_info("{affected_rows_count} rows affected")
 
   return(as.integer(affected_rows_count))
 }

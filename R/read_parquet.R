@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(stringr)
 
 
@@ -15,7 +15,7 @@ library(stringr)
 read_parquet <- function(path) {
   query <- stringr::str_glue("SELECT * FROM read_parquet('{path}')")
   data <- get_query(query)
-  cli::cli_inform("Loaded '{path}'")
+  logger::log_info("Loaded '{path}'")
 
   return(data)
 }

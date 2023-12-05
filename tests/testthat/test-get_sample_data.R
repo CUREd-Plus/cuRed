@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 
 test_that("get_sample_data", {
   # Generate sample data from NHS Artificial data pilot
@@ -11,7 +11,7 @@ test_that("get_sample_data", {
   # Tidy up on failure
   on.exit(unlink(tmpdir, recursive = TRUE, force = TRUE), add = TRUE, after = FALSE)
 
-  cli::cli_alert_info(url)
+  logger::log_info(url)
   # Ensure no errors occur
   expect_no_error(
     path <- get_sample_data(
