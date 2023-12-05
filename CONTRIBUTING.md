@@ -48,6 +48,8 @@ logger::log_success("File written OK")
 
 For more information, please read the [Introduction to logger](https://daroczig.github.io/logger/articles/Intro.html).
 
+Logging is configured as soon as the data pipeline runs i.e. in the `main()` function, using the function `configure_logging()` in [main.R](R/main.R). The logger is configured to write messages to the screen *and* to a file that is specified in the configuration file.
+
 # R environments
 
 See Chapter 7 [Environments](https://adv-r.hadley.nz/environments.html) in the online book [Advanced R](https://adv-r.hadley.nz/) by Hadley Wickham.
