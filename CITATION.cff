@@ -25,9 +25,22 @@ authors:
     orcid: 'https://orcid.org/0000-0001-9310-8536'
   - given-names: Richard
     family-names: Campbell
-    email: r.j.campbell@sheffield.ac.uk"
+    email: r.j.campbell@sheffield.ac.uk
     affiliation: The University of Sheffield
     orcid: 'https://orcid.org/0000-0002-0975-9270'
+  - given-names: Joe Salvador Thornhill
+    family-names: Heffer
+    email: j.heffer@sheffield.ac.uk
+    affiliation: The University of Sheffield
+    orcid: 'https://orcid.org/0000-0001-8733-1117'
+  - given-names: Grace
+    family-names: Accad
+    email: g.accad@sheffield.ac.uk
+    affiliation: The University of Sheffield
+  - given-names: Madina
+    family-names: Hasan
+    email: m.hasan@sheffield.ac.uk
+    affiliation: The University of Sheffield
 repository-code: 'https://github.com/CUREd-Plus/cuRed'
 abstract: >-
   Package for cleaning, validating, and linking NHS Digital
