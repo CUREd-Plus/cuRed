@@ -29,8 +29,7 @@ main <- function(data_set_id, config_active = NA) {
   configure_logging(log_threshold = config$log_threshold, log_dir = config$log_dir)
 
   # Audit log
-  username <- Sys.getenv("USERNAME")
-  logger::log_info("User name '{username}'")
+  audit()
 
   # Load data set options
   data_set_config_file_path <- extdata_path(stringr::str_glue("config/{data_set_id}.yaml"))
