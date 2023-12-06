@@ -29,7 +29,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
 
-  # Convert files to binary format
+  # Convert files to binary format (one file per table)
   binary_paths <- csv_to_binary(
     input_dir = raw_data_dir,
     output_dir = staging_dir,
@@ -37,8 +37,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   )
 
   # Paths of clean data file
-  clean_paths <- character()
-  fs::dir_create(clean_dir, recurse = TRUE)
+  output_paths <- character()
 
   # Iterate over the binary file paths
   for (i in seq_len(length(binary_paths))) {
@@ -55,13 +54,13 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     # Generate summary report
     # TODO
 
-    linked_path <- file.path(staging_dir, stringr::str_glue("03_{data_set_id}_{table_id}_linked.parquet"))
+    output_path <- file.path(staging_dir, stringr::str_glue("03_{data_set_id}_{table_id}_linked.parquet"))
 
     # Data linkage
     link(
       data_set_id = data_set_id,
       input_path = binary_path,
-      output_path = linked_path,
+      output_path = output_path,
       patient_path = patient_path,
       demographics_path = demographics_path,
       patient_key = patient_key
@@ -82,11 +81,16 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     # Generate FHIR data model
     # TODO
 
-    # Move clean data set to the output directory
-    clean_path = fs::path(clean_dir, stringr::str_glue("{data_set_id}_{table_id}.parquet"))
-    fs::file_move(linked_path, clean_path)
-    logger::log_success("Moved '{linked_path}' to '{clean_path}'")
-    clean_paths = append(clean_paths, clean_path)
+    output_paths = append(output_paths, output_path)
+  }
+
+  # Move clean data set to the output directory
+  # Iterate over tables
+  fs::dir_create(clean_dir)
+  for (output_path in output_paths) {
+    clean_path = fs::path(clean_dir, data_set_id, stringr::str_glue("{data_set_id}_{table_id}.parquet"))
+    fs::file_move(output_path, clean_path)
+    logger::log_success("Moved '{output_path}' to '{clean_path}'")
   }
 
   # Finish
