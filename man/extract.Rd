@@ -4,12 +4,15 @@
 \alias{extract}
 \title{Extract data from SQL queries}
 \usage{
-extract(working_dir, clean_dir)
+extract(working_dir, clean_dir, sep = .Platform$file.sep)
 }
 \arguments{
 \item{working_dir}{The path of the directory containing the extract definition.}
 
 \item{clean_dir}{The path of the directory containing the clean data to be used in the queries.}
+}
+\value{
+Path of the directory that contains the data extract.
 }
 \description{
 This function extracts data from SQL queries and saves it to Apache Parquet format.
@@ -27,4 +30,7 @@ For example:
     ├──apc.sql
     └──op.sql
 }\if{html}{\out{</div>}}
+
+This function will read data from the clean data directory using the supplied SQL queries and write output
+data tables to the extract working directory.
 }
