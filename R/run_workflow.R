@@ -85,10 +85,12 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   }
 
   # Move clean data set to the output directory
-  # Iterate over tables
+  # Make a subdirectory for this data set
+  clean_dir = fs::path(clean_dir, data_set_id)
   fs::dir_create(clean_dir)
+  # Iterate over tables
   for (output_path in output_paths) {
-    clean_path = fs::path(clean_dir, data_set_id, stringr::str_glue("{data_set_id}_{table_id}.parquet"))
+    clean_path = fs::path(clean_dir, stringr::str_glue("{data_set_id}_{table_id}.parquet"))
     fs::file_move(output_path, clean_path)
     logger::log_success("Moved '{output_path}' to '{clean_path}'")
   }
