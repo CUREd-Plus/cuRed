@@ -7,9 +7,11 @@ default:
   # Log level https://daroczig.github.io/logger/reference/log_levels.html
   log_threshold: INFO
   log_dir: "C:/Users/Administrator/curedplus-logs/"
+  # The output directory to save clean data files.
+  clean_dir: "C:/Users/Administrator/curedplus-clean-data/"
 
 # Alternative options for development
 development:
-  patient_path: "C:/temp/curedplus/patient.csv"
-  demographics_path: "C:/temp/curedplus/pd.parquet"
-  log_dir: "C:/temp/curedplus/logs"
+  patient_path: "C:/temp/curedplus/data/patient_id_bridge.csv"
+  demographics_path: "C:/temp/curedplus/data/pd.parquet"
+  log_dir: "C:/temp/curedplus/logs/"

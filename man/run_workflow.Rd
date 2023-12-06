@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_workflow.R
 \name{run_workflow}
 \alias{run_workflow}
-\title{Run a data processing workflow for a single data set.}
+\title{Run the data pipeline for a single data set.}
 \usage{
 run_workflow(
   data_set_id,
@@ -12,7 +12,8 @@ run_workflow(
   staging_dir,
   patient_path,
   patient_key,
-  demographics_path
+  demographics_path,
+  clean_dir
 )
 }
 \arguments{
@@ -31,10 +32,9 @@ run_workflow(
 \item{patient_key}{The column name of the foreign key to link to the patient ID bridge data set.}
 
 \item{demographics_path}{character Path of the demographics file.}
+
+\item{clean_dir}{Path of the output directory for clean data.}
 }
 \description{
 \code{run_workflow} executes the data pipeline for a single data set.
-}
-\details{
-TODO
 }

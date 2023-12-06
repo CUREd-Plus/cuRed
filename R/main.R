@@ -48,7 +48,8 @@ main <- function(data_set_id, config_active = NA) {
     sheet = config$sheet,
     staging_dir = config$staging_dir,
     patient_path = config$patient_path,
-    demographics_path = config$demographics_path
+    demographics_path = config$demographics_path,
+    clean_dir = config$clean_dir
   )
 }
 
