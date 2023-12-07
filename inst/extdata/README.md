@@ -13,6 +13,7 @@ This is a summary of the contents of this directory:
 - `validation_rules/` contains metadata definitions used to verify the contents of input data sets
 - `patient_id_bridge.csv` is a sample, synthetic patient identifier bridge, to be used for code testing.
 - `codes/` contains txt files that store column names that need special attention from all data sources.
+- `lsoadata/` contains csv file of lsoa data downloaded from ons.gov.uk to be able to map lsoa in summary report.  
 
 # References
 
