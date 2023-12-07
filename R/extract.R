@@ -28,6 +28,8 @@ library(stringr)
 #'
 #' @param working_dir The path of the directory containing the extract definition.
 #' @param clean_dir The path of the directory containing the clean data to be used in the queries.
+#' @param sep Path directory separator. Default: "\" (Windows) or "/" (Unix/POSIX).
+#'
 #' @returns Path of the directory that contains the data extract.
 #' @export
 extract <- function(working_dir, clean_dir, sep = .Platform$file.sep) {

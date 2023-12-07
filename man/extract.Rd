@@ -10,6 +10,8 @@ extract(working_dir, clean_dir, sep = .Platform$file.sep)
 \item{working_dir}{The path of the directory containing the extract definition.}
 
 \item{clean_dir}{The path of the directory containing the clean data to be used in the queries.}
+
+\item{sep}{Path directory separator. Default: "\" (Windows) or "/" (Unix/POSIX).}
 }
 \value{
 Path of the directory that contains the data extract.
