@@ -32,6 +32,18 @@ main("apc")  # Specify data set identifier
 
 The configuration file that specifies the input raw data sources is included in the package by default, at `inst/extdata/config/<data_set_id>.yaml`. For example, if you run `main("apc")` then the code will load the following configuration file `extdata/config/apc.yaml`.
 
+You can also set the workflow options by settings the path of a configuration file manually, for example:
+
+```R
+main(data_set_config_path = "C:\\Users\\Administrator\\my_data.yaml")
+```
+
+Or, for the general workflow options:
+
+```R
+main(config_path = "C:\\Users\\Administrator\\my_config.yaml")
+```
+
 For more information on using this function, view the documentation by running:
 
 ```R
