@@ -29,6 +29,9 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
 
+  # Unzip files
+  unzip_files(raw_data_dir)
+
   # Convert files to binary format (one file per table)
   binary_paths <- csv_to_binary(
     input_dir = raw_data_dir,
