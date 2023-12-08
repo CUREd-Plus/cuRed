@@ -9,7 +9,9 @@ generate_summary_report <- function(input, output) {
 }
 
 
-#to run the command enter the path to summary.R instead of path1 and the output path (where you want your html file to be saved) instead of path2
-generate_summary_report(path1, path2)
-
+#To run the function, replace location1 with the path to summary.R and 
+#replace location 2 with the path of where you want your html file to be saved
+#Dont forget in location 2 it should end with filename.html (even if filename.html doesnt exist yet) 
+#this will generate the html with the filename of your choice
+generate_summary_report(location1, location2)
 
