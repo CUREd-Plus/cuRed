@@ -15,520 +15,1364 @@
       "tableSchema": {
         "columns": [
           {
-            "name": "classification_nn",
-            "datatype": "string"
+            "name": "ACCOMMODATION_STATUS",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "ethnic_category",
-            "datatype": "string"
+            "name": "ACCOMMODATION_STATUS_VALID",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "expiry_date_nn",
-            "datatype": "string"
+            "name": "ACUITY",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "expiry_time_nn",
-            "datatype": "string"
+            "name": "ACUITY_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "start_date_nn",
-            "datatype": "string"
+            "name": "AGE_AT_ARRIVAL",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "start_time_nn",
-            "datatype": "string"
+            "name": "ARRIVAL_DATE",
+            "datatype": "DATE"
           },
           {
-            "name": "accommodation_status",
-            "datatype": "string"
+            "name": "ARRIVAL_MODE",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "accommodation_status_valid",
-            "datatype": "string"
+            "name": "ARRIVAL_MODE_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "acuity",
-            "datatype": "string"
+            "name": "ARRIVAL_MONTH",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "acuity_valid_approved",
-            "datatype": "string"
+            "name": "ARRIVAL_TIME",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "age_at_arrival",
-            "datatype": "string"
+            "name": "ASSESSMENT_DATE",
+            "datatype": "DATE"
           },
           {
-            "name": "arrival_date",
-            "datatype": "string"
+            "name": "ASSESSMENT_TIME",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "arrival_mode",
-            "datatype": "string"
+            "name": "ATTENDANCE_CATEGORY",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "arrival_mode_valid_approved",
-            "datatype": "string"
+            "name": "ATTENDANCE_SOURCE",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "arrival_month",
-            "datatype": "string"
+            "name": "ATTENDANCE_SOURCE_ORGANISATION",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "arrival_time",
-            "datatype": "string"
+            "name": "ATTENDANCE_SOURCE_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "assessment_date",
-            "datatype": "string"
+            "name": "BIRTH_MONTH",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "assessment_time",
-            "datatype": "string"
+            "name": "BIRTH_YEAR",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "attendance_category",
-            "datatype": "string"
+            "name": "CHIEF_COMPLAINT",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "attendance_source",
-            "datatype": "string"
+            "name": "CHIEF_COMPLAINT_EXTENDED_CODE",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "attendance_source_organisation",
-            "datatype": "string"
+            "name": "CHIEF_COMPLAINT_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "attendance_source_valid_approved",
-            "datatype": "string"
+            "name": "CLASSIFICATION_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "birth_month",
-            "datatype": "string"
+            "name": "CLASSIFICATION_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "birth_year",
-            "datatype": "string"
+            "name": "CLASSIFICATION_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "chief_complaint",
-            "datatype": "string"
+            "name": "CLASSIFICATION_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "chief_complaint_extended_code",
-            "datatype": "string"
+            "name": "COMMISSIONER",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "chief_complaint_valid_approved",
-            "datatype": "string"
+            "name": "COMMISSIONER_DERIVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "commissioner",
-            "datatype": "string"
+            "name": "COMORBIDITIES_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "commissioner_derived",
-            "datatype": "string"
+            "name": "COMORBIDITIES_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "comorbidities_nn",
-            "datatype": "string"
+            "name": "COMORBIDITIES_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "comorbidities_valid_approved_nn",
-            "datatype": "string"
+            "name": "COMORBIDITIES_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "conclusion_date",
-            "datatype": "string"
+            "name": "COMORBIDITIES_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "conclusion_time",
-            "datatype": "string"
+            "name": "COMORBIDITIES_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "conclusion_time_since_arrival",
-            "datatype": "string"
+            "name": "COMORBIDITIES_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "conveying_ambulance_trust",
-            "datatype": "string"
+            "name": "COMORBIDITIES_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "costing_period",
-            "datatype": "string"
+            "name": "COMORBIDITIES_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "country",
-            "datatype": "string"
+            "name": "COMORBIDITIES_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "decided_to_admit_date",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "decided_to_admit_time",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "decision_to_admit_time_since_arrival",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "department_type",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "departure_date",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "departure_time",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "departure_time_since_arrival",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "diagnosis_code_nn",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "diagnosis_first_nn",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "diagnosis_qualifier_is_approved_nn",
-            "datatype": "string"
+            "name": "COMORBIDITIES_VALID_APPROVED_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "diagnosis_qualifier_nn",
-            "datatype": "string"
+            "name": "CONCLUSION_DATE",
+            "datatype": "DATE"
           },
           {
-            "name": "diagnosis_valid_approved_nn",
-            "datatype": "string"
+            "name": "CONCLUSION_TIME",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_destination",
-            "datatype": "string"
+            "name": "CONCLUSION_TIME_SINCE_ARRIVAL",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_destination_valid_approved",
-            "datatype": "string"
+            "name": "CONVEYING_AMBULANCE_TRUST",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_follow_up",
-            "datatype": "string"
+            "name": "COSTING_PERIOD",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_follow_up_valid_approved",
-            "datatype": "string"
+            "name": "COUNTRY",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_information_given",
-            "datatype": "string"
+            "name": "DECIDED_TO_ADMIT_DATE",
+            "datatype": "DATE"
           },
           {
-            "name": "discharge_information_given_valid_approved",
-            "datatype": "string"
+            "name": "DECIDED_TO_ADMIT_TIME",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_status",
-            "datatype": "string"
+            "name": "DECISION_TO_ADMIT_TIME_SINCE_ARRIVAL",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "discharge_status_valid_approved",
-            "datatype": "string"
+            "name": "DEPARTMENT_TYPE",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "drug_alcohol_code_nn",
-            "datatype": "string"
+            "name": "DEPARTURE_DATE",
+            "datatype": "DATE"
           },
           {
-            "name": "drug_alcohol_code_valid_approved_nn",
-            "datatype": "string"
+            "name": "DEPARTURE_TIME",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "ed_county_code",
-            "datatype": "string"
+            "name": "DEPARTURE_TIME_SINCE_ARRIVAL",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "ed_district_code",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "epikey",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "excluded",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_11",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "exclusion_reasons",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_12",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "final_price",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "fractional_age_at_arrival",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "grouper_version",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "health_resource_group",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "initial_assessment_time_since_arrival",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_activity_status",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_activity_status_valid_approved",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_activity_type",
-            "datatype": "string"
+            "name": "DIAGNOSIS_CODE_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_activity_type_valid_approved",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_date",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_intent",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_11",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_intent_valid_approved",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_12",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_mechanism",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_mechanism_valid_approved",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "injury_time",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "investigation_code_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "investigation_date_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "investigation_time_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "investigations_valid_approved_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "market_forces_adjustment",
-            "datatype": "string"
+            "name": "DIAGNOSIS_FIRST_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "market_forces_factor",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "nhs_number_status_indicator_code",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "organisation_code_patient_pathway_identifier",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_11",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "overseas_visitor_charging_category",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_12",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "patient_postcode_district",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "patient_type",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "pds_general_practice",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "period_end_date",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "period_length",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "period_start_date",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "period_status",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "place_of_injury",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "place_of_injury_valid_approved",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "practice_code_patient_registration",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "preferred_spoken_language",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_11",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "preferred_spoken_language_valid",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_12",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "provider_code",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "provider_code_derived",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "provider_postcode_district",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "receiving_site",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "referral_assessment_date_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "referral_assessment_time_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "referred_to_service_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "referred_to_service_valid_approved_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "residence_ccg",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "residence_ccg_from_patient_postcode",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_10",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "seen_date",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_11",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "seen_for_treatment_time_since_arrival",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_12",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "seen_time",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "sequence_number_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "service_request_date_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "service_request_time_nn",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_5",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "sha_provider",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_6",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "site",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_7",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "stated_gender",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_8",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "tariff",
-            "datatype": "string"
+            "name": "DIAGNOSIS_VALID_APPROVED_9",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "tariff_description",
-            "datatype": "string"
+            "name": "DISCHARGE_DESTINATION",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "token_person_id",
-            "datatype": "string"
+            "name": "DISCHARGE_DESTINATION_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "treatment_code_nn",
-            "datatype": "string"
+            "name": "DISCHARGE_FOLLOW_UP",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "treatment_date_nn",
-            "datatype": "string"
+            "name": "DISCHARGE_FOLLOW_UP_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "treatment_function_code",
-            "datatype": "string"
+            "name": "DISCHARGE_INFORMATION_GIVEN",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "treatment_time_nn",
-            "datatype": "string"
+            "name": "DISCHARGE_INFORMATION_GIVEN_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "treatments_valid_approved_nn",
-            "datatype": "string"
+            "name": "DISCHARGE_STATUS",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "waiting_time_measurement_type",
-            "datatype": "string"
+            "name": "DISCHARGE_STATUS_VALID_APPROVED",
+            "datatype": "VARCHAR"
           },
           {
-            "name": "lsoa",
-            "datatype": "string"
+            "name": "DRUG_ALCOHOL_CODE_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "ED_COUNTY_CODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "ED_DISTRICT_CODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EPIKEY",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "ETHNIC_CATEGORY",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXCLUDED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXCLUSION_REASONS",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXPIRY_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "EXPIRY_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "EXPIRY_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "EXPIRY_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "EXPIRY_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXPIRY_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXPIRY_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "EXPIRY_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "FINAL_PRICE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "FRACTIONAL_AGE_AT_ARRIVAL",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "GROUPER_VERSION",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "HEALTH_RESOURCE_GROUP",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INITIAL_ASSESSMENT_TIME_SINCE_ARRIVAL",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_ACTIVITY_STATUS",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_ACTIVITY_STATUS_VALID_APPROVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_ACTIVITY_TYPE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_ACTIVITY_TYPE_VALID_APPROVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_DATE",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INJURY_INTENT",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_INTENT_VALID_APPROVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_MECHANISM",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_MECHANISM_VALID_APPROVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INJURY_TIME",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_CODE_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_10",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_11",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_12",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_5",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_6",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_7",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_8",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_DATE_9",
+            "datatype": "DATE"
+          },
+          {
+            "name": "INVESTIGATION_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATION_TIME_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "LSOA_2011",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "MARKET_FORCES_ADJUSTMENT",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "MARKET_FORCES_FACTOR",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "NHS_NUMBER_STATUS_INDICATOR_CODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "ORGANISATION_CODE_PATIENT_PATHWAY_IDENTIFIER",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "OVERSEAS_VISITOR_CHARGING_CATEGORY",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PATIENT_POSTCODE_DISTRICT",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PATIENT_TYPE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PDS_GENERAL_PRACTICE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PERIOD_END_DATE",
+            "datatype": "DATE"
+          },
+          {
+            "name": "PERIOD_LENGTH",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PERIOD_START_DATE",
+            "datatype": "DATE"
+          },
+          {
+            "name": "PERIOD_STATUS",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PLACE_OF_INJURY",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PLACE_OF_INJURY_VALID_APPROVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PRACTICE_CODE_PATIENT_REGISTRATION",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PREFERRED_SPOKEN_LANGUAGE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PREFERRED_SPOKEN_LANGUAGE_VALID",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PROVIDER_CODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PROVIDER_CODE_DERIVED",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "PROVIDER_POSTCODE_DISTRICT",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "RECEIVING_SITE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "RESIDENCE_CCG",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "RESIDENCE_CCG_FROM_PATIENT_POSTCODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEEN_DATE",
+            "datatype": "DATE"
+          },
+          {
+            "name": "SEEN_FOR_TREATMENT_TIME_SINCE_ARRIVAL",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEEN_TIME",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SEQUENCE_NUMBER_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SERVICE_REQUEST_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "SERVICE_REQUEST_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "SERVICE_REQUEST_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "SERVICE_REQUEST_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "SERVICE_REQUEST_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SERVICE_REQUEST_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SERVICE_REQUEST_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SERVICE_REQUEST_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SHA_PROVIDER",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "SITE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "START_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "START_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "START_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "START_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "START_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "START_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "START_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "START_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "STATED_GENDER",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TARIFF",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TARIFF_DESCRIPTION",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TOKEN_PERSON_ID",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_CODE_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_DATE_1",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_10",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_11",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_12",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_2",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_3",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_4",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_5",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_6",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_7",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_8",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_DATE_9",
+            "datatype": "DATE"
+          },
+          {
+            "name": "TREATMENT_FUNCTION_CODE",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENT_TIME_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_1",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_10",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_11",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_12",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_2",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_3",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_4",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_5",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_6",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_7",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_8",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "TREATMENTS_VALID_APPROVED_9",
+            "datatype": "VARCHAR"
+          },
+          {
+            "name": "WAITING_TIME_MEASUREMENT_TYPE",
+            "datatype": "VARCHAR"
           }
         ]
       }

@@ -102,4 +102,4 @@ SELECT
   ,MAX(TREATMENT_DATE_8) AS MAX_TREATMENT_DATE_8
   ,MIN(TREATMENT_DATE_9) AS MIN_TREATMENT_DATE_9
   ,MAX(TREATMENT_DATE_9) AS MAX_TREATMENT_DATE_9
-FROM read_csv('FILE*.txt', delim = '|', all_varchar=true)
+FROM read_csv_auto('FILE*.txt', delim = '|', all_varchar=true)
