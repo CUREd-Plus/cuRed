@@ -17,6 +17,8 @@ FROM read_csv(
 )
 WHERE
   -- The visit finished before the start date
-  (CONCLUSION_DATE < "2017-10-01")
+  (CONCLUSION_DATE < '2017-10-01')
   -- The visit started after the end dat
-  OR (ARRIVAL_DATE > "2023-03-31")
+  OR (ARRIVAL_DATE > '2023-03-31')
+  OR (ARRIVAL_DATE > CONCLUSION_DATE)
+  OR ARRIVAL_DATE IS NULL
