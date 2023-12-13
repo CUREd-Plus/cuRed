@@ -1,17 +1,24 @@
--- Convert CSV files to Apache Parquet format
+/*
+Convert CSV files to Apache Parquet format.
+*/
+
+-- Set working location
+SET temp_directory = '{temp_directory}';
+
 -- DuckDB COPY statement documentation
 -- https://duckdb.org/docs/sql/statements/copy
 COPY (
-  SELECT *
-  -- Define data types
+  -- Parse CSV files
   -- DuckDB documentation for CSV loading
   -- https://duckdb.org/docs/data/csv/overview.html
+  SELECT *
   FROM read_csv('{input_glob}',
-	header=TRUE,
+	header={header},
 	filename=TRUE,
-	-- Columns must be ordered
+	delim='{delim}',
+	-- Define data types. (Columns must be ordered.)
 	columns={data_types_struct}
   )
 )
-TO '{output_path}'
-WITH (FORMAT 'PARQUET');
+-- Write output binary data files
+TO '{output_path}';
