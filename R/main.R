@@ -37,7 +37,7 @@ main <- function(data_set_id = NA, active_config = NA, config_path= NA, data_set
   configure_logging(log_threshold = config$log_threshold, log_dir = config$log_dir)
 
   # Audit log
-  username <- Sys.getenv("USERNAME")
+  username <- Sys.info()[["user"]]
   logger::log_info("User name '{username}'")
 
   # Load data set options
