@@ -6,7 +6,8 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "ecds",
   "notes": "Emergency Care Data Set (ECDS)",

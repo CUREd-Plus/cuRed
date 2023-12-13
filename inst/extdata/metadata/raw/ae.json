@@ -6,7 +6,8 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "ae",
   "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
