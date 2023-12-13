@@ -7,23 +7,31 @@ library(logger)
 #' @description
 #' The function executes the entire data pipeline for the specified data set.
 #'
-#' @param data_set_id Character. Data set identifier e.g. "apc", "yas_epr", "op"
-#' @param config_active Character. The specific [configuration](https://rstudio.github.io/config/articles/config.html) to use.
+#' One of `data_set_id` OR `data_set_config_path` are required.
+#'
+#' This code will load all the configuration files and configure logging, etc.
+#'
+#' @param data_set_id Data set identifier e.g. "apc", "yas_epr", "op". Default: Load `id` value from `data_set_config_path`.
+#' @param active_config The specific [configuration](https://rstudio.github.io/config/articles/config.html) to use. Default: "default"
+#' @param config_path Path of the global configuration file. Default: "extdata/config/config.yaml".
+#' @param data_set_config_path Path of the data set configuration file. Default: "extdata/config/{data_set_id}.yaml".
 #'
 #' @export
 #'
-main <- function(data_set_id, config_active = NA) {
+main <- function(data_set_id = NA, active_config = NA, config_path= NA, data_set_config_path = NA) {
 
   # Specify which configuration namespace to use
-  if (is.na(config_active)) {
-    config_active = Sys.getenv("R_CONFIG_ACTIVE", "default")
+  if (is.na(active_config)) {
+    active_config = Sys.getenv("R_active_config", "default")
   }
 
   # Load global options
   # https://rstudio.github.io/config/reference/
-  config_file_path <- extdata_path("config/config.yaml")
-  logger::log_info("Loading '{config_file_path}' ('{config_active}' options)")
-  config <- config::get(file = config_file_path, config = config_active)
+  if (is.na(config_path)) {
+    config_path = extdata_path("config/config.yaml")
+  }
+  logger::log_info("Loading '{config_path}' ('{active_config}' options)")
+  config <- config::get(file = config_path, config = active_config)
 
   # Set up logs
   configure_logging(log_threshold = config$log_threshold, log_dir = config$log_dir)
@@ -33,9 +41,15 @@ main <- function(data_set_id, config_active = NA) {
   logger::log_info("User name '{username}'")
 
   # Load data set options
-  data_set_config_file_path <- extdata_path(stringr::str_glue("config/{data_set_id}.yaml"))
-  logger::log_info("Loading '{data_set_config_file_path}'")
-  config = config::merge(config, config::get(file = data_set_config_file_path, , config = config_active))
+  if (is.na(data_set_config_path)) {
+    data_set_config_path <- extdata_path(stringr::str_glue("config/{data_set_id}.yaml"))
+  }
+  logger::log_info("Loading '{data_set_config_path}'")
+  config = config::merge(config, config::get(file = data_set_config_path, config = active_config))
+
+  if (is.na(data_set_id)) {
+    data_set_id = config$id
+  }
 
   # Inform user what's happening
   logger::log_info("Running workflow for data set '{data_set_id}'")

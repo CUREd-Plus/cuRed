@@ -22,6 +22,9 @@ library(stringr)
 #'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, patient_key, demographics_path, clean_dir) {
   # Cast parameters to the correct data type
+  if (is.na(data_set_id)) {
+    stop("No data set identifier specified.")
+  }
   data_set_id <- as.character(data_set_id)
 
   # Ensure input directory exists

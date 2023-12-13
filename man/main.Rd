@@ -4,13 +4,26 @@
 \alias{main}
 \title{Run workflow}
 \usage{
-main(data_set_id, config_active = NA)
+main(
+  data_set_id = NA,
+  active_config = NA,
+  config_path = NA,
+  data_set_config_path = NA
+)
 }
 \arguments{
-\item{data_set_id}{Character. Data set identifier e.g. "apc", "yas_epr", "op"}
+\item{data_set_id}{Data set identifier e.g. "apc", "yas_epr", "op". Default: Load \code{id} value from \code{data_set_config_path}.}
 
-\item{config_active}{Character. The specific \href{https://rstudio.github.io/config/articles/config.html}{configuration} to use.}
+\item{active_config}{The specific \href{https://rstudio.github.io/config/articles/config.html}{configuration} to use. Default: "default"}
+
+\item{config_path}{Path of the global configuration file. Default: "extdata/config/config.yaml".}
+
+\item{data_set_config_path}{Path of the data set configuration file. Default: "extdata/config/{data_set_id}.yaml".}
 }
 \description{
 The function executes the entire data pipeline for the specified data set.
+
+One of \code{data_set_id} OR \code{data_set_config_path} are required.
+
+This code will load all the configuration files and configure logging, etc.
 }
