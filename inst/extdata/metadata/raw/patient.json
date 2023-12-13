@@ -6,29 +6,26 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "patient",
   "notes": "CUREd+ patient identifier bridge",
   "tables": [
     {
+      "patient",
       "tableSchema": {
         "columns": [
           {
             "datatype": "string",
-            "name": "token_person_id"
+            "name": "study_id",
+            "required": true
           },
           {
             "datatype": "string",
-            "name": "yas_id"
-          },
-          {
-            "datatype": "string",
-            "name": "cured_id"
-          },
-          {
-            "datatype": "string",
-            "name": "study_id"
+            "name": "pseudo_person_id",
+            "titles": ["token_person_id"],
+            "required": true
           }
         ]
       }
