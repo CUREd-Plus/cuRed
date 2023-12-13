@@ -39,7 +39,7 @@ main <- function(data_set_id = NA, active_config = NA, config_path= NA, data_set
   # Audit log
   user <- Sys.info()[["user"]]
   nodename <- Sys.info()[["nodename"]]
-  logger::log_info("User '{user}' on host '{nodename}")
+  logger::log_info("User {user} on host {nodename}")
 
   # Load data set options
   if (is.na(data_set_config_path)) {
