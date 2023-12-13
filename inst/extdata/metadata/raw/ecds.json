@@ -6,528 +6,1375 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "ecds",
-  "notes": "Emergency Care Data Set (ECDS)",
+  "notes": "Emergency Care Data Set (ECDS) https://digital.nhs.uk/services/data-access-request-service-dars/dars-products-and-services/data-set-catalogue/emergency-care-data-set-ecds",
+  "url": "FILE*_NIC*_ECDS_*.txt",
   "tables": [
     {
+      "id": "ecds",
       "tableSchema": {
         "columns": [
           {
-            "name": "classification_nn",
+            "name": "ACCOMMODATION_STATUS",
             "datatype": "string"
           },
           {
-            "name": "ethnic_category",
+            "name": "ACCOMMODATION_STATUS_VALID",
             "datatype": "string"
           },
           {
-            "name": "expiry_date_nn",
+            "name": "ACUITY",
             "datatype": "string"
           },
           {
-            "name": "expiry_time_nn",
+            "name": "ACUITY_VALID_APPROVED",
             "datatype": "string"
           },
           {
-            "name": "start_date_nn",
+            "name": "AGE_AT_ARRIVAL",
             "datatype": "string"
           },
           {
-            "name": "start_time_nn",
+            "name": "ARRIVAL_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "ARRIVAL_MODE",
+            "datatype": "string"
+          },
+          {
+            "name": "ARRIVAL_MODE_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "ARRIVAL_MONTH",
+            "datatype": "string"
+          },
+          {
+            "name": "ARRIVAL_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "ASSESSMENT_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "ASSESSMENT_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "ATTENDANCE_CATEGORY",
+            "datatype": "string"
+          },
+          {
+            "name": "ATTENDANCE_SOURCE",
+            "datatype": "string"
+          },
+          {
+            "name": "ATTENDANCE_SOURCE_ORGANISATION",
+            "datatype": "string"
+          },
+          {
+            "name": "ATTENDANCE_SOURCE_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "BIRTH_MONTH",
+            "datatype": "string"
+          },
+          {
+            "name": "BIRTH_YEAR",
+            "datatype": "string"
+          },
+          {
+            "name": "CHIEF_COMPLAINT",
+            "datatype": "string"
+          },
+          {
+            "name": "CHIEF_COMPLAINT_EXTENDED_CODE",
+            "datatype": "string"
+          },
+          {
+            "name": "CHIEF_COMPLAINT_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "CLASSIFICATION_1",
+            "datatype": "string"
+          },
+          {
+            "name": "CLASSIFICATION_2",
+            "datatype": "string"
+          },
+          {
+            "name": "CLASSIFICATION_3",
+            "datatype": "string"
+          },
+          {
+            "name": "CLASSIFICATION_4",
+            "datatype": "string"
+          },
+          {
+            "name": "COMMISSIONER",
+            "datatype": "string"
+          },
+          {
+            "name": "COMMISSIONER_DERIVED",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_1",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_10",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_2",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_3",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_4",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_5",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_6",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_7",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_8",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_9",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_1",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_10",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_2",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_3",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_4",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_5",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_6",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_7",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_8",
+            "datatype": "string"
+          },
+          {
+            "name": "COMORBIDITIES_VALID_APPROVED_9",
+            "datatype": "string"
+          },
+          {
+            "name": "CONCLUSION_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "CONCLUSION_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "CONCLUSION_TIME_SINCE_ARRIVAL",
+            "datatype": "string"
+          },
+          {
+            "name": "CONVEYING_AMBULANCE_TRUST",
+            "datatype": "string"
+          },
+          {
+            "name": "COSTING_PERIOD",
+            "datatype": "string"
+          },
+          {
+            "name": "COUNTRY",
+            "datatype": "string"
+          },
+          {
+            "name": "DECIDED_TO_ADMIT_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "DECIDED_TO_ADMIT_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "DECISION_TO_ADMIT_TIME_SINCE_ARRIVAL",
+            "datatype": "string"
+          },
+          {
+            "name": "DEPARTMENT_TYPE",
+            "datatype": "string"
+          },
+          {
+            "name": "DEPARTURE_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "DEPARTURE_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "DEPARTURE_TIME_SINCE_ARRIVAL",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_10",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_11",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_12",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_2",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_3",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_4",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_5",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_6",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_7",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_8",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_CODE_9",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_10",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_11",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_12",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_2",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_3",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_4",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_5",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_6",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_7",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_8",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_FIRST_9",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_10",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_11",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_12",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_2",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_3",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_4",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_5",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_6",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_7",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_8",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_9",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_10",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_11",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_12",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_2",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_3",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_4",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_5",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_6",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_7",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_8",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_QUALIFIER_IS_APPROVED_9",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_10",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_11",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_12",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_2",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_3",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_4",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_5",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_6",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_7",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_8",
+            "datatype": "string"
+          },
+          {
+            "name": "DIAGNOSIS_VALID_APPROVED_9",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_DESTINATION",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_DESTINATION_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_FOLLOW_UP",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_FOLLOW_UP_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_INFORMATION_GIVEN",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_INFORMATION_GIVEN_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_STATUS",
+            "datatype": "string"
+          },
+          {
+            "name": "DISCHARGE_STATUS_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "DRUG_ALCOHOL_CODE_2",
             "datatype": "string"
           },
           {
-            "name": "accommodation_status",
+            "name": "DRUG_ALCOHOL_CODE_3",
             "datatype": "string"
           },
           {
-            "name": "accommodation_status_valid",
+            "name": "DRUG_ALCOHOL_CODE_4",
             "datatype": "string"
           },
           {
-            "name": "acuity",
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_1",
             "datatype": "string"
           },
           {
-            "name": "acuity_valid_approved",
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_2",
             "datatype": "string"
           },
           {
-            "name": "age_at_arrival",
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_3",
             "datatype": "string"
           },
           {
-            "name": "arrival_date",
+            "name": "DRUG_ALCOHOL_CODE_VALID_APPROVED_4",
             "datatype": "string"
           },
           {
-            "name": "arrival_mode",
+            "name": "ED_COUNTY_CODE",
             "datatype": "string"
           },
           {
-            "name": "arrival_mode_valid_approved",
+            "name": "ED_DISTRICT_CODE",
             "datatype": "string"
           },
           {
-            "name": "arrival_month",
+            "name": "EPIKEY",
             "datatype": "string"
           },
           {
-            "name": "arrival_time",
+            "name": "ETHNIC_CATEGORY",
             "datatype": "string"
           },
           {
-            "name": "assessment_date",
+            "name": "EXCLUDED",
             "datatype": "string"
           },
           {
-            "name": "assessment_time",
+            "name": "EXCLUSION_REASONS",
             "datatype": "string"
           },
           {
-            "name": "attendance_category",
+            "name": "EXPIRY_DATE_1",
             "datatype": "string"
           },
           {
-            "name": "attendance_source",
+            "name": "EXPIRY_DATE_2",
             "datatype": "string"
           },
           {
-            "name": "attendance_source_organisation",
+            "name": "EXPIRY_DATE_3",
             "datatype": "string"
           },
           {
-            "name": "attendance_source_valid_approved",
+            "name": "EXPIRY_DATE_4",
             "datatype": "string"
           },
           {
-            "name": "birth_month",
+            "name": "EXPIRY_TIME_1",
             "datatype": "string"
           },
           {
-            "name": "birth_year",
+            "name": "EXPIRY_TIME_2",
             "datatype": "string"
           },
           {
-            "name": "chief_complaint",
+            "name": "EXPIRY_TIME_3",
             "datatype": "string"
           },
           {
-            "name": "chief_complaint_extended_code",
+            "name": "EXPIRY_TIME_4",
             "datatype": "string"
           },
           {
-            "name": "chief_complaint_valid_approved",
+            "name": "FINAL_PRICE",
             "datatype": "string"
           },
           {
-            "name": "commissioner",
+            "name": "FRACTIONAL_AGE_AT_ARRIVAL",
             "datatype": "string"
           },
           {
-            "name": "commissioner_derived",
+            "name": "GROUPER_VERSION",
             "datatype": "string"
           },
           {
-            "name": "comorbidities_nn",
+            "name": "HEALTH_RESOURCE_GROUP",
             "datatype": "string"
           },
           {
-            "name": "comorbidities_valid_approved_nn",
+            "name": "INITIAL_ASSESSMENT_TIME_SINCE_ARRIVAL",
             "datatype": "string"
           },
           {
-            "name": "conclusion_date",
+            "name": "INJURY_ACTIVITY_STATUS",
             "datatype": "string"
           },
           {
-            "name": "conclusion_time",
+            "name": "INJURY_ACTIVITY_STATUS_VALID_APPROVED",
             "datatype": "string"
           },
           {
-            "name": "conclusion_time_since_arrival",
+            "name": "INJURY_ACTIVITY_TYPE",
             "datatype": "string"
           },
           {
-            "name": "conveying_ambulance_trust",
+            "name": "INJURY_ACTIVITY_TYPE_VALID_APPROVED",
             "datatype": "string"
           },
           {
-            "name": "costing_period",
+            "name": "INJURY_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "INJURY_INTENT",
+            "datatype": "string"
+          },
+          {
+            "name": "INJURY_INTENT_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "INJURY_MECHANISM",
+            "datatype": "string"
+          },
+          {
+            "name": "INJURY_MECHANISM_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "INJURY_TIME",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_10",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_11",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_12",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_2",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_3",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_4",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_5",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_6",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_7",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_8",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_CODE_9",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_10",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_11",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_12",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_2",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_3",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_4",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_5",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_6",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_7",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_8",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_DATE_9",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_1",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_10",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_11",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_12",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_2",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_3",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_4",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_5",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_6",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_7",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_8",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATION_TIME_9",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_1",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_10",
             "datatype": "string"
           },
           {
-            "name": "country",
+            "name": "INVESTIGATIONS_VALID_APPROVED_11",
             "datatype": "string"
           },
           {
-            "name": "decided_to_admit_date",
+            "name": "INVESTIGATIONS_VALID_APPROVED_12",
             "datatype": "string"
           },
           {
-            "name": "decided_to_admit_time",
+            "name": "INVESTIGATIONS_VALID_APPROVED_2",
             "datatype": "string"
           },
           {
-            "name": "decision_to_admit_time_since_arrival",
+            "name": "INVESTIGATIONS_VALID_APPROVED_3",
             "datatype": "string"
           },
           {
-            "name": "department_type",
+            "name": "INVESTIGATIONS_VALID_APPROVED_4",
             "datatype": "string"
           },
           {
-            "name": "departure_date",
+            "name": "INVESTIGATIONS_VALID_APPROVED_5",
             "datatype": "string"
           },
           {
-            "name": "departure_time",
+            "name": "INVESTIGATIONS_VALID_APPROVED_6",
             "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_7",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_8",
+            "datatype": "string"
+          },
+          {
+            "name": "INVESTIGATIONS_VALID_APPROVED_9",
+            "datatype": "string"
+          },
+          {
+            "name": "LSOA_2011",
+            "datatype": "string"
+          },
+          {
+            "name": "MARKET_FORCES_ADJUSTMENT",
+            "datatype": "string"
+          },
+          {
+            "name": "MARKET_FORCES_FACTOR",
+            "datatype": "string"
+          },
+          {
+            "name": "NHS_NUMBER_STATUS_INDICATOR_CODE",
+            "datatype": "string"
+          },
+          {
+            "name": "ORGANISATION_CODE_PATIENT_PATHWAY_IDENTIFIER",
+            "datatype": "string"
+          },
+          {
+            "name": "OVERSEAS_VISITOR_CHARGING_CATEGORY",
+            "datatype": "string"
+          },
+          {
+            "name": "PATIENT_POSTCODE_DISTRICT",
+            "datatype": "string"
+          },
+          {
+            "name": "PATIENT_TYPE",
+            "datatype": "string"
+          },
+          {
+            "name": "PDS_GENERAL_PRACTICE",
+            "datatype": "string"
+          },
+          {
+            "name": "PERIOD_END_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "PERIOD_LENGTH",
+            "datatype": "string"
+          },
+          {
+            "name": "PERIOD_START_DATE",
+            "datatype": "date"
+          },
+          {
+            "name": "PERIOD_STATUS",
+            "datatype": "string"
+          },
+          {
+            "name": "PLACE_OF_INJURY",
+            "datatype": "string"
+          },
+          {
+            "name": "PLACE_OF_INJURY_VALID_APPROVED",
+            "datatype": "string"
+          },
+          {
+            "name": "PRACTICE_CODE_PATIENT_REGISTRATION",
+            "datatype": "string"
+          },
+          {
+            "name": "PREFERRED_SPOKEN_LANGUAGE",
+            "datatype": "string"
+          },
+          {
+            "name": "PREFERRED_SPOKEN_LANGUAGE_VALID",
+            "datatype": "string"
+          },
+          {
+            "name": "PROVIDER_CODE",
+            "datatype": "string"
+          },
+          {
+            "name": "PROVIDER_CODE_DERIVED",
+            "datatype": "string"
+          },
+          {
+            "name": "PROVIDER_POSTCODE_DISTRICT",
+            "datatype": "string"
+          },
+          {
+            "name": "RECEIVING_SITE",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_2",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_3",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_DATE_4",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_1",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_2",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_3",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRAL_ASSESSMENT_TIME_4",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_1",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_2",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_3",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_4",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_1",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_2",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_3",
+            "datatype": "string"
+          },
+          {
+            "name": "REFERRED_TO_SERVICE_VALID_APPROVED_4",
+            "datatype": "string"
+          },
+          {
+            "name": "RESIDENCE_CCG",
+            "datatype": "string"
+          },
+          {
+            "name": "RESIDENCE_CCG_FROM_PATIENT_POSTCODE",
+            "datatype": "string"
+          },
+          {
+            "name": "SEEN_DATE",
+            "datatype": "date"
           },
           {
-            "name": "departure_time_since_arrival",
+            "name": "SEEN_FOR_TREATMENT_TIME_SINCE_ARRIVAL",
             "datatype": "string"
           },
           {
-            "name": "diagnosis_code_nn",
+            "name": "SEEN_TIME",
             "datatype": "string"
           },
           {
-            "name": "diagnosis_first_nn",
+            "name": "SEQUENCE_NUMBER_1",
             "datatype": "string"
           },
           {
-            "name": "diagnosis_qualifier_is_approved_nn",
+            "name": "SEQUENCE_NUMBER_10",
             "datatype": "string"
           },
           {
-            "name": "diagnosis_qualifier_nn",
+            "name": "SEQUENCE_NUMBER_11",
             "datatype": "string"
           },
           {
-            "name": "diagnosis_valid_approved_nn",
+            "name": "SEQUENCE_NUMBER_12",
             "datatype": "string"
           },
           {
-            "name": "discharge_destination",
+            "name": "SEQUENCE_NUMBER_2",
             "datatype": "string"
           },
           {
-            "name": "discharge_destination_valid_approved",
+            "name": "SEQUENCE_NUMBER_3",
             "datatype": "string"
           },
           {
-            "name": "discharge_follow_up",
+            "name": "SEQUENCE_NUMBER_4",
             "datatype": "string"
           },
           {
-            "name": "discharge_follow_up_valid_approved",
+            "name": "SEQUENCE_NUMBER_5",
             "datatype": "string"
           },
           {
-            "name": "discharge_information_given",
+            "name": "SEQUENCE_NUMBER_6",
             "datatype": "string"
           },
           {
-            "name": "discharge_information_given_valid_approved",
+            "name": "SEQUENCE_NUMBER_7",
             "datatype": "string"
           },
           {
-            "name": "discharge_status",
+            "name": "SEQUENCE_NUMBER_8",
             "datatype": "string"
           },
           {
-            "name": "discharge_status_valid_approved",
+            "name": "SEQUENCE_NUMBER_9",
             "datatype": "string"
           },
           {
-            "name": "drug_alcohol_code_nn",
+            "name": "SERVICE_REQUEST_DATE_1",
             "datatype": "string"
           },
           {
-            "name": "drug_alcohol_code_valid_approved_nn",
+            "name": "SERVICE_REQUEST_DATE_2",
             "datatype": "string"
           },
           {
-            "name": "ed_county_code",
+            "name": "SERVICE_REQUEST_DATE_3",
             "datatype": "string"
           },
           {
-            "name": "ed_district_code",
+            "name": "SERVICE_REQUEST_DATE_4",
             "datatype": "string"
           },
           {
-            "name": "epikey",
+            "name": "SERVICE_REQUEST_TIME_1",
             "datatype": "string"
           },
           {
-            "name": "excluded",
+            "name": "SERVICE_REQUEST_TIME_2",
             "datatype": "string"
           },
           {
-            "name": "exclusion_reasons",
+            "name": "SERVICE_REQUEST_TIME_3",
             "datatype": "string"
           },
           {
-            "name": "final_price",
+            "name": "SERVICE_REQUEST_TIME_4",
             "datatype": "string"
           },
           {
-            "name": "fractional_age_at_arrival",
+            "name": "SHA_PROVIDER",
             "datatype": "string"
           },
           {
-            "name": "grouper_version",
+            "name": "SITE",
             "datatype": "string"
           },
           {
-            "name": "health_resource_group",
+            "name": "START_DATE_1",
             "datatype": "string"
           },
           {
-            "name": "initial_assessment_time_since_arrival",
+            "name": "START_DATE_2",
             "datatype": "string"
           },
           {
-            "name": "injury_activity_status",
+            "name": "START_DATE_3",
             "datatype": "string"
           },
           {
-            "name": "injury_activity_status_valid_approved",
+            "name": "START_DATE_4",
             "datatype": "string"
           },
           {
-            "name": "injury_activity_type",
+            "name": "START_TIME_1",
             "datatype": "string"
           },
           {
-            "name": "injury_activity_type_valid_approved",
+            "name": "START_TIME_2",
             "datatype": "string"
           },
           {
-            "name": "injury_date",
+            "name": "START_TIME_3",
             "datatype": "string"
           },
           {
-            "name": "injury_intent",
+            "name": "START_TIME_4",
             "datatype": "string"
           },
           {
-            "name": "injury_intent_valid_approved",
+            "name": "STATED_GENDER",
             "datatype": "string"
           },
           {
-            "name": "injury_mechanism",
+            "name": "TARIFF",
             "datatype": "string"
           },
           {
-            "name": "injury_mechanism_valid_approved",
+            "name": "TARIFF_DESCRIPTION",
             "datatype": "string"
           },
           {
-            "name": "injury_time",
+            "name": "TOKEN_PERSON_ID",
             "datatype": "string"
           },
           {
-            "name": "investigation_code_nn",
+            "name": "TREATMENT_CODE_1",
             "datatype": "string"
           },
           {
-            "name": "investigation_date_nn",
+            "name": "TREATMENT_CODE_10",
             "datatype": "string"
           },
           {
-            "name": "investigation_time_nn",
+            "name": "TREATMENT_CODE_11",
             "datatype": "string"
           },
           {
-            "name": "investigations_valid_approved_nn",
+            "name": "TREATMENT_CODE_12",
             "datatype": "string"
           },
           {
-            "name": "market_forces_adjustment",
+            "name": "TREATMENT_CODE_2",
             "datatype": "string"
           },
           {
-            "name": "market_forces_factor",
+            "name": "TREATMENT_CODE_3",
             "datatype": "string"
           },
           {
-            "name": "nhs_number_status_indicator_code",
+            "name": "TREATMENT_CODE_4",
             "datatype": "string"
           },
           {
-            "name": "organisation_code_patient_pathway_identifier",
+            "name": "TREATMENT_CODE_5",
             "datatype": "string"
           },
           {
-            "name": "overseas_visitor_charging_category",
+            "name": "TREATMENT_CODE_6",
             "datatype": "string"
           },
           {
-            "name": "patient_postcode_district",
+            "name": "TREATMENT_CODE_7",
             "datatype": "string"
           },
           {
-            "name": "patient_type",
+            "name": "TREATMENT_CODE_8",
             "datatype": "string"
           },
           {
-            "name": "pds_general_practice",
+            "name": "TREATMENT_CODE_9",
             "datatype": "string"
           },
           {
-            "name": "period_end_date",
+            "name": "TREATMENT_DATE_1",
             "datatype": "string"
           },
           {
-            "name": "period_length",
+            "name": "TREATMENT_DATE_10",
             "datatype": "string"
           },
           {
-            "name": "period_start_date",
+            "name": "TREATMENT_DATE_11",
             "datatype": "string"
           },
           {
-            "name": "period_status",
+            "name": "TREATMENT_DATE_12",
             "datatype": "string"
           },
           {
-            "name": "place_of_injury",
+            "name": "TREATMENT_DATE_2",
             "datatype": "string"
           },
           {
-            "name": "place_of_injury_valid_approved",
+            "name": "TREATMENT_DATE_3",
             "datatype": "string"
           },
           {
-            "name": "practice_code_patient_registration",
+            "name": "TREATMENT_DATE_4",
             "datatype": "string"
           },
           {
-            "name": "preferred_spoken_language",
+            "name": "TREATMENT_DATE_5",
             "datatype": "string"
           },
           {
-            "name": "preferred_spoken_language_valid",
+            "name": "TREATMENT_DATE_6",
             "datatype": "string"
           },
           {
-            "name": "provider_code",
+            "name": "TREATMENT_DATE_7",
             "datatype": "string"
           },
           {
-            "name": "provider_code_derived",
+            "name": "TREATMENT_DATE_8",
             "datatype": "string"
           },
           {
-            "name": "provider_postcode_district",
+            "name": "TREATMENT_DATE_9",
             "datatype": "string"
           },
           {
-            "name": "receiving_site",
+            "name": "TREATMENT_FUNCTION_CODE",
             "datatype": "string"
           },
           {
-            "name": "referral_assessment_date_nn",
+            "name": "TREATMENT_TIME_1",
             "datatype": "string"
           },
           {
-            "name": "referral_assessment_time_nn",
+            "name": "TREATMENT_TIME_10",
             "datatype": "string"
           },
           {
-            "name": "referred_to_service_nn",
+            "name": "TREATMENT_TIME_11",
             "datatype": "string"
           },
           {
-            "name": "referred_to_service_valid_approved_nn",
+            "name": "TREATMENT_TIME_12",
             "datatype": "string"
           },
           {
-            "name": "residence_ccg",
+            "name": "TREATMENT_TIME_2",
             "datatype": "string"
           },
           {
-            "name": "residence_ccg_from_patient_postcode",
+            "name": "TREATMENT_TIME_3",
             "datatype": "string"
           },
           {
-            "name": "seen_date",
+            "name": "TREATMENT_TIME_4",
             "datatype": "string"
           },
           {
-            "name": "seen_for_treatment_time_since_arrival",
+            "name": "TREATMENT_TIME_5",
             "datatype": "string"
           },
           {
-            "name": "seen_time",
+            "name": "TREATMENT_TIME_6",
             "datatype": "string"
           },
           {
-            "name": "sequence_number_nn",
+            "name": "TREATMENT_TIME_7",
             "datatype": "string"
           },
           {
-            "name": "service_request_date_nn",
+            "name": "TREATMENT_TIME_8",
             "datatype": "string"
           },
           {
-            "name": "service_request_time_nn",
+            "name": "TREATMENT_TIME_9",
             "datatype": "string"
           },
           {
-            "name": "sha_provider",
+            "name": "TREATMENTS_VALID_APPROVED_1",
             "datatype": "string"
           },
           {
-            "name": "site",
+            "name": "TREATMENTS_VALID_APPROVED_10",
             "datatype": "string"
           },
           {
-            "name": "stated_gender",
+            "name": "TREATMENTS_VALID_APPROVED_11",
             "datatype": "string"
           },
           {
-            "name": "tariff",
+            "name": "TREATMENTS_VALID_APPROVED_12",
             "datatype": "string"
           },
           {
-            "name": "tariff_description",
+            "name": "TREATMENTS_VALID_APPROVED_2",
             "datatype": "string"
           },
           {
-            "name": "token_person_id",
+            "name": "TREATMENTS_VALID_APPROVED_3",
             "datatype": "string"
           },
           {
-            "name": "treatment_code_nn",
+            "name": "TREATMENTS_VALID_APPROVED_4",
             "datatype": "string"
           },
           {
-            "name": "treatment_date_nn",
+            "name": "TREATMENTS_VALID_APPROVED_5",
             "datatype": "string"
           },
           {
-            "name": "treatment_function_code",
+            "name": "TREATMENTS_VALID_APPROVED_6",
             "datatype": "string"
           },
           {
-            "name": "treatment_time_nn",
+            "name": "TREATMENTS_VALID_APPROVED_7",
             "datatype": "string"
           },
           {
-            "name": "treatments_valid_approved_nn",
+            "name": "TREATMENTS_VALID_APPROVED_8",
             "datatype": "string"
           },
           {
-            "name": "waiting_time_measurement_type",
+            "name": "TREATMENTS_VALID_APPROVED_9",
             "datatype": "string"
           },
           {
-            "name": "lsoa",
+            "name": "WAITING_TIME_MEASUREMENT_TYPE",
             "datatype": "string"
           }
         ]
