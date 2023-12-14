@@ -1,0 +1,7 @@
+{
+  "decimal": "DOUBLE",
+  "date": "DATE",
+  "time": "TIME",
+  "integer": "UBIGINT",
+  "string": "VARCHAR"
+}

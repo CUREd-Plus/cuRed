@@ -6,7 +6,8 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "op",
   "notes": "Hospital Episide Statistics (HES) Outpatient (OP) data set",
