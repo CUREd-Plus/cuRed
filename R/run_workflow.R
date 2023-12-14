@@ -22,12 +22,18 @@ library(stringr)
 #'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, patient_key, demographics_path, clean_dir) {
   # Cast parameters to the correct data type
+  if (is.na(data_set_id)) {
+    stop("No data set identifier specified.")
+  }
   data_set_id <- as.character(data_set_id)
 
   # Ensure input directory exists
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
+
+  # Unzip files
+  unzip_files(raw_data_dir)
 
   # Convert files to binary format (one file per table)
   binary_paths <- csv_to_binary(

@@ -8,13 +8,12 @@ The entry-point to the workflow is the `main()` function in [main.R](./main.R). 
 
 ```mermaid
 flowchart TD
-  main["main.R::main($data_set_id)"] -->|"Load configuration"| run_workflow("run_workflow.R::run_workflow($data_set_id)")
-  run_workflow --> parse_tos("metadata.R::parse_tos()")
+  main -- "Load configuration" --> run_workflow
+  run_workflow --> workflow
     subgraph workflow ["run_workflow()"]
-      parse_tos --> csv_to_binary("csv_to_binary.R::csv_to_binary()")
-      csv_to_binary --> ig_validation("validate_data.R::ig_validation()")
-      ig_validation --> validate_data("validate_data.R::validate_data()")
-      validate_data --> summarise("summarise.R::summarise()")
-      summarise --> link("link.R::link()")
+      unzip_files --> csv_to_binary
+      csv_to_binary --> validate_data
+      validate_data --> summarise
+      summarise --> link
     end
 ```
