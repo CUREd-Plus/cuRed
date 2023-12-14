@@ -37,8 +37,9 @@ main <- function(data_set_id = NA, active_config = NA, config_path= NA, data_set
   configure_logging(log_threshold = config$log_threshold, log_dir = config$log_dir)
 
   # Audit log
-  username <- Sys.getenv("USERNAME")
-  logger::log_info("User name '{username}'")
+  user <- Sys.info()[["user"]]
+  nodename <- Sys.info()[["nodename"]]
+  logger::log_info("User {user} on host {nodename}")
 
   # Load data set options
   if (is.na(data_set_config_path)) {

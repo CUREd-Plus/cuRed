@@ -1,0 +1,12 @@
+default:
+  id: patient
+  raw_data_dir: "C:\\Users\\Administrator\\curedplus-raw-data\\NHSD-DATA\\Bridge_File"
+  staging_dir: "C:\\Users\\Administrator\\curedplus-staging\\patient"
+
+development:
+  raw_data_dir: "C:\\temp\\curedplus\\data\\patient\\raw"
+  staging_dir: "C:\\temp\\curedplus\\data\\patient\\staging"
+
+ubuntu:
+  raw_data_dir: ~/data/patient/raw
+  staging_dir: ~/data/patient/staging

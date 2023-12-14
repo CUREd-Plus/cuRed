@@ -13,23 +13,20 @@
   "notes": "CUREd+ patient identifier bridge",
   "tables": [
     {
+      "patient",
       "tableSchema": {
         "columns": [
           {
             "datatype": "string",
-            "name": "token_person_id"
+            "name": "study_id",
+            "required": true
           },
           {
             "datatype": "string",
-            "name": "yas_id"
-          },
-          {
-            "datatype": "string",
-            "name": "cured_id"
-          },
-          {
-            "datatype": "string",
-            "name": "study_id"
+            "name": "pseudo_person_id",
+            "titles": ["token_person_id", "mps_token", "encrypted_hes_id"],
+            "required": true,
+            "description": "Patient YAS or CUREd cohort identifier"
           }
         ]
       }
