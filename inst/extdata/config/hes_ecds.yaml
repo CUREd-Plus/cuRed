@@ -1,0 +1,9 @@
+default:
+  id: hes_ecds
+  raw_data_dir: "C:\\Users\\Administrator\\curedplus-raw-data\\NHSD-DATA\\ECDS"
+  staging_dir: "C:\\Users\\Administrator\\curedplus-staging\\ecds"
+  patient_key: token_person_id
+
+development:
+  raw_data_dir: "C:\\temp\\curedplus\\data\\ecds\\raw"
+  staging_dir: "C:\\temp\\curedplus\\data\\ecds\\staging"
