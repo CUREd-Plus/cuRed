@@ -91,6 +91,7 @@ append_mock_ids <- function(input_path, output_path) {
 #'
 #' @param output_path The path to the file where the generated data will be written.
 #' @param n_rows The number of rows to generate in the synthetic demographics data (default is 1000).
+#' @export
 #' @returns Path of the generated data file.
 generate_demographics <- function(output_path, n_rows = 1000) {
   return(generate_data(output_path = output_path, n_rows = n_rows, data_set_id = "pd"))
@@ -106,6 +107,7 @@ generate_demographics <- function(output_path, n_rows = 1000) {
 #'
 #' @param output_path The path to the file where the generated data will be written.
 #' @param n_rows The number of rows to generate. Default: 1000
+#' @export
 #' @returns Path of the generated data file.
 generate_patients <- function(output_path, n_rows = 1000) {
   return(generate_data(output_path = output_path, n_rows = n_rows, data_set_id = "patient"))
@@ -123,6 +125,7 @@ generate_patients <- function(output_path, n_rows = 1000) {
 #' @param n_rows The number of rows to generate. Default: 1000
 #' @param query_template_path The path of the SQL query file.
 #' @param data_set_id Data set identifier e.g. "patient", "ecds"
+#' @export
 #' @returns Path of the generated data file.
 generate_data <- function(output_path, n_rows = 1000, query_template_path = NA, data_set_id = NA) {
   if (is.na(query_template_path)) {
