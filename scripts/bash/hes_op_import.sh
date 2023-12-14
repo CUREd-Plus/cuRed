@@ -6,7 +6,7 @@ aws s3 sync s3://curedplus-raw.store.rcc.shef.ac.uk/NHSD-DATA/HES_OP/ ~/data/hes
 cd ~/data/hes_op/raw/
 
 # Unzip files
-unzip "*.zip"
+unzip "*.zip" -d /mnt/sdd/hes_op/
 rm *.zip
 
 # Import to DuckDB
