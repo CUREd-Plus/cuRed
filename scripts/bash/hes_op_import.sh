@@ -9,4 +9,4 @@ cd ~/data/hes_op/raw/
 sh unzip.sh
 
 # Import to DuckDB
-duckdb -s ".read ../sql/hes_op/hes_op_import.sql"
+duckdb hes_op.duckdb -s ".read ../sql/hes_op/hes_op_import.sql"
