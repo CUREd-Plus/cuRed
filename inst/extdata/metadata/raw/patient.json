@@ -24,8 +24,9 @@
           {
             "datatype": "string",
             "name": "pseudo_person_id",
-            "titles": ["token_person_id"],
-            "required": true
+            "titles": ["token_person_id", "mps_token", "encrypted_hes_id"],
+            "required": true,
+            "description": "Patient YAS or CUREd cohort identifier"
           }
         ]
       }
