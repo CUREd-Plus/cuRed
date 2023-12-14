@@ -6,6 +6,7 @@ These classes may be used as part of the process of generating data validation r
 
 import logging
 import re
+
 from nhs_data_model import NHSFormat
 
 logger = logging.getLogger(__name__)
@@ -15,6 +16,13 @@ class Format:
     """
     An NHS HES TOS field data format e.g. "Number", "String(4)", "Date(YYYY-MM-DD)", "String(6-40000)"
     """
+    
+    FORMAT_STARTS_WITH_TO_SQL = {
+        'Decimal': 'FLOAT',
+        'Date': 'DATE',
+        'String': 'VARCHAR',
+        'Number': 'UBIGINT'
+    }
 
     def __init__(self, format_):
         self.format = str(format_).strip()
@@ -104,3 +112,10 @@ class Format:
             return int(s)
         else:
             raise NotImplementedError(self.format)
+
+    @property
+    def sql_data_type(self) -> str:
+        for fmt, sql_data_type in self.FORMAT_STARTS_WITH_TO_SQL.items():
+            if self.format.startswith(fmt):
+                return sql_data_type
+        raise ValueError(repr(self.format))

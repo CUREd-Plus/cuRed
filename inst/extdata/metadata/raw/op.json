@@ -48,7 +48,7 @@
             "name": "APPTAGE_CALC"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "APPTDATE"
           },
           {
@@ -232,7 +232,7 @@
             "name": "DIAG_COUNT"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "DNADATE"
           },
           {
@@ -524,7 +524,7 @@
             "name": "REFSOURC"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "REQDATE"
           },
           {
