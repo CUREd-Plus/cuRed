@@ -13,3 +13,4 @@ time unzip "*.zip" -d /mnt/sdd/hes_op/raw/
 time rm *.zip
 
 time duckdb -c ".read hes_ae_csv_to_parquet.sql"
+mv profiling.json "profiling_`date`.json"

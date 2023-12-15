@@ -49,7 +49,7 @@
             "name": "PSEUDO_HESID"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "ADMIDATE"
           },
           {
@@ -317,7 +317,7 @@
             "name": "DIAG_COUNT"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "DISDATE"
           },
           {
@@ -329,7 +329,7 @@
             "name": "DISMETH"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "ELECDATE"
           },
           {
