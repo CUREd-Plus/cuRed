@@ -2,6 +2,7 @@
 set -e
 
 # Convert to Parquet, one file at a time
+
 # Iterate over CSV files
 for path in *.txt;
 do
