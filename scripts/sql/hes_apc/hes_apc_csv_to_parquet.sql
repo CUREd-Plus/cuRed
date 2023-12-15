@@ -4,11 +4,8 @@ Convert CSV files to Parquet files.
 
 -- Configure DuckDB
 -- https://duckdb.org/docs/archive/0.5.1/sql/configuration.html
-
--- Use virtual memory
 SET temp_directory = '/tmp';
 SET log_query_path = 'duckdb_query_log';
-
 -- https://duckdb.org/dev/profiling
 SET enable_profiling = 'json';
 SET profile_output = 'profiling.json';
@@ -17,8 +14,8 @@ SET profile_output = 'profiling.json';
 COPY (
   SELECT *
   -- Create partition keys
-	,YEAR(ADMIDATE) AS admission_year
-	,STRFTIME(ADMIDATE, '%Y-%m') AS admission_month
+	,YEAR(admidate) AS admission_year
+	,STRFTIME(admidate, '%Y-%m') AS admission_month
   FROM read_csv('{path}',
           delim='|', header=TRUE,
           -- Add source filename as a column

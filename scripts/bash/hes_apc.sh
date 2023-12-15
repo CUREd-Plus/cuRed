@@ -4,13 +4,14 @@ set -e
 data_set_id=hes_apc
 raw_dir=~/data/hes_apc/raw/
 
+mkdir -p $raw_dir
+
 # Download data
 time aws s3 sync s3://curedplus-raw.store.rcc.shef.ac.uk/NHSD-DATA/HES_APC/ $raw_dir
-cd $raw_dir
 
-# Unzip files
-time unzip "*.zip" -d /mnt/sdd/hes_op/raw/
-time rm *.zip
+# Unzip files (this can also be done in parallel)
+time unzip "*.zip" -d $raw_dir
+rm *.zip
 
 # Convert to Parquet, one file at a time
 # Iterate over CSV files
