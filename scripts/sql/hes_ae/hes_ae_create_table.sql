@@ -8,7 +8,5 @@ FROM read_csv('FILE*.txt',
 
 ALTER TABLE hes_ae ADD COLUMN IF NOT EXISTS arrival_year USMALLINT;
 UPDATE hes_ae SET arrival_year = YEAR(arrivaldate);
-ALTER TABLE hes_ae ADD COLUMN IF NOT EXISTS arrival_month_of_year UTINYINT;
-UPDATE hes_ae SET arrival_month_of_year = MONTH(arrivaldate);
 ALTER TABLE hes_ae ADD COLUMN IF NOT EXISTS arrival_month VARCHAR;
 UPDATE hes_ae SET arrival_month = STRFTIME(arrivaldate, '%Y-%m');
