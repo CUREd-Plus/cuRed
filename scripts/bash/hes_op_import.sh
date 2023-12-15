@@ -13,8 +13,9 @@ rm *.zip
 wc -l "/mnt/sdd/hes_op/raw/FILE*.txt" > hes_op_row_count.txt
 
 # Import to DuckDB
-duckdb hes_op.duckdb -s ".read ../sql/hes_op/hes_op_import.sql"
+duckdb hes_op.duckdb -c ".read ../sql/hes_op/hes_op_import.sql"
 
 # Check columns
 
 # Check date range
+duckdb hes_op.duckdb -c ".read ../sql/hes_op/hes_op_date_range.sql"
