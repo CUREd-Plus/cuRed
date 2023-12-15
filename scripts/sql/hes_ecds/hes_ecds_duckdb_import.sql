@@ -12,6 +12,14 @@ FROM read_csv('FILE*.txt',
 --ALTER TABLE hes_ecds ADD COLUMN seen_date_bak VARCHAR;
 --UPDATE hes_ecds SET seen_date_bak = seen_date;
 ALTER TABLE hes_ecds ALTER seen_date SET DATA TYPE DATE USING CAST(NULLIF(seen_date, '1900-01-01') AS DATE);
-ALTER TABLE hes_ecds ALTER DEPARTURE_DATE SET DATA TYPE DATE USING CAST(NULLIF(DEPARTURE_DATE, '1900-01-01') AS DATE);
-ALTER TABLE hes_ecds ALTER ARRIVAL_DATE SET DATA TYPE DATE USING CAST(NULLIF(ARRIVAL_DATE, '1900-01-01') AS DATE);
-ALTER TABLE hes_ecds ALTER CONCLUSION_DATE SET DATA TYPE DATE USING CAST(NULLIF(CONCLUSION_DATE, '1900-01-01') AS DATE);
+ALTER TABLE hes_ecds ALTER departure_date SET DATA TYPE DATE USING CAST(NULLIF(departure_date, '1900-01-01') AS DATE);
+ALTER TABLE hes_ecds ALTER arrival_date SET DATA TYPE DATE USING CAST(NULLIF(arrival_date, '1900-01-01') AS DATE);
+ALTER TABLE hes_ecds ALTER conclusion_date SET DATA TYPE DATE USING CAST(NULLIF(conclusion_date, '1900-01-01') AS DATE);
+
+-- Arrival date
+ALTER TABLE hes_ecds ADD COLUMN IF NOT EXISTS arrival_year USMALLINT;
+UPDATE hes_ecds SET arrival_year = YEAR(arrival_date);
+ALTER TABLE hes_ecds ADD COLUMN IF NOT EXISTS arrival_month_of_year UTINYINT;
+UPDATE hes_ecds SET arrival_month_of_year = MONTH(arrival_date);
+ALTER TABLE hes_ecds ADD COLUMN IF NOT EXISTS arrival_month VARCHAR;
+UPDATE hes_ecds SET arrival_month = STRFTIME(arrival_date, '%Y-%m');
