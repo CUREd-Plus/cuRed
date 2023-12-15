@@ -6,7 +6,8 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "deaths",
   "notes": "Civil Registrations: Deaths",

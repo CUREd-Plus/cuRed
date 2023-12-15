@@ -49,3 +49,9 @@ A [CSVW table](https://w3c.github.io/csvw/syntax/#tables) contains the following
 - `url` is a the file path of the CSV files that make up this table.
 - `tableSchema` describes the structure of this table. It has the following properties:
   * [`columns`](https://w3c.github.io/csvw/syntax/#columns) are the fields in this table.
+
+A [CSVW column](https://w3c.github.io/csvw/syntax/#columns) has the following fields:
+
+* `name` is the field title
+* `datatype` is the format of the values in this column e.g. "string", "date", etc. (See: [data types](https://w3c.github.io/csvw/syntax/#dfn-datatype))
+

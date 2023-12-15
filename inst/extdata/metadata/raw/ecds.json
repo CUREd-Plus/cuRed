@@ -6,12 +6,15 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "ecds",
-  "notes": "Emergency Care Data Set (ECDS)",
+  "notes": "Emergency Care Data Set (ECDS) https://digital.nhs.uk/services/data-access-request-service-dars/dars-products-and-services/data-set-catalogue/emergency-care-data-set-ecds",
+  "url": "FILE*_NIC*_ECDS_*.txt",
   "tables": [
     {
+      "id": "ecds",
       "tableSchema": {
         "columns": [
           {

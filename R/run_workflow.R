@@ -22,12 +22,21 @@ library(stringr)
 #'
 run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, staging_dir, patient_path, patient_key, demographics_path, clean_dir) {
   # Cast parameters to the correct data type
+  if (is.na(data_set_id)) {
+    stop("No data set identifier specified.")
+  }
   data_set_id <- as.character(data_set_id)
 
   # Ensure input directory exists
   raw_data_dir <- normalizePath(raw_data_dir, mustWork = TRUE)
-  patient_path <- normalizePath(patient_path, mustWork = TRUE)
+  # Not required for the patient ID bridge
+  if (data_set_id != "patient") {
+    patient_path <- normalizePath(patient_path, mustWork = TRUE)
+  }
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
+
+  # Unzip files
+  unzip_files(raw_data_dir)
 
   # Convert files to binary format (one file per table)
   binary_paths <- csv_to_binary(
@@ -57,14 +66,16 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     output_path <- file.path(staging_dir, stringr::str_glue("03_{data_set_id}_{table_id}_linked.parquet"))
 
     # Data linkage
-    link(
-      data_set_id = data_set_id,
-      input_path = binary_path,
-      output_path = output_path,
-      patient_path = patient_path,
-      demographics_path = demographics_path,
-      patient_key = patient_key
-    )
+    if (data_set_id != "patient") {
+      link(
+        data_set_id = data_set_id,
+        input_path = binary_path,
+        output_path = output_path,
+        patient_path = patient_path,
+        demographics_path = demographics_path,
+        patient_key = patient_key
+      )
+    }
 
     # Cleaning
     # TODO

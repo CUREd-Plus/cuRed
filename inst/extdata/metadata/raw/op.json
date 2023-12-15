@@ -6,7 +6,8 @@
     }
   ],
   "dialect": {
-    "header": true
+    "header": true,
+    "delimeter": "|"
   },
   "id": "op",
   "notes": "Hospital Episide Statistics (HES) Outpatient (OP) data set",
@@ -47,7 +48,7 @@
             "name": "APPTAGE_CALC"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "APPTDATE"
           },
           {
@@ -231,7 +232,7 @@
             "name": "DIAG_COUNT"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "DNADATE"
           },
           {
@@ -523,7 +524,7 @@
             "name": "REFSOURC"
           },
           {
-            "datatype": "string",
+            "datatype": "date",
             "name": "REQDATE"
           },
           {
