@@ -12,7 +12,7 @@ COPY (
   -- DuckDB documentation for CSV loading
   -- https://duckdb.org/docs/data/csv/overview.html
   SELECT *
-  FROM read_csv('{input_glob}',
+  FROM read_csv('{input_path}',
 	header={header},
 	filename=TRUE,
 	delim='{delim}',

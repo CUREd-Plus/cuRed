@@ -43,7 +43,7 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id, csv_metadata_path 
   input_dir <- normalizePath(input_dir, mustWork = TRUE)
   output_dir <- normalizePath(output_dir, mustWork = FALSE)
   output_paths <- list()
-  
+
   if (is.na(temp_directory)) {
     temp_directory = temp_dir()
   }
@@ -53,7 +53,7 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id, csv_metadata_path 
     csv_metadata_path <- extdata_path(stringr::str_glue("metadata/raw/{data_set_id}.json"))
   }
   csv_metadata <- read.csvw(csv_metadata_path)
-  
+
   # Convert CSV dialect to DuckDB read_csv arguments
   delim = csv_metadata$metadata$delimeter
   header = csv_metadata$metadata$header
@@ -80,35 +80,41 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id, csv_metadata_path 
 
     # Define where the data will be read from
     input_glob <- file.path(input_dir, csv_table$url)
-    # ...and written to
-    output_filename <- stringr::str_glue("{table_id}.parquet")
-    output_path <- file.path(output_dir, output_filename)
 
-    # Build the SQL query that will be used to perform the conversion
-    data_types_dict <- dataframe_to_dictionary(data_types, "name", "datatype")
-    data_types_struct <- dictionary_to_struct(data_types_dict)
-    if (is.na(query_path)) {
-      query_path <- extdata_path("queries/csv_to_binary.sql")
+    # Iterate over input files
+    for (input_path in fs::dir_ls(glob = input_glob)) {
+      logger::log_info(input_path)
+
+      # ...and written to
+      output_filename <- paste(basename(input_path), ".parquet", sep = "")
+      output_path <- file.path(output_dir, output_filename)
+
+      # Build the SQL query that will be used to perform the conversion
+      data_types_dict <- dataframe_to_dictionary(data_types, "name", "datatype")
+      data_types_struct <- dictionary_to_struct(data_types_dict)
+      if (is.na(query_path)) {
+        query_path <- extdata_path("queries/csv_to_binary.sql")
+      }
+      query_template <- readr::read_file(query_path)
+      # Put variable values into the template
+      query <- stringr::str_glue(query_template)
+
+      # Ensure output directory exists
+      dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
+
+      # Write SQL query to text file
+      sql_query_file_path <- paste(output_path, ".sql", sep = "")
+      readr::write_file(query, sql_query_file_path)
+      logger::log_info("Wrote '{sql_query_file_path}'")
+
+      # Execute the query
+      logger::log_info("Reading input data from '{input_glob}'...")
+      run_query(query)
+      logger::log_success("Wrote '{output_path}'")
+
+      # Append to
+      output_paths = append(output_paths, output_path)
     }
-    query_template <- readr::read_file(query_path)
-    # Put variable values into the template
-    query <- stringr::str_glue(query_template)
-
-    # Ensure output directory exists
-    dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
-
-    # Write SQL query to text file
-    sql_query_file_path <- paste(output_path, ".sql", sep = "")
-    readr::write_file(query, sql_query_file_path)
-    logger::log_info("Wrote '{sql_query_file_path}'")
-
-    # Execute the query
-    logger::log_info("Reading input data from '{input_glob}'...")
-    run_query(query)
-    logger::log_success("Wrote '{output_path}'")
-
-    # Append to
-    output_paths = append(output_paths, output_path)
   })
 
   return(output_paths)
