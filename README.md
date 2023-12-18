@@ -1,5 +1,3 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/CUREd-Plus/cuRed/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CUREd-Plus/cuRed/actions/workflows/R-CMD-check.yaml)
@@ -14,11 +12,11 @@ This package specifies a workflow, or data pipeline, that is used to process the
 
 # Installation
 
-To install the latest development version of this package from [GitHub](https://github.com/), run the following R code:
+To install the latest release of this package from [GitHub](https://github.com/), run the following R code:
 
 ``` R
 install.packages("devtools")
-devtools::install_github("CUREd-Plus/cuRed")
+devtools::install_github("CUREd-Plus/cuRed@*release")
 ```
 
 # Usage
@@ -65,3 +63,5 @@ See the [logging section](CONTRIBUTING.md#Logging) of the contribution documenta
 # Development
 
 To work on this code, please read the [contributing guide](CONTRIBUTING.md).
+
+To publish a new release, please see the [releases section](CONTRIBUTING.md#releases).

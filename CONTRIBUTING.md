@@ -222,3 +222,46 @@ devtools::test_active_file(stop_on_failure = TRUE)
 # Test all files
 devtools::test(stop_on_failure = TRUE)
 ```
+
+# Releases
+
+The software is published in *releases* that are given a version number. A version number has the following format: "version 1.0.0" which follows the [Semantic Versioning standard](https://semver.org/). This helps to identify what version of the data pipeline you are using. Please read the GitHub documentation [About releases](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases), particularly the section [Managing releases in a repository](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+
+## Create a new release
+
+To create a new release, the following steps must be followed:
+
+1. Decide the new version number
+2. Increment the version number in the R package metadata, which is contained in the  `DESCRIPTION` file.
+3. Publish a new release on GitHub.
+
+The instructions for doing this are detailed below.
+
+## Version numbering
+
+The release number has the following format: `v<MAJOR>.<MINOR>.<PATCH>` for example `v1.2.0`  according to the [semantic versioning](https://semver.org/) standard.
+
+1. `MAJOR` version when you make incompatible ("breaking") changes to the code.
+2. `MINOR` version when you add important new functionality in a backward-compatible manner.
+3. `PATCH` version when you make backward compatible bug fixes and minor tweaks to the pipeline.
+
+## R package metadata
+
+To alter the package version number, edit the [DESCRIPTION](./DESCRIPTION) file by modifying the `Version` value. An example of incrementing the minor version number is shown below, in `diff` notation:
+
+```diff
+diff --git a/DESCRIPTION b/DESCRIPTION
+--- a/DESCRIPTION
++++ b/DESCRIPTION
+@@ -1,7 +1,7 @@
+ Package: cuRed
+-Version: 1.0.0
++Version: 1.1.0
+ Authors@R: c(
+```
+
+For more information, please read the section on [the DESCRIPTION file](https://r-pkgs.org/description.html) in the *R Packages* book by Hadley Wickham.
+
+## Create a GitHub release
+
+A new release is created by clicking on the "[Releases](https://github.com/CUREd-Plus/cuRed/releases)" link on the GitHub repository web page, and selecting "[Draft a new release](https://github.com/CUREd-Plus/cuRed/releases/new)". Please read the [Creating a release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) page on the GitHub documentation.

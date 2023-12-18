@@ -40,6 +40,8 @@ main <- function(data_set_id = NA, active_config = NA, config_path= NA, data_set
   user <- Sys.info()[["user"]]
   nodename <- Sys.info()[["nodename"]]
   logger::log_info("User {user} on host {nodename}")
+  cured_version <- utils::packageVersion("cuRed")
+  logger::log_info("Running CUREd+ package version {cured_version}")
 
   # Load data set options
   if (is.na(data_set_config_path)) {

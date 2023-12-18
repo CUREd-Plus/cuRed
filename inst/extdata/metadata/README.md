@@ -38,7 +38,7 @@ graph TD
 
 In a CSVW file, Each [data set (also known as a table group)](https://w3c.github.io/csvw/syntax/#table-groups) has the following keys:
 
-- `dialect` describes the data format used in the CSV file.
+- `dialect` describes the data format used in the CSV file using the [CSV Dialect standard](https://specs.frictionlessdata.io/csv-dialect/).
 - `id` is the unique data set identifier e.g. "apc", "ae", "op".
 - `tables` is the list of tables in this data set.
 
