@@ -1,0 +1,13 @@
+default:
+  id: ecds
+  patient_key: token_person_id
+  raw_data_dir: "C:\\Users\\Administrator\\curedplus-raw-data\\ecds"
+  staging_dir: "C:\\Users\\Administrator\\curedplus-staging\\ecds"
+
+development:
+  raw_data_dir: "C:\\temp\\curedplus\\data\\ecds\\raw"
+  staging_dir: "C:\\temp\\curedplus\\data\\ecds\\staging"
+
+ubuntu:
+  raw_data_dir: ~/data/ecds/raw
+  staging_dir: ~/data/ecds/staging
