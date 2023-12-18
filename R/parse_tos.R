@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(dplyr)
 library(readxl)
 
@@ -12,7 +12,7 @@ library(readxl)
 #' @returns data.frame TOS metadata
 #'
 parse_tos <- function(xls_file, sheet) {
-  cli::cli_alert_info("Reading '{xls_file}' sheet '{sheet}'...")
+  logger::log_info("Reading '{xls_file}' sheet '{sheet}'...")
   # Use the readxl package
   # https://readxl.tidyverse.org/reference/read_excel.html
   myCols <- as.character(readxl::read_excel(xls_file, sheet, n_max = 1, skip = 1, col_names = FALSE))
@@ -42,5 +42,5 @@ df2json <- function(df, outputdir, json_file) {
   path <- file.path(outputdir, json_file)
   # Serialise
   jsonlite::write_json(df, path)
-  cli::cli_alert_info("Wrote '{path}'")
+  logger::log_info("Wrote '{path}'")
 }

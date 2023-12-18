@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 library(coro)
 library(dplyr)
 library(stringr)
@@ -50,7 +50,7 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
     if (is.na(table_id)) {
       stop("table_id is missing")
     }
-    cli::cli_inform("Data set '{data_set_id}', table id '{table_id}'")
+    logger::log_info("Data set '{data_set_id}', table id '{table_id}'")
     columns <- csvw.columns(csv_table)
 
     # Convert to SQL data types
@@ -81,12 +81,12 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
     # Write SQL query to text file
     sql_query_file_path <- paste(output_path, ".sql", sep = "")
     readr::write_file(query, sql_query_file_path)
-    cli::cli_alert_info("Wrote '{sql_query_file_path}'")
+    logger::log_info("Wrote '{sql_query_file_path}'")
 
     # Execute the query
-    cli::cli_alert_info("Reading input data from '{input_glob}'...")
+    logger::log_info("Reading input data from '{input_glob}'...")
     run_query(query)
-    cli::cli_alert_success("Wrote '{output_path}'")
+    logger::log_success("Wrote '{output_path}'")
 
     # Append to
     output_paths = append(output_paths, output_path)
@@ -122,7 +122,7 @@ get_data_types <- function(metadata, data_set_id) {
     } else if (startsWith(data_set_id, "yas")) {
       sql_data_type <- yas_type_to_data_type(tos_format)
     } else {
-      cli::cli_alert_danger("Unknown data type for '{data_set_id}' data set")
+      logger::log_error("Unknown data type for '{data_set_id}' data set")
       stop("Unknown data type format")
     }
     field_names[field_name] <- sql_data_type

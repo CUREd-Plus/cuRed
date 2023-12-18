@@ -30,6 +30,18 @@ main("apc")  # Specify data set identifier
 
 The configuration file that specifies the input raw data sources is included in the package by default, at `inst/extdata/config/<data_set_id>.yaml`. For example, if you run `main("apc")` then the code will load the following configuration file `extdata/config/apc.yaml`.
 
+You can also set the workflow options by settings the path of a configuration file manually, for example:
+
+```R
+main(data_set_config_path = "C:\\Users\\Administrator\\my_data.yaml")
+```
+
+Or, for the general workflow options:
+
+```R
+main(config_path = "C:\\Users\\Administrator\\my_config.yaml")
+```
+
 For more information on using this function, view the documentation by running:
 
 ```R
@@ -37,6 +49,16 @@ help(cuRed::main)
 ```
 
 The R code in this package is in the [R directory](./R/) and an overview is available in [R/README.md](R/README.md). Each function has documentation to describe how it works.
+
+# Configuration
+
+The configuration files are contained in the [inst/extdata/config/](./inst/extdata/config/) directory. The main configuration file for the data pipeline is written in a YAML document at [inst/extdata/config/config.yaml](inst/extdata/config/config.yaml) which specifies the options that are relevant for all data sets.
+
+There is also a configuration file that specifies each data set.
+
+## Logs
+
+See the [logging section](CONTRIBUTING.md#Logging) of the contribution documentation.
 
 # Development
 

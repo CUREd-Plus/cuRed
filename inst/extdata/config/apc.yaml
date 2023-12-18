@@ -1,7 +1,9 @@
 default:
-  id: apc
-  raw_data_dir: "C:/Users/Administrator/curedplus-raw-data/apc"
-  staging_dir: "C:/Users/Administrator/curedplus-staging/apc"
-  metadata_path: "C:/Users/Administrator/curedplus-raw-data/HES+TOS+V1.15.xlsx"
-  sheet: HES APC TOS
+  id: hes_apc
+  raw_data_dir: "C:\\Users\\Administrator\\curedplus-raw-data\\nhs\\HES_APC"
+  staging_dir: "C:\\Users\\Administrator\\curedplus-staging\\apc"
   patient_key: token_person_id
+
+development:
+  raw_data_dir: "C:\\temp\\curedplus\\data\\apc\\raw"
+  staging_dir: "C:\\temp\\curedplus\\data\\apc\\staging"

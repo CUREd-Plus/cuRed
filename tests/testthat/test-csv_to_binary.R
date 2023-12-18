@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 
 test_that("csv_to_binary", {
   # Automatic test for the csv_to_binary() function
@@ -22,7 +22,7 @@ TO '{output_path}'
 WITH (FORMAT 'CSV', HEADER);
 ")
   run_query(query)
-  cli::cli_inform("Wrote '{output_path}'")
+  logger::log_info("Wrote '{output_path}'")
 
   # Run the function on test data
   expect_no_error(

@@ -1,4 +1,4 @@
-library(cli)
+library(logger)
 
 test_that("Validate APC", {
 
