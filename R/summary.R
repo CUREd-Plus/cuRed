@@ -22,13 +22,13 @@ library(lubridate)
   
 path <- extdata_path(location_data) 
 data <-read_parquet(path)
-map_data <-  read.csv("C:/Users/cs1gac/Documents/GitHub/cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
+map_data <-  read.csv("cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
 
 
 #For Investigation or Treatment Code
 # Read the list of column names from the text file
 investigation_or_treatment_code_or_diagnostic_code <-
-  readLines("C:/Users/cs1gac/Documents/GitHub/cuRed/inst/extdata/codes/investigation_or_treatment_or_diagnostic_code.txt")
+  readLines("cuRed/inst/extdata/codes/investigation_or_treatment_or_diagnostic_code.txt")
 # Convert the list to a character vector
 investigation_or_treatment_code_or_diagnostic_code <-
   trimws(investigation_or_treatment_code_or_diagnostic_code)  # Trim leading/trailing whitespaces
@@ -37,7 +37,7 @@ investigation_or_treatment_code_or_diagnostic_code <-
 
 #For LSOA
 # Read the list of column names from the text file
-lsoa <-  readLines("C:/Users/cs1gac/Documents/GitHub/cuRed/inst/extdata/codes/lsoa.txt")
+lsoa <-  readLines("cuRed/inst/extdata/codes/lsoa.txt")
 # Convert the list to a character vector
 lsoa <-  trimws(lsoa)  # Trim leading/trailing whitespaces
 lsoa <-  unique(lsoa)  # Remove duplicates
@@ -299,6 +299,6 @@ my_map
 
 }
 
-#To use the function run the following
-summary_function("C:/Users/cs1gac/Documents/GitHub/cuRed/R/artificial_hes_apc_0102_truncated.parquet")
+#To use the function run the following, change into path of dataset
+#summary_function("./Documents/GitHub/cuRed/R/artificial_hes_apc_0102_truncated.parquet")
 

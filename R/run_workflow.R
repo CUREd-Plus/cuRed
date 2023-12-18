@@ -52,9 +52,8 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
     validate_data(data_path = binary_path, rules_path = rules_path)
 
     # Generate summary report
-    # TODO
-
-    output_path <- file.path(staging_dir, stringr::str_glue("03_{data_set_id}_{table_id}_linked.parquet"))
+    summary_function(data_path)
+    generate_summary_report("C:/Users/Administrator/R/summary.R", "inst/extdata/summary_reports/{data_set_id}/{table_id}.html")
 
     # Data linkage
     link(
