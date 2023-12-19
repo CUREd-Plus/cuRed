@@ -14,4 +14,7 @@ generate_summary_report <- function(input, output) {
 #Dont forget in location 2 it should end with filename.html (even if filename.html doesnt exist yet) 
 #this will generate the html with the filename of your choice
 #generate_summary_report(location1, location2)
+#generate_summary_report("C:/Users/Administrator/Documents/cuRed/R/summary.R", "C:/Users/Administrator/Desktop/summary_report_apc_22.html")
+
+
 

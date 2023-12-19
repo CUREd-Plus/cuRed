@@ -9,7 +9,8 @@
 #'editor_options:
 #'  chunk_output_type: console
 #' ---
-summary_function <- function(location_data){
+
+
 #+ load data, echo=FALSE,message=FALSE, warning=FALSE
 library(leaflet)
 library(leaflet.extras)
@@ -19,25 +20,22 @@ library(imager)
 library(ggplot2)
 library(lubridate)
 
-  
-path <- extdata_path(location_data) 
-data <-read_parquet(path)
-map_data <-  read.csv("cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
+
+data <-read_parquet("C:/Users/Administrator/Downloads/FILE0183337_NIC589868_HES_APC_202299.txt.parquet")
+map_data <-  read.csv("C:/Users/Administrator/Documents/cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
 
 
 #For Investigation or Treatment Code
 # Read the list of column names from the text file
-investigation_or_treatment_code_or_diagnostic_code <-
-  readLines("cuRed/inst/extdata/codes/investigation_or_treatment_or_diagnostic_code.txt")
+coded_columns <-
+  readLines("C:/Users/Administrator/Documents/cuRed/inst/extdata/codes/coded_columns.txt")
 # Convert the list to a character vector
-investigation_or_treatment_code_or_diagnostic_code <-
-  trimws(investigation_or_treatment_code_or_diagnostic_code)  # Trim leading/trailing whitespaces
-investigation_or_treatment_code_or_diagnostic_code <-
-  unique(investigation_or_treatment_code_or_diagnostic_code)  # Remove duplicates
+coded_columns <-  trimws(coded_columns)  # Trim leading/trailing whitespaces
+coded_columns <-  unique(coded_columns)  # Remove duplicates
 
 #For LSOA
 # Read the list of column names from the text file
-lsoa <-  readLines("cuRed/inst/extdata/codes/lsoa.txt")
+lsoa <-  readLines("C:/Users/Administrator/Documents/cuRed/inst/extdata/codes/lsoa.txt")
 # Convert the list to a character vector
 lsoa <-  trimws(lsoa)  # Trim leading/trailing whitespaces
 lsoa <-  unique(lsoa)  # Remove duplicates
@@ -65,7 +63,7 @@ for (col_name in names(data)) {
   cat("Column Name: ", col_name, "\n")
   cat("Column Type: ", col_type, "\n")
   cat("Number of NAs: ", num_nas, "\n")
-  if (col_name %in% investigation_or_treatment_code_or_diagnostic_code) {
+  if (col_name %in% coded_columns) {
     p <- ggplot() +
       theme_void() +  # A theme without any axes or grid
       geom_rect(aes(
@@ -75,7 +73,7 @@ for (col_name in names(data)) {
         ymax = 8
       ), fill = "white") +
       geom_text(
-        aes(x = 5, y = 6.5, label = "This column has Investigation/Treatment/Diagnostic Code"),
+        aes(x = 5, y = 6.5, label = "This column is coded by a list according to the Data Dictionary"),
         col = "red" ,
         size = 5,
         fontface = "bold"
@@ -218,13 +216,13 @@ for (col_name in names(data)) {
     
     # Create Bar Chart for Date Distribution
     date_counts <- table(format(data[[col_name]], "%Y-%m"))
-    barplot(
-      date_counts,
-      main = paste("Date Distribution -", col_name),
-      xlab = "Month-Year",
-      ylab = "Count",
-      col = "#C3A0E8"
-    )
+    # barplot(
+    #   date_counts,
+    #   main = paste("Date Distribution -", col_name),
+    #   xlab = "Month-Year",
+    #   ylab = "Count",
+    #   col = "#C3A0E8"
+    # )
     # Check for Missing Months
     if (any(!is.na(data[[col_name]]))) {
       # Generate a sequence of months starting from the second minimum date
@@ -296,9 +294,4 @@ for (col_name in names(data)) {
 
 # Print the map
 my_map
-
-}
-
-#To use the function run the following, change into path of dataset
-#summary_function("./Documents/GitHub/cuRed/R/artificial_hes_apc_0102_truncated.parquet")
 
