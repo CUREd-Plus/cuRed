@@ -7,7 +7,7 @@ set -e
 # If you have plenty of disk space then don't
 # use this script, just run unzip "*.zip"
 
-target_dir=/mnt/sdd/raw/
+target_dir=.
 mkdir -p $target_dir
 
 # Iterate over zip files
