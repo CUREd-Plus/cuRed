@@ -44,7 +44,8 @@ lsoa <-  unique(lsoa)  # Remove duplicates
 
 # column types count
 column_counts <- table(sapply(data, class))
-cat("Total number of columns:", length(data))
+cat("Total number of columns:", length(data),"\n")
+cat("Total number of rows:", nrow(data), "\n")
 cat("Column type counts:")
 for (col_type in names(column_counts)) {
   cat(paste(col_type, ":", column_counts[col_type], "columns\n"))
