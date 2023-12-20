@@ -41,7 +41,6 @@ def get_args():
 
     # Output options
     parser.add_argument('output_dir', type=Path, help='Output data directory path')
-    parser.add_argument('-k', '--partition_key', required=True, help="Input column name")
 
     # Performance options
     parser.add_argument('-i', '--io_thread_count', type=int, help='IO thread count', default=ARROW_IO_THREADS)
@@ -77,6 +76,8 @@ def main():
         raise ValueError(args.table)
     columns = csvw_table['tableSchema']['columns']
 
+    # TODO Iterate over CSV files
+
     # Read CSV data
     # https://arrow.apache.org/docs/python/csv.html
     schema = pyarrow.schema(fields=(column_to_field(column) for column in columns))
@@ -100,11 +101,6 @@ def main():
 
     # Write Parquet format
     output_dir = args.output_dir.absolute()
-
-    partitioning = pyarrow.dataset.partitioning(
-        schema=pyarrow.schema([(args.partition_key, pyarrow.string())]),
-        flavor='hive',
-    )
 
     logger.info("Writing dataset '%s'", output_dir)
     t0 = time.time()
