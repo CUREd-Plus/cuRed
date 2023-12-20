@@ -6,6 +6,7 @@
     }
   ],
   "dialect": {
+    "delimiter": "|",
     "header": true
   },
   "id": "yas_cad",
