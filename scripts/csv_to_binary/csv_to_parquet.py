@@ -53,11 +53,11 @@ def main():
         metadata = json.load(file)
         logger.info("Loaded '%s'", file.name)
 
+    # Select which CSVW table to use
     for csvw_table in metadata['tables']:
         if csvw_table['id'] == args.table:
             break
         raise ValueError(args.table)
-
     columns = csvw_table['tableSchema']['columns']
 
     # Read CSV data
@@ -71,6 +71,8 @@ def main():
             skip_rows=1 if metadata['dialect']['header'] else 0
         )
     )
+
+    # Specify input files
     source = list(args.input_dir.glob(csvw_table['url']))
     logger.info("Opening dataset '%s'", source)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
