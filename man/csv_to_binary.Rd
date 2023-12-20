@@ -23,16 +23,4 @@ By default, this function will read all the CSV files in the \code{input_dir} an
 \href{https://parquet.apache.org/}{Apache Parquet} format.
 
 The resultant binary data files will be written to \code{output_dir}.
-
-A \href{https://www.json.org/json-en.html}{JSON} file must be specified that contains an object where the keys are the
-headers of the input CSV files in order and the values are the SQL data types (default to \code{"VARCHAR"}). The location
-of this file is stored in the \code{data_types_path} variable and defaults to
-\verb{inst/extdata/sql_data_types/\{data_set_id\}.json}.
-
-See:
-\itemize{
-\item \href{https://duckdb.org/docs/api/r}{DuckDB R API}
-\item \href{https://dbi.r-dbi.org/}{DBI documentation}
-\item DuckDB \href{https://duckdb.org/docs/data/csv/overview.html}{CSV Import}
-}
 }
