@@ -536,99 +536,99 @@
           },
           {
             "name": "opdate_01",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_02",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_03",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_04",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_05",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_06",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_07",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_08",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_09",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_10",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_11",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_12",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_13",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_14",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_15",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_16",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_17",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_18",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_19",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_20",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_21",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_22",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_23",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "opdate_24",
-            "datatype": "string"
+            "datatype": "date"
           },
           {
             "name": "operstat",
