@@ -56,6 +56,7 @@ def main():
     # Select which CSVW table to use
     for csvw_table in metadata['tables']:
         if csvw_table['id'] == args.table:
+            logger.info("Table identifier '%s'", args.table)
             break
         raise ValueError(args.table)
     columns = csvw_table['tableSchema']['columns']
@@ -73,13 +74,14 @@ def main():
     )
 
     # Specify input files
-    source = list(args.input_dir.glob(csvw_table['url']))
+    source = list(args.input_dir.absolute().glob(csvw_table['url']))
     logger.info("Opening dataset '%s'", source)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
     # Write Parquet format
-    logger.info("Writing dataset '%s'", args.output_dir)
-    pyarrow.dataset.write_dataset(data_set, args.output_dir, format='parquet',
+    output_dir = args.output_dir.absolute()
+    logger.info("Writing dataset '%s'", output_dir)
+    pyarrow.dataset.write_dataset(data_set, output_dir, format='parquet',
                                   existing_data_behavior='overwrite_or_ignore')
 
     logger.info("Wrote to '%s'", args.output_dir)
