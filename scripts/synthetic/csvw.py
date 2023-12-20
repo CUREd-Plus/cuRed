@@ -46,7 +46,7 @@ def random_value(datatype: str):
 
 def generate_row(columns):
     for column in columns:
-        yield column['name'], random_value(datatype=column['datatype'])
+        yield column['name'].upper(), random_value(datatype=column['datatype'])
 
 
 def generate_rows(columns: list[dict], n_rows: int) -> Generator[None, dict, None]:
