@@ -12,6 +12,7 @@
   "notes": "Hospital Episide Statistics (HES) Accident & Emergency (A&E) data set",
   "tables": [
     {
+      "id": "ae",
       "tableSchema": {
         "columns": [
           {

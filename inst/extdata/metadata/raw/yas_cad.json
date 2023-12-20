@@ -12,6 +12,7 @@
   "notes": "Yorkshire Ambulance Service (YAS) Computer-aided Dispatch",
   "tables": [
     {
+      "id": "yas_cad",
       "tableSchema": {
         "columns": [
           {

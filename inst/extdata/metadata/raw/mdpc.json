@@ -12,6 +12,7 @@
   "notes": "Medicines dispensed in primary care (MDPC)",
   "tables": [
     {
+      "id": "mdpc",
       "tableSchema": {
         "columns": [
           {

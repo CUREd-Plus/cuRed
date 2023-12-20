@@ -12,6 +12,7 @@
   "notes": "Hospital Episide Statistics (HES) Outpatient (OP) data set",
   "tables": [
     {
+      "id": "op",
       "tableSchema": {
         "columns": [
           {

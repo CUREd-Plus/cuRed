@@ -6,12 +6,14 @@
     }
   ],
   "dialect": {
+    "delimeter": "|",
     "header": true
   },
   "id": "patient",
   "notes": "CUREd+ patient identifier bridge",
   "tables": [
     {
+      "id": "patient",
       "tableSchema": {
         "columns": [
           {

@@ -12,6 +12,7 @@
   "notes": "Patient demographics",
   "tables": [
     {
+      "id": "pd",
       "tableSchema": {
         "columns": [
           {
