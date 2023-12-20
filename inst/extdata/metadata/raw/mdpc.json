@@ -14,6 +14,7 @@
   "tables": [
     {
       "id": "mdpc",
+      "url": "FILE*.txt",
       "tableSchema": {
         "columns": [
           {
