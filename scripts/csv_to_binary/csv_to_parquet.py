@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import os
 from pathlib import Path
 
 import pyarrow.dataset
@@ -25,6 +26,8 @@ XML_SCHEMA_TO_ARROW_DATA_TYPE = dict(
     decimal=pyarrow.float64(),
 )
 
+ARROW_IO_THREADS = os.getenv('ARROW_IO_THREADS', 8)
+
 
 def get_args():
     parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
@@ -33,6 +36,9 @@ def get_args():
     parser.add_argument('output_dir', type=Path, help='Output data directory path')
     parser.add_argument('--csvw', type=Path, help='CSVW document path', required=True)
     parser.add_argument('--table', help='CSVW table identifier', required=True)
+
+    # Performance options
+    parser.add_argument('-i', '--io_thread_count', type=int, help='IO thread count', default=ARROW_IO_THREADS)
 
     return parser.parse_args()
 
@@ -47,6 +53,9 @@ def column_to_field(column: dict) -> pyarrow.Field:
 def main():
     args = get_args()
     logging.basicConfig(level=logging.INFO)
+
+    # Set parallel options
+    pyarrow.set_io_thread_count(args.io_thread_count)
 
     # Load metadata
     with args.csvw.open() as file:
