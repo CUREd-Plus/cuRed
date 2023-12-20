@@ -1,7 +1,9 @@
 import argparse
+import datetime
 import json
 import logging
 import os
+import time
 from pathlib import Path
 
 import pyarrow.dataset
@@ -32,10 +34,14 @@ ARROW_IO_THREADS = os.getenv('ARROW_IO_THREADS', 8)
 def get_args():
     parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
 
+    # Input optons
     parser.add_argument('input_dir', type=Path, help='Input data directory path')
-    parser.add_argument('output_dir', type=Path, help='Output data directory path')
     parser.add_argument('--csvw', type=Path, help='CSVW document path', required=True)
     parser.add_argument('--table', help='CSVW table identifier', required=True)
+
+    # Output options
+    parser.add_argument('output_dir', type=Path, help='Output data directory path')
+    parser.add_argument('-k', '--partition_key')
 
     # Performance options
     parser.add_argument('-i', '--io_thread_count', type=int, help='IO thread count', default=ARROW_IO_THREADS)
@@ -52,10 +58,11 @@ def column_to_field(column: dict) -> pyarrow.Field:
 
 def main():
     args = get_args()
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(asctime)s:%(message)s')
 
     # Set parallel options
     pyarrow.set_io_thread_count(args.io_thread_count)
+    logger.info("IO pool: %s threads", pyarrow.io_thread_count())
 
     # Load metadata
     with args.csvw.open() as file:
@@ -93,10 +100,16 @@ def main():
 
     # Write Parquet format
     output_dir = args.output_dir.absolute()
-    logger.info("Writing dataset '%s'", output_dir)
-    pyarrow.dataset.write_dataset(data_set, output_dir, format='parquet',
-                                  existing_data_behavior='overwrite_or_ignore')
 
+    logger.info("Writing dataset '%s'", output_dir)
+    t0 = time.time()
+    pyarrow.dataset.write_dataset(
+        data_set, output_dir, format='parquet',
+        existing_data_behavior='overwrite_or_ignore',
+        partitioning=partitioning
+    )
+    duration = datetime.timedelta(time.time() - t0)
+    logger.info("Time elapsed: %s", str(duration))
     logger.info("Wrote to '%s'", args.output_dir)
 
 
