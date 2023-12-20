@@ -18,8 +18,10 @@ def get_args() -> argparse.Namespace:
 
 def generate_rows(soup) -> Generator[tuple, None, None]:
     # Find the metadata HTML elements
-    for row in soup.find_all('div', role="row"):
-        yield (grid_cell.string for grid_cell in row.find_all('div', role='gridcell'))
+    for grid in soup.find_all('div', 'interactive-grid', role='grid'):
+        for row in grid.find_all('div', 'row', role="row"):
+            cells = row.find_all('div', 'main-cell', role='gridcell')
+            yield (cell.string for cell in cells)
 
 
 def main():
