@@ -67,19 +67,19 @@ def main():
     csv_format = pyarrow.dataset.CsvFileFormat(
         parse_options=pyarrow.csv.ParseOptions(
             delimiter=metadata['dialect']['delimiter'],
-        ),
-        read_options=pyarrow.csv.ReadOptions(
-            skip_rows=1 if metadata['dialect']['header'] else 0
         )
     )
 
     # Specify input files
     input_dir = args.input_dir.absolute()
-    logger.info("Searching for input files in '%s'", input_dir.glob(csvw_table['url']))
+    logger.info("Searching for input files in '%s'", input_dir.joinpath(csvw_table['url']))
     source = list(input_dir.glob(csvw_table['url']))
     if not source:
         raise FileNotFoundError(input_dir.joinpath(csvw_table['url']))
-    logger.info("Opening dataset '%s'", source)
+
+    logger.info("Opening dataset comprising these files:")
+    for path in source:
+        logger.info(path)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
     # Write Parquet format
