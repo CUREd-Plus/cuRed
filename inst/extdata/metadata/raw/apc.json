@@ -15,7 +15,7 @@
     {
       "id": "apc",
       "notes": "https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics",
-      "url": "FILE*_NIC589868_HES_APC_*.txt",
+      "url": "FILE*HES_APC*.txt",
       "tableSchema": {
         "columns": [
           {

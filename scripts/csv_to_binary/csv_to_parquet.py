@@ -71,8 +71,9 @@ def main():
             skip_rows=1 if metadata['dialect']['header'] else 0
         )
     )
-    logger.info("Opening dataset '%s'", args.input_dir)
-    data_set = pyarrow.dataset.dataset(args.input_dir, format=csv_format, schema=schema)
+    source = list(args.input_dir.glob(csvw_table['url']))
+    logger.info("Opening dataset '%s'", source)
+    data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
     # Write Parquet format
     logger.info("Writing dataset '%s'", args.output_dir)
