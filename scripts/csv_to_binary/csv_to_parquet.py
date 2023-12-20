@@ -75,6 +75,7 @@ def main():
 
     # Specify input files
     input_dir = args.input_dir.absolute()
+    logger.info("Searching for input files in '%s'", input_dir)
     source = list(input_dir.glob(csvw_table['url']))
     if not source:
         raise FileNotFoundError(input_dir.joinpath(csvw_table['url']))
