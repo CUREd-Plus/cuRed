@@ -32,18 +32,7 @@ run_workflow <- function(data_set_id, raw_data_dir, metadata_path, sheet, stagin
   patient_path <- normalizePath(patient_path, mustWork = TRUE)
   staging_dir <- normalizePath(staging_dir, mustWork = FALSE)
 
-  # Unzip files
-  unzip_files(raw_data_dir)
-
-  # Convert files to binary format (one file per table)
-  binary_paths <- csv_to_binary(
-    input_dir = raw_data_dir,
-    output_dir = staging_dir,
-    data_set_id = data_set_id
-  )
-
-  # Paths of clean data file
-  output_paths <- character()
+  binary_paths <- fs::dir_ls(raw_data_dir, glob = "*.parquet")
 
   # Iterate over the binary file paths
   for (i in seq_len(length(binary_paths))) {

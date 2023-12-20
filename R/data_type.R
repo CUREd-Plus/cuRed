@@ -97,3 +97,28 @@ xml_schema_to_sql_data_type <- function(xml_data_type) {
 
   return(sql_data_type)
 }
+
+
+#' @title Convert XML schema data type to an Arrow schema field
+#' @description
+#' Converts an XML data type to a field type for an Arrow schema.
+#'
+#' [XML Schema data type](https://w3c.github.io/csvw/syntax/#dfn-datatype) &rightarrow;
+#' [Arrow data type](https://arrow.apache.org/docs/r/reference/data-type.html)
+#'
+#' @param xml_data_type The XML data type to convert.
+#'
+#' @return The arrow Field
+#' @export
+xml_schema_to_arrow <- function(xml_data_type) {
+  data_type_map <- c(
+    "string" = arrow::string(),
+    "date" = arrow::date32(),
+    "time" = arrow::time32(),
+    "dateTime" = arrow::date64(),
+    "float" = arrow::float64(),
+    "double" = arrow::double(),
+    "boolean" = arrow::boolean()
+  )
+  return(data_type_map[xml_data_type])
+}
