@@ -7,15 +7,15 @@ library(arrow)
 #'
 csvw_to_arrow_schema <- function(columns) {
   data_types <- data.frame(columns[, c("name", "datatype")])
-  fields <- apply(data_Types, 1, csvw_column_to_arrow_field)
+  fields <- apply(data_types, 1, csvw_column_to_arrow_field)
   return(arrow::schema(fields))
 }
 
 csvw_column_to_arrow_field <- function(column) {
   return(
     arrow::field(
-      name = column$name,
-      type = column$type
+      name = column[['name']],
+      type = column[['type']]
       # TODO
     )
   )

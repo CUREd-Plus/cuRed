@@ -39,7 +39,7 @@ csv_to_binary <- function(input_dir, output_dir, data_set_id) {
     if (is.na(table_id)) {
       stop("table_id is missing")
     }
-    logger::log_info("Data set '{data_set_id}', table id '{table_id}'")
+    logger::log_info("Data set '{data_set_id}' contains table id '{table_id}'")
     columns <- csvw.columns(csv_table)
 
     # Convert file format
