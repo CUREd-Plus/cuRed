@@ -75,6 +75,8 @@ def main():
 
     # Specify input files
     source = list(args.input_dir.absolute().glob(csvw_table['url']))
+    if not source:
+        raise FileNotFoundError(source)
     logger.info("Opening dataset '%s'", source)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
