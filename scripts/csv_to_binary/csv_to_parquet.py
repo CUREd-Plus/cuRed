@@ -13,14 +13,15 @@ TODO
 """
 
 USAGE = """
-TODO
+python csv_to_parquet.py ~/csv_dir/ ~/parquet_dir/ --csvw apc.json --table apc
 """
 
 XML_SCHEMA_TO_ARROW_DATA_TYPE = dict(
     string=pyarrow.string(),
     date=pyarrow.date32(),
-    time=pyarrow.time32(unit='s'),
+    time=pyarrow.time32('s'),
     integer=pyarrow.int64(),
+    decimal=pyarrow.float64(),
 )
 
 
@@ -51,9 +52,16 @@ def main():
         metadata = json.load(file)
         logger.info("Loaded '%s'", file.name)
 
+    for csvw_table in metadata['tables']:
+        if csvw_table['id'] == args.table:
+            break
+        raise ValueError(args.table)
+
+    columns = csvw_table['tableSchema']['columns']
+
     # Read CSV data
     # https://arrow.apache.org/docs/python/csv.html
-    schema = pyarrow.schema(*(column_to_field(column) for column in columns))
+    schema = pyarrow.schema(fields=(column_to_field(column) for column in columns))
     csv_format = pyarrow.dataset.CsvFileFormat(
         parse_options=pyarrow.csv.ParseOptions(
             delimiter=metadata['dialect']['delimiter'],
@@ -62,10 +70,15 @@ def main():
             skip_rows=1 if metadata['dialect']['header'] else 0
         )
     )
+    logger.info("Opening dataset '%s'", args.input_dir)
     data_set = pyarrow.dataset.dataset(args.input_dir, format=csv_format, schema=schema)
 
     # Write Parquet format
-    pyarrow.dataset.write_dataset(data_set, args.output_dir, format='parquet')
+    logger.info("Writing dataset '%s'", args.output_dir)
+    pyarrow.dataset.write_dataset(data_set, args.output_dir, format='parquet',
+                                  existing_data_behavior='overwrite_or_ignore')
+
+    logger.info("Wrote to '%s'", args.output_dir)
 
 
 if __name__ == '__main__':
