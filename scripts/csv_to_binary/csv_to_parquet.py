@@ -20,6 +20,7 @@ XML_SCHEMA_TO_ARROW_DATA_TYPE = dict(
     string=pyarrow.string(),
     date=pyarrow.date32(),
     time=pyarrow.time32('s'),
+    datetime=pyarrow.date64(),
     integer=pyarrow.int64(),
     decimal=pyarrow.float64(),
 )
