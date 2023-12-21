@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import tempfile
+import time
 from pathlib import Path
 
 import duckdb
@@ -124,9 +125,10 @@ def main():
         """
 
         # Execute query
-
+        start_time = time.time()
         result = con.execute(query)
-        logger.info(con)
+        logger.info("Duration: %s", str(time.time() - start_time))
+        logger.info(result)
 
 
 if __name__ == '__main__':
