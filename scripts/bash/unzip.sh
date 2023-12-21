@@ -21,5 +21,5 @@ for path in *.zip;
 do
   echo $path
   # Decompress in the background
-  7zz e "*.zip" -o"$target_dir" &
+  7zz e "*.zip" -o"$target_dir" -y &
 done
