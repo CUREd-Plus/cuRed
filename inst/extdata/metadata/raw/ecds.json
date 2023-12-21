@@ -6,13 +6,15 @@
     }
   ],
   "dialect": {
-    "delimeter": "|"
+    "delimeter": "|",
+    "header": true
   },
   "id": "ecds",
   "notes": "Emergency Care Data Set (ECDS)",
   "tables": [
     {
       "id": "ecds",
+      "url": "FILE*.txt",
       "tableSchema": {
         "columns": [
           {
