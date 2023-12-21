@@ -19,7 +19,6 @@ mkdir -vp $target_dir
 # Iterate over zip files
 for path in *.zip;
 do
-  echo $path
   # Decompress in the background
-  7zz e "*.zip" -o"$target_dir" -y &
+  7zz e "$path" -o"$target_dir" -y &
 done
