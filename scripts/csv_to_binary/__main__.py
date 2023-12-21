@@ -64,7 +64,7 @@ def main():
     # Load CSV metadata
     with args.csv.open() as file:
         csvw = json.load(file)
-        logger.info("Loaded %s", file.name)
+        logger.info("Loaded '%s'", file.name)
 
     # Get the CSVW table (a data set comprises a group of tables)
     if args.table:
@@ -123,11 +123,13 @@ def main():
     TO '{output_path}';
         """
 
-        # Execute query
-        start_time = time.time()
-        result = con.execute(query)
-        logger.info("Duration: %s", str(time.time() - start_time))
-        logger.info(result)
+            # Execute query
+            logger.info("Executing script '%s'", log_query_path)
+            logger.info('Converting to binary file format...')
+            start_time = time.time()
+            result = con.execute(query)
+            logger.info("Duration: %s", str(time.time() - start_time))
+            logger.info(result)
 
 
 if __name__ == '__main__':
