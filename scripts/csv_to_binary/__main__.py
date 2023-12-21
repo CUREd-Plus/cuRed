@@ -57,7 +57,7 @@ def main():
     args = get_args()
     logging.basicConfig(
         format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.INFO if args.verbose else logging.WARNING
+        level=logging.INFO if args.verbose else logging.WARNING,
     )
 
     # Get column data types

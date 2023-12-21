@@ -6,12 +6,15 @@
     }
   ],
   "dialect": {
+    "delimiter": "|",
     "header": true
   },
-  "id": "deaths",
+  "id": "crd",
   "notes": "Civil Registrations: Deaths",
   "tables": [
     {
+      "id": "crd",
+      "url": "FILE*.txt",
       "tableSchema": {
         "columns": [
           {
