@@ -6,12 +6,15 @@
     }
   ],
   "dialect": {
+    "delimiter": "|",
     "header": true
   },
   "id": "mdpc",
   "notes": "Medicines dispensed in primary care (MDPC)",
   "tables": [
     {
+      "id": "mdpc",
+      "url": "FILE*.txt",
       "tableSchema": {
         "columns": [
           {

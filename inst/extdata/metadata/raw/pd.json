@@ -6,12 +6,15 @@
     }
   ],
   "dialect": {
+    "delimiter": "|",
     "header": true
   },
   "id": "pd",
   "notes": "Patient demographics",
   "tables": [
     {
+      "id": "pd",
+      "url": "FILE*.txt",
       "tableSchema": {
         "columns": [
           {
