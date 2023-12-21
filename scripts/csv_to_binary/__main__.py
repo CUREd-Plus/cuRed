@@ -103,7 +103,7 @@ def main():
     -- Configure DuckDB
     -- https://duckdb.org/docs/archive/0.5.1/sql/configuration.html
     SET temp_directory = '{temp_directory}';
-    SET log_query_path = {log_query_path};
+    SET log_query_path = '{log_query_path}';
     
     -- DuckDB COPY statement documentation
     -- https://duckdb.org/docs/sql/statements/copy
@@ -120,8 +120,7 @@ def main():
         ,columns={data_types}
       )
     )
-    TO '{output_path}'
-    WITH (FORMAT 'PARQUET');
+    TO '{output_path}';
         """
 
         # Execute query
