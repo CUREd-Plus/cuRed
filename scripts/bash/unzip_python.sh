@@ -18,5 +18,5 @@ do
   echo $path
   # Decompress in the background
   # https://docs.python.org/3/library/zipfile.html#command-line-interface
-  python3 -m zipfile --decompress --time -e $path $target_dir &
+  python3.11 -m zipfile --decompress --time -e $path $target_dir &
 done
