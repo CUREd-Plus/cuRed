@@ -24,13 +24,16 @@ XML_SCHEMA_TO_SQL = dict(
     string='VARCHAR',
     date='DATE',
     time='TIME',
+    dateTime='TIMESTAMP',
     long='BITINT',
     integer='UBIGINT',
     float='FLOAT',
     boolean='BOOLEAN',
-    double='DOUBLE'
+    double='DOUBLE',
+    decimal='DECIMAL',
 )
 """
+https://www.w3.org/2001/sw/rdb2rdf/wiki/Mapping_SQL_datatypes_to_XML_Schema_datatypes
 Map from XML Schema data types https://www.w3.org/TR/xmlschema-2/#typesystem
 to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 """
