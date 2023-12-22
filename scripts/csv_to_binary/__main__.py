@@ -85,7 +85,7 @@ def get_columns(csvw_path: Path, table_id: str = None) -> list[dict]:
     return table['tableSchema']['columns']
 
 
-def get_s3_file_system(profile_name: str) -> pyarrow.fs.S3FileSystem:
+def get_s3_file_system(profile_name: str = None) -> pyarrow.fs.S3FileSystem:
     # Configure AWS credentials
     session = boto3.session.Session(profile_name=profile_name)
     credentials = session.get_credentials()
@@ -104,46 +104,38 @@ def main():
     args = get_args()
     logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(asctime)s:%(message)s')
 
+    # Read CSV metadata
+    columns = get_columns(args.csvw, table_id=args.table)
+
+    # Build schema to describe the fields in the input data set
+    schema = pyarrow.schema(fields=(column_to_field(column) for column in columns))
+
     # Set parallel options
     pyarrow.set_io_thread_count(args.io_thread_count)
     logger.info("IO pool: %s threads", pyarrow.io_thread_count())
 
+    # Connect to the S3 bucket
     s3 = get_s3_file_system(args.profile_name)
+
+    # List input files that comprise the data set
     logger.info("Listing files in '%s'", args.base_dir)
-    file_info = s3.get_file_info(pyarrow.fs.FileSelector(base_dir=str(args.base_dir)))
-
-    for x in file_info:
-        logger.info(x)
-
-    exit()
-
-    # Read CSV metadata
-    columns = get_columns(args.csvw, table_id=args.table)
+    file_info: pyarrow.fs.FileInfo
+    for file_info in s3.get_file_info(pyarrow.fs.FileSelector(base_dir=str(args.base_dir))):
+        logger.info(file_info.path)
 
     # Read CSV data
     # https://arrow.apache.org/docs/python/csv.html
-    schema = pyarrow.schema(fields=(column_to_field(column) for column in columns))
     csv_format = pyarrow.dataset.CsvFileFormat(
         parse_options=pyarrow.csv.ParseOptions(
             delimiter=metadata['dialect']['delimiter'],
         )
     )
 
-    # Specify input files
-    input_dir = args.input_dir.absolute()
-    logger.info("Searching for input files in '%s'", input_dir.joinpath(csvw_table['url']))
-    source = list(input_dir.glob(csvw_table['url']))
-    if not source:
-        raise FileNotFoundError(input_dir.joinpath(csvw_table['url']))
-
-    logger.info("Opening dataset comprising these files:")
-    for path in source:
-        logger.info(path)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
     # Modify values to calculate the partition key
-    for table_chunk in data_set.to_batches():
-        pass
+    # for table_chunk in data_set.to_batches():
+    #     pass
 
     # Write Parquet format
     output_dir = args.output_dir.absolute()
@@ -152,8 +144,8 @@ def main():
     t0 = time.time()
     pyarrow.dataset.write_dataset(
         data_set, output_dir, format='parquet',
-        existing_data_behavior='overwrite_or_ignore',
-        partitioning=partitioning
+        # existing_data_behavior='overwrite_or_ignore',
+        # partitioning=partitioning
     )
     duration = datetime.timedelta(time.time() - t0)
     logger.info("Time elapsed: %s", str(duration))
