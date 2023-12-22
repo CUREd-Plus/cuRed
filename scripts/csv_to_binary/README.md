@@ -11,6 +11,6 @@ pip install -r requirements.txt
 # Usage
 
 ```bash
-python csv_to_parquet.py --help
+python -m csv_to_binary --help
 ```
 

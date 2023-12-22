@@ -6,8 +6,10 @@ import os
 import time
 from pathlib import Path
 
-import pyarrow.dataset
+import boto3.session
 import pyarrow.csv
+import pyarrow.dataset
+import pyarrow.fs
 
 logger = logging.getLogger(__name__)
 
@@ -34,10 +36,11 @@ ARROW_IO_THREADS = os.getenv('ARROW_IO_THREADS', 8)
 def get_args():
     parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
 
-    # Input optons
-    parser.add_argument('input_dir', type=Path, help='Input data directory path')
+    # Input options
+    parser.add_argument('base_dir', type=Path, help='Input S3 bucket directory path')
+    parser.add_argument('--profile_name', help='AWS CLI profile name', default='default')
     parser.add_argument('--csvw', type=Path, help='CSVW document path', required=True)
-    parser.add_argument('--table', help='CSVW table identifier', required=True)
+    parser.add_argument('--table', help='CSVW table identifier')
 
     # Output options
     parser.add_argument('output_dir', type=Path, help='Output data directory path')
@@ -55,6 +58,48 @@ def column_to_field(column: dict) -> pyarrow.Field:
     )
 
 
+def get_columns(csvw_path: Path, table_id: str = None) -> list[dict]:
+    """
+    Get the column metadata for a CSV data set.
+
+    :param csvw_path: Path of the CSVW document.
+    :param table_id: Identifier of the table
+    :return: Columns [{"name": "my_col_1", "datatype": "string"}]
+    """
+    # Load metadata
+    with csvw_path.open() as file:
+        metadata = json.load(file)
+        logger.info("Loaded '%s'", file.name)
+
+    # Select which CSVW table to use
+    tables = metadata['tables']
+    if not table_id:
+        table = tables[0]
+    else:
+        for table in tables:
+            if table['id'] == table_id:
+                logger.info("Table identifier '%s'", args.table)
+                break
+            raise ValueError(table_id)
+
+    return table['tableSchema']['columns']
+
+
+def get_s3_file_system(profile_name: str) -> pyarrow.fs.S3FileSystem:
+    # Configure AWS credentials
+    session = boto3.session.Session(profile_name=profile_name)
+    credentials = session.get_credentials()
+
+    # Configure S3 file system
+    # https://arrow.apache.org/docs/python/filesystems.html#filesystem-s3
+    return pyarrow.fs.S3FileSystem(
+        secret_key=credentials.secret_key,
+        access_key=credentials.access_key,
+        region=session.region_name,
+        session_token=credentials.token
+    )
+
+
 def main():
     args = get_args()
     logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(asctime)s:%(message)s')
@@ -63,20 +108,16 @@ def main():
     pyarrow.set_io_thread_count(args.io_thread_count)
     logger.info("IO pool: %s threads", pyarrow.io_thread_count())
 
-    # Load metadata
-    with args.csvw.open() as file:
-        metadata = json.load(file)
-        logger.info("Loaded '%s'", file.name)
+    s3 = get_s3_file_system(args.profile_name)
+    file_info = s3.get_file_info(pyarrow.fs.FileSelector(base_dir=args.base_dir))
 
-    # Select which CSVW table to use
-    for csvw_table in metadata['tables']:
-        if csvw_table['id'] == args.table:
-            logger.info("Table identifier '%s'", args.table)
-            break
-        raise ValueError(args.table)
-    columns = csvw_table['tableSchema']['columns']
+    for x in file_info:
+        logger.info(x)
 
-    # TODO Iterate over CSV files
+    exit()
+
+    # Read CSV metadata
+    columns = get_columns(args.csvw, table_id=args.table)
 
     # Read CSV data
     # https://arrow.apache.org/docs/python/csv.html
@@ -98,6 +139,10 @@ def main():
     for path in source:
         logger.info(path)
     data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
+
+    # Modify values to calculate the partition key
+    for table_chunk in data_set.to_batches():
+        pass
 
     # Write Parquet format
     output_dir = args.output_dir.absolute()
