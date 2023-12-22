@@ -1,134 +1,155 @@
-#!/usr/bin/env python
-
 import argparse
+import datetime
 import json
 import logging
-import tempfile
+import os
 import time
 from pathlib import Path
 
-import duckdb
-
-DESCRIPTION = """
-CSV on the Web https://csvw.org/ is the metadata standard for the input CSV files.
-DuckDB is used to process the data. https://duckdb.org/docs/api/python/overview
-Apache Parquet is a binary file format https://parquet.apache.org/
-"""
-USAGE = """
-python -m csv_to_binary ~/csv_data/ ~/parquet_data/ --csv ~/$data_set_id.json --table $table_id
-"""
+import boto3.session
+import pyarrow.csv
+import pyarrow.dataset
+import pyarrow.fs
 
 logger = logging.getLogger(__name__)
 
-XML_SCHEMA_TO_SQL = dict(
-    string='VARCHAR',
-    date='DATE',
-    time='TIME',
-    long='BITINT',
-    integer='UBIGINT',
-    float='FLOAT',
-    boolean='BOOLEAN',
-    double='DOUBLE'
+DESCRIPTION = """
+TODO
+"""
+
+USAGE = """
+python csv_to_parquet.py ~/csv_dir/ ~/parquet_dir/ --csvw apc.json --table apc
+"""
+
+XML_SCHEMA_TO_ARROW_DATA_TYPE = dict(
+    string=pyarrow.string(),
+    date=pyarrow.date32(),
+    time=pyarrow.time32('s'),
+    datetime=pyarrow.date64(),
+    integer=pyarrow.int64(),
+    decimal=pyarrow.float64(),
 )
-"""
-Map from XML Schema data types https://www.w3.org/TR/xmlschema-2/#typesystem
-to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
-"""
+
+ARROW_IO_THREADS = os.getenv('ARROW_IO_THREADS', 8)
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description=DESCRIPTION, usage=USAGE)
+    parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
 
-    parser.add_argument('-v', '--verbose', action='store_true')
-    parser.add_argument('input_dir', type=Path, help='Path of the directory that contains the input CSV data files.')
-    parser.add_argument('output_dir', type=Path,
-                        help='Path of the directory that will contain the output Parquet data files.')
-    parser.add_argument('-c', '--csv', type=Path, required=True,
-                        help='Path of the CSVW document https://w3c.github.io/csvw/syntax/#table-groups', )
-    parser.add_argument('-t', '--table', required=False,
-                        help='CSVW table identifier https://w3c.github.io/csvw/syntax/#dfn-table-id')
-    parser.add_argument('--delim', default='|', help='CSV delimeter')
-    parser.add_argument('--database', default=':memory:', help='DuckDB database')
+    # Input options
+    parser.add_argument('base_dir', type=str, help='Input S3 bucket directory URI')
+    parser.add_argument('--profile_name', help='AWS CLI profile name', default='default')
+    parser.add_argument('--csvw', type=Path, help='CSVW document path', required=True)
+    parser.add_argument('--table', help='CSVW table identifier')
+
+    # Output options
+    parser.add_argument('output_dir', type=Path, help='Output data directory path')
+
+    # Performance options
+    parser.add_argument('-i', '--io_thread_count', type=int, help='IO thread count', default=ARROW_IO_THREADS)
 
     return parser.parse_args()
 
 
+def column_to_field(column: dict) -> pyarrow.Field:
+    return pyarrow.field(
+        name=column['name'],
+        type=XML_SCHEMA_TO_ARROW_DATA_TYPE[column['datatype']]
+    )
+
+
+def get_columns(csvw_path: Path, table_id: str = None) -> list[dict]:
+    """
+    Get the column metadata for a CSV data set.
+
+    :param csvw_path: Path of the CSVW document.
+    :param table_id: Identifier of the table
+    :return: Columns [{"name": "my_col_1", "datatype": "string"}]
+    """
+    # Load metadata
+    with csvw_path.open() as file:
+        metadata = json.load(file)
+        logger.info("Loaded '%s'", file.name)
+
+    # Select which CSVW table to use
+    tables = metadata['tables']
+    if not table_id:
+        table = tables[0]
+    else:
+        for table in tables:
+            if table['id'] == table_id:
+                logger.info("Table identifier '%s'", args.table)
+                break
+            raise ValueError(table_id)
+
+    return table['tableSchema']['columns']
+
+
+def get_s3_file_system(profile_name: str = None) -> pyarrow.fs.S3FileSystem:
+    # Configure AWS credentials
+    session = boto3.session.Session(profile_name=profile_name)
+    credentials = session.get_credentials()
+
+    # Configure S3 file system
+    # https://arrow.apache.org/docs/python/filesystems.html#filesystem-s3
+    return pyarrow.fs.S3FileSystem(
+        secret_key=credentials.secret_key,
+        access_key=credentials.access_key,
+        region=session.region_name,
+        session_token=credentials.token
+    )
+
+
 def main():
     args = get_args()
-    logging.basicConfig(
-        format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.INFO if args.verbose else logging.WARNING
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(asctime)s:%(message)s')
+
+    # Read CSV metadata
+    columns = get_columns(args.csvw, table_id=args.table)
+
+    # Build schema to describe the fields in the input data set
+    schema = pyarrow.schema(fields=(column_to_field(column) for column in columns))
+
+    # Set parallel options
+    pyarrow.set_io_thread_count(args.io_thread_count)
+    logger.info("IO pool: %s threads", pyarrow.io_thread_count())
+
+    # Connect to the S3 bucket
+    s3 = get_s3_file_system(args.profile_name)
+
+    # List input files that comprise the data set
+    logger.info("Listing files in '%s'", args.base_dir)
+    file_info: pyarrow.fs.FileInfo
+    for file_info in s3.get_file_info(pyarrow.fs.FileSelector(base_dir=str(args.base_dir))):
+        logger.info(file_info.path)
+
+    # Read CSV data
+    # https://arrow.apache.org/docs/python/csv.html
+    csv_format = pyarrow.dataset.CsvFileFormat(
+        parse_options=pyarrow.csv.ParseOptions(
+            delimiter=metadata['dialect']['delimiter'],
+        )
     )
 
-    # Get column data types
-    # Load CSV metadata
-    with args.csv.open() as file:
-        csvw = json.load(file)
-        logger.info("Loaded %s", file.name)
+    data_set = pyarrow.dataset.dataset(source, format=csv_format, schema=schema)
 
-    # Get the CSVW table (a data set comprises a group of tables)
-    if args.table:
-        for table in csvw['tables']:
-            if table['id'] == args.table:
-                break
-    else:
-        # Default to first table
-        table = csvw['tables'][0]
+    # Modify values to calculate the partition key
+    # for table_chunk in data_set.to_batches():
+    #     pass
 
-    # Get column data types (in SQL format)
-    # https://duckdb.org/docs/sql/data_types/overview.html
-    columns = table['tableSchema']['columns']
-    data_types = {col['name']: col['datatype'] for col in columns}
-    data_types = {name: XML_SCHEMA_TO_SQL[data_type] for name, data_type in data_types.items()}
-
-    temp_directory = Path(tempfile.mkdtemp())
-    log_query_path = temp_directory.joinpath('query_log.sql')
-
-    # Iterate over input CSV files
-    input_dir = args.input_dir.absolute()
-    glob = table['url']
+    # Write Parquet format
     output_dir = args.output_dir.absolute()
 
-    with duckdb.connect(':memory:') as con:
-        logger.info(con)
-        for input_path in input_dir.glob(glob):
-            logger.info(input_path)
-
-            output_path = output_dir.joinpath(input_path.stem + '.parquet')
-
-            # Build SQL query
-            query = f"""
-    -- Convert CSV files to Apache Parquet format
-    
-    -- Configure DuckDB
-    -- https://duckdb.org/docs/archive/0.5.1/sql/configuration.html
-    SET temp_directory = '{temp_directory}';
-    SET log_query_path = {log_query_path};
-    
-    -- DuckDB COPY statement documentation
-    -- https://duckdb.org/docs/sql/statements/copy
-    COPY (
-      SELECT *
-      -- Define data types
-      -- DuckDB documentation for CSV loading
-      -- https://duckdb.org/docs/data/csv/overview.html
-      FROM read_csv('{input_path}',
-        header=TRUE, delim='{args.delim}'
-        -- Add a column for input filename
-        ,filename=TRUE
-        -- Columns must be ordered
-        ,columns={data_types}
-      )
+    logger.info("Writing dataset '%s'", output_dir)
+    t0 = time.time()
+    pyarrow.dataset.write_dataset(
+        data_set, output_dir, format='parquet',
+        # existing_data_behavior='overwrite_or_ignore',
+        # partitioning=partitioning
     )
-    TO '{output_path}'
-    WITH (FORMAT 'PARQUET');
-        """
-
-        # Execute query
-        start_time = time.time()
-        result = con.execute(query)
-        logger.info("Duration: %s", str(time.time() - start_time))
-        logger.info(result)
+    duration = datetime.timedelta(time.time() - t0)
+    logger.info("Time elapsed: %s", str(duration))
+    logger.info("Wrote to '%s'", args.output_dir)
 
 
 if __name__ == '__main__':
