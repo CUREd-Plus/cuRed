@@ -41,6 +41,6 @@ python3.11 -m csv_to_binary --help
 Example:
 
 ```bash
-python3.11 -m csv_to_binary -i 32 --csvw ~/cuRed/inst/extdata/metadata/raw/apc.json --table apc
+python3.11 -m csv_to_binary -i 32 --csvw ~/cuRed/inst/extdata/metadata/raw/apc.json --table apc s3://curedplus-raw.rcc.shef.ac.uk/NHSD-DATA/HES_APC/ ~/data
 ```
 

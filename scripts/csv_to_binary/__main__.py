@@ -109,6 +109,7 @@ def main():
     logger.info("IO pool: %s threads", pyarrow.io_thread_count())
 
     s3 = get_s3_file_system(args.profile_name)
+    logger.info("Listing files in '%s'", args.base_dir)
     file_info = s3.get_file_info(pyarrow.fs.FileSelector(base_dir=str(args.base_dir)))
 
     for x in file_info:
