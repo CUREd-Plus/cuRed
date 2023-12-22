@@ -18,6 +18,7 @@ python3.11 -c 'import zipfile; print("ZIP_DEFLATED", zipfile.ZIP_DEFLATED)'
 # Iterate over zip files
 for path in $source_dir/*.zip;
 do
+  echo $path
   # Verify ZIP file
   python3.11 -m zipfile --test $path
   # Show file contents
