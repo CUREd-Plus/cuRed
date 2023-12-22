@@ -37,7 +37,7 @@ def get_args():
     parser = argparse.ArgumentParser(usage=USAGE, description=DESCRIPTION)
 
     # Input options
-    parser.add_argument('base_dir', type=Path, help='Input S3 bucket directory path')
+    parser.add_argument('base_dir', type=str, help='Input S3 bucket directory URI')
     parser.add_argument('--profile_name', help='AWS CLI profile name', default='default')
     parser.add_argument('--csvw', type=Path, help='CSVW document path', required=True)
     parser.add_argument('--table', help='CSVW table identifier')
