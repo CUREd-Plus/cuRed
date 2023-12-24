@@ -93,6 +93,7 @@ def main():
 
     temp_directory = Path(tempfile.mkdtemp())
     log_query_path = temp_directory.joinpath('query_log.sql')
+    logger.info("Writing DuckDB SQL logs to '%s'", log_query_path)
 
     # Iterate over input CSV files
     input_dir = args.input_dir.absolute()
@@ -136,6 +137,7 @@ def main():
             # Execute query
             logger.info("Executing script '%s'", log_query_path)
             logger.info('Converting to binary file format...')
+            logger.info("Writing '%s'", output_path)
             start_time = time.time()
             result = con.execute(query)
             logger.info("Duration: %s", str(time.time() - start_time))
