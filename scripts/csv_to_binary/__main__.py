@@ -42,10 +42,12 @@ to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 def get_args():
     parser = argparse.ArgumentParser(description=DESCRIPTION, usage=USAGE)
 
+    # Logging
     parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('-l', '--log', type=Path, help='Log file path')
+
+    # Input options
     parser.add_argument('input_dir', type=Path, help='Path of the directory that contains the input CSV data files.')
-    parser.add_argument('output_dir', type=Path,
-                        help='Path of the directory that will contain the output Parquet data files.')
     parser.add_argument('-c', '--csv', type=Path, required=True,
                         help='Path of the CSVW document https://w3c.github.io/csvw/syntax/#table-groups', )
     parser.add_argument('-t', '--table', required=False,
@@ -53,14 +55,19 @@ def get_args():
     parser.add_argument('--delim', default='|', help='CSV delimeter')
     parser.add_argument('--database', default=':memory:', help='DuckDB database')
 
+    # Output options
+    parser.add_argument('output_dir', type=Path,
+                        help='Path of the directory that will contain the output Parquet data files.')
+
     return parser.parse_args()
 
 
 def main():
     args = get_args()
     logging.basicConfig(
+        filename=args.log,
         format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.INFO if args.verbose else logging.WARNING,
+        level=logging.DEBUG if args.verbose else logging.INFO,
     )
 
     # Get column data types
