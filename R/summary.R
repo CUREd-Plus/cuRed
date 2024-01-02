@@ -16,7 +16,6 @@ library(leaflet)
 library(leaflet.extras)
 library(dplyr)
 library(arrow)
-library(imager)
 library(ggplot2)
 library(lubridate)
 
