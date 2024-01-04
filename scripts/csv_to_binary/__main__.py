@@ -162,7 +162,7 @@ def main():
     )
 
     # Load CSV metadata
-    with args.csvw.open() as file:
+    with args.csv.open() as file:
         csvw = json.load(file)
         logger.info("Loaded '%s'", file.name)
 

@@ -21,6 +21,6 @@ python3 -m csv_to_binary --help
 
 ```bash
 cd ~/cuRed/scripts
-python3 -m csv_to_binary ~/csv_data/ ~/parquet_data/ --csv ~/$data_set_id.json
+python3 -m csv_to_binary ~/csv_data/ ~/parquet_data/ --csv ~/$data_set_id.json --log ~/csv_to_binary.log
 ```
 
