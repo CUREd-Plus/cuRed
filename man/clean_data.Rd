@@ -4,10 +4,12 @@
 \alias{clean_data}
 \title{Clean a data set}
 \usage{
-clean_data(input_dir, output_dir, format = "parquet")
+clean_data(input_dir, data_set_id, output_dir, format = "parquet")
 }
 \arguments{
 \item{input_dir}{Path of the directory containing the input data}
+
+\item{data_set_id}{Data set identifier e.g. "hes_apc", "yas_epr"}
 
 \item{output_dir}{Path of the directory containing the output data}
 
@@ -15,6 +17,8 @@ clean_data(input_dir, output_dir, format = "parquet")
 }
 \description{
 Apply data cleaning rules to a data set.
+
+The transformations are defined using \href{https://dplyr.tidyverse.org/reference/mutate.html}{dplyr mutate} syntax.
 
 This is implemented using the \href{https://arrow.apache.org/docs/r/}{Arrow R package}.
 }
