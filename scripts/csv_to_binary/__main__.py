@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import tempfile
+import textwrap
 import time
 from pathlib import Path
 
@@ -24,13 +25,16 @@ XML_SCHEMA_TO_SQL = dict(
     string='VARCHAR',
     date='DATE',
     time='TIME',
+    dateTime='TIMESTAMP',
     long='BITINT',
     integer='UBIGINT',
     float='FLOAT',
     boolean='BOOLEAN',
-    double='DOUBLE'
+    double='DOUBLE',
+    decimal='DECIMAL',
 )
 """
+https://www.w3.org/2001/sw/rdb2rdf/wiki/Mapping_SQL_datatypes_to_XML_Schema_datatypes
 Map from XML Schema data types https://www.w3.org/TR/xmlschema-2/#typesystem
 to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 """
@@ -39,71 +43,88 @@ to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 def get_args():
     parser = argparse.ArgumentParser(description=DESCRIPTION, usage=USAGE)
 
+    # Logging
     parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('-l', '--log', type=Path, help='Log file path')
+
+    # Input options
     parser.add_argument('input_dir', type=Path, help='Path of the directory that contains the input CSV data files.')
-    parser.add_argument('output_dir', type=Path,
-                        help='Path of the directory that will contain the output Parquet data files.')
     parser.add_argument('-c', '--csv', type=Path, required=True,
                         help='Path of the CSVW document https://w3c.github.io/csvw/syntax/#table-groups', )
     parser.add_argument('-t', '--table', required=False,
                         help='CSVW table identifier https://w3c.github.io/csvw/syntax/#dfn-table-id')
-    parser.add_argument('--delim', default='|', help='CSV delimeter')
     parser.add_argument('--database', default=':memory:', help='DuckDB database')
+
+    # Output options
+    parser.add_argument('output_dir', type=Path,
+                        help='Path of the directory that will contain the output Parquet data files.')
 
     return parser.parse_args()
 
 
-def main():
-    args = get_args()
-    logging.basicConfig(
-        format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.INFO if args.verbose else logging.WARNING
-    )
+def get_csvw_table(csvw: dict, table_id: str = None):
+    """
+    Get column data types
 
-    # Get column data types
-    # Load CSV metadata
-    with args.csv.open() as file:
-        csvw = json.load(file)
-        logger.info("Loaded %s", file.name)
+    https://w3c.github.io/csvw/syntax/#columns
+
+    :param csvw: CSVW document (loaded from a JSON file)
+    :param table_id: https://w3c.github.io/csvw/syntax/#dfn-table-id
+    """
 
     # Get the CSVW table (a data set comprises a group of tables)
-    if args.table:
-        for table in csvw['tables']:
-            if table['id'] == args.table:
-                break
-    else:
+    if not table_id:
         # Default to first table
-        table = csvw['tables'][0]
+        return csvw['tables'][0]
 
-    # Get column data types (in SQL format)
-    # https://duckdb.org/docs/sql/data_types/overview.html
-    columns = table['tableSchema']['columns']
+    # Find table by identifier
+    for table in csvw['tables']:
+        if table['id'] == table_id:
+            return table
+
+
+def csvw_to_sql_data_types(columns: list[dict]):
+    """
+    Get column data types (in SQL format)
+    https://duckdb.org/docs/sql/data_types/overview.html
+
+    :param columns: CSVW table schema columns
+    """
     data_types = {col['name']: col['datatype'] for col in columns}
-    data_types = {name: XML_SCHEMA_TO_SQL[data_type] for name, data_type in data_types.items()}
+    return {name: XML_SCHEMA_TO_SQL[data_type] for name, data_type in data_types.items()}
 
-    temp_directory = Path(tempfile.mkdtemp())
-    log_query_path = temp_directory.joinpath('query_log.sql')
 
-    # Iterate over input CSV files
-    input_dir = args.input_dir.absolute()
-    glob = table['url']
-    output_dir = args.output_dir.absolute()
+def convert_csvw_to_binary(input_dir: Path, glob: str, output_dir: Path, data_types: dict, delim: str,
+                           temp_directory: Path = None, database=None):
+    """
+    Convert a CSVW table group to binary format.
+    """
+    # Default parameters
+    temp_directory = temp_directory or Path(tempfile.mkdtemp())
 
-    with duckdb.connect(':memory:') as con:
+    # Create DuckDB database
+    with duckdb.connect(database) as con:
         logger.info(con)
+
+        # Iterate over input CSV files
         for input_path in input_dir.glob(glob):
             logger.info(input_path)
+            csv_to_binary(con=con, delim=delim, output_dir=output_dir, data_types=data_types,
+                          temp_directory=temp_directory, input_path=input_path)
 
-            output_path = output_dir.joinpath(input_path.stem + '.parquet')
 
-            # Build SQL query
-            query = f"""
+def csv_to_binary(con, input_path: Path, output_dir: Path, temp_directory: Path, delim: str, data_types: dict):
+    output_path = output_dir.joinpath(input_path.stem + '.parquet')
+    log_query_path = output_dir.joinpath(input_path.stem + '.sql')
+
+    # Build SQL query
+    query = textwrap.dedent(f"""
     -- Convert CSV files to Apache Parquet format
     
     -- Configure DuckDB
     -- https://duckdb.org/docs/archive/0.5.1/sql/configuration.html
     SET temp_directory = '{temp_directory}';
-    SET log_query_path = {log_query_path};
+    SET log_query_path = '{log_query_path}';
     
     -- DuckDB COPY statement documentation
     -- https://duckdb.org/docs/sql/statements/copy
@@ -113,22 +134,51 @@ def main():
       -- DuckDB documentation for CSV loading
       -- https://duckdb.org/docs/data/csv/overview.html
       FROM read_csv('{input_path}',
-        header=TRUE, delim='{args.delim}'
+        header=TRUE, delim='{delim}'
         -- Add a column for input filename
         ,filename=TRUE
         -- Columns must be ordered
         ,columns={data_types}
       )
     )
-    TO '{output_path}'
-    WITH (FORMAT 'PARQUET');
-        """
+    TO '{output_path}';
+    """)
 
-        # Execute query
-        start_time = time.time()
-        result = con.execute(query)
-        logger.info("Duration: %s", str(time.time() - start_time))
-        logger.info(result)
+    # Execute query
+    logger.info("Executing script '%s'", log_query_path)
+    logger.info("Writing '%s'", output_path)
+    start_time = time.time()
+    result = con.execute(query)
+    logger.info("Duration: %s", str(time.time() - start_time))
+    logger.info(result)
+
+
+def main():
+    args = get_args()
+    logging.basicConfig(
+        filename=args.log,
+        format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
+        level=logging.DEBUG if args.verbose else logging.INFO,
+    )
+
+    # Load CSV metadata
+    with args.csv.open() as file:
+        csvw = json.load(file)
+        logger.info("Loaded '%s'", file.name)
+
+    # Get CSVW table metadata
+    table = get_csvw_table(csvw, table_id=args.table)
+    data_types = csvw_to_sql_data_types(columns=table['tableSchema']['columns'])
+
+    # Iterate over input CSV files and convert
+    convert_csvw_to_binary(
+        input_dir=args.input_dir.absolute(),
+        glob=table['url'],
+        data_types=data_types,
+        output_dir=args.output_dir.absolute(),
+        delim=csvw['dialect']['delimiter'],
+        database=args.database,
+    )
 
 
 if __name__ == '__main__':
