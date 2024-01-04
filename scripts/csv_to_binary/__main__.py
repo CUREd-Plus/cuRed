@@ -158,7 +158,7 @@ def main():
     logging.basicConfig(
         filename=args.log,
         format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.INFO if args.verbose else logging.WARNING,
+        level=logging.DEBUG if args.verbose else logging.INFO,
     )
 
     # Load CSV metadata
