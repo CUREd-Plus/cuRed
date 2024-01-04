@@ -49,7 +49,9 @@ Imports:
     validate (< 1.2.0),
     validate (>= 1.1.0),
     fs (< 1.7.0),
-    fs (>= 1.6.0)
+    fs (>= 1.6.0),
+    arrow (< 15.0.0),
+    arrow (>= 14.0.0)
 Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
