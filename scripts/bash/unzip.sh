@@ -5,11 +5,6 @@ set -e
 # sh unzip.sh ~/data/path
 
 # This script will unzip zip files while
-# saving space (deleting the files as we go)
-
-# If you have plenty of disk space then don't
-# use this script, just run unzip "*.zip"
-
 # Destination folder. Default: current directory
 target_dir="${1:=.}"
 

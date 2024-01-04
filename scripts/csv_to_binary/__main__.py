@@ -25,13 +25,16 @@ XML_SCHEMA_TO_SQL = dict(
     string='VARCHAR',
     date='DATE',
     time='TIME',
+    dateTime='TIMESTAMP',
     long='BITINT',
     integer='UBIGINT',
     float='FLOAT',
     boolean='BOOLEAN',
-    double='DOUBLE'
+    double='DOUBLE',
+    decimal='DECIMAL',
 )
 """
+https://www.w3.org/2001/sw/rdb2rdf/wiki/Mapping_SQL_datatypes_to_XML_Schema_datatypes
 Map from XML Schema data types https://www.w3.org/TR/xmlschema-2/#typesystem
 to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 """
@@ -40,19 +43,32 @@ to DuckDB SQL data types https://duckdb.org/docs/sql/data_types/overview.html
 def get_args():
     parser = argparse.ArgumentParser(description=DESCRIPTION, usage=USAGE)
 
+    # Logging
     parser.add_argument('-v', '--verbose', action='store_true')
-    parser.add_argument('input_dir', type=Path, help='Path of directory containing input CSV data files.')
-    parser.add_argument('output_dir', type=Path,
-                        help='Path of the directory that will contain the output Parquet data files.')
+    parser.add_argument('-l', '--log', type=Path, help='Log file path')
+
+    # Input options
+    parser.add_argument('input_dir', type=Path, help='Path of the directory that contains the input CSV data files.')
     parser.add_argument('-c', '--csv', type=Path, required=True,
                         help='Path of the CSVW document https://w3c.github.io/csvw/syntax/#table-groups', )
     parser.add_argument('-t', '--table', required=False,
                         help='CSVW table identifier https://w3c.github.io/csvw/syntax/#dfn-table-id')
     parser.add_argument('--database', default=':memory:', help='DuckDB database')
 
+    # Output options
+    parser.add_argument('output_dir', type=Path,
+                        help='Path of the directory that will contain the output Parquet data files.')
+
     return parser.parse_args()
 
 
+def main():
+    args = get_args()
+    logging.basicConfig(
+        filename=args.log,
+        format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
+        level=logging.DEBUG if args.verbose else logging.INFO,
+    )
 def get_csvw_table(csvw: dict, table_id: str = None):
     """
     Get column data types
@@ -138,6 +154,7 @@ def csv_to_binary(con, input_path: Path, output_dir: Path, temp_directory: Path,
     # Execute query
     logger.info("Executing script '%s'", log_query_path)
     logger.info('Converting to binary file format...')
+    logger.info("Writing '%s'", output_path)
     start_time = time.time()
     result = con.execute(query)
     logger.info("Duration: %s", str(time.time() - start_time))
