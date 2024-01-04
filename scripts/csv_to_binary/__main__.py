@@ -62,13 +62,6 @@ def get_args():
     return parser.parse_args()
 
 
-def main():
-    args = get_args()
-    logging.basicConfig(
-        filename=args.log,
-        format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
-        level=logging.DEBUG if args.verbose else logging.INFO,
-    )
 def get_csvw_table(csvw: dict, table_id: str = None):
     """
     Get column data types
@@ -153,7 +146,6 @@ def csv_to_binary(con, input_path: Path, output_dir: Path, temp_directory: Path,
 
     # Execute query
     logger.info("Executing script '%s'", log_query_path)
-    logger.info('Converting to binary file format...')
     logger.info("Writing '%s'", output_path)
     start_time = time.time()
     result = con.execute(query)
@@ -164,6 +156,7 @@ def csv_to_binary(con, input_path: Path, output_dir: Path, temp_directory: Path,
 def main():
     args = get_args()
     logging.basicConfig(
+        filename=args.log,
         format="%(name)s:%(asctime)s:%(levelname)s:%(message)s",
         level=logging.INFO if args.verbose else logging.WARNING,
     )
@@ -187,5 +180,6 @@ def main():
         database=args.database,
     )
 
-    if __name__ == '__main__':
-        main()
+
+if __name__ == '__main__':
+    main()
