@@ -16,5 +16,5 @@ generate_summary_report <- function(input, output) {
 #generate_summary_report(location1, location2)
 #generate_summary_report("C:/Users/Administrator/Documents/cuRed/R/summary.R", "C:/Users/Administrator/Desktop/summary_report_hes_apc_202299.html")
 
-
+#ran this: generate_summary_report("C:/Users/Administrator/Documents/cuRed/R/summary.R", "C:/Users/Administrator/Desktop/summary_report_hes_apc.html")
 

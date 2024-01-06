@@ -22,3 +22,22 @@ for (file_path in parquet_files) {
 
 # Now you have a single data frame containing data from all files
 
+
+
+
+## Trial 2 without the for loop: 
+
+
+library(dplyr)
+library(arrow)
+
+# List all your .parquet files
+parquet_files <- list.files("C:/Users/Administrator/Desktop/hes_apc/", pattern = "\\.parquet$", full.names = TRUE)
+
+# Combine parquet files into a single data frame with dplyr
+combined_data <- bind_rows(lapply(parquet_files, arrow::read_parquet))
+
+
+# Now you have a single data frame containing data from all files
+
+

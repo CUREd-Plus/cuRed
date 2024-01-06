@@ -20,6 +20,9 @@ library(ggplot2)
 library(lubridate)
 
 
+start_time <- Sys.time()
+print(paste("Start time:", start_time))
+
 # List all your .parquet files
 parquet_files <- list.files("C:/Users/Administrator/Desktop/hes_apc/", pattern = "\\.parquet$", full.names = TRUE)
 
@@ -40,7 +43,6 @@ for (file_path in parquet_files) {
 data <- combined_data
 
 
-map_data <-  read.csv("C:/Users/Administrator/Documents/cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
 
 
 #For Investigation or Treatment Code
@@ -58,7 +60,12 @@ lsoa <-  readLines("C:/Users/Administrator/Documents/cuRed/inst/extdata/codes/ls
 lsoa <-  trimws(lsoa)  # Trim leading/trailing whitespaces
 lsoa <-  unique(lsoa)  # Remove duplicates
 
+#Import map data
+map_data <-  read.csv("C:/Users/Administrator/Documents/cuRed/inst/extdata/lsoadata/lsoa_latlong.csv")
 
+#Replace 999 with Na in Age columns
+data <- data %>%
+  mutate_at(vars(ACTIVAGE, ADMIAGE), ~ ifelse(. == 999, NA, .))
 
 # column types count
 column_counts <- table(sapply(data, class))
@@ -223,7 +230,7 @@ for (col_name in names(data)) {
   else if (col_type == "Date") {
     
     # Replace dates with year 1800 or 1801 with NA
-    data[[col_name]][year(data[[col_name]]) %in% c(1800, 1801)] <- NA
+    data[[col_name]][year(data[[col_name]]) %in% c(1800, 1801,1900,1901)] <- NA
     
     
     # Calculate and Print Date Range
@@ -314,3 +321,8 @@ for (col_name in names(data)) {
 # Print the map
 my_map
 
+
+end_time <- Sys.time()
+print(paste("End time:", end_time))
+
+print(start_time - end_time)
